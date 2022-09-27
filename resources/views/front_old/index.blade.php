@@ -87,7 +87,8 @@
                                     <img class="img-fluid" src="{{url('/')}}/quran/assets/images/bism-img1.png"
                                          alt="Bismillah Image">
                                     <h2 class="mb-0">{{trans('admin.who_are_us')}}</h2>
-                                    <h3 class="mb-0">@if(app()->getLocale() == 'ar')
+                                    <h3 class="mb-0">
+                                        @if(app()->getLocale() == 'ar')
                                             {{$app->about_ar}}
                                         @else
                                             {{$app->about_en}}

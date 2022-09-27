@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="wpoceans">
-    <title>Ummah - Islamic Center HTML5 Template</title>
+
 
 
     @if(app()->getLocale() == 'ar')
+        <title>{{$settings_share->title_ar}}</title>
         <link href="{{url('/')}}/ummah-rtl/assets/css/themify-icons.css" rel="stylesheet">
         <link href="{{url('/')}}/ummah-rtl/assets/css/font-awesome.min.css" rel="stylesheet">
         <link href="{{url('/')}}/ummah-rtl/assets/css/flaticon.css" rel="stylesheet">
@@ -26,6 +27,7 @@
         <link href="{{url('/')}}/ummah-rtl/assets/css/nice-select.css" rel="stylesheet">
         <link href="{{url('/')}}/ummah-rtl/assets/css/style.css" rel="stylesheet">
     @else
+        <title>{{$settings_share->title_en}}</title>
         <link href="{{url('/')}}/ummah_ltr/assets/css/themify-icons.css" rel="stylesheet">
         <link href="{{url('/')}}/ummah_ltr/assets/css/font-awesome.min.css" rel="stylesheet">
         <link href="{{url('/')}}/ummah_ltr/assets/css/flaticon.css" rel="stylesheet">

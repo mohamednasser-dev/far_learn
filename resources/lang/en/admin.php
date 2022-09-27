@@ -208,7 +208,7 @@ return [
     'forgot' => 'Forgot your password',
     'login' => 'login',
     'logout' => 'logout',
-    'sign_up' => 'sign_up',
+    'sign_up' => 'sign up',
     'sign' => 'sign',
     'i_have_Already_account' => 'I already have an account!',
     'confirm_pass' => 'confirm password',

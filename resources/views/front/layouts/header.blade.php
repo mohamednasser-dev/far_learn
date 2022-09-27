@@ -75,19 +75,57 @@
                         </ul>
                     </div><!-- end of nav-collapse -->
                     <div class="cart-search-contact">
-                        <div class="header-search-form-wrapper">
-                            <div class="btns">
-                                <a href="#" class="theme-btn">{{trans('admin.sign_up')}}</a>
+                        @if( auth()->guard('web')->check())
+                            <div class="header-search-form-wrapper">
+                                <div class="btns">
+                                    <a href="{{route('home')}}" class="theme-btn">{{trans('s_admin.control_panel')}}</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mini-cart">
-                            <div class="btns">
-                                <a href="{{url('/login')}}" class="theme-btn"><i class="fi flaticon2-user"></i> {{trans('admin.login')}}</a>
+                            <div class="mini-cart">
+                                <div class="btns">
+                                    <a href="{{ route('logout') }}" id="login_btn" class="theme-btn"><i class="fi flaticon2-user"></i> {{trans('admin.logout')}}</a>
+                                </div>
                             </div>
-                        </div>
+                        @elseif( auth()->guard('teacher')->check() )
+                            <div class="header-search-form-wrapper">
+                                <div class="btns">
+                                    <a href="{{route('teacher.home')}}" class="theme-btn">{{trans('s_admin.control_panel')}}</a>
+                                </div>
+                            </div>
+                            <div class="mini-cart">
+                                <div class="btns">
+                                    <a href="{{ route('teacher_logout') }}" id="login_btn" class="theme-btn"><i class="fi flaticon2-user"></i> {{trans('admin.logout')}}</a>
+                                </div>
+                            </div>
+                        @elseif( auth()->guard('student')->check() )
+                            <div class="header-search-form-wrapper">
+                                <div class="btns">
+                                    <a href="{{route('student_home')}}" class="theme-btn">{{trans('s_admin.control_panel')}}</a>
+                                </div>
+                            </div>
+                            <div class="mini-cart">
+                                <div class="btns">
+                                    <a href="{{ route('student_logout') }}" id="login_btn" class="theme-btn"><i class="fi flaticon2-user"></i> {{trans('admin.logout')}}</a>
+                                </div>
+                            </div>
+                        @else
+                            <div class="header-search-form-wrapper">
+                                <div class="btns">
+                                    <a data-dismiss="modal" data-toggle="modal" id="sign_up_btn"
+                                       data-target="#sign-modal" href="" title="" class="theme-btn">{{trans('admin.sign_up')}}</a>
+                                </div>
+                            </div>
+                            <div class="mini-cart">
+                                <div class="btns">
+                                    <a href="javascript:void($this);" data-toggle="modal" data-dismiss="modal" data-target="#login-modal" id="login_btn" class="theme-btn"><i class="fi flaticon2-user"></i> {{trans('admin.login')}}</a>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div><!-- end of container -->
             </nav>
         </div>
     </header>
     <!-- start of hero -->
+
+
