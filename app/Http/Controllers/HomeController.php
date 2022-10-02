@@ -36,6 +36,7 @@ class HomeController extends Controller
     {
         return view('front.login.forgetpassword');
     }
+
     public function terms()
     {
         return view('front.terms');
@@ -47,7 +48,7 @@ class HomeController extends Controller
             $type = 'users';
         } else if ($user = Student::where('email', '=', $request->email)->first()) {
             $type = 'students';
-        } else if ($user = Teacher::where('email', '=',email)->first()) {
+        } else if ($user = Teacher::where('email', '=', email)->first()) {
             $type = 'teachers';
         } else {
             Alert::error(trans('s_admin.not_here'), trans('s_admin.no_user_here'));
@@ -62,14 +63,14 @@ class HomeController extends Controller
         //Get the token just created above
         $tokenData = DB::table('password_resets')
             ->where('email', $user->email)->first();
-        if ($this->sendResetEmail($user, $tokenData->token, $type ,$request->email)) {
+        if ($this->sendResetEmail($user, $tokenData->token, $type, $request->email)) {
             return redirect()->back()->with('status', trans('s_admin.code_return_pass'));
         } else {
             return redirect()->back()->withErrors(['error' => trans('s_admin.wrong_exists')]);
         }
     }
 
-    private function sendResetEmail($user, $token, $type ,$username)
+    private function sendResetEmail($user, $token, $type, $username)
     {
         //Retrieve the user from the database
 
@@ -78,7 +79,7 @@ class HomeController extends Controller
 
         try {
             $email = $user->email;
-            if($user->main_lang == 'ar'){
+            if ($user->main_lang == 'ar') {
                 //mailHere
                 $data_verify['link'] = $link;
                 $data_verify['type'] = $type;
@@ -86,7 +87,7 @@ class HomeController extends Controller
                 $data_verify['lang'] = $user->main_lang;
                 $data_verify['email'] = $email;
                 $user->notify(new ForgetPassword($data_verify));
-            }else{
+            } else {
                 //mailHere
                 $data_verify['link'] = $link;
                 $data_verify['type'] = $type;
@@ -120,28 +121,28 @@ class HomeController extends Controller
         // Redirect the user back to the password reset request form if the token is invalid
         if (!$tokenData) return view('auth.passwords.email');
 
-            $password = \Hash::make($password);
+        $password = \Hash::make($password);
 
-            $user = User::where('email', $request->unique_name)->first();
-            if($user){
-                //Hash and update the new password
-                $user->password = $password;
-                $user->update(); //or $user->save();
-            }
+        $user = User::where('email', $request->unique_name)->first();
+        if ($user) {
+            //Hash and update the new password
+            $user->password = $password;
+            $user->update(); //or $user->save();
+        }
 
-            $student = Student::where('email', $request->unique_name)->first();
-            if($student){
-                //Hash and update the new password
-                $student->password = $password;
-                $student->update(); //or $user->save();
-            }
+        $student = Student::where('email', $request->unique_name)->first();
+        if ($student) {
+            //Hash and update the new password
+            $student->password = $password;
+            $student->update(); //or $user->save();
+        }
 
-            $teacher = Teacher::where('email', $request->unique_name)->first();
-            if($teacher){
-                //Hash and update the new password
-                $teacher->password = $password;
-                $teacher->update(); //or $user->save();
-            }
+        $teacher = Teacher::where('email', $request->unique_name)->first();
+        if ($teacher) {
+            //Hash and update the new password
+            $teacher->password = $password;
+            $teacher->update(); //or $user->save();
+        }
 
 
         // Redirect the user back if the email is invalid
@@ -178,23 +179,24 @@ class HomeController extends Controller
         return view('student.home');
     }
 
-    public function lang($lang){
+    public function lang($lang)
+    {
         if (session()->has('lang')) {
             session()->forget('lang');
         }
         session()->put('lang', $lang);
         \App::setLocale($lang);
-        if(\Auth::guard('web')->check()){
+        if (\Auth::guard('web')->check()) {
             $user = User::whereId(auth()->guard('web')->user()->id)->first();
-            $user->main_lang = $lang ;
+            $user->main_lang = $lang;
             $user->save();
-        }else if(\Auth::guard('teacher')->check()){
+        } else if (\Auth::guard('teacher')->check()) {
             $user = Teacher::whereId(auth()->guard('teacher')->user()->id)->first();
-            $user->main_lang = $lang ;
+            $user->main_lang = $lang;
             $user->save();
-        }else if(\Auth::guard('student')->check()){
+        } else if (\Auth::guard('student')->check()) {
             $user = Student::whereId(auth()->guard('student')->user()->id)->first();
-            $user->main_lang = $lang ;
+            $user->main_lang = $lang;
             $user->save();
         }
         return redirect()->back();
@@ -207,29 +209,30 @@ class HomeController extends Controller
     }
 
     // verify by sms ...
-    public function reverify_account($id , $code){
+    public function reverify_account($id, $code)
+    {
 //        $student = Student::find($id);
 //        return view('front.login.verify_by_sms', compact('student'));
 
-        $student = Student::where('code',$code)->where('id',$id)->first();
-        if($student){
+        $student = Student::where('code', $code)->where('id', $id)->first();
+        if ($student) {
             $new_data['code'] = null;
             $new_data['is_verified'] = "1";
-            Student::where('code',$code)->where('id',$id)->update($new_data);
+            Student::where('code', $code)->where('id', $id)->update($new_data);
             //auto login after verification ..
-            if (auth::guard('student')->attempt(['unique_name' => $student->unique_name , 'email' => $student->email ])) {
+            if (auth::guard('student')->attempt(['unique_name' => $student->unique_name, 'email' => $student->email])) {
                 if (auth()->guard('student')->user()->parent_data == 'not_complete') {
                     $student_id = auth()->guard('student')->user()->id;
                     Auth::guard('student')->logout();
                     Alert::warning(trans('s_admin.warning'), trans('admin.you_should_complete_parent_data'));
                     return redirect(url('/' . $student_id . '/student_parent'));
-                }elseif (auth()->guard('student')->user()->is_verified == '0') {
+                } elseif (auth()->guard('student')->user()->is_verified == '0') {
                     $email = auth()->guard('student')->user()->email;
                     Auth::guard('student')->logout();
                     Alert::warning(trans('s_admin.warning'), trans('s_admin.you_should_active'));
                     $person_type = 'student';
                     return view('front.login.verify_email', compact('email', 'person_type'));
-                }elseif (auth()->guard('student')->user()->is_new == 'rejected') {
+                } elseif (auth()->guard('student')->user()->is_new == 'rejected') {
                     Auth::guard('student')->logout();
                     Alert::warning(trans('s_admin.confirmation_acc'), trans('s_admin.you_rejected'));
                     return back();
@@ -245,24 +248,27 @@ class HomeController extends Controller
                 }
             }
 //            Alert::success(trans('s_admin.success_operation'), trans('s_admin.account_checked_s'));
-        }else{
+        } else {
             Alert::error(trans('s_admin.not_completed'), trans('s_admin.data_incorrect'));
         }
         return back();
     }
-    public function reverify_account_store(Request $request){
 
-        $student = Student::where('code',$request->code)->where('id',$request->student_id)->first();
-        if($student){
+    public function reverify_account_store(Request $request)
+    {
+
+        $student = Student::where('code', $request->code)->where('id', $request->student_id)->first();
+        if ($student) {
             $new_data['code'] = null;
             $new_data['is_verified'] = "1";
-            $student = Student::where('code',$request->code)->where('id',$request->student_id)->update($new_data);
+            $student = Student::where('code', $request->code)->where('id', $request->student_id)->update($new_data);
             Alert::success(trans('s_admin.success_operation'), trans('s_admin.account_checked_s'));
-        }else{
+        } else {
             Alert::error(trans('s_admin.not_completed'), trans('s_admin.data_incorrect'));
         }
         return back();
     }
+
     public function get_zones(Request $request, $id)
     {
         $data = Zone::where('country_id', $id)->get();
@@ -281,20 +287,21 @@ class HomeController extends Controller
         return view('admin.reports.data.parts.districts', compact('data'));
     }
 
-    public function get_subjects(Request $request,$id)
+    public function get_subjects(Request $request, $id)
     {
-        $data = Subject::where('level_id',$id)->get();
-        return view('student.profile.parts.subjects',compact('data'));
+        $data = Subject::where('level_id', $id)->get();
+        return view('student.profile.parts.subjects', compact('data'));
     }
-    public function get_subject_levels(Request $request,$id)
+
+    public function get_subject_levels(Request $request, $id)
     {
-        $data = Subject_level::where('subject_id',$id)->get();
-        return view('student.profile.parts.subject_levels',compact('data'));
+        $data = Subject_level::where('subject_id', $id)->get();
+        return view('student.profile.parts.subject_levels', compact('data'));
     }
 
     public function download_certificate($id)
     {
-        $certificat =  Certificat::findOrFail($id);
-        return view('admin.episodes.certificats.download',compact('certificat'));
+        $certificat = Certificat::findOrFail($id);
+        return view('admin.episodes.certificats.download', compact('certificat'));
     }
 }

@@ -27,11 +27,11 @@
                         <div class="wpo-event-item row">
                             <div class="wpo-event-img">
                                 @if($row->Teacher)
-                                    <img style="width: 210px;"
+                                    <img style="width: 232px;"
                                          src="{{url($row->Teacher->image)}}"
                                          alt="Author Image">
                                     <a href="{{route('front.teacher_details',$row->teacher_id)}}">
-                                        <h5 class="mb-2">
+                                        <h5 class="mb-2" style="text-align: center;">
                                             @if($row->Teacher->gender == 'male')
                                                 {{trans('s_admin.teacher_name')}}/
                                             @else
@@ -54,14 +54,14 @@
                                         </small>
                                     </a>
                                 @else
-                                    <img style="width: 210px;"
+                                    <img style="width: 232px;"
                                          src="{{ asset('uploads/teachers/default_avatar.jpg') }}"
                                          alt="Author Image">
                                 @endif
-{{--                                <div class="thumb-text">--}}
-{{--                                    <span>25</span>--}}
-{{--                                    <span>نوفمبر</span>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="thumb-text">--}}
+                                {{--                                    <span>25</span>--}}
+                                {{--                                    <span>نوفمبر</span>--}}
+                                {{--                                </div>--}}
                             </div>
                             <div class="wpo-event-text">
                                 <h2>{{$row->name}}</h2>
@@ -121,7 +121,7 @@
                                     {{trans('s_admin.you_teacher')}}
                                 @elseif( auth()->guard('student')->check() )
                                     @if(auth()->guard('student')->user()->epo_type == 'far_learn')
-                                        <a class="thm-btn thm-bg"
+                                        <a class="theme-btn" style="color: white;"
                                            href="{{route('search.show',$row->id)}}"
                                            title="">{{trans('s_admin.join_now')}}
                                             <span></span><span></span><span></span><span></span>
@@ -138,7 +138,7 @@
                                            title="">{{trans('s_admin.episode_complete')}}
                                             <span></span><span></span><span></span><span></span></a>
                                     @else
-                                        <a class="thm-btn thm-bg"
+                                        <a class="theme-btn" style="color: white;"
                                            href="{{route('custom_sign_up',['episode_id'=>$row->id , 'types'=>$page_type])}}"
                                            title="">{{trans('s_admin.join_now')}}
                                             <span></span><span></span><span></span><span></span></a>

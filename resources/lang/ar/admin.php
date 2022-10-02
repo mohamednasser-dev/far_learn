@@ -2,6 +2,8 @@
 return [
 
     //new
+    'page_forgot_Pass' => 'إعادة كلمة المرور',
+
     'useful_links'=>'صفحات مهمة',
     'change_lang'=>'تغيير اللغة',
     'home'=>'الصفحة الرئيسية',
@@ -29,7 +31,7 @@ return [
     'subject'=>'الموضوع',
 
     'connect_social' => 'روابط التواصل الاجتماعي',
-    'country_code' => 'كود',
+    'country_code' => 'كود الدولة',
     'first_name_en' => 'الاسم الأول بالانجليزية',
     'mid_name_en' => ' الاسم الأوسط بالانجليزية',
     'last_name_en' => 'الاسم الأخير بالانجليزية',

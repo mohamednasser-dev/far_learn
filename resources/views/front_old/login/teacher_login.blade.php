@@ -268,8 +268,7 @@
                                             <input id="txt_pass" type="password" required minlength="8"
                                                    name="password"
                                                    class="form-control" placeholder="">
-                                            <span
-                                                style="color: red; font-size: 10px;">{{trans('admin.password_limit')}}</span>
+                                            <span style="color: red; font-size: 10px;">{{trans('admin.password_limit')}}</span>
                                         </div>
                                         <div class="form-group has-danger">
                                             <label
@@ -623,30 +622,7 @@
                                     <button class="btn btn-success pull-right"
                                             type="submit">{{trans('admin.sign')}}</button>
                                 </div>
-                                {{--                                <div class="panel panel-primary setup-content" id="step-3">--}}
-                                {{--                                    <div class="panel-heading">--}}
-                                {{--                                        <h3 class="panel-title"></h3>--}}
-                                {{--                                    </div>--}}
-                                {{--                                    <div class="panel-body">--}}
-                                {{--                                    </div>--}}
-                                {{--                                    <button class="btn btn-primary backBtn pull-right"--}}
-                                {{--                                            type="button">{{trans('admin.befor')}}</button>--}}
-                                {{--                                    <button class="btn btn-primary nextBtn pull-right"--}}
-                                {{--                                            type="button">{{trans('admin.next')}}--}}
-                                {{--                                    </button>--}}
-                                {{--                                </div>--}}
-                                {{--                                <div class="panel panel-primary setup-content" id="step-4">--}}
-                                {{--                                    <div class="panel-heading">--}}
-                                {{--                                        <h3 class="panel-title"></h3>--}}
-                                {{--                                    </div>--}}
-                                {{--                                    <div class="panel-body">--}}
-                                {{--                                        <button class="btn btn-primary backBtn pull-right"--}}
-                                {{--                                                type="button">{{trans('admin.befor')}}</button>--}}
-                                {{--                                        <button class="btn btn-success pull-right"--}}
-                                {{--                                                type="submit">{{trans('admin.sign')}}</button>--}}
 
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
                             </div>
                             {{ Form::close() }}
                         </div>

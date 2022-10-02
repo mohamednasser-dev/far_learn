@@ -2,7 +2,7 @@
 <div class="wpo-ne-footer">
     <!-- start wpo-news-letter-section -->
 @yield('footer_follow')
-    <!-- end wpo-news-letter-section -->
+<!-- end wpo-news-letter-section -->
     <!-- start wpo-site-footer -->
     <footer class="wpo-site-footer">
         <div class="wpo-upper-footer">
@@ -53,8 +53,8 @@
                             <div class="contact-ft">
                                 <ul>
                                     <li><i class="fi ti-location-pin"></i>{{$settings_share->address}}</li>
-                                    <li><i class="fi flaticon-call"></i>{{$settings_share->phone}}</li>
-                                    <li><i class="fi flaticon-envelope"></i>{{$settings_share->email}}</li>
+                                    <li>{{$settings_share->phone}}<i class="fi flaticon-call"></i></li>
+                                    <li>{{$settings_share->email}}<i class="fi flaticon-envelope"></i></li>
                                 </ul>
                             </div>
                         </div>
@@ -125,7 +125,8 @@
                                                 class="center">{{trans('admin.student_h')}}</h4>
                                         </a>
                                     @else
-                                        <a id="btn_link" href="javascript:void(0);" class="model_style" data-toggle="modal"
+                                        <a id="btn_link" href="javascript:void(0);" class="model_style"
+                                           data-toggle="modal"
                                            data-target="#stud_model" data-dismiss="modal">
                                             <div class="text-center">
                                                 <img src="{{url('/')}}/quran/assets/images/studentPhotoSignUp.png">
@@ -142,7 +143,8 @@
             </div>
         </div>
     </div>
-    <div id="stud_model" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+    <div id="stud_model" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true"
          style="display: none;">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content" style="border-radius: 5%!important;">
@@ -190,7 +192,8 @@
                 <div class="modal-header">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        <h5 class="modal-title" id="exampleModalLongTitle">{{trans('s_admin.choose_far_learn_type')}}</h5>
+                        <h5 class="modal-title"
+                            id="exampleModalLongTitle">{{trans('s_admin.choose_far_learn_type')}}</h5>
                     </div>
                     <div class="col-md-3"></div>
                 </div>
@@ -264,7 +267,7 @@
                 {{ Form::open( ['route'  => ['login_both'],'method'=>'post' , 'class'=>'form'] ) }}
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-lg-8" style="padding-top: 15px">
+                        <div class="col-lg-12" style="padding-top: 15px">
                             <div class="row">
                                 <div class="col-lg-8">
                                     <div class="form-group" style="padding-bottom: 5px">
@@ -291,28 +294,19 @@
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <input type="password" required name="password" placeholder="{{trans('admin.password')}}"
+                                <input type="password" required name="password"
+                                       placeholder="{{trans('admin.password')}}"
                                        class="form-control" id="recipient-name1">
                             </div>
                             <div class="row">
-                                <div class="form-group col-6" style="text-align: right">
+                                <a href="{{route('Forget-password')}}">
+                                    {{trans('admin.forgot_Pass')}}
+                                </a>
+                                <div class="form-group col-12" style="text-align: right">
                                     <button type="submit" class="btn btn-sm btn-success"
                                     > {{trans('admin.login')}}</button>
                                 </div>
-                                <div class="form-group col-6" style="text-align: left;">
-                                    <a href="{{route('Forget-password')}}">
-                                        @if(app()->getLocale() == 'ar')
-                                            نسيت كلمة المرور؟
-                                        @else
-                                            forget Password?
-                                        @endif
-                                    </a>
-                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4" style="">
-                            <img src="{{url('quran/assets/images/login_image.jpg')}}"
-                                 style="height: 120px;width: 350px;border-radius: 25%;opacity: 75%" alt="icon">
                         </div>
                     </div>
 
@@ -405,13 +399,14 @@
         //     txt_unique_name.replace(/\s/g, "") ;
         // });
     });
+
     function login_phone(string) {
         var first_string = string.substring(0);
         var int_string = parseInt(first_string);
-        if(int_string == '0'){
+        if (int_string == '0') {
             $("#phone").val('');
             return false;
-        }else{
+        } else {
             return string;
         }
     }
