@@ -863,19 +863,19 @@ class   LoginController extends Controller
 //                $data_verify['lang'] = $lang;
 //                $phone_check->notify(new VerfiyRegister($data_verify));
 
-                if ($lang == 'ar') {
-                    Mail::raw('مقرأة عنيزة الإلكترونية , كود التحقق من البريد الإلكتروني هو : ' . $code, function ($message) use ($email) {
-                        $message->subject(trans('s_admin.title'));
-                        $message->from(env('MAIL_USERNAME'), 'online learning');
-                        $message->to($email);
-                    });
-                } else {
-                    Mail::raw('miqra\'a Unaizah electronic , OTP code for verify email is : '. $code, function ($message) use ($email) {
-                        $message->subject(trans('s_admin.title'));
-                        $message->from(env('MAIL_USERNAME'), 'online learning');
-                        $message->to($email);
-                    });
-                }
+//                if ($lang == 'ar') {
+//                    Mail::raw('مقرأة عنيزة الإلكترونية , كود التحقق من البريد الإلكتروني هو : ' . $code, function ($message) use ($email) {
+//                        $message->subject(trans('s_admin.title'));
+//                        $message->from(env('MAIL_USERNAME'), 'online learning');
+//                        $message->to($email);
+//                    });
+//                } else {
+//                    Mail::raw('miqra\'a Unaizah electronic , OTP code for verify email is : '. $code, function ($message) use ($email) {
+//                        $message->subject(trans('s_admin.title'));
+//                        $message->from(env('MAIL_USERNAME'), 'online learning');
+//                        $message->to($email);
+//                    });
+//                }
             }
             return response(['status' => true]);
         } else {
