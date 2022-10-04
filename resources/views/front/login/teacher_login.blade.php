@@ -127,7 +127,6 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                     <label>{{trans('admin.full_name')}}</label>
                                 </div>
-                                <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
                                         <input type="text" class="form-control" name="first_name_ar" id="fname" required
                                                value="{{old('first_name_ar')}}"
@@ -143,7 +142,6 @@
                                                value="{{old('last_name_ar')}}"
                                                placeholder="{{trans('admin.last_name')}}">
                                     </div>
-                                </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                     <label>{{trans('admin.gender')}} <span style="color: red;">*</span> </label>
                                     @if($types == 'teacher_far_learn' || $types == 'teacher_mogmaa_dorr')
@@ -285,8 +283,7 @@
                                                 <div class="col-lg-2">
                                                     <div class="form-group">
                                                         <label
-                                                            class="control-label">{{trans('admin.country_code')}}</label><span
-                                                            style="color: red;">*</span><br>
+                                                            class="control-label">{{trans('admin.country_code')}}</label><br>
                                                         <input id="txt_parent_country_code"
                                                                style="max-width: 30px;"
                                                                @if(old('parent_country_code'))
