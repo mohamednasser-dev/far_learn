@@ -127,22 +127,23 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                     <label>{{trans('admin.full_name')}}</label>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
-                                    <input type="email" class="form-control" name="last_name_ar" id="email"
-                                           value="{{old('last_name_ar')}}"
-                                           placeholder="{{trans('admin.last_name')}}">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
+                                        <input type="text" class="form-control" name="first_name_ar" id="fname" required
+                                               value="{{old('first_name_ar')}}"
+                                               placeholder="{{trans('admin.first_name')}}">
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
+                                        <input type="text" class="form-control" name="mid_name_ar" id="fname" required
+                                               value="{{old('mid_name_ar')}}"
+                                               placeholder="{{trans('admin.mid_name')}}">
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
+                                        <input type="email" class="form-control" name="last_name_ar" id="email" required
+                                               value="{{old('last_name_ar')}}"
+                                               placeholder="{{trans('admin.last_name')}}">
+                                    </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
-                                    <input type="text" class="form-control" name="mid_name_ar" id="fname"
-                                           value="{{old('mid_name_ar')}}"
-                                           placeholder="{{trans('admin.mid_name')}}">
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
-                                    <input type="text" class="form-control" name="first_name_ar" id="fname"
-                                           value="{{old('first_name_ar')}}"
-                                           placeholder="{{trans('admin.first_name')}}">
-                                </div>
-
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                     <label>{{trans('admin.gender')}} <span style="color: red;">*</span> </label>
                                     @if($types == 'teacher_far_learn' || $types == 'teacher_mogmaa_dorr')
@@ -190,6 +191,7 @@
                                     <br>
                                     <br>
                                     <a href="javascript:void(this);" id="btn_send_email_code_check"
+
                                        class="btn btn-info">{{trans('s_admin.check')}}</a>
                                     <a href="javascript:void(this);" style="display: none;"
                                        id="checked_email_label_s"
@@ -257,7 +259,7 @@
                                 @if($types != 'teacher_far_learn' )
                                     @if($types != 'teacher_mogmaa_dorr')
                                         <div id="parent_access"
-                                             @if(!old('parent_user_name')) style="display: none; @endif background-color: antiquewhite;">
+                                             @if(!old('parent_user_name')) style="display: none; @endif ">
                                             <p>{{trans('s_admin.parent_data')}}:</p>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                                 <label
@@ -336,10 +338,8 @@
                                         </div>
                                     @endif
                                 @endif
-                                <div class="col-lg-12 col-12 form-group">
-                                    <button class="btn btn-primary nextBtn pull-right"
-                                            type="button">{{trans('admin.next')}}</button>
-                                </div>
+                                <button class="btn btn-primary nextBtn pull-right"
+                                        type="button">{{trans('admin.next')}}</button>
                             </div>
                             <div class="panel panel-primary setup-content" id="step-2">
                                 <div class="panel-heading">
@@ -604,186 +604,253 @@
     </div>
     <!-- payment-section end-->
 
-    <div id="check_model" class="modal model_style fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="border-radius: 5%!important;">
-                <div class="modal-header" style="align-self: center;">
-                    <h5 class="modal-title" id="exampleModalLongTitle">{{trans('s_admin.check_phone')}}</h5>
-                </div>
-                <div class="modal-body">
-                    <h6>{{trans('s_admin.sms_message_reached_you')}}</h6>
-                    <div class="form-group">
-                        <input id="txt_checked_code" type="number" required style="text-align: center;"
-                               placeholder="{{trans('s_admin.write_y_code')}}"
-                               name="checked_code" value="{{old('checked_code')}}"
-                               class="form-control form-control-danger">
+@section('modals')
+    <div class="payment-section">
+        <div id="check_model" class="modal model_style fade-in" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel"
+             aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="border-radius: 5%!important;">
+                    <div class="modal-header" style="align-self: center;">
+                        <h5 class="modal-title" id="exampleModalLongTitle">{{trans('s_admin.check_phone')}}</h5>
                     </div>
-                    <span style="color: black;">{{trans('s_admin.if_code_not_send')}}</span>
-                    <a style="color: blue;" href="javascript:void(this);"
-                       id="btn_resend">{{trans('s_admin.resend_code')}}</a>
-                    <a id="checked_label" style="display: none;"><i style="font-size:20px; color: green;"
-                                                                    class="fa fa-check"></i></a>
+                    <div class="modal-body">
+                        <h6>{{trans('s_admin.sms_message_reached_you')}}</h6>
+                        <div class="form-group">
+                            <input id="txt_checked_code" type="number" required style="text-align: center;"
+                                   placeholder="{{trans('s_admin.write_y_code')}}"
+                                   name="checked_code" value="{{old('checked_code')}}"
+                                   class="form-control form-control-danger">
+                        </div>
+                        <span style="color: black;">{{trans('s_admin.if_code_not_send')}}</span>
+                        <a style="color: blue;" href="javascript:void(this);"
+                           id="btn_resend">{{trans('s_admin.resend_code')}}</a>
+                        <a id="checked_label" style="display: none;"><i style="font-size:20px; color: green;"
+                                                                        class="fa fa-check"></i></a>
 
-                </div>
-                <div class="modal-footer" style="align-self: center;">
-                    <a class="btn btn-success" href="javascript:void(this);"
-                       id="btn_check">{{trans('s_admin.check')}}</a>
-                    <a id="phone_wrong_label" style="display: none;" href="javascript:void(this);"
-                    ><i style="font-size:30px; color: red;" class="fa fa-times"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="check_parent_model" class="modal model_style fade" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel"
-         aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="border-radius: 5%!important;">
-                <div class="modal-header" style="align-self: center;">
-                    <h5 class="modal-title" id="exampleModalLongTitle">{{trans('s_admin.check_phone')}}</h5>
-                </div>
-                <div class="modal-body">
-                    <h6>{{trans('s_admin.sms_message_reached_you')}}</h6>
-                    <div class="form-group">
-                        <input id="txt_checked_parent_code" type="number" required style="text-align: center;"
-                               placeholder="{{trans('s_admin.write_y_code')}}"
-                               name="checked_parent_code" value="{{old('checked_parent_code')}}"
-                               class="form-control form-control-danger">
                     </div>
-                    <span style="color: black;">{{trans('s_admin.if_code_not_send')}}</span>
-                    <a style="color: blue;" href="javascript:void(this);"
-                       id="btn_parent_resend">{{trans('s_admin.resend_code')}}</a>
-                    <a id="checked_parent_label" style="display: none;"><i style="font-size:20px; color: green;"
-                                                                           class="fa fa-check"></i></a>
-
-                </div>
-                <div class="modal-footer" style="align-self: center;">
-                    <a class="btn btn-success" href="javascript:void(this);"
-                       id="btn_parent_check">{{trans('s_admin.check')}}</a>
-                    <a id="parent_wrong_label" style="display: none;" href="javascript:void(this);"
-                    ><i style="font-size:30px; color: red;" class="fa fa-times"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="check_email_model" class="modal model_style fade" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel"
-         aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="border-radius: 5%!important;">
-                <div class="modal-header" style="align-self: center;">
-                    <h5 class="modal-title" id="exampleModalLongTitle">{{trans('s_admin.check_email')}}</h5>
-                </div>
-                <div class="modal-body">
-                    <h6>{{trans('s_admin.email_message_reached_you')}}</h6>
-                    <div class="form-group">
-                        <input id="txt_checked_email_code" type="number" required style="text-align: center;"
-                               placeholder="{{trans('s_admin.write_y_code')}}"
-                               name="checked_email_code" value="{{old('checked_email_code')}}"
-                               class="form-control form-control-danger">
+                    <div class="modal-footer" style="align-self: center;">
+                        <a class="btn btn-success" href="javascript:void(this);"
+                           id="btn_check">{{trans('s_admin.check')}}</a>
+                        <a id="phone_wrong_label" style="display: none;" href="javascript:void(this);"
+                        ><i style="font-size:30px; color: red;" class="fa fa-times"></i></a>
                     </div>
-                    <span style="color: black;">{{trans('s_admin.if_code_not_send')}}</span>
-                    <a style="color: blue;" href="javascript:void(this);"
-                       id="btn_email_resend">{{trans('s_admin.resend_code')}}</a>
-                    <a id="checked_email_label" style="display: none;"><i style="font-size:20px; color: green;"
-                                                                          class="fa fa-check"></i></a>
-
-                </div>
-                <div class="modal-footer" style="align-self: center;">
-                    <a class="btn btn-success" href="javascript:void(this);"
-                       id="btn_email_check">{{trans('s_admin.check')}}</a>
-                    <a id="email_wrong_label" style="display: none;" href="javascript:void(this);"
-                    ><i style="font-size:30px; color: red;" class="fa fa-times"></i></a>
                 </div>
             </div>
         </div>
-    </div>
+        <div id="check_parent_model" class="modal model_style fade-in" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel"
+             aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="border-radius: 5%!important;">
+                    <div class="modal-header" style="align-self: center;">
+                        <h5 class="modal-title" id="exampleModalLongTitle">{{trans('s_admin.check_phone')}}</h5>
+                    </div>
+                    <div class="modal-body">
+                        <h6>{{trans('s_admin.sms_message_reached_you')}}</h6>
+                        <div class="form-group">
+                            <input id="txt_checked_parent_code" type="number" required style="text-align: center;"
+                                   placeholder="{{trans('s_admin.write_y_code')}}"
+                                   name="checked_parent_code" value="{{old('checked_parent_code')}}"
+                                   class="form-control form-control-danger">
+                        </div>
+                        <span style="color: black;">{{trans('s_admin.if_code_not_send')}}</span>
+                        <a style="color: blue;" href="javascript:void(this);"
+                           id="btn_parent_resend">{{trans('s_admin.resend_code')}}</a>
+                        <a id="checked_parent_label" style="display: none;"><i style="font-size:20px; color: green;"
+                                                                               class="fa fa-check"></i></a>
 
-    <div id="check_correct_model" class="modal model_style fade" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel"
-         aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="border-radius: 5%!important;">
-                <div style="text-align: center;">
-                    <a><i style="font-size:48px; color: green;"
-                          class="fa fa-check"></i></a>
-                </div>
-                <div class="modal-body" style="align-self: center;">
-                    <h6>{{trans('s_admin.phone_checked_s')}}</h6>
-                </div>
-                <div class="modal-footer" style="align-self: center;">
-                    <a class="btn btn-info" data-dismiss="modal"
-                       href="javascript:void(this);">{{trans('s_admin.cancel')}}</a>
+                    </div>
+                    <div class="modal-footer" style="align-self: center;">
+                        <a class="btn btn-success" href="javascript:void(this);"
+                           id="btn_parent_check">{{trans('s_admin.check')}}</a>
+                        <a id="parent_wrong_label" style="display: none;" href="javascript:void(this);"
+                        ><i style="font-size:30px; color: red;" class="fa fa-times"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="check_email_correct_model" class="modal model_style fade" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel"
-         aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="border-radius: 5%!important;">
-                <div style="text-align: center;">
-                    <a><i style="font-size:48px; color: green;"
-                          class="fa fa-check"></i></a>
-                </div>
-                <div class="modal-body" style="align-self: center;">
-                    <h6>{{trans('s_admin.email_checked_s')}}</h6>
-                </div>
-                <div class="modal-footer" style="align-self: center;">
-                    <a class="btn btn-info" data-dismiss="modal"
-                       href="javascript:void(this);">{{trans('s_admin.cancel')}}</a>
+        <div id="test-modal" class="modal fade-in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content"
+                     style="border-radius: 5%!important; width: 100%;text-align: center;">
+                    <div class="modal-header">
+                        <div class="col-md-12">
+                            <h3 class="modal-title" id="exampleModalLongTitle">{{trans('admin.login')}}</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    </div>
+                    {{ Form::open( ['route'  => ['login_both'],'method'=>'post' , 'class'=>'form'] ) }}
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12" style="padding-top: 15px">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="form-group" style="padding-bottom: 5px">
+                                            <input type="number"
+                                                   onkeyup="this.value=login_phone(this.value);"
+                                                   required name="phone" value="{{old('phone')}}"
+                                                   placeholder="{{trans('s_admin.phone')}}"
+                                                   class="form-control" id="recipient-name1">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <input id="txt_main_login_countrycode_code"
+                                                   style="max-width: 30px;"
+                                                   @if(old('country_code'))
+                                                   value="{{old('country_code')}}"
+                                                   @else
+                                                   value="+966"
+                                                   @endif
+                                                   type="text"
+                                                   name="country_code"
+                                                   class="form-control form-control-danger">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <input type="password" required name="password"
+                                           placeholder="{{trans('admin.password')}}"
+                                           class="form-control" id="recipient-name1">
+                                </div>
+                                <div class="row">
+                                    <a href="{{route('Forget-password')}}">
+                                        {{trans('admin.forgot_Pass')}}
+                                    </a>
+                                    <div class="form-group col-12" style="text-align: right">
+                                        <button type="submit" class="btn btn-sm btn-success"
+                                        > {{trans('admin.login')}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>
-    </div>
+        <div id="check_email_model" class="modal model_style fade-in" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="border-radius: 5%!important;">
+                    <div class="modal-header" style="align-self: center;">
+                        <h5 class="modal-title" id="exampleModalLongTitle">{{trans('s_admin.check_email')}}</h5>
+                    </div>
+                    <div class="modal-body">
+                        <h6>{{trans('s_admin.email_message_reached_you')}}</h6>
+                        <div class="form-group">
+                            <input id="txt_checked_email_code" type="number" required style="text-align: center;"
+                                   placeholder="{{trans('s_admin.write_y_code')}}"
+                                   name="checked_email_code" value="{{old('checked_email_code')}}"
+                                   class="form-control form-control-danger">
+                        </div>
+                        <span style="color: black;">{{trans('s_admin.if_code_not_send')}}</span>
+                        <a style="color: blue;" href="javascript:void(this);"
+                           id="btn_email_resend">{{trans('s_admin.resend_code')}}</a>
+                        <a id="checked_email_label" style="display: none;"><i style="font-size:20px; color: green;"
+                                                                              class="fa fa-check"></i></a>
 
-    <div id="exists_email_model" class="modal model_style fade" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel"
-         aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="border-radius: 5%!important;">
-                <div class="modal-body" style="align-self: center;">
+                    </div>
+                    <div class="modal-footer" style="align-self: center;">
+                        <a class="btn btn-success" href="javascript:void(this);"
+                           id="btn_email_check">{{trans('s_admin.check')}}</a>
+                        <a id="email_wrong_label" style="display: none;" href="javascript:void(this);"
+                        ><i style="font-size:30px; color: red;" class="fa fa-times"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="check_correct_model" class="modal model_style fade-in" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel"
+             aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="border-radius: 5%!important;">
                     <div style="text-align: center;">
-                        <a><i style="font-size:48px; color: red;"
-                              class="fa fa-times"></i></a>
+                        <a><i style="font-size:48px; color: green;"
+                              class="fa fa-check"></i></a>
                     </div>
-
-                    <br>
-                    <h6>{{trans('s_admin.email_exists_before')}}</h6>
-                </div>
-                <div class="modal-footer" style="align-self: center;">
-                    <a class="btn btn-info" data-dismiss="modal"
-                       href="javascript:void(this);">{{trans('s_admin.cancel')}}</a>
+                    <div class="modal-body" style="align-self: center;">
+                        <h6>{{trans('s_admin.phone_checked_s')}}</h6>
+                    </div>
+                    <div class="modal-footer" style="align-self: center;">
+                        <a class="btn btn-info" data-dismiss="modal"
+                           href="javascript:void(this);">{{trans('s_admin.cancel')}}</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="exists_phone_model" class="modal model_style fade" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel"
-         aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="border-radius: 5%!important;">
-                <div class="modal-body" style="align-self: center;">
+        <div id="check_email_correct_model" class="modal model_style fade-in" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel"
+             aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="border-radius: 5%!important;">
                     <div style="text-align: center;">
-                        <a><i style="font-size:48px; color: red;"
-                              class="fa fa-times"></i></a>
+                        <a><i style="font-size:48px; color: green;"
+                              class="fa fa-check"></i></a>
                     </div>
-
-                    <br>
-                    <h6>{{trans('s_admin.phone_exists_before')}}</h6>
+                    <div class="modal-body" style="align-self: center;">
+                        <h6>{{trans('s_admin.email_checked_s')}}</h6>
+                    </div>
+                    <div class="modal-footer" style="align-self: center;">
+                        <a class="btn btn-info" data-dismiss="modal"
+                           href="javascript:void(this);">{{trans('s_admin.cancel')}}</a>
+                    </div>
                 </div>
-                <div class="modal-footer" style="align-self: center;">
-                    <a class="btn btn-info" data-dismiss="modal"
-                       href="javascript:void(this);">{{trans('s_admin.cancel')}}</a>
+            </div>
+        </div>
+
+        <div id="exists_email_model" class="modal model_style fade-in" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel"
+             aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="border-radius: 5%!important;">
+                    <div class="modal-body" style="align-self: center;">
+                        <div style="text-align: center;">
+                            <a><i style="font-size:48px; color: red;"
+                                  class="fa fa-times"></i></a>
+                        </div>
+
+                        <br>
+                        <h6>{{trans('s_admin.email_exists_before')}}</h6>
+                    </div>
+                    <div class="modal-footer" style="align-self: center;">
+                        <a class="btn btn-info" data-dismiss="modal"
+                           href="javascript:void(this);">{{trans('s_admin.cancel')}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="exists_phone_model" class="modal model_style fade-in" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel"
+             aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="border-radius: 5%!important;">
+                    <div class="modal-body" style="align-self: center;">
+                        <div style="text-align: center;">
+                            <a><i style="font-size:48px; color: red;"
+                                  class="fa fa-times"></i></a>
+                        </div>
+
+                        <br>
+                        <h6>{{trans('s_admin.phone_exists_before')}}</h6>
+                    </div>
+                    <div class="modal-footer" style="align-self: center;">
+                        <a class="btn btn-info" data-dismiss="modal"
+                           href="javascript:void(this);">{{trans('s_admin.cancel')}}</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+@endsection
 @section('scripts')
+
     {{--    //for hijri date--}}
     <script src="{{url('/')}}/hijri/js/jquery-3.3.1.js"></script>
     <script src="{{url('/')}}/hijri/js/bootstrap.js"></script>
@@ -792,6 +859,30 @@
     <script src="{{url('/')}}/hijri/js/moment-hijri.js"></script>
     <script src="{{url('/')}}/hijri/js/bootstrap-hijri-datetimepicker.js"></script>
     <script type="text/javascript">
+        // Begin Email check javascript
+        $(document).on('click', '#btn_send_email_code_check', function () {
+            var email = $('#txt_email').val();
+            var type = $('#txt_type').val();
+            $.ajax({
+                type: "post",
+                url: "{{route('email.send.check_code')}}",
+                data: {
+                    _token: $("#csrf").val(),
+                    email: email,
+                    type: type
+                },
+                datatype: "json",
+                success: function (data) {
+                    if (data.status == true) {
+                        $('#check_email_model').modal('show');
+                    } else {
+                        if (data.type == 'exists') {
+                            $('#exists_email_model').modal('show');
+                        }
+                    }
+                }
+            });
+        });
         $(function () {
             initHijrDatePicker();
             $('.disable-date').hijriDatePicker({
@@ -936,6 +1027,7 @@
             var pastYear = past.getFullYear();
             var age = nowYear - pastYear;
             if (age <= 10) {
+                console.log('age <= 10');
                 document.getElementById('parent_access').style.display = 'block';
                 $('#user_name').attr('required', 'required');
                 $('#phone').attr('required', 'required');
@@ -947,6 +1039,7 @@
                 document.getElementById('phone').removeAttribute('readonly');
                 document.getElementById('txt_parent_country_code').removeAttribute('readonly');
             } else {
+                console.log('age > 10');
                 document.getElementById('parent_access').style.display = 'none';
                 $('#user_name').removeAttr('required');
                 $('#phone').removeAttr('required');
@@ -1036,7 +1129,6 @@
                     var pc = $('#txt_p_c').val();
                     var pac = $('#txt_pa_c').val();
                     var parent_phone = $('#phone').val();
-                    console.log(parent_phone);
                     if (ec != 'true') {
                         alert("يجب التحقق من البريد الإلكتروني اولا !");
                     } else if (pc != 'true') {
@@ -1315,31 +1407,7 @@
             });
         });
         // End phone check javascript
-        // Begin Email check javascript
-        $(document).on('click', '#btn_send_email_code_check', function () {
-            var email = $('#txt_email').val();
-            var type = $('#txt_type').val();
-            $.ajax({
-                type: "post",
-                url: "{{route('email.send.check_code')}}",
-                data: {
-                    _token: $("#csrf").val(),
-                    email: email,
-                    type: type
-                },
-                datatype: "json",
-                success: function (data) {
-                    if (data.status == true) {
-                        $('#check_email_model').modal('toggle');
-                    } else {
-                        if (data.type == 'exists') {
-                            $('#exists_email_model').modal('toggle');
-                        }
 
-                    }
-                }
-            });
-        });
         $(document).on('click', '#btn_email_resend', function () {
             var email = $('#txt_email').val();
             $.ajax({

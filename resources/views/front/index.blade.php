@@ -82,7 +82,7 @@
     </div>
     <!-- service-area-end -->
     <!-- payment-section start-->
-    <div class="payment-section section-padding">
+    <div class="payment-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">

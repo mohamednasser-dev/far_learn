@@ -906,10 +906,20 @@ class AuthController extends Controller
     public function send_phone_check_code(Request $request)
     {
         $lang = $request->header('lang');
-        $rules = [
-            'country_code' => 'required',
-            'phone' => 'required'
-        ];
+        $type = $request->type ;
+        if ($type == 'far_learn' || $type == 'mogmaa_dorr' ) {
+            $rules = [
+                'country_code' => 'required',
+                'phone' => 'required|unique:students,phone',
+                'type' => 'required|in:far_learn,mogmaa_dorr,teacher_far_learn,teacher_mogmaa_dorr'
+            ];
+        }else{
+            $rules = [
+                'country_code' => 'required',
+                'phone' => 'required|unique:teachers,phone',
+                'type' => 'required|in:far_learn,mogmaa_dorr,teacher_far_learn,teacher_mogmaa_dorr'
+            ];
+        }
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return response()->json(msg($request, failed(), $validator->messages()->first()));

@@ -182,6 +182,9 @@ return [
         'request_date' => 'تاريخ الطلب',
         'save_quran_num' => 'عدد الأجزاء المحفوظة',
         'save_quran_limit' => 'ما هي قدرتك على الحفظ',
+        'first_name_ar' => 'الاسم الاول',
+        'mid_name_ar' => 'الاسم الاوسط',
+        'last_name_ar' => 'الاسم الاخير',
 
 
 
