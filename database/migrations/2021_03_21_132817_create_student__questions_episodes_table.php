@@ -15,11 +15,11 @@ class CreateStudentQuestionsEpisodesTable extends Migration
     {
         Schema::create('student__questions_episodes', function (Blueprint $table) {
             $table->id();
-            $table->integer('student_id');
+            $table->bigInteger('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
-            $table->integer('episode_id');
+            $table->bigInteger('episode_id')->unsigned();
             $table->foreign('episode_id')->references('id')->on('episodes')->onDelete('cascade');
-            $table->integer('episode_course_id');
+            $table->bigInteger('episode_course_id')->unsigned();
             $table->foreign('episode_course_id')->references('id')->on('episode_course_days')->onDelete('cascade');
             $table->integer('from_surah_id');
             $table->integer('from_num');

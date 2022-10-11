@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Artisan;
 Route::get('/', 'HomeController@main_pge')->name('main_page');
 Route::get('/terms/and/policy', 'HomeController@terms')->name('terms');
 
-Route::get('cache', function () {
+Route::get('make_cache', function () {
     Artisan::call('config:cache');
     Artisan::call('config:clear');
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
-    Artisan::call('route:clear');
+//    Artisan::call('route:clear');
     return 'success';
 });
 

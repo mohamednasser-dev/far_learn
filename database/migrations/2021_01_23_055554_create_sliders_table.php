@@ -20,6 +20,7 @@ class CreateSlidersTable extends Migration
             $table->string('title_en');
             $table->string('desc_ar');
             $table->string('desc_en');
+            $table->enum('status', ['active', 'unactive']);
             $table->timestamps();
         });
     }

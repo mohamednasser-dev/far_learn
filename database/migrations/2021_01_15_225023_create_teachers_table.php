@@ -32,6 +32,8 @@ class CreateTeachersTable extends Migration
             $table->date('date_of_birth')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('status',['active','unactive'])->default('active');
+            $table->enum('is_new',['y', 'n', 'accepted', 'rejected'])->default('y');
+            $table->enum('is_verified',['0', '1'])->default('0');
             $table->rememberToken();
             $table->timestamps();
         });

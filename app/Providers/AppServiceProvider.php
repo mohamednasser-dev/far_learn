@@ -4,11 +4,11 @@ namespace App\Providers;
 
 use App\Models\Web_setting;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use ConsoleTVs\Charts\Registrar as Charts;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,7 +43,9 @@ class AppServiceProvider extends ServiceProvider
                 App::setLocale('ar');
             }
         }
-        //End : save lang api to app language ....
-        View::share('settings_share', Web_setting::orderBy('id', 'desc')->first());
+        //End : save lang api to app language ...
+        if (Schema::hasTable('web_settings')) {
+            View::share('settings_share', Web_setting::orderBy('id', 'desc')->first());
+        }
     }
 }

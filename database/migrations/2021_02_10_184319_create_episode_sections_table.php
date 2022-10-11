@@ -17,8 +17,8 @@ class CreateEpisodeSectionsTable extends Migration
             $table->id();
             $table->date('epo_date');
             $table->date('epo_link');
-            $table->timestamp('start_time');
-            $table->timestamp('end_time');
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('end_time')->nullable();
             $table->bigInteger('episode_id')->unsigned();
             $table->foreign('episode_id')->references('id')->on('episodes')->onDelete('restrict');
             $table->timestamps();
