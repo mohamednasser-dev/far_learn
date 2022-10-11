@@ -17,8 +17,14 @@ class CreateSubjectLevelsTable extends Migration
             $table->id();
             $table->string('name_ar');
             $table->string('name_en');
+            $table->string('desc_ar');
+            $table->string('desc_en');
+            $table->bigInteger('num_ayat')->nullable();
+            $table->bigInteger('num_lines');
+            $table->bigInteger('num_faces')->nullable();
             $table->bigInteger('subject_id')->unsigned()->nullable();
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('restrict');
+            $table->enum('deleted',['0','1'])->default('0');
             $table->timestamps();
         });
     }

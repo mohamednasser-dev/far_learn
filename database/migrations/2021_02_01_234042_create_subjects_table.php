@@ -17,6 +17,8 @@ class CreateSubjectsTable extends Migration
             $table->id();
             $table->string('name_ar');
             $table->string('name_en');
+            $table->string('desc_ar')->nullable();
+            $table->string('desc_en')->nullable();
             $table->enum('deleted',['0','1'])->default('0');
             $table->bigInteger('level_id')->unsigned()->nullable();
             $table->foreign('level_id')->references('id')->on('levels')->onDelete('restrict');

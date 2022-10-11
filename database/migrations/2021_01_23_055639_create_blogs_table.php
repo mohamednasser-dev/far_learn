@@ -20,7 +20,7 @@ class CreateBlogsTable extends Migration
             $table->string('title_en');
             $table->string('desc_ar');
             $table->string('desc_en');
-            $table->enum('status', ['active', 'unactive']);
+            $table->enum('status', ['active', 'unactive'])->default('active');
             $table->timestamps();
         });
     }

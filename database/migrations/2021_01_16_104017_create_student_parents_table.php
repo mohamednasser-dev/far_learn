@@ -20,6 +20,7 @@ class CreateStudentParentsTable extends Migration
             $table->string('phone');
             $table->string('home_phone');
             $table->string('address');
+            $table->string('parent_country_code')->nullable()->default('+966');
             $table->bigInteger('student_id')->unsigned()->nullable();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('restrict');
             $table->timestamps();

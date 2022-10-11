@@ -21,6 +21,7 @@ class CreateAdminNotificationsTable extends Migration
             $table->string('message_en');
             $table->string('message_type')->default('text');
             $table->enum('type',['student','teacher','admin'])->default('student');
+            $table->enum('status',['new', 'accepted', 'rejected'])->default('new');
             $table->bigInteger('student_id')->unsigned()->nullable();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('restrict');
             $table->bigInteger('teacher_id')->unsigned()->nullable();

@@ -14,6 +14,7 @@ class UpdatePlanSectionDegreesTable extends Migration
     public function up()
     {
         Schema::table('plan_section_degrees', function (Blueprint $table) {
+            $table->enum('type', ['absence', 'degree', 'ask'])->default('degree');
             $table->integer('saved_lines')->default(0);
             $table->bigInteger('teacher_id')->nullable()->unsigned();
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');

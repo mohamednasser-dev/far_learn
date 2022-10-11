@@ -17,6 +17,8 @@ class CreatePlanSurahsTable extends Migration
             $table->id();
             $table->string('name_ar');
             $table->string('name_en');
+            $table->integer('ayat_num');
+            $table->enum('deleted',['0','1'])->default('0');
             $table->timestamps();
         });
     }

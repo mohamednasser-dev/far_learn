@@ -30,10 +30,12 @@ class HomeController extends Controller
     public function index()
     {
         $user = \auth()->user();
-        $student_month_count =[];
-        $months =[];
-        $years =[];
-        $teachers_month_count =[];
+        $student_month_count = [];
+        $months = [];
+        $years = [];
+        $students_by_month = [];
+        $teachers_by_month = [];
+        $teachers_month_count = [];
         $year = Carbon::now()->year;
         // For admin users Total paper Chart11
         if ($user->role_id == 3 || $user->role_id == 9 || $user->role_id == 10 || $user->role_id == 11) {
@@ -85,75 +87,85 @@ class HomeController extends Controller
                 ->groupby('year', 'month')
                 ->get();
         } elseif ($user->role_id == 8) {
-            $students = Student::where('epo_type',  'far_learn')->where('gender', $user->gender)->where('is_new', 'accepted')->orderBy('created_at', 'desc')->get();
-            $teachers = Teacher::where('epo_type',  'far_learn')->where('gender', $user->gender)->where('is_new', 'accepted')->orderBy('created_at', 'desc')->get();
+            $students = Student::where('epo_type', 'far_learn')->where('gender', $user->gender)->where('is_new', 'accepted')->orderBy('created_at', 'desc')->get();
+            $teachers = Teacher::where('epo_type', 'far_learn')->where('gender', $user->gender)->where('is_new', 'accepted')->orderBy('created_at', 'desc')->get();
             $episodes = Episode::where('gender', $user->gender)->where('type', 'mqraa')->where('deleted', '0')->orderBy('id', 'desc')->get();
             //for chart num 2
-            $accepted_students = Student::where('epo_type','far_learn')->where('gender', $user->gender)->where('is_new', 'accepted')->get()->count();
-            $rejected_students = Student::where('epo_type','far_learn')->where('gender', $user->gender)->where('is_new', 'rejected')->get()->count();
+            $accepted_students = Student::where('epo_type', 'far_learn')->where('gender', $user->gender)->where('is_new', 'accepted')->get()->count();
+            $rejected_students = Student::where('epo_type', 'far_learn')->where('gender', $user->gender)->where('is_new', 'rejected')->get()->count();
 
             //for last chart
-            $students_by_month = Student::where('epo_type','far_learn')->where('gender', $user->gender)->where('is_new', 'accepted')->where('interview', 'y')->where('is_verified', '1')
+            $students_by_month = Student::where('epo_type', 'far_learn')->where('gender', $user->gender)->where('is_new', 'accepted')->where('interview', 'y')->where('is_verified', '1')
                 ->where('complete_data', '1')->whereYear('created_at', $year)
                 ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
                 ->groupby('year', 'month')
                 ->get();
-            $teachers_by_month = Teacher::where('epo_type','far_learn')->where('gender', $user->gender)->where('is_new', 'accepted')->where('is_verified', '1')->whereYear('created_at', $year)
+            $teachers_by_month = Teacher::where('epo_type', 'far_learn')->where('gender', $user->gender)->where('is_new', 'accepted')->where('is_verified', '1')->whereYear('created_at', $year)
                 ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
                 ->groupby('year', 'month')
                 ->get();
-        }elseif ($user->role_id == 6) {
-            $students = Student::where('epo_type',  'mogmaa')->where('is_new', 'accepted')->orderBy('created_at', 'desc')->get();
-            $teachers = Teacher::where('epo_type',  'mogmaa')->where('is_new', 'accepted')->orderBy('created_at', 'desc')->get();
+        } elseif ($user->role_id == 6) {
+            $students = Student::where('epo_type', 'mogmaa')->where('is_new', 'accepted')->orderBy('created_at', 'desc')->get();
+            $teachers = Teacher::where('epo_type', 'mogmaa')->where('is_new', 'accepted')->orderBy('created_at', 'desc')->get();
             $episodes = Episode::where('type', 'mogmaa')->where('deleted', '0')->orderBy('id', 'desc')->get();
             //for chart num 2
-            $accepted_students = Student::where('epo_type',  'mogmaa')->where('is_new', 'accepted')->get()->count();
-            $rejected_students = Student::where('epo_type',  'mogmaa')->where('is_new', 'rejected')->get()->count();
+            $accepted_students = Student::where('epo_type', 'mogmaa')->where('is_new', 'accepted')->get()->count();
+            $rejected_students = Student::where('epo_type', 'mogmaa')->where('is_new', 'rejected')->get()->count();
 
             //for last chart
-            $students_by_month = Student::where('epo_type','mogmaa')->where('is_new', 'accepted')->where('interview', 'y')->where('is_verified', '1')
+            $students_by_month = Student::where('epo_type', 'mogmaa')->where('is_new', 'accepted')->where('interview', 'y')->where('is_verified', '1')
                 ->where('complete_data', '1')->whereYear('created_at', $year)
                 ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
                 ->groupby('year', 'month')
                 ->get();
-            $teachers_by_month = Teacher::where('epo_type','mogmaa')->where('is_new', 'accepted')->where('is_verified', '1')->whereYear('created_at', $year)
+            $teachers_by_month = Teacher::where('epo_type', 'mogmaa')->where('is_new', 'accepted')->where('is_verified', '1')->whereYear('created_at', $year)
                 ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
                 ->groupby('year', 'month')
                 ->get();
-        }elseif ($user->role_id == 7) {
-            $students = Student::where('epo_type',  'dorr')->where('is_new', 'accepted')->orderBy('created_at', 'desc')->get();
-            $teachers = Teacher::where('epo_type',  'dorr')->where('is_new', 'accepted')->orderBy('created_at', 'desc')->get();
+        } elseif ($user->role_id == 7) {
+            $students = Student::where('epo_type', 'dorr')->where('is_new', 'accepted')->orderBy('created_at', 'desc')->get();
+            $teachers = Teacher::where('epo_type', 'dorr')->where('is_new', 'accepted')->orderBy('created_at', 'desc')->get();
             $episodes = Episode::where('type', 'dorr')->where('deleted', '0')->orderBy('id', 'desc')->get();
             //for chart num 2
-            $accepted_students = Student::where('epo_type',  'dorr')->where('is_new', 'accepted')->get()->count();
-            $rejected_students = Student::where('epo_type',  'dorr')->where('is_new', 'rejected')->get()->count();
+            $accepted_students = Student::where('epo_type', 'dorr')->where('is_new', 'accepted')->get()->count();
+            $rejected_students = Student::where('epo_type', 'dorr')->where('is_new', 'rejected')->get()->count();
 
             //for last chart
-            $students_by_month = Student::where('epo_type','dorr')->where('is_new', 'accepted')->where('interview', 'y')->where('is_verified', '1')
+            $students_by_month = Student::where('epo_type', 'dorr')->where('is_new', 'accepted')->where('interview', 'y')->where('is_verified', '1')
                 ->where('complete_data', '1')->whereYear('created_at', $year)
                 ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
                 ->groupby('year', 'month')
                 ->get();
-            $teachers_by_month = Teacher::where('epo_type','dorr')->where('is_new', 'accepted')->where('is_verified', '1')->whereYear('created_at', $year)
+            $teachers_by_month = Teacher::where('epo_type', 'dorr')->where('is_new', 'accepted')->where('is_verified', '1')->whereYear('created_at', $year)
                 ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
                 ->groupby('year', 'month')
                 ->get();
         } else {
-            $students = Student::where('is_new','accepted')->get();
+            $students = Student::where('is_new', 'accepted')->get();
             $teachers = Teacher::where('is_new', 'accepted')->get();
-            $episodes = Episode::where('deleted','0')->get();
+            $episodes = Episode::where('deleted', '0')->get();
             $accepted_students = Student::where('is_new', 'accepted')->get()->count();
             $rejected_students = Student::where('is_new', 'rejected')->get()->count();
             //for last chart
-            $students_by_month = Student::where('is_new', 'accepted')->where('interview', 'y')->where('is_verified', '1')
+            $exists_students = Student::where('is_new', 'accepted')->where('interview', 'y')->where('is_verified', '1')
                 ->where('complete_data', '1')->whereYear('created_at', $year)
-                ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
-                ->groupby('year', 'month')
                 ->get();
-            $teachers_by_month = Teacher::where('is_new', 'accepted')->where('is_verified', '1')->whereYear('created_at', $year)
-                ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
-                ->groupby('year', 'month')
+
+            if (count($exists_students) > 0) {
+                $students_by_month = Student::where('is_new', 'accepted')->where('interview', 'y')->where('is_verified', '1')
+                    ->where('complete_data', '1')->whereYear('created_at', $year)
+                    ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
+                    ->groupby('year', 'month')
+                    ->get();
+            }
+            $exists_teachers = Teacher::where('is_new', 'accepted')->where('is_verified', '1')->whereYear('created_at', $year)
                 ->get();
+            if (count($exists_teachers) > 0) {
+                $teachers_by_month = Teacher::where('is_new', 'accepted')->where('is_verified', '1')->whereYear('created_at', $year)
+                    ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
+                    ->groupby('year', 'month')
+                    ->get();
+            }
         }
 
         $students_numbers = json_encode($accepted_students);
@@ -242,7 +254,7 @@ class HomeController extends Controller
 
         return view('admin.home', compact('year', 'rej_students_numbers', 'acc_students_numbers', 'episode_names_rejected',
             'student_arr', 'teacher_arr', 'teachers_month_count', 'years', 'months', 'student_month_count', 'people_names',
-            'students_numbers', 'teachers_numbers', 'mqraa_epo', 'mogmaa_epo', 'dorr_epo', 'episode_mqraa_name','teachers','episodes','students'));
+            'students_numbers', 'teachers_numbers', 'mqraa_epo', 'mogmaa_epo', 'dorr_epo', 'episode_mqraa_name', 'teachers', 'episodes', 'students'));
     }
 
     public function certificate()
@@ -266,55 +278,55 @@ class HomeController extends Controller
 
         $img = Image::make(public_path('uploads/certificate/man.jpg'))->resize(800, 566);
 
-        $img->text($name, 375, 248, function($font) {
+        $img->text($name, 375, 248, function ($font) {
             $font->file(public_path('uploads/certificate/DejaVuSans.ttf'));
             $font->size(16);
             $font->color('#000000');
         });
 
-        $img->text($degree, 180, 323, function($font) {
+        $img->text($degree, 180, 323, function ($font) {
             $font->file(public_path('uploads/certificate/DejaVuSans.ttf'));
             $font->size(16);
             $font->color('#000000');
         });
 
-        $img->text($num, 130, 250, function($font) {
+        $img->text($num, 130, 250, function ($font) {
             $font->file(public_path('uploads/certificate/DejaVuSans.ttf'));
             $font->size(16);
             $font->color('#000000');
         });
 
-        $img->text($from_d, 583, 324, function($font) {
+        $img->text($from_d, 583, 324, function ($font) {
             $font->file(public_path('uploads/certificate/DejaVuSans.ttf'));
             $font->size(16);
             $font->color('#000000');
         });
 
-        $img->text($from_m, 548, 324, function($font) {
+        $img->text($from_m, 548, 324, function ($font) {
             $font->file(public_path('uploads/certificate/DejaVuSans.ttf'));
             $font->size(16);
             $font->color('#000000');
         });
 
-        $img->text($from_y, 497, 324, function($font) {
+        $img->text($from_y, 497, 324, function ($font) {
             $font->file(public_path('uploads/certificate/DejaVuSans.ttf'));
             $font->size(16);
             $font->color('#000000');
         });
 
-        $img->text($to_d, 395, 324, function($font) {
+        $img->text($to_d, 395, 324, function ($font) {
             $font->file(public_path('uploads/certificate/DejaVuSans.ttf'));
             $font->size(16);
             $font->color('#000000');
         });
 
-        $img->text($to_m, 360, 324, function($font) {
+        $img->text($to_m, 360, 324, function ($font) {
             $font->file(public_path('uploads/certificate/DejaVuSans.ttf'));
             $font->size(16);
             $font->color('#000000');
         });
 
-        $img->text($to_y, 310, 324, function($font) {
+        $img->text($to_y, 310, 324, function ($font) {
             $font->file(public_path('uploads/certificate/DejaVuSans.ttf'));
             $font->size(16);
             $font->color('#000000');
@@ -335,15 +347,16 @@ class HomeController extends Controller
 
     public function notifications()
     {
-        $data = Admin_notification::orderBy('created_at','desc')->get();
+        $data = Admin_notification::orderBy('created_at', 'desc')->get();
         return view('admin.notifications', compact('data'));
     }
+
     public function notification_change_readed($id)
     {
         $data = Admin_notification::find($id);
-        if($data->readed == '1'){
+        if ($data->readed == '1') {
             $data->readed = '0';
-        }else{
+        } else {
             $data->readed = '1';
         }
         $data->save();

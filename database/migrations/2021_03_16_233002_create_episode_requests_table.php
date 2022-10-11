@@ -19,6 +19,8 @@ class CreateEpisodeRequestsTable extends Migration
             $table->foreign('episode_id')->references('id')->on('episodes')->onDelete('restrict');
             $table->bigInteger('student_id')->unsigned()->nullable();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('restrict');
+            $table->enum('status', ['new', 'accepted', 'rejected'])->default('new');
+            $table->enum('admin_view', ['0', '1'])->default('0');
             $table->timestamps();
         });
     }

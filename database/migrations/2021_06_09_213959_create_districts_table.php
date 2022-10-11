@@ -18,6 +18,8 @@ class CreateDistrictsTable extends Migration
             $table->string('name_ar');
             $table->string('name_en');
             $table->enum('deleted',['0','1'])->default('0');
+            $table->bigInteger('city_id')->unsigned();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->timestamps();
         });
     }

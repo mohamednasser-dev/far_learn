@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCitiesTable extends Migration
+class AddColumnToTenants extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
-            $table->id();
-            $table->string('name_ar');
-            $table->string('name_en');
-            $table->enum('deleted',['0','1'])->default('0');
-            $table->timestamps();
+        Schema::table('tenants', function (Blueprint $table) {
+            $table->enum('is_active',['active','inactive'])->default('active');
+            $table->date('expire_date')->nullable();
         });
     }
 
@@ -29,6 +26,8 @@ class CreateCitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cities');
+        Schema::table('tenants', function (Blueprint $table) {
+            //
+        });
     }
 }

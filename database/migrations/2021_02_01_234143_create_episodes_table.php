@@ -29,14 +29,23 @@ class CreateEpisodesTable extends Migration
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('restrict');
             $table->bigInteger('student_number');
             $table->enum('listen_type',['single','group'])->default('single');
+            $table->enum('type',['mqraa', 'mogmaa', 'dorr'])->default('mqraa');
+            $table->bigInteger('college_id')->unsigned()->nullable();
+            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('restrict');
+            $table->string('lang')->nullable();
+            $table->string('cost')->nullable()->default('free');
+            $table->bigInteger('home_work')->nullable();
             $table->enum('active',['y','n'])->default('y');
-            $table->string('desc_ar');
-            $table->string('desc_en');
+            $table->string('desc_ar')->nullable();
+            $table->string('desc_en')->nullable();
             $table->time('time_from');
             $table->time('time_to');
-            $table->string('student_link');
-            $table->string('teacher_link');
-
+            $table->date('start_date')->nullable();
+            $table->integer('teacher_view')->default(0);
+            $table->string('student_link')->nullable();
+            $table->string('teacher_link')->nullable();
+            $table->bigInteger('week_id')->default(1);
+            $table->bigInteger('day_id')->default(1);
             $table->timestamps();
         });
     }

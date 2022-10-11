@@ -15,6 +15,7 @@ class UpdateContactUsTable extends Migration
     {
         Schema::table('contacts', function (Blueprint $table) {
             $table->string('client_ip')->nullable();
+            $table->enum('readed',['0','1'])->default('0');
         });
     }
 
