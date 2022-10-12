@@ -14,20 +14,23 @@ class AdminSeeder extends Seeder
     public function run()
     {
         $role = Role::first();
-        User::updateOrCreate(
-            [
-                'id' => 1 ,
-                'name' => 'admin',
-                'unique_name' => 'admin@admin.com',
-                'phone' => '2020',
-                'email' => 'admin@admin.com',
-                'password' => bcrypt('123456'),
-                'role_id' => $role->id,
-                'type' => 'admin',
-                'country_code' => '+966',
-                'user_phone' => '+9662020',
-                'is_new' => 'accepted',
-            ]
-        );
+        if(User::get()->count() == 0){
+            User::updateOrCreate(
+                [
+                    'id' => 1 ,
+                    'name' => 'admin',
+                    'unique_name' => 'admin@admin.com',
+                    'phone' => '2020',
+                    'email' => 'admin@admin.com',
+                    'password' => bcrypt('123456'),
+                    'role_id' => $role->id,
+                    'type' => 'admin',
+                    'country_code' => '+966',
+                    'user_phone' => '+9662020',
+                    'is_new' => 'accepted',
+                ]
+            );
+        }
+
     }
 }

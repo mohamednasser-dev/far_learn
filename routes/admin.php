@@ -7,12 +7,16 @@ Route::get('/', 'HomeController@main_pge')->name('main_page');
 Route::get('logout', 'Admin\LoginController@logout')->name('logout');
 
 //    inboxes
+Route::get('/super_admin/login', 'SuperAdmin\HomeController@login')->name('super_admin.login');
 
 
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::get('/home', 'Admin\HomeController@index')->name('home');
+    Route::get('/tenants', 'SuperAdmin\HomeController@tenants')->name('tenants');
+    Route::post('/tenants/store/new', 'SuperAdmin\HomeController@store')->name('tenants.store');
+    Route::get('/tenants/{id}/delete', 'SuperAdmin\HomeController@delete')->name('tenants.delete');
     Route::get('/notifications', 'Admin\HomeController@notifications')->name('notifications');
     Route::get('/notifications/change_readed/{id}', 'Admin\HomeController@notification_change_readed')->name('notification.change_readed');
     Route::get('mail/incoming', 'Admin\MailController@incoming')->name('mail.incoming');

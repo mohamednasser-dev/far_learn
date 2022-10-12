@@ -4,8 +4,9 @@ namespace App\Providers;
 
 use App\Models\Tenant;
 use Illuminate\Queue\Events\JobProcessing;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\DB;
 class TenancyProvider extends ServiceProvider
 {
     /**
@@ -27,7 +28,20 @@ class TenancyProvider extends ServiceProvider
     {
         if (! $this->app->runningInConsole()) {
             $host = $this->app['request']->getHost();
-            Tenant::whereDomain($host)->firstOrFail()->configure()->use();
+            if($host == env('maindomain','127.0.0.1')){
+                config([
+                    'database.connections.tenant.database' => env('LANDLORD_DB_DATABASE','uram_tahfeez_land_lord'),
+                ]);
+
+                DB::purge('tenant');
+
+                DB::reconnect('tenant');
+
+                Schema::connection('tenant')->getConnection()->reconnect();
+
+            }else{
+                Tenant::whereDate('expire_date','>=',date('Y-m-d'))->where('is_active','active')->whereDomain($host)->firstOrFail()->configure()->use();
+            }
         }
     }
 

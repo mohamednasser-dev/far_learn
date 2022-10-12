@@ -1,6 +1,8 @@
 <ul class="menu-nav">
-    <li class="menu-item @if(request()->segment(1) == 'home') menu-item-active  @endif" aria-haspopup="true">
-        <a href="{{url('/home')}}" class="menu-link">
+
+    @if(Request()->getHost() == env('maindomain','127.0.0.1'))
+        <li class="menu-item @if(request()->segment(1) == 'home') menu-item-active  @endif" aria-haspopup="true">
+            <a href="{{url('/home')}}" class="menu-link">
             <span class="svg-icon menu-icon">
                 <span class="svg-icon svg-icon-success svg-icon-2x">
                     <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -18,91 +20,137 @@
                     </svg>
                 </span>
             </span>
-            <span class="menu-text">{{trans('s_admin.nav_home')}}</span>
-        </a>
-    </li>
-    @php
-        $new_users= \App\Models\Admin_notification::where('type','admin')->where('readed','0')->where('message_type','new_user')->get()->count();
+                <span class="menu-text">{{trans('s_admin.nav_home')}}</span>
+            </a>
+        </li>
 
-        $unread_contact_us = \App\Models\Contact::where('readed','0')->get()->count();
-        $user = \auth()->user();
+        <li class="menu-item @if(request()->segment(1) == 'tenants') menu-item-active  @endif" aria-haspopup="true">
+            <a href="{{url('/tenants')}}" class="menu-link">
+            <span class="svg-icon menu-icon">
+                <span class="svg-icon svg-icon-success svg-icon-2x">
+                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                         height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <polygon points="0 0 24 0 24 24 0 24"/>
+                            <path
+                                d="M12.9336061,16.072447 L19.36,10.9564761 L19.5181585,10.8312381 C20.1676248,10.3169571 20.2772143,9.3735535 19.7629333,8.72408713 C19.6917232,8.63415859 19.6104327,8.55269514 19.5206557,8.48129411 L12.9336854,3.24257445 C12.3871201,2.80788259 11.6128799,2.80788259 11.0663146,3.24257445 L4.47482784,8.48488609 C3.82645598,9.00054628 3.71887192,9.94418071 4.23453211,10.5925526 C4.30500305,10.6811601 4.38527899,10.7615046 4.47382636,10.8320511 L4.63,10.9564761 L11.0659024,16.0730648 C11.6126744,16.5077525 12.3871218,16.5074963 12.9336061,16.072447 Z"
+                                fill="#000000" fill-rule="nonzero"/>
+                            <path
+                                d="M11.0563554,18.6706981 L5.33593024,14.122919 C4.94553994,13.8125559 4.37746707,13.8774308 4.06710397,14.2678211 C4.06471678,14.2708238 4.06234874,14.2738418 4.06,14.2768747 L4.06,14.2768747 C3.75257288,14.6738539 3.82516916,15.244888 4.22214834,15.5523151 C4.22358765,15.5534297 4.2250303,15.55454 4.22647627,15.555646 L11.0872776,20.8031356 C11.6250734,21.2144692 12.371757,21.2145375 12.909628,20.8033023 L19.7677785,15.559828 C20.1693192,15.2528257 20.2459576,14.6784381 19.9389553,14.2768974 C19.9376429,14.2751809 19.9363245,14.2734691 19.935,14.2717619 L19.935,14.2717619 C19.6266937,13.8743807 19.0546209,13.8021712 18.6572397,14.1104775 C18.654352,14.112718 18.6514778,14.1149757 18.6486172,14.1172508 L12.9235044,18.6705218 C12.377022,19.1051477 11.6029199,19.1052208 11.0563554,18.6706981 Z"
+                                fill="#000000" opacity="0.3"/>
+                        </g>
+                    </svg>
+                </span>
+            </span>
+                <span class="menu-text">{{trans('s_admin.tenants')}}</span>
+            </a>
+        </li>
+    @else
+        <li class="menu-item @if(request()->segment(1) == 'home') menu-item-active  @endif" aria-haspopup="true">
+            <a href="{{url('/home')}}" class="menu-link">
+            <span class="svg-icon menu-icon">
+                <span class="svg-icon svg-icon-success svg-icon-2x">
+                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                         height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <polygon points="0 0 24 0 24 24 0 24"/>
+                            <path
+                                d="M12.9336061,16.072447 L19.36,10.9564761 L19.5181585,10.8312381 C20.1676248,10.3169571 20.2772143,9.3735535 19.7629333,8.72408713 C19.6917232,8.63415859 19.6104327,8.55269514 19.5206557,8.48129411 L12.9336854,3.24257445 C12.3871201,2.80788259 11.6128799,2.80788259 11.0663146,3.24257445 L4.47482784,8.48488609 C3.82645598,9.00054628 3.71887192,9.94418071 4.23453211,10.5925526 C4.30500305,10.6811601 4.38527899,10.7615046 4.47382636,10.8320511 L4.63,10.9564761 L11.0659024,16.0730648 C11.6126744,16.5077525 12.3871218,16.5074963 12.9336061,16.072447 Z"
+                                fill="#000000" fill-rule="nonzero"/>
+                            <path
+                                d="M11.0563554,18.6706981 L5.33593024,14.122919 C4.94553994,13.8125559 4.37746707,13.8774308 4.06710397,14.2678211 C4.06471678,14.2708238 4.06234874,14.2738418 4.06,14.2768747 L4.06,14.2768747 C3.75257288,14.6738539 3.82516916,15.244888 4.22214834,15.5523151 C4.22358765,15.5534297 4.2250303,15.55454 4.22647627,15.555646 L11.0872776,20.8031356 C11.6250734,21.2144692 12.371757,21.2145375 12.909628,20.8033023 L19.7677785,15.559828 C20.1693192,15.2528257 20.2459576,14.6784381 19.9389553,14.2768974 C19.9376429,14.2751809 19.9363245,14.2734691 19.935,14.2717619 L19.935,14.2717619 C19.6266937,13.8743807 19.0546209,13.8021712 18.6572397,14.1104775 C18.654352,14.112718 18.6514778,14.1149757 18.6486172,14.1172508 L12.9235044,18.6705218 C12.377022,19.1051477 11.6029199,19.1052208 11.0563554,18.6706981 Z"
+                                fill="#000000" opacity="0.3"/>
+                        </g>
+                    </svg>
+                </span>
+            </span>
+                <span class="menu-text">{{trans('s_admin.nav_home')}}</span>
+            </a>
+        </li>
+        @php
+            $new_users= \App\Models\Admin_notification::where('type','admin')->where('readed','0')->where('message_type','new_user')->get()->count();
 
-        if($user->role_id == 6){
-            $teachers = \App\Models\Admin_notification::with('Teacher')
-                                ->whereHas('Teacher', function ($q) {
-                                    $q->where('epo_type','mogmaa');
-                                })->where('readed','0')->where('message_type','new_teacher')->get()->count();
-            $new_students = \App\Models\Admin_notification::with('Student')
-                                ->whereHas('Student', function ($q) {
-                                    $q->where('epo_type','mogmaa');
-                                })->where('readed','0')->where('message_type','new_student')->get()->count();
-            $episode_ids = \App\Models\Episode::where('active','y')->where('type','mogmaa')->pluck('id')->toArray();
-            $un_read_long = \App\Models\Admin_notification::whereIn('episode_id',$episode_ids)->where('readed','0')->where('message_type','long_episode')->get();
-            $new_episodes_request = \App\Models\Episode_request::whereIn('episode_id',$episode_ids)->where('status','new')->where('admin_view','0')->get();
-            $sections_ids = \App\Models\Episode_section::whereIn('episode_id',$episode_ids)->pluck('id')->toArray();
-            $new_restar_epo_request = \App\Models\Episode_restart_request::whereIn('section_id',$sections_ids)->where('status','new')->get();
+            $unread_contact_us = \App\Models\Contact::where('readed','0')->get()->count();
+            $user = \auth()->user();
 
-        }elseif($user->role_id == 7){
-            $teachers = \App\Models\Admin_notification::with('Teacher')
-                                ->whereHas('Teacher', function ($q) {
-                                    $q->where('epo_type','dorr');
-                                })->where('readed','0')->where('message_type','new_teacher')->get()->count();
-            $new_students = \App\Models\Admin_notification::with('Student')
+            if($user->role_id == 6){
+                $teachers = \App\Models\Admin_notification::with('Teacher')
+                                    ->whereHas('Teacher', function ($q) {
+                                        $q->where('epo_type','mogmaa');
+                                    })->where('readed','0')->where('message_type','new_teacher')->get()->count();
+                $new_students = \App\Models\Admin_notification::with('Student')
                                     ->whereHas('Student', function ($q) {
-                                    $q->where('epo_type','dorr');
-                                })->where('readed','0')->where('message_type','new_student')->get()->count();
-            $episode_ids = \App\Models\Episode::where('active','y')->where('type','dorr')->pluck('id')->toArray();
-            $un_read_long = \App\Models\Admin_notification::whereIn('episode_id',$episode_ids)->where('readed','0')->where('message_type','long_episode')->get();
-            $new_episodes_request = \App\Models\Episode_request::whereIn('episode_id',$episode_ids)->where('status','new')->where('admin_view','0')->get();
-            $sections_ids = \App\Models\Episode_section::whereIn('episode_id',$episode_ids)->pluck('id')->toArray();
-            $new_restar_epo_request = \App\Models\Episode_restart_request::whereIn('section_id',$sections_ids)->where('status','new')->get();
+                                        $q->where('epo_type','mogmaa');
+                                    })->where('readed','0')->where('message_type','new_student')->get()->count();
+                $episode_ids = \App\Models\Episode::where('active','y')->where('type','mogmaa')->pluck('id')->toArray();
+                $un_read_long = \App\Models\Admin_notification::whereIn('episode_id',$episode_ids)->where('readed','0')->where('message_type','long_episode')->get();
+                $new_episodes_request = \App\Models\Episode_request::whereIn('episode_id',$episode_ids)->where('status','new')->where('admin_view','0')->get();
+                $sections_ids = \App\Models\Episode_section::whereIn('episode_id',$episode_ids)->pluck('id')->toArray();
+                $new_restar_epo_request = \App\Models\Episode_restart_request::whereIn('section_id',$sections_ids)->where('status','new')->get();
 
-        }elseif($user->role_id == 8){
-        $gender = $user->gender;
-            $teachers = \App\Models\Admin_notification::with('Teacher')
-                            ->whereHas('Teacher', function ($q) use($gender) {
-                                $q->where('epo_type','far_learn')->where('gender',$gender);
-                            })->where('readed','0')->where('message_type','new_teacher')->get()->count();
-            $new_students = \App\Models\Admin_notification::with('Student')
-                                ->whereHas('Student', function ($q) use($gender) {
-                                $q->where('epo_type','far_learn')->where('gender',$gender);
-                            })->where('readed','0')->where('message_type','new_student')->get()->count();
-            $episode_ids = \App\Models\Episode::where('gender',$gender)->where('active','y')->where('type','mqraa')->pluck('id')->toArray();
-            $un_read_long = \App\Models\Admin_notification::whereIn('episode_id',$episode_ids)->where('readed','0')->where('message_type','long_episode')->get();
-            $new_episodes_request = \App\Models\Episode_request::whereIn('episode_id',$episode_ids)->where('status','new')->where('admin_view','0')->get();
-            $sections_ids = \App\Models\Episode_section::whereIn('episode_id',$episode_ids)->pluck('id')->toArray();
-            $new_restar_epo_request = \App\Models\Episode_restart_request::whereIn('section_id',$sections_ids)->where('status','new')->get();
-        }elseif($user->role_id == 2){
-            $teachers = \App\Models\Admin_notification::with('Teacher')->where('readed','0')->where('message_type','new_teacher')->get()->count();
-            $new_students = \App\Models\Admin_notification::with('Student')->where('readed','0')->where('message_type','new_student')->get()->count();
-            $un_read_long = \App\Models\Admin_notification::where('readed','0')->where('message_type','long_episode')->get();
-            $new_episodes_request = \App\Models\Episode_request::where('status','new')->where('admin_view','0')->get();
-            $new_restar_epo_request = \App\Models\Episode_restart_request::where('status','new')->get();
-        }else{
-            $teachers = \App\Models\Admin_notification::with('Teacher')->where('readed','0')->where('message_type','new_teacher')->get()->count();
-            $new_students = \App\Models\Admin_notification::with('Student')->where('readed','0')->where('message_type','new_student')->get()->count();
-            if($user->role_id == 5 || $user->role_id == 12|| $user->role_id == 13|| $user->role_id == 14 ){
-                $episode_ids = \App\Models\Episode::where('college_id',$user->college_id)->where('active','y')->where('type','dorr')->pluck('id')->toArray();
-                $un_read_long = \App\Models\Admin_notification::whereIn('episode_id',$episode_ids)->where('readed','0')->where('status','new')->where('message_type','long_episode')->orderBy('created_at','desc')->get();
-            }else if($user->role_id == 3 || $user->role_id == 9|| $user->role_id == 10|| $user->role_id == 11 ){
-                $episode_ids = \App\Models\Episode::where('college_id',$user->college_id)->where('active','y')->where('type','mogmaa')->pluck('id')->toArray();
-                $un_read_long = \App\Models\Admin_notification::whereIn('episode_id',$episode_ids)->where('readed','0')->where('status','new')->where('message_type','long_episode')->orderBy('created_at','desc')->get();
-            }else{
+            }elseif($user->role_id == 7){
+                $teachers = \App\Models\Admin_notification::with('Teacher')
+                                    ->whereHas('Teacher', function ($q) {
+                                        $q->where('epo_type','dorr');
+                                    })->where('readed','0')->where('message_type','new_teacher')->get()->count();
+                $new_students = \App\Models\Admin_notification::with('Student')
+                                        ->whereHas('Student', function ($q) {
+                                        $q->where('epo_type','dorr');
+                                    })->where('readed','0')->where('message_type','new_student')->get()->count();
+                $episode_ids = \App\Models\Episode::where('active','y')->where('type','dorr')->pluck('id')->toArray();
+                $un_read_long = \App\Models\Admin_notification::whereIn('episode_id',$episode_ids)->where('readed','0')->where('message_type','long_episode')->get();
+                $new_episodes_request = \App\Models\Episode_request::whereIn('episode_id',$episode_ids)->where('status','new')->where('admin_view','0')->get();
+                $sections_ids = \App\Models\Episode_section::whereIn('episode_id',$episode_ids)->pluck('id')->toArray();
+                $new_restar_epo_request = \App\Models\Episode_restart_request::whereIn('section_id',$sections_ids)->where('status','new')->get();
+
+            }elseif($user->role_id == 8){
+            $gender = $user->gender;
+                $teachers = \App\Models\Admin_notification::with('Teacher')
+                                ->whereHas('Teacher', function ($q) use($gender) {
+                                    $q->where('epo_type','far_learn')->where('gender',$gender);
+                                })->where('readed','0')->where('message_type','new_teacher')->get()->count();
+                $new_students = \App\Models\Admin_notification::with('Student')
+                                    ->whereHas('Student', function ($q) use($gender) {
+                                    $q->where('epo_type','far_learn')->where('gender',$gender);
+                                })->where('readed','0')->where('message_type','new_student')->get()->count();
+                $episode_ids = \App\Models\Episode::where('gender',$gender)->where('active','y')->where('type','mqraa')->pluck('id')->toArray();
+                $un_read_long = \App\Models\Admin_notification::whereIn('episode_id',$episode_ids)->where('readed','0')->where('message_type','long_episode')->get();
+                $new_episodes_request = \App\Models\Episode_request::whereIn('episode_id',$episode_ids)->where('status','new')->where('admin_view','0')->get();
+                $sections_ids = \App\Models\Episode_section::whereIn('episode_id',$episode_ids)->pluck('id')->toArray();
+                $new_restar_epo_request = \App\Models\Episode_restart_request::whereIn('section_id',$sections_ids)->where('status','new')->get();
+            }elseif($user->role_id == 2){
+                $teachers = \App\Models\Admin_notification::with('Teacher')->where('readed','0')->where('message_type','new_teacher')->get()->count();
+                $new_students = \App\Models\Admin_notification::with('Student')->where('readed','0')->where('message_type','new_student')->get()->count();
                 $un_read_long = \App\Models\Admin_notification::where('readed','0')->where('message_type','long_episode')->get();
+                $new_episodes_request = \App\Models\Episode_request::where('status','new')->where('admin_view','0')->get();
+                $new_restar_epo_request = \App\Models\Episode_restart_request::where('status','new')->get();
+            }else{
+                $teachers = \App\Models\Admin_notification::with('Teacher')->where('readed','0')->where('message_type','new_teacher')->get()->count();
+                $new_students = \App\Models\Admin_notification::with('Student')->where('readed','0')->where('message_type','new_student')->get()->count();
+                if($user->role_id == 5 || $user->role_id == 12|| $user->role_id == 13|| $user->role_id == 14 ){
+                    $episode_ids = \App\Models\Episode::where('college_id',$user->college_id)->where('active','y')->where('type','dorr')->pluck('id')->toArray();
+                    $un_read_long = \App\Models\Admin_notification::whereIn('episode_id',$episode_ids)->where('readed','0')->where('status','new')->where('message_type','long_episode')->orderBy('created_at','desc')->get();
+                }else if($user->role_id == 3 || $user->role_id == 9|| $user->role_id == 10|| $user->role_id == 11 ){
+                    $episode_ids = \App\Models\Episode::where('college_id',$user->college_id)->where('active','y')->where('type','mogmaa')->pluck('id')->toArray();
+                    $un_read_long = \App\Models\Admin_notification::whereIn('episode_id',$episode_ids)->where('readed','0')->where('status','new')->where('message_type','long_episode')->orderBy('created_at','desc')->get();
+                }else{
+                    $un_read_long = \App\Models\Admin_notification::where('readed','0')->where('message_type','long_episode')->get();
+                }
+                $new_episodes_request = \App\Models\Episode_request::where('status','new')->where('admin_view','0')->get();
+                $new_restar_epo_request = \App\Models\Episode_restart_request::where('status','new')->get();
             }
-            $new_episodes_request = \App\Models\Episode_request::where('status','new')->where('admin_view','0')->get();
-            $new_restar_epo_request = \App\Models\Episode_restart_request::where('status','new')->get();
-        }
-        $teachers_absence_requests_sidbar =
-         \App\Models\Admin_notification::where('readed','0')->where('message_type','teacher_absence_request')->get()->count();
-        $teachers_count = $teachers_absence_requests_sidbar + $teachers ;
-        $totla_new_requests = count($un_read_long) + count($new_episodes_request) + count($new_restar_epo_request);
-        $total_join = count($new_episodes_request) + count($new_restar_epo_request) ;
-    @endphp
-    @can("inside mail")
-        <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'inbox') menu-item-open @endif "
-            aria-haspopup="true" data-menu-toggle="hover">
-            <a href="{{route('inbox.in')}}" class="menu-link menu-toggle">
+            $teachers_absence_requests_sidbar =
+             \App\Models\Admin_notification::where('readed','0')->where('message_type','teacher_absence_request')->get()->count();
+            $teachers_count = $teachers_absence_requests_sidbar + $teachers ;
+            $totla_new_requests = count($un_read_long) + count($new_episodes_request) + count($new_restar_epo_request);
+            $total_join = count($new_episodes_request) + count($new_restar_epo_request) ;
+        @endphp
+        @can("inside mail")
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'inbox') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('inbox.in')}}" class="menu-link menu-toggle">
                 <span class="svg-icon menu-icon">
                     <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-arrange.svg-->
                     <span class="svg-icon svg-icon-success svg-icon-2x">
@@ -122,15 +170,15 @@
                         </svg><!--end::Svg Icon-->
                     </span>
                 </span>
-                <span class="menu-text">{{trans('s_admin.nav_mail')}}
+                    <span class="menu-text">{{trans('s_admin.nav_mail')}}
             </span>
-            </a>
-        </li>
-    @endcan
-    @can("outside mail")
-        <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'contact_us') menu-item-open @endif "
-            aria-haspopup="true" data-menu-toggle="hover">
-            <a href="{{url('/contact_us')}}" class="menu-link menu-toggle">
+                </a>
+            </li>
+        @endcan
+        @can("outside mail")
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'contact_us') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{url('/contact_us')}}" class="menu-link menu-toggle">
             <span class="svg-icon menu-icon">
                         <span class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Mails-unocked.svg--><svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -148,23 +196,23 @@
                             </svg><!--end::Svg Icon-->
                         </span>
                     </span>
-                <span class="menu-text">{{trans('s_admin.nav_contact_us')}}
-                    @if($unread_contact_us > 0)
-                        &nbsp;
-                        &nbsp;
-                        <span style="width: 20px;height: 20px;"
-                              href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
+                    <span class="menu-text">{{trans('s_admin.nav_contact_us')}}
+                        @if($unread_contact_us > 0)
+                            &nbsp;
+                            &nbsp;
+                            <span style="width: 20px;height: 20px;"
+                                  href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
                                     {{$unread_contact_us}}
                                 </span>
-                    @endif
+                        @endif
             </span>
-            </a>
-        </li>
-    @endcan
-    @if(Gate::check('New students') || Gate::check('Distance education students')|| Gate::check('Complexes students')|| Gate::check('Dorr students')|| Gate::check('Refused students to register in the system'))
-        <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'students_rejected' || request()->segment(1) == 'students' || request()->segment(1) == 'student_settings') menu-item-open @endif "
-            aria-haspopup="true" data-menu-toggle="hover">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                </a>
+            </li>
+        @endcan
+        @if(Gate::check('New students') || Gate::check('Distance education students')|| Gate::check('Complexes students')|| Gate::check('Dorr students')|| Gate::check('Refused students to register in the system'))
+            <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'students_rejected' || request()->segment(1) == 'students' || request()->segment(1) == 'student_settings') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
             <span class="svg-icon menu-icon">
 
                 <span class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg--><svg
@@ -182,36 +230,36 @@
                     </svg><!--end::Svg Icon-->
                 </span>
             </span>
-                <span class="menu-text">{{trans('s_admin.manage_students')}}
-                    @can("New students")
-                        @if($new_students > 0)
-                            &nbsp;
-                            &nbsp;
-                            <span style="width: 20px;height: 20px;"
-                                  href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
+                    <span class="menu-text">{{trans('s_admin.manage_students')}}
+                        @can("New students")
+                            @if($new_students > 0)
+                                &nbsp;
+                                &nbsp;
+                                <span style="width: 20px;height: 20px;"
+                                      href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
                                     {{$new_students}}
                                 </span>
-                        @endif
-                    @endcan
+                            @endif
+                        @endcan
                 </span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="menu-submenu">
-                <i class="menu-arrow"></i>
-                <ul class="menu-subnav">
-                    <li class="menu-item menu-item-parent" aria-haspopup="true">
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
                     <span class="menu-link">
                         <span class="menu-text">{{trans('s_admin.manage_students')}}</span>
                     </span>
-                    </li>
-                    @can("New students")
-                        <li class="menu-item @if(request()->segment(1) == 'students' && request()->segment(2) == 'new') menu-item-active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('students.new')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                        </li>
+                        @can("New students")
+                            <li class="menu-item @if(request()->segment(1) == 'students' && request()->segment(2) == 'new') menu-item-active @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('students.new')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                             <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Sending.svg--><svg
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -227,28 +275,29 @@
                                 </svg><!--end::Svg Icon-->
                             </span>
                         </span>
-                                <span class="menu-text">
+                                    <span class="menu-text">
                             {{trans('s_admin.new_students')}}
-                                    @if($new_students > 0)
-                                        &nbsp;
-                                        &nbsp;
-                                        <span style="width: 20px;height: 20px;"
-                                              href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
+                                        @if($new_students > 0)
+                                            &nbsp;
+                                            &nbsp;
+                                            <span style="width: 20px;height: 20px;"
+                                                  href="#"
+                                                  class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
                                     {{$new_students}}
                                 </span>
-                                    @endif
+                                        @endif
                         </span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("Distance education students")
-                        <li class="menu-item @if(request()->segment(2) == 'far_learn') menu-item-active @endif"
-                            aria-haspopup="true">
-                            <a href="{{url('/student_settings/far_learn')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                </a>
+                            </li>
+                        @endcan
+                        @can("Distance education students")
+                            <li class="menu-item @if(request()->segment(2) == 'far_learn') menu-item-active @endif"
+                                aria-haspopup="true">
+                                <a href="{{url('/student_settings/far_learn')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                         <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Visible.svg--><svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -265,19 +314,19 @@
                                             </svg><!--end::Svg Icon-->
                                         </span>
                                     </span>
-                                <span class="menu-text">{{trans('s_admin.far_learn_students')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @if(settings()->show_mogmaa_dorr == '1')
-                        @can("Complexes students")
-                            <li class="menu-item @if(request()->segment(2) == 'mogmaa') menu-item-active @endif"
-                                aria-haspopup="true">
-                                <a href="{{url('/student_settings/mogmaa')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot">
-                                        <span></span>
-                                    </i>
-                                    <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.far_learn_students')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @if(settings()->show_mogmaa_dorr == '1')
+                            @can("Complexes students")
+                                <li class="menu-item @if(request()->segment(2) == 'mogmaa') menu-item-active @endif"
+                                    aria-haspopup="true">
+                                    <a href="{{url('/student_settings/mogmaa')}}" class="menu-link">
+                                        <i class="menu-bullet menu-bullet-dot">
+                                            <span></span>
+                                        </i>
+                                        <span class="svg-icon menu-icon">
                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Visible.svg--><svg
                             xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -294,18 +343,18 @@
                         </svg><!--end::Svg Icon-->
                     </span>
                 </span>
-                                    <span class="menu-text">{{trans('s_admin.mogmaa_students')}}</span>
-                                </a>
-                            </li>
-                        @endcan
-                        @can("Dorr students")
-                            <li class="menu-item @if(request()->segment(2) == 'dorr') menu-item-active @endif"
-                                aria-haspopup="true">
-                                <a href="{{url('/student_settings/dorr')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot">
-                                        <span></span>
-                                    </i>
-                                    <span class="svg-icon menu-icon">
+                                        <span class="menu-text">{{trans('s_admin.mogmaa_students')}}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can("Dorr students")
+                                <li class="menu-item @if(request()->segment(2) == 'dorr') menu-item-active @endif"
+                                    aria-haspopup="true">
+                                    <a href="{{url('/student_settings/dorr')}}" class="menu-link">
+                                        <i class="menu-bullet menu-bullet-dot">
+                                            <span></span>
+                                        </i>
+                                        <span class="svg-icon menu-icon">
                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Visible.svg--><svg
                             xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -322,19 +371,19 @@
                         </svg><!--end::Svg Icon-->
                     </span>
                 </span>
-                                    <span class="menu-text">{{trans('s_admin.dorr_students')}}</span>
-                                </a>
-                            </li>
-                        @endcan
-                    @endif
-                    @can("Refused students to register in the system")
-                        <li class="menu-item @if(request()->segment(1) == 'students_rejected' && request()->segment(2) == 'students') menu-item-active @endif "
-                            aria-haspopup="true4">
-                            <a href="{{route('join_orders_rejected.students')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                        <span class="menu-text">{{trans('s_admin.dorr_students')}}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        @endif
+                        @can("Refused students to register in the system")
+                            <li class="menu-item @if(request()->segment(1) == 'students_rejected' && request()->segment(2) == 'students') menu-item-active @endif "
+                                aria-haspopup="true4">
+                                <a href="{{route('join_orders_rejected.students')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
         <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Clipboard-list.svg--><svg
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -356,19 +405,19 @@
             </svg><!--end::Svg Icon-->
         </span>
     </span>
-                                <span class="menu-text">{{trans('s_admin.arshef_rejected')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </div>
-        </li>
-    @endif
-    @if(Gate::check('New teacher interviews') ||Gate::check('Teachers permission requests') ||Gate::check('new teachers') || Gate::check('Distance education teachers')|| Gate::check('Complexes teachers')||
-    Gate::check('dorr teachers') ||  Gate::check('Refused teachers to register in the system') ||  Gate::check('Add absence and presence')||  Gate::check('see absence'))
-        <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'teachers_rejected'||request()->segment(1) == 'absence' || request()->segment(1) == 'teacher_settings' || request()->segment(1) == 'teacher'|| request()->segment(2) == 'teachers') menu-item-open @endif  "
-            aria-haspopup="true" data-menu-toggle="hover">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                    <span class="menu-text">{{trans('s_admin.arshef_rejected')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </div>
+            </li>
+        @endif
+        @if(Gate::check('New teacher interviews') ||Gate::check('Teachers permission requests') ||Gate::check('new teachers') || Gate::check('Distance education teachers')|| Gate::check('Complexes teachers')||
+        Gate::check('dorr teachers') ||  Gate::check('Refused teachers to register in the system') ||  Gate::check('Add absence and presence')||  Gate::check('see absence'))
+            <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'teachers_rejected'||request()->segment(1) == 'absence' || request()->segment(1) == 'teacher_settings' || request()->segment(1) == 'teacher'|| request()->segment(2) == 'teachers') menu-item-open @endif  "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
 <span class="svg-icon menu-icon">
 <span class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg--><svg
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -385,37 +434,37 @@
 </svg><!--end::Svg Icon-->
 </span>
 </span>
-                <span class="menu-text">{{trans('s_admin.nav_teacher_shoan_settings')}}
-                    @can("new teachers")
-                        @if($teachers_count > 0)
-                            &nbsp;
-                            &nbsp;
-                            <span style="width: 20px;height: 20px;"
-                                  href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
+                    <span class="menu-text">{{trans('s_admin.nav_teacher_shoan_settings')}}
+                        @can("new teachers")
+                            @if($teachers_count > 0)
+                                &nbsp;
+                                &nbsp;
+                                <span style="width: 20px;height: 20px;"
+                                      href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
 {{$teachers_count}}
 </span>
-                        @endif
-                    @endcan
+                            @endif
+                        @endcan
 </span>
 
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="menu-submenu">
-                <i class="menu-arrow"></i>
-                <ul class="menu-subnav">
-                    <li class="menu-item menu-item-parent" aria-haspopup="true">
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
 <span class="menu-link">
     <span class="menu-text">{{trans('s_admin.manage_students')}}</span>
 </span>
-                    </li>
-                    @can("new teachers")
-                        <li class="menu-item @if(request()->segment(2) == 'new_join') menu-item-active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('teacher.new_join')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                        </li>
+                        @can("new teachers")
+                            <li class="menu-item @if(request()->segment(2) == 'new_join') menu-item-active @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('teacher.new_join')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
         <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Sending.svg--><svg
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -431,51 +480,26 @@
             </svg><!--end::Svg Icon-->
         </span>
     </span>
-                                <span class="menu-text">
+                                    <span class="menu-text">
         {{trans('s_admin.new_teachers')}}
-                                    @if($teachers > 0)
-                                        &nbsp;
-                                        &nbsp;
-                                        <span style="width: 20px;height: 20px;"
-                                              href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
+                                        @if($teachers > 0)
+                                            &nbsp;
+                                            &nbsp;
+                                            <span style="width: 20px;height: 20px;"
+                                                  href="#"
+                                                  class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
                 {{$teachers}}
             </span>
-                                    @endif
+                                        @endif
     </span>
 
-                            </a>
-                        </li>
-                    @endcan
-                    @can("Distance education teachers")
-                        <li class="menu-item @if(request()->segment(1) == 'teacher_settings' && request()->segment(2) == 'far_learn') menu-item-active @endif "
-                            aria-haspopup="true">
-                            <a href="{{url('/teacher_settings/far_learn')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
-        <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Contact1.svg--><svg
-                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                    <rect x="0" y="0" width="24" height="24"/>
-                    <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
-                    <path
-                        d="M12,11 C10.8954305,11 10,10.1045695 10,9 C10,7.8954305 10.8954305,7 12,7 C13.1045695,7 14,7.8954305 14,9 C14,10.1045695 13.1045695,11 12,11 Z M7.00036205,16.4995035 C7.21569918,13.5165724 9.36772908,12 11.9907452,12 C14.6506758,12 16.8360465,13.4332455 16.9988413,16.5 C17.0053266,16.6221713 16.9988413,17 16.5815,17 L7.4041679,17 C7.26484009,17 6.98863236,16.6619875 7.00036205,16.4995035 Z"
-                        fill="#000000" opacity="0.3"/>
-                </g>
-            </svg><!--end::Svg Icon-->
-        </span>
-        </span>
-                                <span class="menu-text">{{trans('s_admin.nav_teachers_far_learn')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @if(settings()->show_mogmaa_dorr == '1')
-                        @can("Complexes teachers")
-                            <li class="menu-item @if(request()->segment(1) == 'teacher_settings' && request()->segment(2) == 'mogmaa') menu-item-active @endif "
+                                </a>
+                            </li>
+                        @endcan
+                        @can("Distance education teachers")
+                            <li class="menu-item @if(request()->segment(1) == 'teacher_settings' && request()->segment(2) == 'far_learn') menu-item-active @endif "
                                 aria-haspopup="true">
-                                <a href="{{url('/teacher_settings/mogmaa')}}" class="menu-link">
+                                <a href="{{url('/teacher_settings/far_learn')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
@@ -493,18 +517,19 @@
             </svg><!--end::Svg Icon-->
         </span>
         </span>
-                                    <span class="menu-text">{{trans('s_admin.nav_teachers_mogmaa')}}</span>
+                                    <span class="menu-text">{{trans('s_admin.nav_teachers_far_learn')}}</span>
                                 </a>
                             </li>
                         @endcan
-                        @can("dorr teachers")
-                            <li class="menu-item @if(request()->segment(1) == 'teacher_settings' && request()->segment(2) == 'dorr') menu-item-active @endif "
-                                aria-haspopup="true">
-                                <a href="{{url('/teacher_settings/dorr')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot">
-                                        <span></span>
-                                    </i>
-                                    <span class="svg-icon menu-icon">
+                        @if(settings()->show_mogmaa_dorr == '1')
+                            @can("Complexes teachers")
+                                <li class="menu-item @if(request()->segment(1) == 'teacher_settings' && request()->segment(2) == 'mogmaa') menu-item-active @endif "
+                                    aria-haspopup="true">
+                                    <a href="{{url('/teacher_settings/mogmaa')}}" class="menu-link">
+                                        <i class="menu-bullet menu-bullet-dot">
+                                            <span></span>
+                                        </i>
+                                        <span class="svg-icon menu-icon">
         <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Contact1.svg--><svg
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -518,19 +543,44 @@
             </svg><!--end::Svg Icon-->
         </span>
         </span>
-                                    <span class="menu-text">{{trans('s_admin.nav_teachers_dorr')}}</span>
-                                </a>
-                            </li>
-                        @endcan
-                    @endif
-                    @can("Refused teachers to register in the system")
-                        <li class="menu-item @if(request()->segment(2) == 'teachers_rejected') menu-item-active @endif "
-                            aria-haspopup="true">
-                            <a href="{{route('join_orders_rejected.teachers')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                        <span class="menu-text">{{trans('s_admin.nav_teachers_mogmaa')}}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can("dorr teachers")
+                                <li class="menu-item @if(request()->segment(1) == 'teacher_settings' && request()->segment(2) == 'dorr') menu-item-active @endif "
+                                    aria-haspopup="true">
+                                    <a href="{{url('/teacher_settings/dorr')}}" class="menu-link">
+                                        <i class="menu-bullet menu-bullet-dot">
+                                            <span></span>
+                                        </i>
+                                        <span class="svg-icon menu-icon">
+        <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Contact1.svg--><svg
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <rect x="0" y="0" width="24" height="24"/>
+                    <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+                    <path
+                        d="M12,11 C10.8954305,11 10,10.1045695 10,9 C10,7.8954305 10.8954305,7 12,7 C13.1045695,7 14,7.8954305 14,9 C14,10.1045695 13.1045695,11 12,11 Z M7.00036205,16.4995035 C7.21569918,13.5165724 9.36772908,12 11.9907452,12 C14.6506758,12 16.8360465,13.4332455 16.9988413,16.5 C17.0053266,16.6221713 16.9988413,17 16.5815,17 L7.4041679,17 C7.26484009,17 6.98863236,16.6619875 7.00036205,16.4995035 Z"
+                        fill="#000000" opacity="0.3"/>
+                </g>
+            </svg><!--end::Svg Icon-->
+        </span>
+        </span>
+                                        <span class="menu-text">{{trans('s_admin.nav_teachers_dorr')}}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        @endif
+                        @can("Refused teachers to register in the system")
+                            <li class="menu-item @if(request()->segment(2) == 'teachers_rejected') menu-item-active @endif "
+                                aria-haspopup="true">
+                                <a href="{{route('join_orders_rejected.teachers')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
         <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Clipboard-list.svg--><svg
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -552,18 +602,18 @@
             </svg><!--end::Svg Icon-->
         </span>
     </span>
-                                <span class="menu-text">{{trans('s_admin.arshef_rejected')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("New teacher interviews")
-                        <li class="menu-item @if(request()->segment(2) == 'interviews') menu-item-active @endif "
-                            aria-haspopup="true">
-                            <a href="{{route('teacher.interviews')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.arshef_rejected')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("New teacher interviews")
+                            <li class="menu-item @if(request()->segment(2) == 'interviews') menu-item-active @endif "
+                                aria-haspopup="true">
+                                <a href="{{route('teacher.interviews')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
             <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Devices\Display2.svg--><svg
                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                     width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -580,18 +630,18 @@
                 </svg><!--end::Svg Icon-->
             </span>
         </span>
-                                <span class="menu-text">{{trans('s_admin.new_teachers_interviews')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("Teachers permission requests")
-                        <li class="menu-item @if(request()->segment(2) == 'teacher_requests') menu-item-active @endif "
-                            aria-haspopup="true">
-                            <a href="{{route('teacher.absence.requests')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.new_teachers_interviews')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("Teachers permission requests")
+                            <li class="menu-item @if(request()->segment(2) == 'teacher_requests') menu-item-active @endif "
+                                aria-haspopup="true">
+                                <a href="{{route('teacher.absence.requests')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                  width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -605,26 +655,27 @@
                             </g>
                         </svg>
         </span>
-                                <span class="menu-text">{{trans('s_admin.teacher_absence_request')}}
+                                    <span class="menu-text">{{trans('s_admin.teacher_absence_request')}}
 
-                                    @if($teachers_absence_requests_sidbar > 0)
-                                        &nbsp;
-                                        &nbsp;
-                                        <span style="width: 20px;height: 20px;"
-                                              href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
+                                        @if($teachers_absence_requests_sidbar > 0)
+                                            &nbsp;
+                                            &nbsp;
+                                            <span style="width: 20px;height: 20px;"
+                                                  href="#"
+                                                  class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
                 {{$teachers_absence_requests_sidbar}}
             </span>
-                                    @endif
+                                        @endif
         </span>
-                            </a>
-                        </li>
-                    @endcan
-                    @if(Gate::check('Add absence and presence') || Gate::check('see absence') )
-                        <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'absence') menu-item-open @endif"
-                            aria-haspopup="true" data-menu-toggle="hover">
-                            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                <i class="menu-bullet menu-bullet-dot"><span></span></i>
-                                <span class="svg-icon menu-icon">
+                                </a>
+                            </li>
+                        @endcan
+                        @if(Gate::check('Add absence and presence') || Gate::check('see absence') )
+                            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'absence') menu-item-open @endif"
+                                aria-haspopup="true" data-menu-toggle="hover">
+                                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i>
+                                    <span class="svg-icon menu-icon">
                 <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Clipboard-list.svg--><svg
                         xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -653,20 +704,20 @@
                     </svg><!--end::Svg Icon-->
                 </span>
             </span>
-                                <span class="menu-text">{{trans('s_admin.teacher_absence')}}</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <div class="menu-submenu">
-                                <i class="menu-arrow"></i>
-                                <ul class="menu-subnav">
-                                    @can("Add absence and presence")
-                                        <li class="menu-item @if(request()->segment(1) == 'absence' && request()->segment(2) == 'add') menu-item-active @endif"
-                                            aria-haspopup="true">
-                                            <a href="{{route('absence.add.teacher')}}" class="menu-link">
-                                                <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                                </i>
-                                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.teacher_absence')}}</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                                <div class="menu-submenu">
+                                    <i class="menu-arrow"></i>
+                                    <ul class="menu-subnav">
+                                        @can("Add absence and presence")
+                                            <li class="menu-item @if(request()->segment(1) == 'absence' && request()->segment(2) == 'add') menu-item-active @endif"
+                                                aria-haspopup="true">
+                                                <a href="{{route('absence.add.teacher')}}" class="menu-link">
+                                                    <i class="menu-bullet menu-bullet-dot">
+                                                        <span></span>
+                                                    </i>
+                                                    <span class="svg-icon menu-icon">
                                 <span class="svg-icon svg-icon-danger svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Plus.svg--><svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -683,19 +734,19 @@
                                     </g>
                                 </svg><!--end::Svg Icon--></span>
                             </span>
-                                                <span
-                                                    class="menu-text">{{trans('s_admin.add_absence_attendance')}}</span>
-                                            </a>
-                                        </li>
-                                    @endcan
-                                    @can("see absence")
-                                        <li class="menu-item @if(request()->segment(1) == 'absence' && request()->segment(2) == 'show') menu-item-active @endif"
-                                            aria-haspopup="true">
-                                            <a href="{{route('absence.show.teacher')}}" class="menu-link">
-                                                <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                                </i>
-                                                <span class="svg-icon menu-icon">
+                                                    <span
+                                                        class="menu-text">{{trans('s_admin.add_absence_attendance')}}</span>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can("see absence")
+                                            <li class="menu-item @if(request()->segment(1) == 'absence' && request()->segment(2) == 'show') menu-item-active @endif"
+                                                aria-haspopup="true">
+                                                <a href="{{route('absence.show.teacher')}}" class="menu-link">
+                                                    <i class="menu-bullet menu-bullet-dot">
+                                                        <span></span>
+                                                    </i>
+                                                    <span class="svg-icon menu-icon">
                                 <span class="svg-icon svg-icon-danger svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Visible.svg--><svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -714,24 +765,24 @@
                                     </svg><!--end::Svg Icon-->
                                 </span>
                             </span>
-                                                <span
-                                                    class="menu-text">{{trans('s_admin.show_absence_attendance')}}</span>
-                                            </a>
-                                        </li>
-                                    @endcan
-                                </ul>
-                            </div>
-                        </li>
-                    @endif
-                </ul>
-            </div>
-        </li>
-    @endif
-    @if( Gate::check('Complexes')||  Gate::check('Distance education episodes') ||  Gate::check('Complexes students')||Gate::check("women's dorrs")||
-    Gate::check('Requests to join a distance education seminar')|| Gate::check('Episode replay requests') || Gate::check('Loop extension'))
-        <li class="menu-item menu-item-submenu @if( request()->segment(1) == 'episode' ||request()->segment(1) == 'dorr' || request()->segment(1) == 'colleges' || request()->segment(1) == 'far_episode' ) menu-item-open @endif"
-            aria-haspopup="true" data-menu-toggle="hover">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                                    <span
+                                                        class="menu-text">{{trans('s_admin.show_absence_attendance')}}</span>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                    </ul>
+                                </div>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+            </li>
+        @endif
+        @if( Gate::check('Complexes')||  Gate::check('Distance education episodes') ||  Gate::check('Complexes students')||Gate::check("women's dorrs")||
+        Gate::check('Requests to join a distance education seminar')|| Gate::check('Episode replay requests') || Gate::check('Loop extension'))
+            <li class="menu-item menu-item-submenu @if( request()->segment(1) == 'episode' ||request()->segment(1) == 'dorr' || request()->segment(1) == 'colleges' || request()->segment(1) == 'far_episode' ) menu-item-open @endif"
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
 <span class="svg-icon menu-icon">
 <span class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Clipboard.svg--><svg
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -750,63 +801,34 @@
         </svg><!--end::Svg Icon-->
     </span>
 </span>
-                <span class="menu-text">{{trans('s_admin.nav_manage_electronic_chanel')}}
+                    <span class="menu-text">{{trans('s_admin.nav_manage_electronic_chanel')}}
 &nbsp;
 &nbsp;
 &nbsp;
 @if($totla_new_requests > 0)
-                        <span style="width: 20px;height: 20px;" href="#"
-                              class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
+                            <span style="width: 20px;height: 20px;" href="#"
+                                  class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
     {{$totla_new_requests}}
 </span>
-                    @endif
+                        @endif
 </span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="menu-submenu">
-                <i class="menu-arrow"></i>
-                <ul class="menu-subnav">
-                    <li class="menu-item menu-item-parent @if(request()->segment(1) == 'episode') menu-item-open  @endif"
-                        aria-haspopup="true">
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent @if(request()->segment(1) == 'episode') menu-item-open  @endif"
+                            aria-haspopup="true">
 <span class="menu-link">
 <span class="menu-text">{{trans('s_admin.nav_manage_electronic_chanel')}}</span>
 </span>
-                    </li>
-
-
-                    @can("Distance education episodes")
-                        <li class="menu-item @if(request()->segment(1)=='episode' && request()->segment(2)=='index') menu-item-active  @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('episode.show.type','mqraa')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
-<span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Devices\Display2.svg--><svg
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-<rect x="0" y="0" width="24" height="24"/>
-<polygon fill="#000000" opacity="0.3" points="6 7 6 15 18 15 18 7"/>
-<path
-    d="M11,19 L11,16 C11,15.4477153 11.4477153,15 12,15 C12.5522847,15 13,15.4477153 13,16 L13,19 L14.5,19 C14.7761424,19 15,19.2238576 15,19.5 C15,19.7761424 14.7761424,20 14.5,20 L9.5,20 C9.22385763,20 9,19.7761424 9,19.5 C9,19.2238576 9.22385763,19 9.5,19 L11,19 Z"
-    fill="#000000" opacity="0.3"/>
-<path
-    d="M6,7 L6,15 L18,15 L18,7 L6,7 Z M6,5 L18,5 C19.1045695,5 20,5.8954305 20,7 L20,15 C20,16.1045695 19.1045695,17 18,17 L6,17 C4.8954305,17 4,16.1045695 4,15 L4,7 C4,5.8954305 4.8954305,5 6,5 Z"
-    fill="#000000" fill-rule="nonzero"/>
-</g>
-</svg><!--end::Svg Icon-->
-</span>
-</span>
-                                <span class="menu-text">{{trans('s_admin.nav_far_epo')}}</span>
-                            </a>
                         </li>
-                    @endcan
-                    @if(settings()->show_mogmaa_dorr == '1')
-                        @can("Complexes")
-                            <li class="menu-item @if(request()->segment(1) == 'colleges') menu-item-active  @endif"
+
+
+                        @can("Distance education episodes")
+                            <li class="menu-item @if(request()->segment(1)=='episode' && request()->segment(2)=='index') menu-item-active  @endif"
                                 aria-haspopup="true">
-                                <a href="{{route('colleges.index')}}" class="menu-link">
+                                <a href="{{route('episode.show.type','mqraa')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
@@ -827,18 +849,47 @@
 </svg><!--end::Svg Icon-->
 </span>
 </span>
-                                    <span class="menu-text">{{trans('s_admin.colleges')}}</span>
+                                    <span class="menu-text">{{trans('s_admin.nav_far_epo')}}</span>
                                 </a>
                             </li>
                         @endcan
-                        @can("women's dorrs")
-                            <li class="menu-item @if(request()->segment(1) == 'dorr') menu-item-active  @endif"
-                                aria-haspopup="true">
-                                <a href="{{route('dorr.index')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot">
-                                        <span></span>
-                                    </i>
-                                    <span class="svg-icon menu-icon">
+                        @if(settings()->show_mogmaa_dorr == '1')
+                            @can("Complexes")
+                                <li class="menu-item @if(request()->segment(1) == 'colleges') menu-item-active  @endif"
+                                    aria-haspopup="true">
+                                    <a href="{{route('colleges.index')}}" class="menu-link">
+                                        <i class="menu-bullet menu-bullet-dot">
+                                            <span></span>
+                                        </i>
+                                        <span class="svg-icon menu-icon">
+<span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Devices\Display2.svg--><svg
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<rect x="0" y="0" width="24" height="24"/>
+<polygon fill="#000000" opacity="0.3" points="6 7 6 15 18 15 18 7"/>
+<path
+    d="M11,19 L11,16 C11,15.4477153 11.4477153,15 12,15 C12.5522847,15 13,15.4477153 13,16 L13,19 L14.5,19 C14.7761424,19 15,19.2238576 15,19.5 C15,19.7761424 14.7761424,20 14.5,20 L9.5,20 C9.22385763,20 9,19.7761424 9,19.5 C9,19.2238576 9.22385763,19 9.5,19 L11,19 Z"
+    fill="#000000" opacity="0.3"/>
+<path
+    d="M6,7 L6,15 L18,15 L18,7 L6,7 Z M6,5 L18,5 C19.1045695,5 20,5.8954305 20,7 L20,15 C20,16.1045695 19.1045695,17 18,17 L6,17 C4.8954305,17 4,16.1045695 4,15 L4,7 C4,5.8954305 4.8954305,5 6,5 Z"
+    fill="#000000" fill-rule="nonzero"/>
+</g>
+</svg><!--end::Svg Icon-->
+</span>
+</span>
+                                        <span class="menu-text">{{trans('s_admin.colleges')}}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can("women's dorrs")
+                                <li class="menu-item @if(request()->segment(1) == 'dorr') menu-item-active  @endif"
+                                    aria-haspopup="true">
+                                    <a href="{{route('dorr.index')}}" class="menu-link">
+                                        <i class="menu-bullet menu-bullet-dot">
+                                            <span></span>
+                                        </i>
+                                        <span class="svg-icon menu-icon">
                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Devices\Display2.svg--><svg
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -855,19 +906,19 @@
                     </svg><!--end::Svg Icon-->
                     </span>
                     </span>
-                                    <span class="menu-text">{{trans('s_admin.dorrs')}}</span>
-                                </a>
-                            </li>
-                        @endcan
-                    @endif
-                    @can("Requests to join a distance education seminar")
-                        <li class="menu-item @if(request()->segment(1) == 'far_episode' && request()->segment(2)=='join_request') menu-item-active  @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('far_episode.join_request')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                        <span class="menu-text">{{trans('s_admin.dorrs')}}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        @endif
+                        @can("Requests to join a distance education seminar")
+                            <li class="menu-item @if(request()->segment(1) == 'far_episode' && request()->segment(2)=='join_request') menu-item-active  @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('far_episode.join_request')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
 <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Devices\Display2.svg--><svg
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -884,29 +935,30 @@
 </svg><!--end::Svg Icon-->
 </span>
 </span>
-                                <span class="menu-text">
+                                    <span class="menu-text">
 {{trans('s_admin.nav_join_orders')}}
-                                    @if(count($new_episodes_request) > 0)
-                                        &nbsp;
-                                        &nbsp;
-                                        <span style="width: 20px;height: 20px;"
-                                              href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
+                                        @if(count($new_episodes_request) > 0)
+                                            &nbsp;
+                                            &nbsp;
+                                            <span style="width: 20px;height: 20px;"
+                                                  href="#"
+                                                  class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
 {{count($new_episodes_request)}}
 </span>
-                                    @endif
+                                        @endif
 </span>
-                            </a>
-                        </li>
-                    @endcan
+                                </a>
+                            </li>
+                        @endcan
 
-                    @can("Episode replay requests")
-                        <li class="menu-item @if(request()->segment(1) == 'far_episode' && request()->segment(2)=='restart') menu-item-active  @endif "
-                            aria-haspopup="true">
-                            <a href="{{route('far_episode.restart.epo')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                        @can("Episode replay requests")
+                            <li class="menu-item @if(request()->segment(1) == 'far_episode' && request()->segment(2)=='restart') menu-item-active  @endif "
+                                aria-haspopup="true">
+                                <a href="{{route('far_episode.restart.epo')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
 <span class="svg-icon svg-icon-primary svg-icon-2x">
 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Reply-all.svg--><svg
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -923,28 +975,29 @@
 </svg><!--end::Svg Icon-->
 </span>
 </span>
-                                <span class="menu-text">{{trans('s_admin.nav_restart_epo')}}
+                                    <span class="menu-text">{{trans('s_admin.nav_restart_epo')}}
 
-                                    @if(count($new_restar_epo_request) > 0)
-                                        &nbsp;
-                                        &nbsp;
-                                        <span style="width: 20px;height: 20px;"
-                                              href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
+                                        @if(count($new_restar_epo_request) > 0)
+                                            &nbsp;
+                                            &nbsp;
+                                            <span style="width: 20px;height: 20px;"
+                                                  href="#"
+                                                  class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
 {{count($new_restar_epo_request)}}
 </span>
-                                    @endif
+                                        @endif
 </span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("Loop extension")
-                        <li class="menu-item  @if(request()->segment(2) == 'long_episodes') menu-item-active  @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('episode.long_episodes')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                </a>
+                            </li>
+                        @endcan
+                        @can("Loop extension")
+                            <li class="menu-item  @if(request()->segment(2) == 'long_episodes') menu-item-active  @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('episode.long_episodes')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x">
                                         <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Time-schedule.svg-->
                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -962,28 +1015,28 @@
                                         </svg><!--end::Svg Icon-->
                                     </span>
                                 </span>
-                                <span class="menu-text">{{trans('s_admin.nav_long_episode')}}
-                                    @if(count($un_read_long) > 0)
-                                        &nbsp;
-                                        &nbsp;
-                                        <span style="width: 20px;height: 20px;" href="#"
-                                              class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
+                                    <span class="menu-text">{{trans('s_admin.nav_long_episode')}}
+                                        @if(count($un_read_long) > 0)
+                                            &nbsp;
+                                            &nbsp;
+                                            <span style="width: 20px;height: 20px;" href="#"
+                                                  class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
                                             {{count($un_read_long)}}
                                         </span>
-                                    @endif
+                                        @endif
                                 </span>
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </div>
-        </li>
-    @endif
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </div>
+            </li>
+        @endif
 
-    @if( Gate::check('origin curriculum') || Gate::check('Distance education evaluation settings') || Gate::check('Assessment Statement Settings') )
-        <li class="menu-item menu-item-submenu @if(request()->segment(2)=='subjects'|| request()->segment(1) == 'levels' || request()->segment(1) == 'subjects') menu-item-open @endif"
-            aria-haspopup="true" data-menu-toggle="hover">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+        @if( Gate::check('origin curriculum') || Gate::check('Distance education evaluation settings') || Gate::check('Assessment Statement Settings') )
+            <li class="menu-item menu-item-submenu @if(request()->segment(2)=='subjects'|| request()->segment(1) == 'levels' || request()->segment(1) == 'subjects') menu-item-open @endif"
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
 <span class="svg-icon menu-icon">
 <span class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Files\Selected-file.svg--><svg
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -1000,25 +1053,25 @@
 </svg><!--end::Svg Icon-->
 </span>
 </span>
-                <span class="menu-text">{{trans('s_admin.nav_method')}}</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="menu-submenu ">
-                <i class="menu-arrow"></i>
-                <ul class="menu-subnav">
-                    <li class="menu-item menu-item-parent " aria-haspopup="true">
+                    <span class="menu-text">{{trans('s_admin.nav_method')}}</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu ">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent " aria-haspopup="true">
 <span class="menu-link">
 <span class="menu-text">{{trans('s_admin.nav_method')}}</span>
 </span>
-                    </li>
-                    @can("origin curriculum")
-                        <li class="menu-item @if(request()->segment(1) == 'levels' ) menu-item-active  @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('levels.index')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                        </li>
+                        @can("origin curriculum")
+                            <li class="menu-item @if(request()->segment(1) == 'levels' ) menu-item-active  @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('levels.index')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
 <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Git1.svg--><svg
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -1035,18 +1088,18 @@
 </svg><!--end::Svg Icon-->
 </span>
 </span>
-                                <span class="menu-text">{{trans('s_admin.nav_levels')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("Distance education evaluation settings")
-                        <li class="menu-item @if(request()->segment(3) == 'far_episode' && request()->segment(2)=='ErrorType') menu-item-active  @endif "
-                            aria-haspopup="true">
-                            <a href="{{route('far_episode_ErrorType.index')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.nav_levels')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("Distance education evaluation settings")
+                            <li class="menu-item @if(request()->segment(3) == 'far_episode' && request()->segment(2)=='ErrorType') menu-item-active  @endif "
+                                aria-haspopup="true">
+                                <a href="{{route('far_episode_ErrorType.index')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x">
                                     <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Chat-check.svg-->
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -1063,22 +1116,23 @@
                                     </svg><!--end::Svg Icon-->
                                     </span>
                                     </span>
-                                <span class="menu-text">{{trans('s_admin.nav_home_far_ErrorType')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @if(settings()->show_mogmaa_dorr == '1')
-                        @can("Assessment Statement Settings")
-                            <li class="menu-item @if(request()->segment(2)=='ErrorType'&& request()->segment(3)=='mogmaa') menu-item-active  @endif "
-                                aria-haspopup="true">
-                                <a href="{{route('ErrorType.index')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot">
-                                        <span></span>
-                                    </i>
-                                    <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.nav_home_far_ErrorType')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @if(settings()->show_mogmaa_dorr == '1')
+                            @can("Assessment Statement Settings")
+                                <li class="menu-item @if(request()->segment(2)=='ErrorType'&& request()->segment(3)=='mogmaa') menu-item-active  @endif "
+                                    aria-haspopup="true">
+                                    <a href="{{route('ErrorType.index')}}" class="menu-link">
+                                        <i class="menu-bullet menu-bullet-dot">
+                                            <span></span>
+                                        </i>
+                                        <span class="svg-icon menu-icon">
                                         <span class="svg-icon svg-icon-primary svg-icon-2x">
                                         <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Chat-check.svg-->
-                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
                                                  width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                 <rect x="0" y="0" width="24" height="24"/>
@@ -1092,23 +1146,23 @@
                                             </svg><!--end::Svg Icon-->
                                         </span>
                                     </span>
-                                    <span class="menu-text">{{trans('s_admin.nav_home_ErrorType')}}</span>
-                                </a>
-                            </li>
-                        @endcan
-                    @endif
-                </ul>
-            </div>
-        </li>
-    @endif
+                                        <span class="menu-text">{{trans('s_admin.nav_home_ErrorType')}}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        @endif
+                    </ul>
+                </div>
+            </li>
+        @endif
 
-{{--    ||Gate::check('Memorization line count report')--}}
-    @if( Gate::check('Certificates')|| Gate::check('Episode Rating')|| Gate::check('Daily recitation report') ||Gate::check('teacher evaluation report') ||Gate::check('data report') || Gate::check('Staff roles settings')|| Gate::check('productivity report')||
-    Gate::check('Employee data report') || Gate::check('Teacher attendance report')|| Gate::check('teacher achievement report')||
-    Gate::check("Student's history"))
-        <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'reports') menu-item-open @endif "
-            aria-haspopup="true" data-menu-toggle="hover">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+        {{--    ||Gate::check('Memorization line count report')--}}
+        @if( Gate::check('Certificates')|| Gate::check('Episode Rating')|| Gate::check('Daily recitation report') ||Gate::check('teacher evaluation report') ||Gate::check('data report') || Gate::check('Staff roles settings')|| Gate::check('productivity report')||
+        Gate::check('Employee data report') || Gate::check('Teacher attendance report')|| Gate::check('teacher achievement report')||
+        Gate::check("Student's history"))
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'reports') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <span class="svg-icon menu-icon">
                     <span class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Chart-bar1.svg-->
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -1125,23 +1179,23 @@
                         </svg><!--end::Svg Icon-->
                     </span>
                 </span>
-                <span class="menu-text">{{trans('s_admin.nav_reports_and_stat')}}</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="menu-submenu">
-                <i class="menu-arrow"></i>
-                <ul class="menu-subnav">
-                    <li class="menu-item menu-item-parent" aria-haspopup="true">
+                    <span class="menu-text">{{trans('s_admin.nav_reports_and_stat')}}</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
                         <span class="menu-link">
                         <span class="menu-text">{{trans('s_admin.nav_reports_and_stat')}}</span>
                         </span>
-                    </li>
-                    @can("data report")
-                        <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'data') menu-item-open @endif"
-                            aria-haspopup="true" data-menu-toggle="hover">
-                            <a href="{{route('reports.basic')}}" class="menu-link menu-toggle">
-                                <i class="menu-bullet menu-bullet-dot"><span></span></i>
-                                <span class="svg-icon menu-icon">
+                        </li>
+                        @can("data report")
+                            <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'data') menu-item-open @endif"
+                                aria-haspopup="true" data-menu-toggle="hover">
+                                <a href="{{route('reports.basic')}}" class="menu-link menu-toggle">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Chart-line2.svg-->
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -1160,18 +1214,18 @@
                                         </svg><!--end::Svg Icon-->
                                     </span>
                                 </span>
-                                <span class="menu-text">{{trans('s_admin.nav_students_reports')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("Staff roles settings")
-                        <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'attendance') menu-item-open @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('reports.attendance')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.nav_students_reports')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("Staff roles settings")
+                            <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'attendance') menu-item-open @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('reports.attendance')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Chart-bar2.svg-->
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -1192,18 +1246,18 @@
                                         </svg><!--end::Svg Icon-->
                                     </span>
                                 </span>
-                                <span class="menu-text">{{trans('s_admin.nav_teachers_reports')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("productivity report")
-                        <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'productivity') menu-item-open @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('reports.productivity')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.nav_teachers_reports')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("productivity report")
+                            <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'productivity') menu-item-open @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('reports.productivity')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Chart-line2.svg-->
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -1222,48 +1276,48 @@
                                         </svg><!--end::Svg Icon-->
                                     </span>
                                 </span>
-                                <span class="menu-text">{{trans('s_admin.nav_save_and_lisen_reports')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-{{--                    @can("Daily recitation report")--}}
-{{--                        <li class="menu-item menu-item-submenu @if(request()->segment(3) == 'reciting_today') menu-item-open @endif"--}}
-{{--                            aria-haspopup="true">--}}
-{{--                            <a href="{{route('reports.reports.reciting_today')}}" class="menu-link">--}}
-{{--                                <i class="menu-bullet menu-bullet-dot">--}}
-{{--                                    <span></span>--}}
-{{--                                </i>--}}
-{{--                                <span class="svg-icon menu-icon">--}}
-{{--                                    <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Chart-line2.svg-->--}}
-{{--                                        <svg--}}
-{{--                                            xmlns="http://www.w3.org/2000/svg"--}}
-{{--                                            xmlns:xlink="http://www.w3.org/1999/xlink"--}}
-{{--                                            width="24px" height="24px" viewBox="0 0 24 24" version="1.1">--}}
-{{--                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">--}}
-{{--                                                <rect x="0" y="0" width="24" height="24"/>--}}
-{{--                                                <path--}}
-{{--                                                    d="M5,19 L20,19 C20.5522847,19 21,19.4477153 21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 C4.55228475,3 5,3.44771525 5,4 L5,19 Z"--}}
-{{--                                                    fill="#000000" fill-rule="nonzero"/>--}}
-{{--                                                <path--}}
-{{--                                                    d="M8.7295372,14.6839411 C8.35180695,15.0868534 7.71897114,15.1072675 7.31605887,14.7295372 C6.9131466,14.3518069 6.89273254,13.7189711 7.2704628,13.3160589 L11.0204628,9.31605887 C11.3857725,8.92639521 11.9928179,8.89260288 12.3991193,9.23931335 L15.358855,11.7649545 L19.2151172,6.88035571 C19.5573373,6.44687693 20.1861655,6.37289714 20.6196443,6.71511723 C21.0531231,7.05733733 21.1271029,7.68616551 20.7848828,8.11964429 L16.2848828,13.8196443 C15.9333973,14.2648593 15.2823707,14.3288915 14.8508807,13.9606866 L11.8268294,11.3801628 L8.7295372,14.6839411 Z"--}}
-{{--                                                    fill="#000000" fill-rule="nonzero" opacity="0.3"--}}
-{{--                                                    transform="translate(14.000019, 10.749981) scale(1, -1) translate(-14.000019, -10.749981) "/>--}}
-{{--                                            </g>--}}
-{{--                                        </svg><!--end::Svg Icon-->--}}
-{{--                                    </span>--}}
-{{--                                </span>--}}
-{{--                                <span class="menu-text">{{trans('s_admin.reports_today_listen')}}</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    @endcan--}}
-                    @can("Employee data report")
-                        <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'teacher' && request()->segment(3) == 'data') menu-item-open @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('reports.teacher.data')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.nav_save_and_lisen_reports')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        {{--                    @can("Daily recitation report")--}}
+                        {{--                        <li class="menu-item menu-item-submenu @if(request()->segment(3) == 'reciting_today') menu-item-open @endif"--}}
+                        {{--                            aria-haspopup="true">--}}
+                        {{--                            <a href="{{route('reports.reports.reciting_today')}}" class="menu-link">--}}
+                        {{--                                <i class="menu-bullet menu-bullet-dot">--}}
+                        {{--                                    <span></span>--}}
+                        {{--                                </i>--}}
+                        {{--                                <span class="svg-icon menu-icon">--}}
+                        {{--                                    <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Chart-line2.svg-->--}}
+                        {{--                                        <svg--}}
+                        {{--                                            xmlns="http://www.w3.org/2000/svg"--}}
+                        {{--                                            xmlns:xlink="http://www.w3.org/1999/xlink"--}}
+                        {{--                                            width="24px" height="24px" viewBox="0 0 24 24" version="1.1">--}}
+                        {{--                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">--}}
+                        {{--                                                <rect x="0" y="0" width="24" height="24"/>--}}
+                        {{--                                                <path--}}
+                        {{--                                                    d="M5,19 L20,19 C20.5522847,19 21,19.4477153 21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 C4.55228475,3 5,3.44771525 5,4 L5,19 Z"--}}
+                        {{--                                                    fill="#000000" fill-rule="nonzero"/>--}}
+                        {{--                                                <path--}}
+                        {{--                                                    d="M8.7295372,14.6839411 C8.35180695,15.0868534 7.71897114,15.1072675 7.31605887,14.7295372 C6.9131466,14.3518069 6.89273254,13.7189711 7.2704628,13.3160589 L11.0204628,9.31605887 C11.3857725,8.92639521 11.9928179,8.89260288 12.3991193,9.23931335 L15.358855,11.7649545 L19.2151172,6.88035571 C19.5573373,6.44687693 20.1861655,6.37289714 20.6196443,6.71511723 C21.0531231,7.05733733 21.1271029,7.68616551 20.7848828,8.11964429 L16.2848828,13.8196443 C15.9333973,14.2648593 15.2823707,14.3288915 14.8508807,13.9606866 L11.8268294,11.3801628 L8.7295372,14.6839411 Z"--}}
+                        {{--                                                    fill="#000000" fill-rule="nonzero" opacity="0.3"--}}
+                        {{--                                                    transform="translate(14.000019, 10.749981) scale(1, -1) translate(-14.000019, -10.749981) "/>--}}
+                        {{--                                            </g>--}}
+                        {{--                                        </svg><!--end::Svg Icon-->--}}
+                        {{--                                    </span>--}}
+                        {{--                                </span>--}}
+                        {{--                                <span class="menu-text">{{trans('s_admin.reports_today_listen')}}</span>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
+                        {{--                    @endcan--}}
+                        @can("Employee data report")
+                            <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'teacher' && request()->segment(3) == 'data') menu-item-open @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('reports.teacher.data')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Chart-bar2.svg-->
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -1284,18 +1338,18 @@
                                         </svg><!--end::Svg Icon-->
                                     </span>
                                 </span>
-                                <span class="menu-text">{{trans('s_admin.nav_follow_current_chanel')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("Teacher attendance report")
-                        <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'teacher' && request()->segment(3) == 'attendance') menu-item-open @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('reports.teacher.attendance')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.nav_follow_current_chanel')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("Teacher attendance report")
+                            <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'teacher' && request()->segment(3) == 'attendance') menu-item-open @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('reports.teacher.attendance')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Chart-line2.svg-->
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -1313,18 +1367,18 @@
                                         </svg><!--end::Svg Icon-->
                                     </span>
                                 </span>
-                                <span class="menu-text">{{trans('s_admin.nav_missions_done_reports')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("teacher achievement report")
-                        <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'teacher' && request()->segment(3) == 'Achievement') menu-item-open @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('reports.teacher.Achievement')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.nav_missions_done_reports')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("teacher achievement report")
+                            <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'teacher' && request()->segment(3) == 'Achievement') menu-item-open @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('reports.teacher.Achievement')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Navigation\Arrows-v.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -1345,50 +1399,50 @@
                                     </svg><!--end::Svg Icon-->
                                     </span>
                                     </span>
-                                <span class="menu-text">{{trans('s_admin.nav_come_out_reports')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-{{--                    @can("teacher evaluation report")--}}
-{{--                        <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'teacher' && request()->segment(3) == 'rates') menu-item-open @endif"--}}
-{{--                            aria-haspopup="true">--}}
-{{--                            <a href="{{route('reports.teacher.rates')}}" class="menu-link">--}}
-{{--                                <i class="menu-bullet menu-bullet-dot">--}}
-{{--                                    <span></span>--}}
-{{--                                </i>--}}
-{{--                                <span class="svg-icon menu-icon">--}}
-{{--                                    <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Navigation\Arrows-v.svg--><svg--}}
-{{--                                            xmlns="http://www.w3.org/2000/svg"--}}
-{{--                                            xmlns:xlink="http://www.w3.org/1999/xlink"--}}
-{{--                                            width="24px" height="24px" viewBox="0 0 24 24" version="1.1">--}}
-{{--                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">--}}
-{{--                                    <polygon points="0 0 24 0 24 24 0 24"/>--}}
-{{--                                    <rect fill="#000000" opacity="0.3"--}}
-{{--                                          transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) "--}}
-{{--                                          x="7" y="11" width="10" height="2" rx="1"/>--}}
-{{--                                    <path--}}
-{{--                                        d="M6.70710678,8.70710678 C6.31658249,9.09763107 5.68341751,9.09763107 5.29289322,8.70710678 C4.90236893,8.31658249 4.90236893,7.68341751 5.29289322,7.29289322 L11.2928932,1.29289322 C11.6714722,0.914314282 12.2810586,0.90106866 12.6757246,1.26284586 L18.6757246,6.76284586 C19.0828436,7.13603827 19.1103465,7.76860564 18.7371541,8.17572463 C18.3639617,8.58284362 17.7313944,8.61034655 17.3242754,8.23715414 L12.0300757,3.38413782 L6.70710678,8.70710678 Z"--}}
-{{--                                        fill="#000000" fill-rule="nonzero"/>--}}
-{{--                                    <path--}}
-{{--                                        d="M6.70710678,22.7071068 C6.31658249,23.0976311 5.68341751,23.0976311 5.29289322,22.7071068 C4.90236893,22.3165825 4.90236893,21.6834175 5.29289322,21.2928932 L11.2928932,15.2928932 C11.6714722,14.9143143 12.2810586,14.9010687 12.6757246,15.2628459 L18.6757246,20.7628459 C19.0828436,21.1360383 19.1103465,21.7686056 18.7371541,22.1757246 C18.3639617,22.5828436 17.7313944,22.6103465 17.3242754,22.2371541 L12.0300757,17.3841378 L6.70710678,22.7071068 Z"--}}
-{{--                                        fill="#000000" fill-rule="nonzero"--}}
-{{--                                        transform="translate(12.000003, 18.999999) rotate(-180.000000) translate(-12.000003, -18.999999) "/>--}}
-{{--                                    </g>--}}
-{{--                                    </svg><!--end::Svg Icon-->--}}
-{{--                                    </span>--}}
-{{--                                    </span>--}}
-{{--                                <span class="menu-text">{{trans('s_admin.nav_teacher_rates_reports')}}</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    @endcan--}}
-                    @can("Student's history")
-                        <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'student_history') menu-item-open @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('reports.student_history')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.nav_come_out_reports')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        {{--                    @can("teacher evaluation report")--}}
+                        {{--                        <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'teacher' && request()->segment(3) == 'rates') menu-item-open @endif"--}}
+                        {{--                            aria-haspopup="true">--}}
+                        {{--                            <a href="{{route('reports.teacher.rates')}}" class="menu-link">--}}
+                        {{--                                <i class="menu-bullet menu-bullet-dot">--}}
+                        {{--                                    <span></span>--}}
+                        {{--                                </i>--}}
+                        {{--                                <span class="svg-icon menu-icon">--}}
+                        {{--                                    <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Navigation\Arrows-v.svg--><svg--}}
+                        {{--                                            xmlns="http://www.w3.org/2000/svg"--}}
+                        {{--                                            xmlns:xlink="http://www.w3.org/1999/xlink"--}}
+                        {{--                                            width="24px" height="24px" viewBox="0 0 24 24" version="1.1">--}}
+                        {{--                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">--}}
+                        {{--                                    <polygon points="0 0 24 0 24 24 0 24"/>--}}
+                        {{--                                    <rect fill="#000000" opacity="0.3"--}}
+                        {{--                                          transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) "--}}
+                        {{--                                          x="7" y="11" width="10" height="2" rx="1"/>--}}
+                        {{--                                    <path--}}
+                        {{--                                        d="M6.70710678,8.70710678 C6.31658249,9.09763107 5.68341751,9.09763107 5.29289322,8.70710678 C4.90236893,8.31658249 4.90236893,7.68341751 5.29289322,7.29289322 L11.2928932,1.29289322 C11.6714722,0.914314282 12.2810586,0.90106866 12.6757246,1.26284586 L18.6757246,6.76284586 C19.0828436,7.13603827 19.1103465,7.76860564 18.7371541,8.17572463 C18.3639617,8.58284362 17.7313944,8.61034655 17.3242754,8.23715414 L12.0300757,3.38413782 L6.70710678,8.70710678 Z"--}}
+                        {{--                                        fill="#000000" fill-rule="nonzero"/>--}}
+                        {{--                                    <path--}}
+                        {{--                                        d="M6.70710678,22.7071068 C6.31658249,23.0976311 5.68341751,23.0976311 5.29289322,22.7071068 C4.90236893,22.3165825 4.90236893,21.6834175 5.29289322,21.2928932 L11.2928932,15.2928932 C11.6714722,14.9143143 12.2810586,14.9010687 12.6757246,15.2628459 L18.6757246,20.7628459 C19.0828436,21.1360383 19.1103465,21.7686056 18.7371541,22.1757246 C18.3639617,22.5828436 17.7313944,22.6103465 17.3242754,22.2371541 L12.0300757,17.3841378 L6.70710678,22.7071068 Z"--}}
+                        {{--                                        fill="#000000" fill-rule="nonzero"--}}
+                        {{--                                        transform="translate(12.000003, 18.999999) rotate(-180.000000) translate(-12.000003, -18.999999) "/>--}}
+                        {{--                                    </g>--}}
+                        {{--                                    </svg><!--end::Svg Icon-->--}}
+                        {{--                                    </span>--}}
+                        {{--                                    </span>--}}
+                        {{--                                <span class="menu-text">{{trans('s_admin.nav_teacher_rates_reports')}}</span>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
+                        {{--                    @endcan--}}
+                        @can("Student's history")
+                            <li class="menu-item menu-item-submenu @if(request()->segment(2) == 'student_history') menu-item-open @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('reports.student_history')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Design\Pen-tool-vector.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -1405,46 +1459,46 @@
                                     </svg><!--end::Svg Icon-->
                                     </span>
                                     </span>
-                                <span class="menu-text">{{trans('s_admin.nav_students_reviews_reports')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-{{--                    @can("Memorization line count report")--}}
-{{--                        <li class="menu-item menu-item-submenu @if(request()->segment(3) == 'student_save_lines') menu-item-open @endif"--}}
-{{--                            aria-haspopup="true">--}}
-{{--                            <a href="{{route('reports.student_save_lines')}}" class="menu-link">--}}
-{{--                                <i class="menu-bullet menu-bullet-dot">--}}
-{{--                                    <span></span>--}}
-{{--                                </i>--}}
-{{--                                <span class="svg-icon menu-icon">--}}
-{{--                                    <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Design\Pen-tool-vector.svg--><svg--}}
-{{--                                            xmlns="http://www.w3.org/2000/svg"--}}
-{{--                                            xmlns:xlink="http://www.w3.org/1999/xlink"--}}
-{{--                                            width="24px" height="24px" viewBox="0 0 24 24" version="1.1">--}}
-{{--                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">--}}
-{{--                                    <rect x="0" y="0" width="24" height="24"/>--}}
-{{--                                    <path--}}
-{{--                                        d="M11,3 L11,11 C11,11.0862364 11.0109158,11.1699233 11.0314412,11.2497543 C10.4163437,11.5908673 10,12.2468125 10,13 C10,14.1045695 10.8954305,15 12,15 C13.1045695,15 14,14.1045695 14,13 C14,12.2468125 13.5836563,11.5908673 12.9685588,11.2497543 C12.9890842,11.1699233 13,11.0862364 13,11 L13,3 L17.7925828,12.5851656 C17.9241309,12.8482619 17.9331722,13.1559315 17.8173006,13.4262985 L15.1298744,19.6969596 C15.051085,19.8808016 14.870316,20 14.6703019,20 L9.32969808,20 C9.12968402,20 8.94891496,19.8808016 8.87012556,19.6969596 L6.18269936,13.4262985 C6.06682778,13.1559315 6.07586907,12.8482619 6.2074172,12.5851656 L11,3 Z"--}}
-{{--                                        fill="#000000"/>--}}
-{{--                                    <path--}}
-{{--                                        d="M10,21 L14,21 C14.5522847,21 15,21.4477153 15,22 L15,23 L9,23 L9,22 C9,21.4477153 9.44771525,21 10,21 Z"--}}
-{{--                                        fill="#000000" opacity="0.3"/>--}}
-{{--                                    </g>--}}
-{{--                                    </svg><!--end::Svg Icon-->--}}
-{{--                                    </span>--}}
-{{--                                    </span>--}}
-{{--                                <span class="menu-text">{{trans('s_admin.nav_student_save_lines_report')}}</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    @endcan--}}
-                    @can("Certificates")
-                        <li class="menu-item  @if(request()->segment(2) == 'certificates') menu-item-active  @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('reports.certificates')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.nav_students_reviews_reports')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        {{--                    @can("Memorization line count report")--}}
+                        {{--                        <li class="menu-item menu-item-submenu @if(request()->segment(3) == 'student_save_lines') menu-item-open @endif"--}}
+                        {{--                            aria-haspopup="true">--}}
+                        {{--                            <a href="{{route('reports.student_save_lines')}}" class="menu-link">--}}
+                        {{--                                <i class="menu-bullet menu-bullet-dot">--}}
+                        {{--                                    <span></span>--}}
+                        {{--                                </i>--}}
+                        {{--                                <span class="svg-icon menu-icon">--}}
+                        {{--                                    <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Design\Pen-tool-vector.svg--><svg--}}
+                        {{--                                            xmlns="http://www.w3.org/2000/svg"--}}
+                        {{--                                            xmlns:xlink="http://www.w3.org/1999/xlink"--}}
+                        {{--                                            width="24px" height="24px" viewBox="0 0 24 24" version="1.1">--}}
+                        {{--                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">--}}
+                        {{--                                    <rect x="0" y="0" width="24" height="24"/>--}}
+                        {{--                                    <path--}}
+                        {{--                                        d="M11,3 L11,11 C11,11.0862364 11.0109158,11.1699233 11.0314412,11.2497543 C10.4163437,11.5908673 10,12.2468125 10,13 C10,14.1045695 10.8954305,15 12,15 C13.1045695,15 14,14.1045695 14,13 C14,12.2468125 13.5836563,11.5908673 12.9685588,11.2497543 C12.9890842,11.1699233 13,11.0862364 13,11 L13,3 L17.7925828,12.5851656 C17.9241309,12.8482619 17.9331722,13.1559315 17.8173006,13.4262985 L15.1298744,19.6969596 C15.051085,19.8808016 14.870316,20 14.6703019,20 L9.32969808,20 C9.12968402,20 8.94891496,19.8808016 8.87012556,19.6969596 L6.18269936,13.4262985 C6.06682778,13.1559315 6.07586907,12.8482619 6.2074172,12.5851656 L11,3 Z"--}}
+                        {{--                                        fill="#000000"/>--}}
+                        {{--                                    <path--}}
+                        {{--                                        d="M10,21 L14,21 C14.5522847,21 15,21.4477153 15,22 L15,23 L9,23 L9,22 C9,21.4477153 9.44771525,21 10,21 Z"--}}
+                        {{--                                        fill="#000000" opacity="0.3"/>--}}
+                        {{--                                    </g>--}}
+                        {{--                                    </svg><!--end::Svg Icon-->--}}
+                        {{--                                    </span>--}}
+                        {{--                                    </span>--}}
+                        {{--                                <span class="menu-text">{{trans('s_admin.nav_student_save_lines_report')}}</span>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
+                        {{--                    @endcan--}}
+                        @can("Certificates")
+                            <li class="menu-item  @if(request()->segment(2) == 'certificates') menu-item-active  @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('reports.certificates')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                  <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Clipboard-list.svg-->
                                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                           width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -1471,18 +1525,18 @@
                                      </svg>
                                  </span>
                             </span>
-                                <span class="menu-text">{{trans('s_admin.nav_certifcates')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("Episode Rating")
-                        <li class="menu-item  @if(request()->segment(2) == 'rates') menu-item-active  @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('reports.rates.epo_type')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.nav_certifcates')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("Episode Rating")
+                            <li class="menu-item  @if(request()->segment(2) == 'rates') menu-item-active  @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('reports.rates.epo_type')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                  <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Star.svg-->
                                      <svg
                                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -1496,18 +1550,18 @@
                                     </svg><!--end::Svg Icon-->
                                  </span>
                             </span>
-                                <span class="menu-text">{{trans('s_admin.nav_episodes_rates')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </div>
-        </li>
-    @endif
-    @if(Gate::check('Message link settings API') || Gate::check('Send a new message'))
-        <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'sms_settings') menu-item-open @endif"
-            aria-haspopup="true" data-menu-toggle="hover">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                    <span class="menu-text">{{trans('s_admin.nav_episodes_rates')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </div>
+            </li>
+        @endif
+        @if(Gate::check('Message link settings API') || Gate::check('Send a new message'))
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'sms_settings') menu-item-open @endif"
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <span class="svg-icon menu-icon">
                     <span class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Group-chat.svg-->
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -1524,25 +1578,25 @@
                         </svg><!--end::Svg Icon-->
                     </span>
                 </span>
-                <span class="menu-text">{{trans('s_admin.nav_center_notifications')}}</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="menu-submenu">
-                <i class="menu-arrow"></i>
-                <ul class="menu-subnav">
-                    <li class="menu-item menu-item-parent" aria-haspopup="true">
+                    <span class="menu-text">{{trans('s_admin.nav_center_notifications')}}</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
 <span class="menu-link">
 <span class="menu-text">{{trans('s_admin.nav_center_notifications')}}</span>
 </span>
-                    </li>
-                    @can("Message link settings API")
-                        <li class="menu-item @if(request()->segment(1) == 'sms_settings' && request()->segment(2) == 'show') menu-item-open @endif "
-                            aria-haspopup="true">
-                            <a href="{{route('sms.settings')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                        </li>
+                        @can("Message link settings API")
+                            <li class="menu-item @if(request()->segment(1) == 'sms_settings' && request()->segment(2) == 'show') menu-item-open @endif "
+                                aria-haspopup="true">
+                                <a href="{{route('sms.settings')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
 <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Sign_up#3.svg--><svg
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -1556,18 +1610,18 @@
 </svg><!--end::Svg Icon-->
 </span>
 </span>
-                                <span class="menu-text">{{trans('s_admin.nav_settings_connect_sms')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("Send a new message")
-                        <li class="menu-item @if(request()->segment(1) == 'sms_settings' && request()->segment(2) == 'create') menu-item-open @endif "
-                            aria-haspopup="true">
-                            <a href="{{route('sms.settings.create')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.nav_settings_connect_sms')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("Send a new message")
+                            <li class="menu-item @if(request()->segment(1) == 'sms_settings' && request()->segment(2) == 'create') menu-item-open @endif "
+                                aria-haspopup="true">
+                                <a href="{{route('sms.settings.create')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
 <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Sign_up#3.svg--><svg
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -1581,55 +1635,55 @@
 </svg><!--end::Svg Icon-->
 </span>
 </span>
-                                <span class="menu-text">{{trans('s_admin.nav_send_sms')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </div>
-        </li>
-    @endif
-    {{--   // nav_library_electrony--}}
+                                    <span class="menu-text">{{trans('s_admin.nav_send_sms')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </div>
+            </li>
+        @endif
+        {{--   // nav_library_electrony--}}
 
-    {{--        <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">--}}
-    {{--            <a href="javascript:void(0);" class="menu-link menu-toggle">--}}
-    {{--            <span class="svg-icon menu-icon">--}}
-    {{--                <span class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Home\Library.svg--><svg--}}
-    {{--                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"--}}
-    {{--                        height="24px" viewBox="0 0 24 24" version="1.1">--}}
-    {{--                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">--}}
-    {{--                            <rect x="0" y="0" width="24" height="24"/>--}}
-    {{--                            <path--}}
-    {{--                                d="M5,3 L6,3 C6.55228475,3 7,3.44771525 7,4 L7,20 C7,20.5522847 6.55228475,21 6,21 L5,21 C4.44771525,21 4,20.5522847 4,20 L4,4 C4,3.44771525 4.44771525,3 5,3 Z M10,3 L11,3 C11.5522847,3 12,3.44771525 12,4 L12,20 C12,20.5522847 11.5522847,21 11,21 L10,21 C9.44771525,21 9,20.5522847 9,20 L9,4 C9,3.44771525 9.44771525,3 10,3 Z"--}}
-    {{--                                fill="#000000"/>--}}
-    {{--                            <rect fill="#000000" opacity="0.3"--}}
-    {{--                                  transform="translate(17.825568, 11.945519) rotate(-19.000000) translate(-17.825568, -11.945519) "--}}
-    {{--                                  x="16.3255682" y="2.94551858" width="3" height="18" rx="1"/>--}}
-    {{--                        </g>--}}
-    {{--                    </svg><!--end::Svg Icon-->--}}
-    {{--                </span>--}}
-    {{--            </span>--}}
-    {{--                <span class="menu-text">{{trans('s_admin.nav_library_electrony')}}</span>--}}
-    {{--                <i class="menu-arrow"></i>--}}
-    {{--            </a>--}}
-    {{--            <div class="menu-submenu">--}}
-    {{--                <i class="menu-arrow"></i>--}}
-    {{--                <ul class="menu-subnav">--}}
-    {{--                    <li class="menu-item menu-item-parent" aria-haspopup="true">--}}
-    {{--                    <span class="menu-link">--}}
-    {{--                        <span class="menu-text">{{trans('s_admin.nav_library_electrony')}}</span>--}}
-    {{--                    </span>--}}
-    {{--                    </li>--}}
-    {{--                </ul>--}}
-    {{--            </div>--}}
-    {{--        </li>--}}
-    @if(Gate::check('General Sign_up') || Gate::check('Qualifications') || Gate::check('Job title')||
-    Gate::check('degree of kinship') || Gate::check('Nationalities') || Gate::check('Countries') || Gate::check('Publications')||
-    Gate::check('School years') || Gate::check('User settings') || Gate::check('Managing tasks and powers') || Gate::check('Sliders'))
-        {{--    menu-item-open menu-item-here--}}
-        <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'blogs'||request()->segment(1) == 'episode_rate_questions'||request()->segment(1) == 'study_teachers' ||request()->segment(1) == 'sliders' || request()->segment(1) == 'users' || request()->segment(1) == 'roles' || request()->segment(1) == 'web_settings' || request()->segment(1) == 'settings'|| request()->segment(1) == 'Academic_years') menu-item-open @endif "
-            aria-haspopup="true" data-menu-toggle="hover">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+        {{--        <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">--}}
+        {{--            <a href="javascript:void(0);" class="menu-link menu-toggle">--}}
+        {{--            <span class="svg-icon menu-icon">--}}
+        {{--                <span class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Home\Library.svg--><svg--}}
+        {{--                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"--}}
+        {{--                        height="24px" viewBox="0 0 24 24" version="1.1">--}}
+        {{--                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">--}}
+        {{--                            <rect x="0" y="0" width="24" height="24"/>--}}
+        {{--                            <path--}}
+        {{--                                d="M5,3 L6,3 C6.55228475,3 7,3.44771525 7,4 L7,20 C7,20.5522847 6.55228475,21 6,21 L5,21 C4.44771525,21 4,20.5522847 4,20 L4,4 C4,3.44771525 4.44771525,3 5,3 Z M10,3 L11,3 C11.5522847,3 12,3.44771525 12,4 L12,20 C12,20.5522847 11.5522847,21 11,21 L10,21 C9.44771525,21 9,20.5522847 9,20 L9,4 C9,3.44771525 9.44771525,3 10,3 Z"--}}
+        {{--                                fill="#000000"/>--}}
+        {{--                            <rect fill="#000000" opacity="0.3"--}}
+        {{--                                  transform="translate(17.825568, 11.945519) rotate(-19.000000) translate(-17.825568, -11.945519) "--}}
+        {{--                                  x="16.3255682" y="2.94551858" width="3" height="18" rx="1"/>--}}
+        {{--                        </g>--}}
+        {{--                    </svg><!--end::Svg Icon-->--}}
+        {{--                </span>--}}
+        {{--            </span>--}}
+        {{--                <span class="menu-text">{{trans('s_admin.nav_library_electrony')}}</span>--}}
+        {{--                <i class="menu-arrow"></i>--}}
+        {{--            </a>--}}
+        {{--            <div class="menu-submenu">--}}
+        {{--                <i class="menu-arrow"></i>--}}
+        {{--                <ul class="menu-subnav">--}}
+        {{--                    <li class="menu-item menu-item-parent" aria-haspopup="true">--}}
+        {{--                    <span class="menu-link">--}}
+        {{--                        <span class="menu-text">{{trans('s_admin.nav_library_electrony')}}</span>--}}
+        {{--                    </span>--}}
+        {{--                    </li>--}}
+        {{--                </ul>--}}
+        {{--            </div>--}}
+        {{--        </li>--}}
+        @if(Gate::check('General Sign_up') || Gate::check('Qualifications') || Gate::check('Job title')||
+        Gate::check('degree of kinship') || Gate::check('Nationalities') || Gate::check('Countries') || Gate::check('Publications')||
+        Gate::check('School years') || Gate::check('User settings') || Gate::check('Managing tasks and powers') || Gate::check('Sliders'))
+            {{--    menu-item-open menu-item-here--}}
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'blogs'||request()->segment(1) == 'episode_rate_questions'||request()->segment(1) == 'study_teachers' ||request()->segment(1) == 'sliders' || request()->segment(1) == 'users' || request()->segment(1) == 'roles' || request()->segment(1) == 'web_settings' || request()->segment(1) == 'settings'|| request()->segment(1) == 'Academic_years') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <span class="svg-icon menu-icon">
                 <span class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Sign_up-2.svg--><svg
                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -1643,35 +1697,35 @@
                 </svg><!--end::Svg Icon-->
                 </span>
                 </span>
-                <span class="menu-text">
+                    <span class="menu-text">
                     {{trans('s_admin.settings')}}
-                    @if($new_users > 0)
-                        &nbsp;
-                        &nbsp;
-                        <span style="width: 20px;height: 20px;"
-                              href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
+                        @if($new_users > 0)
+                            &nbsp;
+                            &nbsp;
+                            <span style="width: 20px;height: 20px;"
+                                  href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
 {{$new_users}}
 </span>
-                    @endif
+                        @endif
                 </span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="menu-submenu">
-                <i class="menu-arrow"></i>
-                <ul class="menu-subnav">
-                    <li class="menu-item menu-item-parent" aria-haspopup="true">
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
                 <span class="menu-link">
                 <span class="menu-text">{{trans('s_admin.settings')}}</span>
                 </span>
-                    </li>
-                    @can("General Sign_up")
-                        <li class="menu-item @if(request()->segment(1) == 'web_settings') menu-item-active @endif"
-                            aria-haspopup="true">
-                            <a href="{{url('/web_settings')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                        </li>
+                        @can("General Sign_up")
+                            <li class="menu-item @if(request()->segment(1) == 'web_settings') menu-item-active @endif"
+                                aria-haspopup="true">
+                                <a href="{{url('/web_settings')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                          width="24px"
@@ -1687,20 +1741,20 @@
                                     </svg>
                                     </span>
                                     </span>
-                                <span class="menu-text">{{trans('s_admin.nav_public_settings')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("Episode evaluation questions")
-                        <li class="menu-item @if(request()->segment(1) == 'episode_rate_questions') menu-item-active @endif"
-                            aria-haspopup="true">
-                            <a href="{{url('/episode_rate_questions')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
+                                    <span class="menu-text">{{trans('s_admin.nav_public_settings')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("Episode evaluation questions")
+                            <li class="menu-item @if(request()->segment(1) == 'episode_rate_questions') menu-item-active @endif"
+                                aria-haspopup="true">
+                                <a href="{{url('/episode_rate_questions')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
 
 
-                                <span class="svg-icon menu-icon">
+                                    <span class="svg-icon menu-icon">
                                          <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Text\Toggle-Right.svg--><svg
                                                  xmlns="http://www.w3.org/2000/svg"
                                                  xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -1716,18 +1770,18 @@
     </g>
 </svg><!--end::Svg Icon--></span>
                                         </span>
-                                <span class="menu-text">{{trans('s_admin.nav_episode_rate_questions')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("Qualifications")
-                        <li class="menu-item @if(request()->segment(3) == 'qualification') menu-item-active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('qualification.index')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.nav_episode_rate_questions')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("Qualifications")
+                            <li class="menu-item @if(request()->segment(3) == 'qualification') menu-item-active @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('qualification.index')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Visible.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -1744,19 +1798,19 @@
                                     </svg><!--end::Svg Icon-->
                                     </span>
                                     </span>
-                                <span
-                                    class="menu-text">{{trans('s_admin.nav_qualifications')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("Job title")
-                        <li class="menu-item @if(request()->segment(3) == 'job_name') menu-item-active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('job_name.index')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span
+                                        class="menu-text">{{trans('s_admin.nav_qualifications')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("Job title")
+                            <li class="menu-item @if(request()->segment(3) == 'job_name') menu-item-active @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('job_name.index')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Visible.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -1776,18 +1830,18 @@
                                     </span>
                                     </span>
 
-                                <span class="menu-text">{{trans('s_admin.nav_job_name')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("degree of kinship")
-                        <li class="menu-item @if(request()->segment(3) == 'relations') menu-item-active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('relations.index')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.nav_job_name')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("degree of kinship")
+                            <li class="menu-item @if(request()->segment(3) == 'relations') menu-item-active @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('relations.index')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Visible.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -1806,19 +1860,19 @@
                                     </svg><!--end::Svg Icon-->
                                     </span>
                                     </span>
-                                <span
-                                    class="menu-text">{{trans('s_admin.nav_relations')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("Nationalities")
-                        <li class="menu-item @if(request()->segment(3) == 'nationality') menu-item-active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('nationality.index')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span
+                                        class="menu-text">{{trans('s_admin.nav_relations')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("Nationalities")
+                            <li class="menu-item @if(request()->segment(3) == 'nationality') menu-item-active @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('nationality.index')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Visible.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -1837,19 +1891,19 @@
                                     </svg><!--end::Svg Icon-->
                                     </span>
                                     </span>
-                                <span
-                                    class="menu-text">{{trans('s_admin.nav_nationalities')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("Countries")
-                        <li class="menu-item @if(request()->segment(3) == 'country') menu-item-active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('country.index')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span
+                                        class="menu-text">{{trans('s_admin.nav_nationalities')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("Countries")
+                            <li class="menu-item @if(request()->segment(3) == 'country') menu-item-active @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('country.index')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Visible.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -1869,19 +1923,19 @@
                                     </svg><!--end::Svg Icon-->
                                     </span>
                                     </span>
-                                <span
-                                    class="menu-text">{{trans('s_admin.nav_home_country')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can("School years")
-                        <li class="menu-item @if(request()->segment(1) == 'Academic_years') menu-item-active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('Academic_years.index')}}" class="menu-link">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                    <span
+                                        class="menu-text">{{trans('s_admin.nav_home_country')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can("School years")
+                            <li class="menu-item @if(request()->segment(1) == 'Academic_years') menu-item-active @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('Academic_years.index')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
                                     <span class="svg-icon svg-icon-primary svg-icon-2x">
                                     <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Visible.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -1899,16 +1953,16 @@
                                     </svg><!--end::Svg Icon-->
                                     </span>
                                     </span>
-                                <span class="menu-text">{{trans('s_admin.Academic_years')}}</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @if(Gate::check('User settings') || Gate::check('Managing tasks and powers'))
-                        <li class="menu-item menu-item-submenu @if( request()->segment(1) == 'users' || request()->segment(1) == 'roles' ) menu-item-open @endif "
-                            aria-haspopup="true" data-menu-toggle="hover">
-                            <a href="javascript:;" class="menu-link menu-toggle">
-                                <i class="menu-bullet menu-bullet-dot"><span></span></i>
-                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.Academic_years')}}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @if(Gate::check('User settings') || Gate::check('Managing tasks and powers'))
+                            <li class="menu-item menu-item-submenu @if( request()->segment(1) == 'users' || request()->segment(1) == 'roles' ) menu-item-open @endif "
+                                aria-haspopup="true" data-menu-toggle="hover">
+                                <a href="javascript:;" class="menu-link menu-toggle">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i>
+                                    <span class="svg-icon menu-icon">
 <span class="svg-icon svg-icon-primary svg-icon-2x">
 <svg
     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -1926,30 +1980,31 @@
 </svg>
 </span>
 </span>
-                                <span class="menu-text">
+                                    <span class="menu-text">
                                     {{trans('s_admin.nav_employee_permission_srttings')}}
-                                    @if($new_users > 0)
-                                        &nbsp;
-                                        &nbsp;
-                                        <span style="width: 20px;height: 20px;"
-                                                  href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
+                                        @if($new_users > 0)
+                                            &nbsp;
+                                            &nbsp;
+                                            <span style="width: 20px;height: 20px;"
+                                                  href="#"
+                                                  class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
                                             {{$new_users}}
                                         </span>
-                                    @endif
+                                        @endif
                                 </span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <div class="menu-submenu">
-                                <i class="menu-arrow"></i>
-                                <ul class="menu-subnav">
-                                    @can("User settings")
-                                        <li class="menu-item @if( request()->segment(1) == 'users' ) menu-item-active @endif "
-                                            aria-haspopup="true">
-                                            <a href="{{url('/users')}}" class="menu-link">
-                                                <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                                </i>
-                                                <span class="svg-icon menu-icon">
+                                    <i class="menu-arrow"></i>
+                                </a>
+                                <div class="menu-submenu">
+                                    <i class="menu-arrow"></i>
+                                    <ul class="menu-subnav">
+                                        @can("User settings")
+                                            <li class="menu-item @if( request()->segment(1) == 'users' ) menu-item-active @endif "
+                                                aria-haspopup="true">
+                                                <a href="{{url('/users')}}" class="menu-link">
+                                                    <i class="menu-bullet menu-bullet-dot">
+                                                        <span></span>
+                                                    </i>
+                                                    <span class="svg-icon menu-icon">
 <span class="svg-icon svg-icon-danger svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Visible.svg--><svg
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -1966,29 +2021,30 @@
 </svg><!--end::Svg Icon-->
 </span>
 </span>
-                                                <span class="menu-text">
+                                                    <span class="menu-text">
                                                     {{trans('s_admin.view_users')}}
-                                                    @if($new_users > 0)
-                                                        &nbsp;
-                                                        &nbsp;
-                                                        <span style="width: 20px;height: 20px;"
-                                                              href="#" class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
+                                                        @if($new_users > 0)
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            <span style="width: 20px;height: 20px;"
+                                                                  href="#"
+                                                                  class="btn btn-icon btn-danger btn-circle pulse pulse-danger">
                                                             {{$new_users}}
                                                         </span>
-                                                    @endif
+                                                        @endif
                                                 </span>
-                                            </a>
-                                        </li>
-                                    @endcan
-                                    @can("Managing tasks and powers")
-                                        <li class="menu-item  @if( request()->segment(1) == 'roles' ) menu-item-active @endif"
-                                            aria-haspopup="true">
-                                            {{--                                href="{{url('/roles')}}"--}}
-                                            <a href="{{url('/roles')}}" class="menu-link">
-                                                <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                                </i>
-                                                <span class="svg-icon menu-icon">
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can("Managing tasks and powers")
+                                            <li class="menu-item  @if( request()->segment(1) == 'roles' ) menu-item-active @endif"
+                                                aria-haspopup="true">
+                                                {{--                                href="{{url('/roles')}}"--}}
+                                                <a href="{{url('/roles')}}" class="menu-link">
+                                                    <i class="menu-bullet menu-bullet-dot">
+                                                        <span></span>
+                                                    </i>
+                                                    <span class="svg-icon menu-icon">
 <span class="svg-icon svg-icon-danger svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Sign_up-1.svg--><svg
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -2005,22 +2061,22 @@
 </svg><!--end::Svg Icon-->
 </span>
 </span>
-                                                <span class="menu-text">{{trans('s_admin.nav_permissions')}}</span>
-                                            </a>
-                                        </li>
-                                    @endcan
-                                </ul>
-                            </div>
-                        </li>
-                    @endif
-                    @if( Gate::check('Publications') || Gate::check('Sliders'))
-                        <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'blogs' || request()->segment(1) == 'sliders' ) menu-item-open @endif "
-                            aria-haspopup="true" data-menu-toggle="hover">
-                            <a href="javascript:;" class="menu-link menu-toggle">
-                                <i class="menu-bullet menu-bullet-dot">
-                                    <span></span>
-                                </i>
-                                <span class="svg-icon menu-icon">
+                                                    <span class="menu-text">{{trans('s_admin.nav_permissions')}}</span>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                    </ul>
+                                </div>
+                            </li>
+                        @endif
+                        @if( Gate::check('Publications') || Gate::check('Sliders'))
+                            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'blogs' || request()->segment(1) == 'sliders' ) menu-item-open @endif "
+                                aria-haspopup="true" data-menu-toggle="hover">
+                                <a href="javascript:;" class="menu-link menu-toggle">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="svg-icon menu-icon">
 <span class="svg-icon svg-icon-primary svg-icon-2x">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      width="24px"
@@ -2035,20 +2091,20 @@
 </svg>
 </span>
 </span>
-                                <span class="menu-text">{{trans('s_admin.nav_out_website_settings')}}</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <div class="menu-submenu">
-                                <i class="menu-arrow"></i>
-                                <ul class="menu-subnav">
-                                    @can("Sliders")
-                                        <li class="menu-item @if(request()->segment(1) == 'sliders') menu-item-active @endif"
-                                            aria-haspopup="true">
-                                            <a href="{{url('/sliders')}}" class="menu-link">
-                                                <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                                </i>
-                                                <span class="svg-icon menu-icon">
+                                    <span class="menu-text">{{trans('s_admin.nav_out_website_settings')}}</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                                <div class="menu-submenu">
+                                    <i class="menu-arrow"></i>
+                                    <ul class="menu-subnav">
+                                        @can("Sliders")
+                                            <li class="menu-item @if(request()->segment(1) == 'sliders') menu-item-active @endif"
+                                                aria-haspopup="true">
+                                                <a href="{{url('/sliders')}}" class="menu-link">
+                                                    <i class="menu-bullet menu-bullet-dot">
+                                                        <span></span>
+                                                    </i>
+                                                    <span class="svg-icon menu-icon">
 <span class="svg-icon svg-icon-danger svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Home\Flower2.svg--><svg
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -2064,18 +2120,18 @@
 </svg><!--end::Svg Icon-->
 </span>
 </span>
-                                                <span class="menu-text">{{trans('s_admin.nav_slider')}}</span>
-                                            </a>
-                                        </li>
-                                    @endcan
-                                    @can("Publications")
-                                        <li class="menu-item @if(request()->segment(1) == 'blogs') menu-item-active @endif"
-                                            aria-haspopup="true">
-                                            <a href="{{url('/blogs')}}" class="menu-link">
-                                                <i class="menu-bullet menu-bullet-dot">
-                                                    <span></span>
-                                                </i>
-                                                <span class="svg-icon menu-icon">
+                                                    <span class="menu-text">{{trans('s_admin.nav_slider')}}</span>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        @can("Publications")
+                                            <li class="menu-item @if(request()->segment(1) == 'blogs') menu-item-active @endif"
+                                                aria-haspopup="true">
+                                                <a href="{{url('/blogs')}}" class="menu-link">
+                                                    <i class="menu-bullet menu-bullet-dot">
+                                                        <span></span>
+                                                    </i>
+                                                    <span class="svg-icon menu-icon">
 <span class="svg-icon svg-icon-danger svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Home\Flower2.svg--><svg
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -2091,16 +2147,19 @@
 </svg><!--end::Svg Icon-->
 </span>
 </span>
-                                                <span class="menu-text">{{trans('s_admin.nav_blogs')}}</span>
-                                            </a>
-                                        </li>
-                                    @endcan
-                                </ul>
-                            </div>
-                        </li>
-                    @endif
-                </ul>
-            </div>
-        </li>
+                                                    <span class="menu-text">{{trans('s_admin.nav_blogs')}}</span>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                    </ul>
+                                </div>
+                            </li>
+                        @endif
+
+
+                    </ul>
+                </div>
+            </li>
+        @endif
     @endif
 </ul>
