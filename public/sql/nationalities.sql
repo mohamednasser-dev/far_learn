@@ -746,3 +746,9 @@ INSERT INTO `save_limits` (`id`, `name_ar`, `name_en`, `deleted`, `created_at`, 
 (3, 'نصف وجه', 'half face', '0', '2021-05-26 19:27:27', '2021-05-26 19:27:27'),
 (4, 'وجه', 'face', '0', '2021-05-26 19:27:27', '2021-05-26 19:27:27');
 
+INSERT INTO `sliders` (`id`, `image`, `title_ar`, `title_en`, `desc_ar`, `desc_en`, `status`, `created_at`, `updated_at`) VALUES
+(4, 'img_1663069843.jpg', 'مقرأة عنيزة الإلكترونية', 'Unaziah Maqrah', '', '', 'active', '2021-08-18 18:42:24', '2022-09-13 12:50:44'),
+(5, 'img_1663069876.jpg', '', '', '', '', 'active', '2021-08-18 18:52:31', '2022-09-13 12:51:16'),
+(6, 'img_1663070033.jpg', 'اقرأ! بسم ربك الذي خلق', 'Read! In the Name of your Lord, Who has created', 'اقرأ! بسم ربك الذي خلق', 'Read! In the Name of your Lord, Who has created', 'active', '2022-09-13 12:53:53', '2022-09-13 12:53:53');
+
+
