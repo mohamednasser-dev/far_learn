@@ -6,6 +6,7 @@ Route::get('/', 'HomeController@main_pge')->name('main_page');
 Route::get('/student/logout', 'Student\HomeController@logout')->name('student_logout');
 Route::group(['middleware' => ['student'], 'prefix' => "student", 'namespace' => "Student"], function () {
     Route::get('home', 'HomeController@index')->name('student_home');
+    Route::post('/change_colors', 'HomeController@change_colors')->name('student.change_colors');
     Route::resource('search', 'SearchController');
     Route::get('/search/episodes/search_epo', 'SearchController@store')->name('search.episodes');
     Route::get('/search/episode/join/{episode_id}', 'SearchController@join')->name('episode.join');
@@ -19,7 +20,7 @@ Route::group(['middleware' => ['student'], 'prefix' => "student", 'namespace' =>
     Route::get('/my_episodes/{id}', 'EpisodeController@show')->name('student_episodes.show');
 
     Route::get('/profile', 'HomeController@profile')->name('student.profile');
-    Route::post('/profile', 'HomeController@update_profile')->name('student.profile');
+    Route::post('/profile', 'HomeController@update_profile')->name('student.profile.update');
     Route::get('/change_pass', 'HomeController@change_pass')->name('student.change_pass');
     Route::get('/profile/get_subjects/{id}', 'EpisodeController@get_subjects');
     Route::get('/profile/get_subject_levels/{id}', 'EpisodeController@get_subject_levels');

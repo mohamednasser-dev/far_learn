@@ -37,6 +37,20 @@ class HomeController extends Controller
         }
     }
 
+    public function change_colors(Request $request)
+    {
+        $data = $this->validate(\request(),
+            [
+                'main_color' => 'required',
+                'second_color' => 'required',
+                'button_color' => 'required',
+                'icon_color' => 'required'
+            ]);
+        Student::where('id', auth('student')->user()->id)->update($data);
+        Alert::success(trans('s_admin.colors'), trans('s_admin.color_changed_s'));
+        return back();
+    }
+
     public function index()
     {
         $lang = auth::guard('student')->user()->main_lang;

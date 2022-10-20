@@ -675,7 +675,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-6">
-                            <a class="btn btn-success"
+                            <a class="btn {{auth()->user()->button_color}}"
                                href="{{route('student.get.episode',['type'=>'mqraa','student_id'=>$data->id])}}">{{trans('s_admin.far_learn')}}</a>
                         </div>
                         @if(settings()->show_mogmaa_dorr == '1')

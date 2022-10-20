@@ -7,10 +7,10 @@
             <div class="row">
                 <div class="col-12">
                     <div class="wpo-breadcumb-wrap">
-                        <h2>{{trans('admin.page_forgot_Pass')}}</h2>
+                        <h2>{{trans('s_admin.recover_pass')}}</h2>
                         <ul>
                             <li><a href="{{route('main_page')}}">{{trans('admin.home')}}</a></li>
-                            <li><span>{{trans('admin.page_forgot_Pass')}}</span></li>
+                            <li><span>{{trans('s_admin.recover_pass')}}</span></li>
                         </ul>
                     </div>
                 </div>

@@ -103,7 +103,7 @@
                                 <div class="stepwizard-row setup-panel">
                                     <div class="stepwizard-step col-xs-6">
                                         <a href="javascript:;" secc="#step-1" type="button"
-                                           class="btn btn-default btn-success btn-bg btn-circle "
+                                           class="btn btn-default {{auth()->user()->button_color}} btn-bg btn-circle "
                                            style="pointer-events: none;cursor: default;">
                                             1</a>
                                     </div>
@@ -587,7 +587,7 @@
                                             type="button">{{trans('admin.befor')}}</button>
                                 </div>
                                 <div class="col-lg-6 col-6 form-group">
-                                    <button class="btn btn-success pull-right"
+                                    <button class="btn {{auth()->user()->button_color}} pull-right"
                                             type="submit">{{trans('admin.sign')}}</button>
                                 </div>
                             </div>
@@ -627,7 +627,7 @@
 
                     </div>
                     <div class="modal-footer" style="align-self: center;">
-                        <a class="btn btn-success" href="javascript:void(this);"
+                        <a class="btn {{auth()->user()->button_color}}" href="javascript:void(this);"
                            id="btn_check">{{trans('s_admin.check')}}</a>
                         <a id="phone_wrong_label" style="display: none;" href="javascript:void(this);"
                         ><i style="font-size:30px; color: red;" class="fa fa-times"></i></a>
@@ -659,7 +659,7 @@
 
                     </div>
                     <div class="modal-footer" style="align-self: center;">
-                        <a class="btn btn-success" href="javascript:void(this);"
+                        <a class="btn {{auth()->user()->button_color}}" href="javascript:void(this);"
                            id="btn_parent_check">{{trans('s_admin.check')}}</a>
                         <a id="parent_wrong_label" style="display: none;" href="javascript:void(this);"
                         ><i style="font-size:30px; color: red;" class="fa fa-times"></i></a>
@@ -717,7 +717,7 @@
                                         {{trans('admin.forgot_Pass')}}
                                     </a>
                                     <div class="form-group col-12" style="text-align: right">
-                                        <button type="submit" class="btn btn-sm btn-success"
+                                        <button type="submit" class="btn btn-sm {{auth()->user()->button_color}}"
                                         > {{trans('admin.login')}}</button>
                                     </div>
                                 </div>

@@ -28,6 +28,20 @@ class HomeController extends Controller
         return view('teacher.home',compact('degree_count'));
     }
 
+    public function change_colors(Request $request)
+    {
+        $data = $this->validate(\request(),
+            [
+                'main_color' => 'required',
+                'second_color' => 'required',
+                'button_color' => 'required',
+                'icon_color' => 'required'
+            ]);
+        Teacher::where('id', auth('teacher')->user()->id)->update($data);
+        Alert::success(trans('s_admin.colors'), trans('s_admin.color_changed_s'));
+        return back();
+    }
+
 
     public function profile()
     {

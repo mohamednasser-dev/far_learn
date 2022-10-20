@@ -47,7 +47,7 @@
                 {{--                @can("add")--}}
                 @if(request()->segment(1) != 'mail' && request()->segment(1) != 'incoming' && request()->segment(2) != 'new_join' && Route::current()->getName() != 'teachers.new')
                     <a data-toggle="modal" data-target="#add_new_teacher"
-                       class="btn btn-success px-6 font-weight-bold"><i
+                       class="btn {{auth()->user()->button_color}} px-6 font-weight-bold"><i
                             class="flaticon2-plus"></i> {{trans('s_admin.add_new_teacher')}}</a>
                 @endif
                 {{--                @endcan--}}

@@ -9,6 +9,7 @@ use App\Models\Subject;
 use App\Models\Subject_level;
 use App\Models\Zone;
 use App\Notifications\ForgetPassword;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -35,6 +36,23 @@ class HomeController extends Controller
     public function forgetPassword()
     {
         return view('front.login.forgetpassword');
+    }
+
+
+
+public function cache()
+    {
+        Artisan::call('config:cache');
+        Artisan::call('config:clear');
+        Artisan::call('cache:clear');
+        Artisan::call('view:clear');
+        Artisan::call('route:clear');
+        return 'success';
+    }
+
+    public function check()
+    {
+        Artisan::call('notification:send');
     }
 
     public function terms()
@@ -164,6 +182,9 @@ class HomeController extends Controller
 
     public function main_pge()
     {
+        if(Request()->getHost() == env('maindomain','127.0.0.1')){
+            return redirect()->route('super_admin.login');
+        }
         if (session()->has('lang')) {
         } else {
             session()->put('lang', 'en');

@@ -6,16 +6,9 @@ use Illuminate\Support\Facades\Artisan;
 
 //front page
 Route::get('/', 'HomeController@main_pge')->name('main_page');
+Route::get('/cache', 'HomeController@cache')->name('cache');
 Route::get('/terms/and/policy', 'HomeController@terms')->name('terms');
 
-Route::get('make_cache', function () {
-    Artisan::call('config:cache');
-    Artisan::call('config:clear');
-    Artisan::call('cache:clear');
-    Artisan::call('view:clear');
-    Artisan::call('route:clear');
-    return 'success';
-});
 
 //for make phone check
 Route::post('/code/send/check_phone', 'Admin\LoginController@send_check_phone')->name('phone.send.check_code');
@@ -54,9 +47,6 @@ Route::get('/custom_sign_up/{episode_id}/{types}', 'Admin\LoginController@custom
 Route::post('/{type?}/store', 'Admin\LoginController@store')->name('store.new');
 Route::post('/login_both', 'Admin\LoginController@login_both')->name('login_both');
 
-Route::get('/login_both', function () {
-    return view('front.login');
-});
 Route::post('/contact_us/store_new', 'Front\Contact_usController@store')->name('contact_us.store_new');
 
 //parent routes
@@ -72,10 +62,9 @@ Route::get('show_mix/{type}', 'Front\EpisodesController@show_mix')->name('front.
 Route::get('/times/search/episodes/{type}', 'Front\EpisodesController@search')->name('times.search.episodes');
 Route::get('times/search/episodes/teacher/details/{id}', 'Front\EpisodesController@teacher_details')->name('front.teacher_details');
 
+Route::get('/check', 'HomeController@check')->name('check');
 
-Route::get('/check', function () {
-    Artisan::call('notification:send');
-});
+
 Route::get('sendEmail', 'Student\HomeController@sendEmail')->name('sendEmail');
 Route::get('reverify/{id}/{code}/account', 'HomeController@reverify_account')->name('reverify.account');
 Route::post('reverify_account/store/account', 'HomeController@reverify_account_store')->name('reverify_account.store');
@@ -93,16 +82,8 @@ Route::get('/teacher/t_episodes/zoom/{id}/index', 'Teacher\episodes\EpisodeContr
 Route::get('/teacher/t_episodes/zoom/meeting', 'Teacher\episodes\EpisodeController@zoom_meeting')->name('teacher.zoom_meeting');
 
 Route::get('certificates/download/{id}', 'HomeController@download_certificate')->name('certificate.download');
-Auth::routes();
+//Auth::routes();
 
-Route::get('/clear-cache',function (){
-   \Illuminate\Support\Facades\Artisan::call('cache:clear');
-   \Illuminate\Support\Facades\Artisan::call('route:clear');
-   \Illuminate\Support\Facades\Artisan::call('view:clear');
-   \Illuminate\Support\Facades\Artisan::call('config:clear');
-
-   return redirect()->back();
-});
 
 
 

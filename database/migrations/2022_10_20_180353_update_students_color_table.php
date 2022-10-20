@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateStudentsFcmTable extends Migration
+class UpdateStudentsColorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,10 @@ class UpdateStudentsFcmTable extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->string('fcm_token')->nullable();
+            $table->string('main_color')->default('#1e1e2d');
+            $table->string('second_color')->default('#ffffff');
+            $table->string('button_color')->default('btn-success');
+            $table->string('icon_color')->default('svg-icon-success');
         });
     }
 

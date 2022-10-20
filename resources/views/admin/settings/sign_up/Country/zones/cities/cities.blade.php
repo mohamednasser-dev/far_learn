@@ -21,7 +21,7 @@
             </div>
             <div class="card-toolbar">
 {{--                @can('add')--}}
-                <a data-toggle="modal" data-target="#exampleModalLong" class="btn btn-success px-6 font-weight-bold"><i class="flaticon2-plus"></i> {{trans('s_admin.add')}}</a>
+                <a data-toggle="modal" data-target="#exampleModalLong" class="btn {{auth()->user()->button_color}} px-6 font-weight-bold"><i class="flaticon2-plus"></i> {{trans('s_admin.add')}}</a>
 {{--                @endcan--}}
             </div>
         </div>

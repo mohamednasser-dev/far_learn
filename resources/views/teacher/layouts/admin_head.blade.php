@@ -50,7 +50,7 @@
         <!--begin::Aside-->
         <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
             <!--begin::Brand-->
-            <div class="brand flex-column-auto" id="kt_brand">
+            <div class="brand flex-column-auto" id="kt_brand" style="background-color: {{auth('teacher')->user()->main_color}}">
                 <!--begin::Logo-->
                 <a href="{{url('/teacher/home')}}" class="brand-logo">
                     {{--                    @if(session('lang')=='en')--}}
@@ -87,9 +87,9 @@
             </div>
             <!--end::Brand-->
             <!--begin::Aside Menu-->
-            <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
+            <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper" style="background-color: {{auth('teacher')->user()->main_color}}">
                 <!--begin::Menu Container-->
-                <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1"
+                <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" style="background-color: {{auth('teacher')->user()->main_color}}"
                      data-menu-dropdown-timeout="500">
                     <!--begin::Menu Nav-->
 
@@ -104,7 +104,7 @@
         <!--begin::Wrapper-->
         <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
             <!--begin::Header-->
-            <div id="kt_header" class="header header-fixed" style="background-color: #1e1e2d;">
+            <div id="kt_header" class="header header-fixed" style="background-color: {{auth('teacher')->user()->second_color}}">
                 <!--begin::Container-->
                 <div class="container-fluid d-flex align-items-stretch justify-content-between">
                     <!--begin::Header Menu Wrapper-->
@@ -116,6 +116,7 @@
                                     data-menu-toggle="click" aria-haspopup="true">
                                     <a href="{{url('/')}}" target="_blank" class="menu-link"
                                        style="background-color: beige;">
+                                           <span class="svg-icon {{auth('teacher')->user()->icon_color}} svg-icon-2x">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                              height="24px" viewBox="0 0 24 24" version="1.1">
@@ -128,6 +129,7 @@
                                                     fill="#000000" opacity="0.3"/>
                                             </g>
                                         </svg>
+                                           </span>
                                         <span class="menu-text">{{trans('s_admin.web')}}</span>
                                     </a>
                                 </li>

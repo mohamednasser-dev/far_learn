@@ -23,7 +23,7 @@
                             <!--begin::Compose-->
                             <div class="px-4 mt-4 mb-10">
                                 <a href="#"
-                                   class="btn btn-block btn-primary font-weight-bold text-uppercase py-4 px-6 text-center"
+                                   class="btn btn-block {{auth('student')->user()->button_color}} font-weight-bold text-uppercase py-4 px-6 text-center"
                                    data-toggle="modal" data-target="#kt_inbox_compose">{{trans('s_admin.create_message')}}</a>
                             </div>
                             <!--end::Compose-->

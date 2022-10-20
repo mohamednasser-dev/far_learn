@@ -13,7 +13,7 @@
             </div>
             <div class="card-toolbar">
 {{--                @can('add')--}}
-                <a data-toggle="modal" data-target="#exampleModalLong" class="btn btn-success px-6 font-weight-bold"><i class="flaticon2-plus"></i> {{trans('s_admin.add')}}</a>
+                <a data-toggle="modal" data-target="#exampleModalLong" class="btn {{auth()->user()->button_color}} px-6 font-weight-bold"><i class="flaticon2-plus"></i> {{trans('s_admin.add')}}</a>
 {{--            @endcan--}}
             </div>
         </div>
@@ -68,8 +68,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open( ['route' =>'settings.episodes.suar','method'=>'post', 'files'=>'true'] ) }}
-                    {{ csrf_field() }}
+                    {{ Form::open( ['route' =>'settings.episodes.suar.store','method'=>'post', 'files'=>'true'] ) }}
+
                     <div class="card-body">
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.name_ar')}}</label>
@@ -114,7 +114,6 @@
                 </div>
                 <div class="modal-body">
                     {{ Form::open( ['route' =>'settings.episodes.suar.update','method'=>'post', 'files'=>'true'] ) }}
-                    {{ csrf_field() }}
                     <input type="hidden" required class="form-control" id="txt_id" name="id">
                     <div class="card-body">
                         <div class="form-group row">

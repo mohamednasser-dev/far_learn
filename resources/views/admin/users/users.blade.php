@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
 {{--                    @can('add')--}}
-                    <a href="{{url('users/create')}} " class="btn btn-success font-weight-bolder font-size-sm">
+                    <a href="{{url('users/create')}} " class="btn {{auth()->user()->button_color}} font-weight-bolder font-size-sm">
                         <span class="svg-icon svg-icon-md svg-icon-white">
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -72,7 +72,7 @@
                                                href="{{route('user.reject',$user->id)}}">{{trans('s_admin.reject')}}</a>
                                         </div>
                                     @elseif($user->is_new == 'accepted')
-                                        <button type="button" class="btn btn-success dropdown-toggle"
+                                        <button type="button" class="btn {{auth()->user()->button_color}} dropdown-toggle"
                                                 data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
                                             {{trans('s_admin.accepted')}}

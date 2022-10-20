@@ -7,7 +7,7 @@
 {{--            <img alt="Logo" src="{{ asset('metronic/assets/media/logos/logo_ar.png') }}"/>--}}
 {{--        @endif--}}
 {{--    </a>--}}
-    <!--end::Logo-->
+<!--end::Logo-->
     <!--begin::Toolbar-->
     <div class="d-flex align-items-center">
         <!--begin::Aside Mobile Toggle-->
@@ -50,7 +50,8 @@
         <!--begin::Aside-->
         <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
             <!--begin::Brand-->
-            <div class="brand flex-column-auto" id="kt_brand">
+            <div class="brand flex-column-auto" id="kt_brand"
+                 style="background-color: {{auth('student')->user()->main_color}}">
                 <!--begin::Logo-->
                 <a href="{{url('/home')}}" class="brand-logo">
                     {{--                            @if(session('lang')=='en')--}}
@@ -85,10 +86,11 @@
             </div>
             <!--end::Brand-->
             <!--begin::Aside Menu-->
-            <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
+            <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper"
+                 style="background-color: {{auth('student')->user()->main_color}}">
                 <!--begin::Menu Container-->
                 <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1"
-                     data-menu-dropdown-timeout="500">
+                     data-menu-dropdown-timeout="500" style="background-color: {{auth('student')->user()->main_color}}">
                     <!--begin::Menu Nav-->
 
                 @include('student.layouts.admin_sidebar')
@@ -102,7 +104,8 @@
         <!--begin::Wrapper-->
         <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
             <!--begin::Header-->
-            <div id="kt_header" class="header header-fixed" style="background-color: {{settings()->color}};">
+            <div id="kt_header" class="header header-fixed"
+                 style="background-color: {{auth('student')->user()->second_color}}">
                 <!--begin::Container-->
                 <div class="container-fluid d-flex align-items-stretch justify-content-between">
                     <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
@@ -114,6 +117,7 @@
                                     data-menu-toggle="click" aria-haspopup="true">
                                     <a href="{{url('/')}}" target="_blank" class="menu-link"
                                        style="background-color: beige;">
+                                           <span class="svg-icon {{auth('student')->user()->icon_color}} svg-icon-2x">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                              height="24px" viewBox="0 0 24 24" version="1.1">
@@ -126,6 +130,7 @@
                                                     fill="#000000" opacity="0.3"/>
                                             </g>
                                         </svg>
+                                           </span>
                                         <span class="menu-text">{{trans('s_admin.web')}}</span>
                                     </a>
                                 </li>
@@ -181,7 +186,7 @@
                                     </div>
                                 @else
                                     <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
-                                        <span class="svg-icon svg-icon-xl svg-icon-primary">
+                                        <span class="svg-icon svg-icon-xl {{auth('student')->user()->icon_color}} ">
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                  xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -248,16 +253,22 @@
                 <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-arrange.svg-->
                                                                     <span class="svg-icon svg-icon-success svg-icon-2x">
                                                                         <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Incoming-mail.svg-->
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-                                                                             height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                                <rect x="0" y="0" width="24" height="24"/>
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                             width="24px"
+                                                                             height="24px" viewBox="0 0 24 24"
+                                                                             version="1.1">
+                                                                            <g stroke="none" stroke-width="1"
+                                                                               fill="none" fill-rule="evenodd">
+                                                                                <rect x="0" y="0" width="24"
+                                                                                      height="24"/>
                                                                                 <path
                                                                                     d="M5,9 L19,9 C20.1045695,9 21,9.8954305 21,11 L21,20 C21,21.1045695 20.1045695,22 19,22 L5,22 C3.8954305,22 3,21.1045695 3,20 L3,11 C3,9.8954305 3.8954305,9 5,9 Z M18.1444251,10.8396467 L12,14.1481833 L5.85557487,10.8396467 C5.4908718,10.6432681 5.03602525,10.7797221 4.83964668,11.1444251 C4.6432681,11.5091282 4.77972206,11.9639747 5.14442513,12.1603533 L11.6444251,15.6603533 C11.8664074,15.7798822 12.1335926,15.7798822 12.3555749,15.6603533 L18.8555749,12.1603533 C19.2202779,11.9639747 19.3567319,11.5091282 19.1603533,11.1444251 C18.9639747,10.7797221 18.5091282,10.6432681 18.1444251,10.8396467 Z"
                                                                                     fill="#000000"/>
                                                                                 <path
                                                                                     d="M11.1288761,0.733697713 L11.1288761,2.69017121 L9.12120481,2.69017121 C8.84506244,2.69017121 8.62120481,2.91402884 8.62120481,3.19017121 L8.62120481,4.21346991 C8.62120481,4.48961229 8.84506244,4.71346991 9.12120481,4.71346991 L11.1288761,4.71346991 L11.1288761,6.66994341 C11.1288761,6.94608579 11.3527337,7.16994341 11.6288761,7.16994341 C11.7471877,7.16994341 11.8616664,7.12798964 11.951961,7.05154023 L15.4576222,4.08341738 C15.6683723,3.90498251 15.6945689,3.58948575 15.5161341,3.37873564 C15.4982803,3.35764848 15.4787093,3.33807751 15.4576222,3.32022374 L11.951961,0.352100892 C11.7412109,0.173666017 11.4257142,0.199862688 11.2472793,0.410612793 C11.1708299,0.500907473 11.1288761,0.615386087 11.1288761,0.733697713 Z"
-                                                                                    fill="#000000" fill-rule="nonzero" opacity="0.3"
+                                                                                    fill="#000000" fill-rule="nonzero"
+                                                                                    opacity="0.3"
                                                                                     transform="translate(11.959697, 3.661508) rotate(-270.000000) translate(-11.959697, -3.661508) "/>
                                                                             </g>
                                                                         </svg><!--end::Svg Icon-->
@@ -308,19 +319,28 @@
                                                                                         </g>
                                                                                     </svg>
                                                                         </span>
-                                                                            @elseif($row->message_type == 'certificate' || $row->message_type == 'episode_started')
+                                                                    @elseif($row->message_type == 'certificate' || $row->message_type == 'episode_started')
                                                                         <span
                                                                             class="svg-icon svg-icon-lg svg-icon-success">
-                                                                            <span class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Star.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                                        <polygon points="0 0 24 0 24 24 0 24"/>
-                                                                                        <path d="M12,18 L7.91561963,20.1472858 C7.42677504,20.4042866 6.82214789,20.2163401 6.56514708,19.7274955 C6.46280801,19.5328351 6.42749334,19.309867 6.46467018,19.0931094 L7.24471742,14.545085 L3.94038429,11.3241562 C3.54490071,10.938655 3.5368084,10.3055417 3.92230962,9.91005817 C4.07581822,9.75257453 4.27696063,9.65008735 4.49459766,9.61846284 L9.06107374,8.95491503 L11.1032639,4.81698575 C11.3476862,4.32173209 11.9473121,4.11839309 12.4425657,4.36281539 C12.6397783,4.46014562 12.7994058,4.61977315 12.8967361,4.81698575 L14.9389263,8.95491503 L19.5054023,9.61846284 C20.0519472,9.69788046 20.4306287,10.2053233 20.351211,10.7518682 C20.3195865,10.9695052 20.2170993,11.1706476 20.0596157,11.3241562 L16.7552826,14.545085 L17.5353298,19.0931094 C17.6286908,19.6374458 17.263103,20.1544017 16.7187666,20.2477627 C16.5020089,20.2849396 16.2790408,20.2496249 16.0843804,20.1472858 L12,18 Z" fill="#000000"/>
+                                                                            <span
+                                                                                class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Star.svg--><svg
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                    width="24px" height="24px"
+                                                                                    viewBox="0 0 24 24" version="1.1">
+                                                                                    <g stroke="none" stroke-width="1"
+                                                                                       fill="none" fill-rule="evenodd">
+                                                                                        <polygon
+                                                                                            points="0 0 24 0 24 24 0 24"/>
+                                                                                        <path
+                                                                                            d="M12,18 L7.91561963,20.1472858 C7.42677504,20.4042866 6.82214789,20.2163401 6.56514708,19.7274955 C6.46280801,19.5328351 6.42749334,19.309867 6.46467018,19.0931094 L7.24471742,14.545085 L3.94038429,11.3241562 C3.54490071,10.938655 3.5368084,10.3055417 3.92230962,9.91005817 C4.07581822,9.75257453 4.27696063,9.65008735 4.49459766,9.61846284 L9.06107374,8.95491503 L11.1032639,4.81698575 C11.3476862,4.32173209 11.9473121,4.11839309 12.4425657,4.36281539 C12.6397783,4.46014562 12.7994058,4.61977315 12.8967361,4.81698575 L14.9389263,8.95491503 L19.5054023,9.61846284 C20.0519472,9.69788046 20.4306287,10.2053233 20.351211,10.7518682 C20.3195865,10.9695052 20.2170993,11.1706476 20.0596157,11.3241562 L16.7552826,14.545085 L17.5353298,19.0931094 C17.6286908,19.6374458 17.263103,20.1544017 16.7187666,20.2477627 C16.5020089,20.2849396 16.2790408,20.2496249 16.0843804,20.1472858 L12,18 Z"
+                                                                                            fill="#000000"/>
                                                                                     </g>
                                                                                 </svg><!--end::Svg Icon--></span>
                                                                               </span>
                                                                     @else
                                                                         <span
-                                                                            class="svg-icon svg-icon-lg svg-icon-primary">
+                                                                            class="svg-icon svg-icon-lg {{auth('student')->user()->icon_color}} ">
                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                  xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                                  width="24px" height="24px"
@@ -351,14 +371,18 @@
                                                             <!--begin::Text-->
                                                             <div class="d-flex flex-column font-weight-bold">
                                                                 @if(app()->getLocale() == 'ar')
-                                                                    <a @if($row->message_type == 'certificate') href="{{route('student.my_certificates')}}" @else href="{{route('student.my_episodes')}}" @endif
+                                                                    <a @if($row->message_type == 'certificate') href="{{route('student.my_certificates')}}"
+                                                                       @else href="{{route('student.my_episodes')}}"
+                                                                       @endif
                                                                        class="text-dark text-hover-primary mb-1 font-size-lg">
                                                                         {{$row->title_ar}}
                                                                     </a>
                                                                     <span
                                                                         class="text-muted"> {{$row->message_ar}}</span>
                                                                 @else
-                                                                    <a @if($row->message_type == 'certificate') href="{{route('student.my_certificates')}}" @else href="{{route('student.my_episodes')}}" @endif
+                                                                    <a @if($row->message_type == 'certificate') href="{{route('student.my_certificates')}}"
+                                                                       @else href="{{route('student.my_episodes')}}"
+                                                                       @endif
                                                                        class="text-dark text-hover-primary mb-1 font-size-lg">
                                                                         {{$row->title_en}}
                                                                     </a>
@@ -376,7 +400,7 @@
                                                             class="symbol symbol-40 symbol-light-primary mr-5">
                                                                     <span class="symbol-label">
                                                                         <span
-                                                                            class="svg-icon svg-icon-lg svg-icon-primary">
+                                                                            class="svg-icon svg-icon-lg {{auth('student')->user()->icon_color}} ">
                                                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                  xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -410,9 +434,9 @@
                                                     </div>
                                                 @endif
                                             </div>
-{{--                                            <div class="d-flex flex-center pt-7">--}}
-{{--                                                <a href="javascript:void(0);" class="btn btn-light-primary font-weight-bold text-center">{{trans('s_admin.see_more')}}</a>--}}
-{{--                                            </div>--}}
+                                            {{--                                            <div class="d-flex flex-center pt-7">--}}
+                                            {{--                                                <a href="javascript:void(0);" class="btn btn-light-primary font-weight-bold text-center">{{trans('s_admin.see_more')}}</a>--}}
+                                            {{--                                            </div>--}}
                                         </div>
                                         <!--end::Tabpane-->
                                     </div>

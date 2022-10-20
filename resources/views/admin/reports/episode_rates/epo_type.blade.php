@@ -45,7 +45,7 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center p-5">
                             <div class="mr-6">
-                                <span class="svg-icon svg-icon-primary svg-icon-4x">
+                                <span class="svg-icon {{auth()->user()->icon_color}} svg-icon-4x">
                                                                 <!--begin::Svg Icon | path:assets/media/svg/icons/General/Half-star.svg-->
                                                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

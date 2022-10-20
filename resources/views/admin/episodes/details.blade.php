@@ -605,7 +605,7 @@
                                                             <div class="symbol symbol-45 symbol-light-primary mr-2">
 																						<span class="symbol-label">
 																							<span
-                                                                                                class="svg-icon svg-icon-2x svg-icon-primary">
+                                                                                                class="svg-icon svg-icon-2x {{auth()->user()->icon_color}}">
 																								<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Globe.svg-->
 																								<svg
                                                                                                     xmlns="http://www.w3.org/2000/svg"

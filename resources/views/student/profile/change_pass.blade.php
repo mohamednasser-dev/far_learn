@@ -11,7 +11,7 @@
                 <h3 class="card-label font-weight-bolder text-dark">{{trans('s_admin.change_pass')}}</h3>
             </div>
             <div class="card-toolbar" style="text-align: left">
-                <button type="submit" class="btn btn-success mr-2">{{trans('s_admin.save_changes')}}</button>
+                <button type="submit" class="btn {{auth('student')->user()->button_color}} mr-2">{{trans('s_admin.save_changes')}}</button>
             </div>
         </div>
         <!--end::Header-->

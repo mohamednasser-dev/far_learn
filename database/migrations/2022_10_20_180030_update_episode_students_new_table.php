@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateStudentsFcmTable extends Migration
+class UpdateEpisodeStudentsNewTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class UpdateStudentsFcmTable extends Migration
      */
     public function up()
     {
-        Schema::table('students', function (Blueprint $table) {
-            $table->string('fcm_token')->nullable();
+        Schema::table('episode_students', function (Blueprint $table) {
+            $table->string('status')->default('new');
+            $table->enum('deleted',['0','1'])->default('0');
+            $table->enum('student_view',['0','1'])->default('0');
         });
     }
 
@@ -25,7 +27,7 @@ class UpdateStudentsFcmTable extends Migration
      */
     public function down()
     {
-        Schema::table('students', function (Blueprint $table) {
+        Schema::table('episode_students', function (Blueprint $table) {
             //
         });
     }

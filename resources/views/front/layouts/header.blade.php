@@ -83,7 +83,7 @@
                             </div>
                             <div class="mini-cart">
                                 <div class="btns">
-                                    <a href="{{ route('logout') }}" id="login_btn" class="theme-btn"><i class="fi flaticon2-user"></i> {{trans('admin.logout')}}</a>
+                                    <a href="{{ route('admin.logout') }}" id="login_btn" class="theme-btn"><i class="fi flaticon2-user"></i> {{trans('admin.logout')}}</a>
                                 </div>
                             </div>
                         @elseif( auth()->guard('teacher')->check() )

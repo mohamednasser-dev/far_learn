@@ -4,16 +4,18 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/', 'HomeController@main_pge')->name('main_page');
-Route::get('logout', 'Admin\LoginController@logout')->name('logout');
+Route::get('admin/logout', 'Admin\LoginController@logout')->name('admin.logout');
 
-//    inboxes
+//super admin
 Route::get('/super_admin/login', 'SuperAdmin\HomeController@login')->name('super_admin.login');
+Route::post('/super_admin/login/store', 'SuperAdmin\HomeController@login_store')->name('super_admin.login.store');
 
 
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::get('/home', 'Admin\HomeController@index')->name('home');
+    Route::post('/change_colors', 'Admin\HomeController@change_colors')->name('admin.change_colors');
     Route::get('/tenants', 'SuperAdmin\HomeController@tenants')->name('tenants');
     Route::post('/tenants/store/new', 'SuperAdmin\HomeController@store')->name('tenants.store');
     Route::get('/tenants/{id}/delete', 'SuperAdmin\HomeController@delete')->name('tenants.delete');
@@ -118,7 +120,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::group(['prefix' => "settings/episodes", 'namespace' => 'Admin\Settings'], function () {
         Route::get('suar', 'EpisodeSettingsController@suar_index')->name('settings.episodes.suar');
-        Route::post('suar', 'EpisodeSettingsController@suar_store')->name('settings.episodes.suar');
+        Route::post('suar', 'EpisodeSettingsController@suar_store')->name('settings.episodes.suar.store');
         Route::post('suar/update', 'EpisodeSettingsController@suar_update')->name('settings.episodes.suar.update');
         Route::get('suar/delete/{id}', 'EpisodeSettingsController@suar_delete')->name('settings.episodes.suar.delete');
     });
@@ -295,10 +297,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     //user permissions and roles
     Route::resource('roles', 'Admin\RoleController');
     // Route::post('/store_permission', 'Admin\RoleController@store_permission')->name('store_permission');
-    Route::get('/roles/edit/{id}', 'Admin\RoleController@edit')->name('roles.edit');
+    Route::get('/roles/edit_new/{id}', 'Admin\RoleController@edit')->name('roles.edit_new');
     Route::post('/roles/update_permission/{id}', 'Admin\RoleController@update')->name('roles.update_permission');
     Route::post('roles/store_permission', 'Admin\RoleController@store_permission')->name('roles.store_permission');
-    Route::get('/roles/destroy/{id}', 'Admin\RoleController@destroy')->name('roles.destroy');
+    Route::get('/roles/destroy_new/{id}', 'Admin\RoleController@destroy')->name('roles.destroy_new');
 
     //student routes in admin panel
     Route::get('student_settings', 'Admin\Students\StudentSettingsController@index');

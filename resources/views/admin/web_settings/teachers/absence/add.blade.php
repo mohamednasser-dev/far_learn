@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4">
-                                <button class="btn btn-success">{{trans('s_admin.save_today_absence')}}</button>
+                                <button class="btn {{auth()->user()->button_color}}">{{trans('s_admin.save_today_absence')}}</button>
                             </div>
                         </div>
 

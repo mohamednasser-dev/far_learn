@@ -3,7 +3,7 @@
         aria-haspopup="true">
         <a href="{{url('/student/home')}}" class="menu-link">
             <span class="svg-icon menu-icon">
-                <span class="svg-icon svg-icon-success svg-icon-2x">
+                <span class="svg-icon {{auth('student')->user()->icon_color}} svg-icon-2x">
                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                      height="24px" viewBox="0 0 24 24" version="1.1">
@@ -27,7 +27,7 @@
         aria-haspopup="true" data-menu-toggle="hover">
         <a href="{{route('student.inbox.in')}}" class="menu-link">
             <span class="svg-icon menu-icon">
-                <span class="svg-icon svg-icon-success svg-icon-2x">
+                <span class="svg-icon {{auth('student')->user()->icon_color}} svg-icon-2x">
                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                     height="24px" viewBox="0 0 24 24" version="1.1">
@@ -54,7 +54,7 @@
     <li class="menu-item @if(request()->segment(2) == 'my_episodes') menu-item-active  @endif" aria-haspopup="true">
         <a href="{{route('student.my_episodes')}}" class="menu-link">
             <span class="svg-icon menu-icon">
-                <span class="svg-icon svg-icon-success svg-icon-2x">
+                <span class="svg-icon {{auth('student')->user()->icon_color}} svg-icon-2x">
                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                      height="24px" viewBox="0 0 24 24" version="1.1">
@@ -78,7 +78,7 @@
     <li class="menu-item @if(request()->segment(2) == 'my_certificates') menu-item-active  @endif" aria-haspopup="true">
         <a href="{{route('student.my_certificates')}}" class="menu-link">
                 <span class="svg-icon menu-icon">
-                <span class="svg-icon svg-icon-success svg-icon-2x">
+                <span class="svg-icon {{auth('student')->user()->icon_color}} svg-icon-2x">
                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
                  <svg
                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -99,7 +99,7 @@
         aria-haspopup="true" data-menu-toggle="hover">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <span class="svg-icon menu-icon">
-                <span class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Chart-bar1.svg--><svg
+                <span class="svg-icon {{auth('student')->user()->icon_color}} svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Chart-bar1.svg--><svg
                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                         height="24px" viewBox="0 0 24 24" version="1.1">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -132,7 +132,7 @@
                             <span></span>
                         </i>
                         <span class="svg-icon menu-icon">
-                            <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Plus.svg--><svg
+                            <span class="svg-icon {{auth('student')->user()->icon_color}} svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Plus.svg--><svg
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -153,7 +153,7 @@
     </li>
     {{--    <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">--}}
     {{--        <a href="javascript:;" class="menu-link menu-toggle">--}}
-    {{--           <span class="svg-icon svg-icon-success svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Design\Magic.svg--><svg--}}
+    {{--           <span class="svg-icon {{auth('student')->user()->icon_color}} svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Design\Magic.svg--><svg--}}
     {{--                   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"--}}
     {{--                   height="24px" viewBox="0 0 24 24" version="1.1">--}}
     {{--                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">--}}

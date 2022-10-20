@@ -151,21 +151,20 @@ class HomeController extends Controller
                 ->where('complete_data', '1')->whereYear('created_at', $year)
                 ->get();
 
-            if (count($exists_students) > 0) {
                 $students_by_month = Student::where('is_new', 'accepted')->where('interview', 'y')->where('is_verified', '1')
                     ->where('complete_data', '1')->whereYear('created_at', $year)
                     ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
                     ->groupby('year', 'month')
                     ->get();
-            }
+
             $exists_teachers = Teacher::where('is_new', 'accepted')->where('is_verified', '1')->whereYear('created_at', $year)
                 ->get();
-            if (count($exists_teachers) > 0) {
+
                 $teachers_by_month = Teacher::where('is_new', 'accepted')->where('is_verified', '1')->whereYear('created_at', $year)
                     ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
                     ->groupby('year', 'month')
                     ->get();
-            }
+
         }
 
         $students_numbers = json_encode($accepted_students);
@@ -389,6 +388,20 @@ class HomeController extends Controller
         $data['phone'] = $request->phone;
         User::where('id', auth()->user()->id)->update($data);
         Alert::success(trans('s_admin.personal_info'), trans('s_admin.proileupdated_s'));
+        return back();
+    }
+
+    public function change_colors(Request $request)
+    {
+        $data = $this->validate(\request(),
+            [
+                'main_color' => 'required',
+                'second_color' => 'required',
+                'button_color' => 'required',
+                'icon_color' => 'required'
+            ]);
+        User::where('id', auth()->user()->id)->update($data);
+        Alert::success(trans('s_admin.colors'), trans('s_admin.color_changed_s'));
         return back();
     }
 

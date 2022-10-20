@@ -10,7 +10,8 @@
                     class="text-muted font-weight-bold font-size-sm mt-1">{{trans('s_admin.update_personal_info')}}</span>
             </div>
             <div class="card-toolbar">
-                <button type="submit" class="btn btn-success mr-2">{{trans('s_admin.save_changes')}}</button>
+                <button type="submit"
+                        class="btn {{auth('student')->user()->button_color}} mr-2">{{trans('s_admin.save_changes')}}</button>
             </div>
         </div>
         <!--end::Header-->
@@ -34,12 +35,12 @@
                 </div>
             </div>
 
-{{--                <div class="form-group row">--}}
-{{--                    <label class="col-xl-3 col-lg-3 col-form-label">{{trans('admin.user_name')}}</label>--}}
-{{--                    <div class="col-lg-9 col-xl-6">--}}
-{{--                        <h5 class="font-weight-bold mb-6">{{$data->unique_name}}</h5>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+            {{--                <div class="form-group row">--}}
+            {{--                    <label class="col-xl-3 col-lg-3 col-form-label">{{trans('admin.user_name')}}</label>--}}
+            {{--                    <div class="col-lg-9 col-xl-6">--}}
+            {{--                        <h5 class="font-weight-bold mb-6">{{$data->unique_name}}</h5>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
             <div class="form-group row">
                 <label class="col-xl-3 col-lg-3 col-form-label">{{trans('s_admin.personal_image')}}</label>
                 <div class="col-lg-9 col-xl-6">
@@ -113,11 +114,12 @@
                                 </span>
                             </div>
                             <input required type="text" maxlength="10" min="0" value="{{$data->phone}}" readonly
-                                   class="form-control form-control-lg form-control-solid" />
+                                   class="form-control form-control-lg form-control-solid"/>
                         </div>
                     </div>
                     <div class="col-lg-2 col-xl-1">
-                        <input id="txt_country_code"  readonly class="form-control form-control-lg form-control form-control-lg"
+                        <input id="txt_country_code" readonly
+                               class="form-control form-control-lg form-control form-control-lg"
                                value="{{$data->country_code}}" type="text" name="country_code"/>
                     </div>
                 </div>
@@ -127,7 +129,8 @@
                         <div class="input-group input-group-lg">
                             {{--                            <input type="text" name="date_of_birth" value="{{$data->date_of_birth}}"--}}
                             {{--                                   class="form-control form-control-lg form-control form-control-lg"/>--}}
-                            <input id="txt_date" type="text" value="{{Carbon\Carbon::parse($data->date_of_birth)->format('d-m-Y')}}" required
+                            <input id="txt_date" type="text"
+                                   value="{{Carbon\Carbon::parse($data->date_of_birth)->format('d-m-Y')}}" required
                                    name="date_of_birth" class="form-control hijri-date-input">
                         </div>
                     </div>
@@ -158,7 +161,8 @@
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">{{trans('admin.gender')}}</label>
                     <div class="col-lg-9 col-xl-6">
-                        <select required class="form-control form-control-lg form-control form-control-lg" name="gender">
+                        <select required class="form-control form-control-lg form-control form-control-lg"
+                                name="gender">
                             <option value="male"
                                     @if($data->gender == 'male') selected @endif > {{trans('admin.male')}} </option>
                             <option value="female"
@@ -180,7 +184,8 @@
                     <label class="col-xl-3 col-lg-3 col-form-label">{{trans('s_admin.nationality')}}</label>
                     <div class="col-lg-9 col-xl-6">
                         @php $nationalities = \App\Models\Nationality::where('deleted','0')->get(); @endphp
-                        <select name="nationality" required class="form-control form-control-lg form-control form-control-lg">
+                        <select name="nationality" required
+                                class="form-control form-control-lg form-control form-control-lg">
                             @foreach($nationalities as $row)
                                 @if($data->nationality == $row->id)
                                     <option value="{{$row->id}}" selected>
@@ -199,7 +204,8 @@
                     <label class="col-xl-3 col-lg-3 col-form-label">{{trans('s_admin.qualification')}}</label>
                     <div class="col-lg-9 col-xl-6">
                         @php $qualifications = \App\Models\Qualification::where('deleted','0')->get(); @endphp
-                        <select name="qualification" required class="form-control form-control-lg form-control form-control-lg">
+                        <select name="qualification" required
+                                class="form-control form-control-lg form-control form-control-lg">
                             @foreach($qualifications as $row)
                                 @if($data->qualification == $row->id)
                                     <option value="{{$row->id}}" selected>
@@ -225,8 +231,10 @@
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">{{trans('s_admin.save_quran_num')}}</label>
                     <div class="col-lg-7 col-xl-6">
-                        <input type="number" step="any" @if($data->save_quran_num != null) readonly @endif required min="0" max="30" value="{{$data->save_quran_num}}"
-                               class="form-control form-control-lg @if($data->save_quran_num != null) form-control-solid @else form-control @endif form-control-lg" name="save_quran_num"/>
+                        <input type="number" step="any" @if($data->save_quran_num != null) readonly @endif required
+                               min="0" max="30" value="{{$data->save_quran_num}}"
+                               class="form-control form-control-lg @if($data->save_quran_num != null) form-control-solid @else form-control @endif form-control-lg"
+                               name="save_quran_num"/>
                     </div>
                     <label class="col-xl-2 col-lg-2 col-form-label">{{trans('s_admin.gzaa')}}</label>
                 </div>
@@ -234,7 +242,8 @@
                     <label class="col-xl-3 col-lg-3 col-form-label">{{trans('s_admin.what_limit_save')}}</label>
                     <div class="col-lg-7 col-xl-6">
                         @php $save_limits = App\Models\Save_limit::where('deleted','0')->get(); @endphp
-                        <select required @if($data->save_quran_limit != null) disabled @endif  name="save_quran_limit" class="form-control form-control-lg">
+                        <select required @if($data->save_quran_limit != null) disabled @endif  name="save_quran_limit"
+                                class="form-control form-control-lg">
                             <option value="" selected>{{trans('s_admin.choose_limit')}}</option>
                             @foreach($save_limits as $row)
                                 @if($data->save_quran_limit == $row->id)
@@ -267,79 +276,80 @@
                     </div>
                 </div>
                 @if($data->epo_type != 'far_learn')
-                <div class="form-group row" id="zones_cont"
-                     @if($data->country == null) style="display:none;" @endif >
-                    <label class="col-xl-3 col-lg-3 col-form-label">{{trans('s_admin.zones')}}</label>
-                    <div class="col-lg-9 col-xl-6">
-                        @if($data->country != null)
-                            @php $zones = App\Models\Zone::where('country_id',$data->country)->where('deleted','0')->get(); @endphp
-                        @else
-                            @php $zones = App\Models\Zone::where('deleted','0')->get(); @endphp
-                        @endif
-                        <select required name="zone_id" id="cmb_zones" class="form-control form-control-lg">
-                            <option value="" selected>{{trans('s_admin.choose_zone')}}</option>
-                            @foreach($zones as $row)
-                                @if($data->district_id != null)
-                                    @if($data->District->City->zone_id == $row->id)
+                    <div class="form-group row" id="zones_cont"
+                         @if($data->country == null) style="display:none;" @endif >
+                        <label class="col-xl-3 col-lg-3 col-form-label">{{trans('s_admin.zones')}}</label>
+                        <div class="col-lg-9 col-xl-6">
+                            @if($data->country != null)
+                                @php $zones = App\Models\Zone::where('country_id',$data->country)->where('deleted','0')->get(); @endphp
+                            @else
+                                @php $zones = App\Models\Zone::where('deleted','0')->get(); @endphp
+                            @endif
+                            <select required name="zone_id" id="cmb_zones" class="form-control form-control-lg">
+                                <option value="" selected>{{trans('s_admin.choose_zone')}}</option>
+                                @foreach($zones as $row)
+                                    @if($data->district_id != null)
+                                        @if($data->District->City->zone_id == $row->id)
+                                            <option value="{{$row->id}}" selected>{{$row->name}}</option>
+                                        @else
+                                            <option value="{{$row->id}}">{{$row->name}}</option>
+                                        @endif
+                                    @else
+                                        <option value="{{$row->id}}">{{$row->name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" id="city_cont"
+                         @if($data->district_id == null) style="display:none;" @endif >
+                        <label class="col-xl-3 col-lg-3 col-form-label">{{trans('s_admin.city')}}</label>
+                        <div class="col-lg-9 col-xl-6">
+                            @if($data->district_id != null)
+                                @php $cities = App\Models\City::where('zone_id',$data->District->City->zone_id)->where('deleted','0')->get(); @endphp
+                            @else
+                                @php $cities = App\Models\City::where('deleted','0')->get(); @endphp
+                            @endif
+
+                            <select required name="city_id" id="cmb_cities" class="form-control form-control-lg">
+                                <option value="" selected>{{trans('s_admin.choose_city')}}</option>
+                                @foreach($cities as $row)
+                                    @if($data->district_id != null)
+                                        @if($data->District->city_id == $row->id)
+                                            <option value="{{$row->id}}" selected>{{$row->name}}</option>
+                                        @else
+                                            <option value="{{$row->id}}">{{$row->name}}</option>
+                                        @endif
+                                    @else
+                                        <option value="{{$row->id}}">{{$row->name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" id="districts_cont"
+                         @if($data->district_id == null ) style="display:none;" @endif>
+                        <label class="col-xl-3 col-lg-3 col-form-label">{{trans('s_admin.district_S')}}</label>
+                        <div class="col-lg-9 col-xl-6">
+                            @if($data->district_id != null)
+                                @php $district = App\Models\District::where('city_id',$data->District->city_id)->where('deleted','0')->get(); @endphp
+                            @else
+                                @php $district = App\Models\District::where('deleted','0')->get(); @endphp
+
+                            @endif
+                            <select required name="district_id" id="cmb_districts" class="form-control form-control-lg">
+                                <option value="" selected>{{trans('s_admin.choose_district')}}</option>
+                                @foreach($district as $row)
+                                    @if($data->district_id == $row->id)
                                         <option value="{{$row->id}}" selected>{{$row->name}}</option>
                                     @else
                                         <option value="{{$row->id}}">{{$row->name}}</option>
                                     @endif
-                                @else
-                                    <option value="{{$row->id}}">{{$row->name}}</option>
-                                @endif
-                            @endforeach
-                        </select>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row" id="city_cont" @if($data->district_id == null) style="display:none;" @endif >
-                    <label class="col-xl-3 col-lg-3 col-form-label">{{trans('s_admin.city')}}</label>
-                    <div class="col-lg-9 col-xl-6">
-                        @if($data->district_id != null)
-                            @php $cities = App\Models\City::where('zone_id',$data->District->City->zone_id)->where('deleted','0')->get(); @endphp
-                        @else
-                            @php $cities = App\Models\City::where('deleted','0')->get(); @endphp
-                        @endif
-
-                        <select required name="city_id" id="cmb_cities" class="form-control form-control-lg">
-                            <option value="" selected>{{trans('s_admin.choose_city')}}</option>
-                            @foreach($cities as $row)
-                                @if($data->district_id != null)
-                                    @if($data->District->city_id == $row->id)
-                                        <option value="{{$row->id}}" selected>{{$row->name}}</option>
-                                    @else
-                                        <option value="{{$row->id}}">{{$row->name}}</option>
-                                    @endif
-                                @else
-                                    <option value="{{$row->id}}">{{$row->name}}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group row" id="districts_cont"
-                     @if($data->district_id == null ) style="display:none;" @endif>
-                    <label class="col-xl-3 col-lg-3 col-form-label">{{trans('s_admin.district_S')}}</label>
-                    <div class="col-lg-9 col-xl-6">
-                        @if($data->district_id != null)
-                            @php $district = App\Models\District::where('city_id',$data->District->city_id)->where('deleted','0')->get(); @endphp
-                        @else
-                            @php $district = App\Models\District::where('deleted','0')->get(); @endphp
-
-                        @endif
-                        <select required name="district_id" id="cmb_districts" class="form-control form-control-lg">
-                            <option value="" selected>{{trans('s_admin.choose_district')}}</option>
-                            @foreach($district as $row)
-                                @if($data->district_id == $row->id)
-                                    <option value="{{$row->id}}" selected>{{$row->name}}</option>
-                                @else
-                                    <option value="{{$row->id}}">{{$row->name}}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
                 @endif
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">{{trans('s_admin.level')}}</label>
@@ -354,7 +364,8 @@
                             @endphp
                         @endif
                         @php $levels = App\Models\Level::where('type',$epo_typ)->where('deleted','0')->get(); @endphp
-                        <select required  name="level_id" id="cmb_levels" class="form-control form-control-lg"  @if($data->level_id != null) disabled @endif>
+                        <select required name="level_id" id="cmb_levels" class="form-control form-control-lg"
+                                @if($data->level_id != null) disabled @endif>
                             <option value="" selected>{{trans('s_admin.choose_level')}}</option>
                             @foreach($levels as $row)
                                 @if($data->level_id == $row->id)
@@ -380,8 +391,9 @@
                         <label class="col-xl-3 col-lg-3 col-form-label">{{trans('s_admin.subject')}}</label>
                         <div class="col-lg-9 col-xl-6">
                             @php $subjects = App\Models\Subject::where('level_id',$data->level_id)->where('deleted','0')->get(); @endphp
-                            <select required @if($data->subject_id != null) disabled @endif name="subject_id" id="cmb_sign_up_subject" class="form-control form-control-lg"
-                                    >
+                            <select required @if($data->subject_id != null) disabled @endif name="subject_id"
+                                    id="cmb_sign_up_subject" class="form-control form-control-lg"
+                            >
                                 <option value="" selected>{{trans('s_admin.choose_subject')}}</option>
                                 @foreach($subjects as $row)
                                     @if($data->subject_id == $row->id)
@@ -422,7 +434,8 @@
                 @endif
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-success mr-2">{{trans('s_admin.save_changes')}}</button>
+                <button type="submit"
+                        class="btn {{auth('student')->user()->button_color}} mr-2">{{trans('s_admin.save_changes')}}</button>
             </div>
         </div>
         {{ Form::close() }}

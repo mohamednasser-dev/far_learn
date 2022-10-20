@@ -12,7 +12,7 @@
             <div class="card card-custom gutter-b" style="height: 150px">
                 <a href="{{route('teacher.inbox.in')}}">
                     <div class="card-body">
-                            <span class="svg-icon svg-icon-3x svg-icon-success">
+                            <span class="svg-icon svg-icon-3x {{auth('teacher')->user()->icon_color}}">
                                 <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Incoming-mail.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                             <rect x="0" y="0" width="24" height="24"/>
@@ -31,7 +31,7 @@
             <div class="card card-custom gutter-b" style="height: 150px">
                 <a href="{{route('t_episodes.index')}}">
                     <div class="card-body">
-                        <span class="svg-icon svg-icon-3x svg-icon-success">
+                        <span class="svg-icon svg-icon-3x {{auth('teacher')->user()->icon_color}}">
                              <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg-->
                             <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Devices\Display2.svg--><svg
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -58,7 +58,7 @@
             <div class="card card-custom gutter-b" style="height: 150px">
                 <a href="javascript:void(0);">
                     <div class="card-body">
-                        <span class="svg-icon svg-icon-3x svg-icon-success">
+                        <span class="svg-icon svg-icon-3x {{auth('teacher')->user()->icon_color}}">
                            <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Home\Alarm-clock.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                     <rect x="0" y="0" width="24" height="24"/>
@@ -80,7 +80,7 @@
         <div class="col-md-3">
             <div class="card card-custom gutter-b" style="height: 150px">
                 <div class="card-body">
-                        <span class="svg-icon svg-icon-3x svg-icon-success">
+                        <span class="svg-icon svg-icon-3x {{auth('teacher')->user()->icon_color}}">
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                  height="24px" viewBox="0 0 24 24" version="1.1">

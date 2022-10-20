@@ -12,10 +12,11 @@ class User extends Authenticatable
     use Notifiable;
 
     use HasRoles;
-    protected $fillable = [
-        'name', 'email', 'password','address','phone','type','image','role_id','status','user_name','unique_name','main_lang',
-        'api_token','college_id','gender','work_place','country_code','user_phone','is_new'
-    ];
+    protected $guarded = [''];
+//    protected $fillable = [
+//        'name', 'email', 'password','address','phone','type','image','role_id','status','user_name','unique_name','main_lang',
+//        'api_token','college_id','gender','work_place','country_code','user_phone','is_new'
+//    ];
     protected $hidden =['password', 'remember_token','created_at','updated_at'];
     protected $casts = [
         'email_verified_at' => 'datetime',

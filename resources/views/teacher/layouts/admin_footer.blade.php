@@ -116,6 +116,118 @@
     </div>
     <!--end::Content-->
 </div>
+<!--begin::Sticky Toolbar-->
+<ul class="sticky-toolbar nav flex-column pl-2 pr-2 pt-3 pb-3 mt-4">
+    <!--begin::Item-->
+    <li class="nav-item mb-2" id="kt_demo_panel_toggle" data-toggle="tooltip" title="اعدادات الالوان"
+        data-placement="right">
+        <a class="btn btn-sm btn-icon btn-bg-light btn-icon-success {{auth('teacher')->user()->button_color}}" href="#">
+            <i class="flaticon2-gear"></i>
+        </a>
+    </li>
+    <!--end::Item-->
+</ul>
+<!--end::Sticky Toolbar-->
+
+<div id="kt_demo_panel" class="offcanvas offcanvas-right p-10">
+    <!--begin::Header-->
+    <div class="offcanvas-header d-flex align-items-center justify-content-between pb-7">
+        <h4 class="font-weight-bold m-0">اختر من الالوان</h4>
+        <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_demo_panel_close">
+            <i class="ki ki-close icon-xs text-muted"></i>
+        </a>
+    </div>
+    <!--end::Header-->
+    <!--begin::Content-->
+    <div class="offcanvas-content">
+        <!--begin::Wrapper-->
+        <form method="post" action="{{route('teacher.change_colors')}}">
+            @csrf
+            <div class="offcanvas-wrapper mb-5 scroll-pull">
+                <div class="form-group">
+                    <label class="col-12 col-form-label">{{trans('s_admin.main_color')}}</label>
+                    <div class="col-12">
+                        {{--                        coloradmin--}}
+                        <input class="form-control" type="color" name="main_color"
+                               value="{{auth('teacher')->user()->main_color}}" id="example-color-input"/>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label class="col-12 col-form-label">{{trans('s_admin.second_color')}}</label>
+                    <div class="col-12">
+
+                        <input class="form-control" type="color" name="second_color"
+                               value="{{auth('teacher')->user()->second_color}}" id="example-color-input"/>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group row">
+                    <label class="col-12 col-form-label">{{trans('s_admin.button_color')}}</label>
+                    <div class="col-12 col-form-label">
+                        <div class="radio-inline">
+                            <label class="radio  radio-danger">
+                                <input type="radio" name="button_color"
+                                       @if(auth('teacher')->user()->button_color == 'btn-danger' ) checked="checked"
+                                       @endif value="btn-danger">
+                                <span></span>{{trans('s_admin.danger_color')}}</label>
+                            <label class="radio radio-success">
+                                <input type="radio" name="button_color"
+                                       @if(auth('teacher')->user()->button_color == 'btn-success' ) checked="checked"
+                                       @endif  value="btn-success">
+                                <span></span>{{trans('s_admin.success_color')}}</label>
+                            <label class="radio radio-primary">
+                                <input type="radio" name="button_color"
+                                       @if(auth('teacher')->user()->button_color == 'btn-primary' ) checked="checked"
+                                       @endif  value="btn-primary">
+                                <span></span>{{trans('s_admin.primary_color')}}</label>
+                            <label class="radio radio-warning">
+                                <input type="radio" name="button_color"
+                                       @if(auth('teacher')->user()->button_color == 'btn-warning' ) checked="checked"
+                                       @endif  value="btn-warning">
+                                <span></span>{{trans('s_admin.warning_color')}}</label>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group row">
+                    <label class="col-12 col-form-label">{{trans('s_admin.icon_color')}}</label>
+                    <div class="col-12 col-form-label">
+                        <div class="radio-inline">
+                            <label class="radio  radio-danger">
+                                <input type="radio" name="icon_color" value="svg-icon-danger"
+                                       @if(auth('teacher')->user()->icon_color == 'svg-icon-danger' ) checked="checked"
+                                    @endif >
+                                <span></span>{{trans('s_admin.danger_color')}}</label>
+                            <label class="radio radio-success" >
+                                <input type="radio" name="icon_color" value="svg-icon-success"
+                                       @if(auth('teacher')->user()->icon_color == 'svg-icon-success' ) checked="checked" @endif>
+                                <span></span>{{trans('s_admin.success_color')}}</label>
+                            <label class="radio radio-primary">
+                                <input type="radio" name="icon_color" value="svg-icon-primary"
+                                       @if(auth('teacher')->user()->icon_color == 'svg-icon-primary' ) checked="checked" @endif>
+                                <span></span>{{trans('s_admin.primary_color')}}</label>
+                            <label class="radio radio-warning">
+                                <input type="radio" name="icon_color" value="svg-icon-warning"
+                                       @if(auth('teacher')->user()->icon_color == 'svg-icon-warning' ) checked="checked" @endif>
+                                <span></span>{{trans('s_admin.warning_color')}}</label>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <!--end::Wrapper-->
+            <!--begin::Purchase-->
+            <div class="offcanvas-footer">
+                <button type="submit"
+                        class="btn btn-block {{auth('teacher')->user()->button_color}} btn-shadow font-weight-bolder text-uppercase">{{trans('s_admin.save')}}</button>
+            </div>
+
+        </form>
+        <!--end::Purchase-->
+    </div>
+    <!--end::Content-->
+</div>
 <!-- end::User Panel-->
 <script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
 <!--begin::Global Config(global config for global JS scripts)-->

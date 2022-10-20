@@ -228,7 +228,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-success mr-2">{{trans('s_admin.edit')}}</button>
+                <button type="submit" class="btn {{auth()->user()->button_color}} mr-2">{{trans('s_admin.edit')}}</button>
             </div>
         </form>
     </div>

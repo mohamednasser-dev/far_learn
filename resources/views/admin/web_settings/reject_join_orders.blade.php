@@ -92,7 +92,7 @@
                                                href="{{route('teacher.reject',$row->id)}}">{{trans('s_admin.reject')}}</a>
                                         </div>
                                     @elseif($row->is_new == 'accepted')
-                                        <button type="button" class="btn btn-success dropdown-toggle"
+                                        <button type="button" class="btn {{auth()->user()->button_color}} dropdown-toggle"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             {{trans('s_admin.accepted')}}
                                         </button>
@@ -197,7 +197,7 @@
                                                href="{{route('student.reject',$row->id)}}">{{trans('s_admin.reject')}}</a>
                                         </div>
                                     @elseif($row->is_new == 'accepted')
-                                        <button type="button" class="btn btn-success dropdown-toggle"
+                                        <button type="button" class="btn {{auth()->user()->button_color}} dropdown-toggle"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             {{trans('s_admin.accepted')}}
                                         </button>

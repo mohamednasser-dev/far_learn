@@ -3,11 +3,18 @@ return [
     //new
 
 
-
-
-
-    'add_new_tenant' => 'إضافة مستأجر جديد',
-    'tenants' => 'المستأجرين',
+    'color_changed_s' => 'تم تغيير الالوان بنجاح',
+    'button_color' => 'لون الأزرار',
+    'colors' => 'الألوان',
+    'danger_color' => 'الاحمر',
+    'warning_color' => 'الاصفر',
+    'primary_color' => 'الازرق',
+    'success_color' => 'الاخضر',
+    'second_color' => 'اللون الثانوي',
+    'main_color' => 'اللون الاساسي',
+    'icon_color' => 'الوان الايقونات',
+    'add_new_tenant' => 'إضافة عميل جديد',
+    'tenants' => 'العملاء',
     'domain' => 'النطاق',
     'database' => 'قاعدة البيانات',
     'expire_date' => 'تاريخ الانتهاء',
@@ -365,7 +372,7 @@ return [
     'statusNotchanged' => 'لم يتم تغيير الحالة',
     'this_teache_appear_web' => 'مختارا للظهور في الويب',
     'this_teache_not_appear_web' => 'ليس مختارا للظهور في الويب',
-    'nav_join_orders' => 'طلبات الإنضمام الي حلقة تعليم عن بعد',
+    'nav_join_orders' => 'طلبات الإنضمام عن بعد',
     'student_rejected_s' => 'تم رفض طلب الإنضمام للحلقة',
     'episodes_has_long' => 'الحلقات التى تم تمديدها',
 
@@ -591,7 +598,7 @@ return [
     'amount_with_faces' => 'عدد الحفظ بالاوجه',
     'rejected_students' => 'الطلاب المرفوضون',
     'rejected_teachers' => 'المعلمين المرفوضون',
-    'arshef_rejected' => 'المرفوضون بالتسجيل بالنظام',
+    'arshef_rejected' => 'المرفوضون بالنظام',
     'edit_daily_plan' => 'تعديل الخطة اليومية',
     'contain_energy' => 'الطاقة الاستيعابية',
     'you_should_active' => 'يجب ادخال رمز التحقق أولا وتفعيل البريد الإلكتروني لتسجيل الدخول',
@@ -701,7 +708,7 @@ return [
     'head_color' => 'لون أعلى الصفحة',
     'name' => 'الاسم',
     'country' => 'الدولة',
-    'nav_out_website_settings' => 'إعدادات الموقع الخارجي',
+    'nav_out_website_settings' => 'الموقع الخارجي',
     'contact_data' => 'معلومات التواصل',
     'save_changes' => 'حفظ التغيرات',
     'lang' => 'اللغة',
@@ -985,9 +992,9 @@ return [
     'nav_rewards_settings' => 'إعدادات التحفيز و المكافأت',
     'nav_design_reports_settings' => 'إعدادات مصمم التقارير',
     'nav_conection_hear_view_settings' => 'إعدادات التواصل الصوتى و المرئى',
-    'nav_employee_permission_srttings' => 'إعدادات الموظفين والأدوار',
+    'nav_employee_permission_srttings' => 'الموظفين والأدوار',
     'view_users' => 'الموظفين',
-    'nav_permissions' => 'إدارة المهام و الصلاحيات',
+    'nav_permissions' => 'المهام و الصلاحيات',
     'nav_center_message_settings' => 'إعدادات مركز الرسائل',
 
 

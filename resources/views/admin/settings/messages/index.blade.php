@@ -20,7 +20,7 @@
                     <div class="form-group mb-8">
                         <div class="alert alert-custom alert-default" role="alert">
                             <div class="alert-icon">
-                                <span class="svg-icon svg-icon-primary svg-icon-xl">
+                                <span class="svg-icon {{auth()->user()->icon_color}} svg-icon-xl">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Tools/Compass.svg-->
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -103,7 +103,7 @@
                     <div class="form-group mb-8">
                         <div class="alert alert-custom alert-default" role="alert">
                             <div class="alert-icon">
-																<span class="svg-icon svg-icon-primary svg-icon-xl">
+																<span class="svg-icon {{auth()->user()->icon_color}} svg-icon-xl">
 																	<!--begin::Svg Icon | path:assets/media/svg/icons/Tools/Compass.svg-->
 																	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																		<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -332,7 +332,7 @@
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
-                            <button type="reset" class="btn btn-success mr-2">Submit</button>
+                            <button type="reset" class="btn {{auth()->user()->button_color}} mr-2">Submit</button>
                             <button type="reset" class="btn btn-secondary">Cancel</button>
                         </div>
                     </div>
@@ -357,7 +357,7 @@
                     <div class="form-group form-group-last">
                         <div class="alert alert-custom alert-default" role="alert">
                             <div class="alert-icon">
-																<span class="svg-icon svg-icon-primary svg-icon-xl">
+																<span class="svg-icon {{auth()->user()->icon_color}} svg-icon-xl">
 																	<!--begin::Svg Icon | path:assets/media/svg/icons/Tools/Compass.svg-->
 																	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																		<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -473,7 +473,7 @@
                     <div class="form-group form-group-last">
                         <div class="alert alert-custom alert-default" role="alert">
                             <div class="alert-icon">
-																<span class="svg-icon svg-icon-primary svg-icon-xl">
+																<span class="svg-icon {{auth()->user()->icon_color}} svg-icon-xl">
 																	<!--begin::Svg Icon | path:assets/media/svg/icons/Tools/Compass.svg-->
 																	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																		<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -605,7 +605,7 @@
                     <div class="form-group form-group-last">
                         <div class="alert alert-custom alert-default" role="alert">
                             <div class="alert-icon">
-																<span class="svg-icon svg-icon-primary svg-icon-xl">
+																<span class="svg-icon {{auth()->user()->icon_color}} svg-icon-xl">
 																	<!--begin::Svg Icon | path:assets/media/svg/icons/Tools/Compass.svg-->
 																	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																		<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -743,7 +743,7 @@
                     <!--end: Code-->
                 </div>
                 <div class="card-footer">
-                    <button type="reset" class="btn btn-success mr-2">Submit</button>
+                    <button type="reset" class="btn {{auth()->user()->button_color}} mr-2">Submit</button>
                     <button type="reset" class="btn btn-secondary">Cancel</button>
                 </div>
             </form>
@@ -767,7 +767,7 @@
                     <div class="form-group form-group-last">
                         <div class="alert alert-custom alert-default" role="alert">
                             <div class="alert-icon">
-																<span class="svg-icon svg-icon-primary svg-icon-xl">
+																<span class="svg-icon {{auth()->user()->icon_color}} svg-icon-xl">
 																	<!--begin::Svg Icon | path:assets/media/svg/icons/Tools/Compass.svg-->
 																	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																		<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

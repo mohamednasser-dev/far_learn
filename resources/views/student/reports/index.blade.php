@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <button class="btn btn-success">{{trans('s_admin.search')}}</button>
+                        <button class="btn {{auth('student')->user()->button_color}} ">{{trans('s_admin.search')}}</button>
                     </div>
                 </div>
             </form>

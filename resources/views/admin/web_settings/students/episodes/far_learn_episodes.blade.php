@@ -82,7 +82,7 @@
                                 <td>
                                     @if($exist_epo == null)
                                     <a href="{{route('place.selected.student',[ 'student_id' => $student->id , 'episode_id' => $row->id ])}}"
-                                       class="btn btn-icon btn-success btn-circle btn-sm mr-2">
+                                       class="btn btn-icon {{auth()->user()->button_color}} btn-circle btn-sm mr-2">
                                         <i class="icon-nm fas fa-plus" aria-hidden='true'></i>
                                     </a>
                                     @else

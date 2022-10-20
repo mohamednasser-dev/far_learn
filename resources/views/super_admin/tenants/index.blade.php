@@ -10,13 +10,20 @@
     <div class="card card-custom">
         <div class="card-header flex-wrap border-0 pt-6 pb-0">
             <div class="card-title">
+                <a data-toggle="modal" data-target="#exampleModalLong"
+                   class="btn {{auth()->user()->button_color}} px-6 font-weight-bold"><i
+                        class="flaticon2-plus"></i> {{trans('s_admin.add_new_tenant')}}</a>
             </div>
             <div class="card-toolbar">
-                {{--                @can("add")--}}
-                <a data-toggle="modal" data-target="#exampleModalLong"
-                   class="btn btn-success px-6 font-weight-bold"><i
-                        class="flaticon2-plus"></i> {{trans('s_admin.add')}}</a>
-                {{--                @endcan--}}
+                <div class="d-flex flex-column text-right" id="p1">
+                    <span class="text-dark-75 font-weight-bolder font-size-h3">بيانات تسجيل الدخول الاساسية</span>
+                    <span class="text-muted font-weight-bold mt-2">email: admin@admin.com</span>
+                    <span class="text-muted font-weight-bold mt-2">phone: +966 2020</span>
+                    <span class="text-muted font-weight-bold mt-2">password: 123456</span>
+                </div>
+                <a href="javascript:void(0);" style="margin-right: 20px;" onclick="copyToClipboard('#p1')"
+                   class="example-copy" data-toggle="tooltip" title=""
+                   data-original-title="نسخ البيانات"><i class="icon-2x text-dark-50 flaticon2-copy"></i> </a>
             </div>
         </div>
         <div class="card-body">
@@ -44,12 +51,12 @@
                         <td>{{$row->expire_date}}</td>
                         <td>{{$row->created_at->format('Y-m-d')}}</td>
                         <td class="text-center">
-{{--                            <a class="btn btn-icon btn-primary btn-circle btn-sm mr-2"--}}
-{{--                               data-editid="{{$row->id}}" data-name_ar="{{$row->name_ar}}"--}}
-{{--                               data-name_en="{{$row->name_en}}" data-type="{{$row->type}}" id="edit"--}}
-{{--                               alt="default" data-toggle="modal" data-target="#edit_model">--}}
-{{--                                <i class="icon-nm fas fa-pencil-alt" aria-hidden='true'></i>--}}
-{{--                            </a>--}}
+                            {{--                            <a class="btn btn-icon btn-primary btn-circle btn-sm mr-2"--}}
+                            {{--                               data-editid="{{$row->id}}" data-name_ar="{{$row->name_ar}}"--}}
+                            {{--                               data-name_en="{{$row->name_en}}" data-type="{{$row->type}}" id="edit"--}}
+                            {{--                               alt="default" data-toggle="modal" data-target="#edit_model">--}}
+                            {{--                                <i class="icon-nm fas fa-pencil-alt" aria-hidden='true'></i>--}}
+                            {{--                            </a>--}}
 
                             <a onclick="return confirm('{{trans('s_admin.are_y_sure_delete')}}')"
                                href="{{url('tenants/'.$row->id.'/delete')}}"
@@ -94,14 +101,15 @@
                             <label class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.database')}}</label>
                             <div class="col-lg-8">
                                 <select required name="database" class="form-control form-control-lg">
-                                    @foreach(\App\Models\Database::get() as $row)
+                                    @foreach($databases as $row)
                                         <option value="{{$row->name}}">{{$row->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.expire_date')}}</label>
+                            <label
+                                class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.expire_date')}}</label>
                             <div class="col-lg-8">
                                 <input type="date" required class="form-control" name="expire_date">
                             </div>
@@ -183,5 +191,15 @@
             $('#txt_name_en').val(name_en);
             $('#select_type').val(type);
         });
+    </script>
+
+    <script>
+        function copyToClipboard(element) {
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val($(element).text()).select();
+            document.execCommand("copy");
+            $temp.remove();
+        }
     </script>
 @endsection
