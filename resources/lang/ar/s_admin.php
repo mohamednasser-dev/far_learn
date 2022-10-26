@@ -3,6 +3,14 @@ return [
     //new
 
 
+    'app_main_color' => 'اللون الاساسي',
+    'app_second_color' => 'اللون الثانوي',
+    'app_background_color' => 'لون الخلفية',
+    'app_button_color' => 'لون الازرار',
+    'app_font_light_color' => 'لون الخط الفاتح',
+    'app_font_dark_color' => 'لون الخط الغامق',
+    'app_icon_color' => 'لون الايقونات',
+    'app_color' => 'الوان التطبيق',
     'color_changed_s' => 'تم تغيير الالوان بنجاح',
     'button_color' => 'لون الأزرار',
     'colors' => 'الألوان',

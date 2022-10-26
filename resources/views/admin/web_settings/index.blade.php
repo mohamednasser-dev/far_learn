@@ -33,10 +33,14 @@
                     <a class="nav-link" data-toggle="tab"
                        href="#kt_hide_page">{{trans('s_admin.hide_show')}}</a>
                 </li>
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link" data-toggle="tab"--}}
-{{--                       href="#kt_color_themes">{{trans('s_admin.admin_website_color')}}</a>--}}
-{{--                </li>--}}
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab"
+                       href="#kt_app_color">{{trans('s_admin.app_color')}}</a>
+                </li>
+                {{--                <li class="nav-item">--}}
+                {{--                    <a class="nav-link" data-toggle="tab"--}}
+                {{--                       href="#kt_color_themes">{{trans('s_admin.admin_website_color')}}</a>--}}
+                {{--                </li>--}}
             </ul>
         </div>
         <!--end::Header-->
@@ -191,15 +195,16 @@
                     <div class="form-group row">
                         <label class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.head_color')}}</label>
                         <div class="col-lg-9 col-xl-4">
-                            <input class="form-control" type="color" name="color" value="{{$data->color}}" id="example-color-input">
+                            <input class="form-control" type="color" name="color" value="{{$data->color}}"
+                                   id="example-color-input">
                         </div>
                     </div>
-{{--                    <div class="form-group row">--}}
-{{--                        <label class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.sidebar_color')}}</label>--}}
-{{--                        <div class="col-lg-9 col-xl-4">--}}
-{{--                            <input class="form-control" type="color" name="color_side_bar" value="{{$data->color}}" id="example-color-input">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    {{--                    <div class="form-group row">--}}
+                    {{--                        <label class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.sidebar_color')}}</label>--}}
+                    {{--                        <div class="col-lg-9 col-xl-4">--}}
+                    {{--                            <input class="form-control" type="color" name="color_side_bar" value="{{$data->color}}" id="example-color-input">--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                 </div>
                 <div class="tab-pane" id="kt_logo_themes">
                     <div class="form-group row">
@@ -263,7 +268,8 @@
                         <div class="col-lg-9 col-xl-4">
                             <div class="switch">
                                 <label>
-                                    <input type="checkbox" name="show_mogmaa_dorr" @php if( $data->show_mogmaa_dorr == '1') echo "checked"; @endphp>
+                                    <input type="checkbox"
+                                           name="show_mogmaa_dorr" @php if( $data->show_mogmaa_dorr == '1') echo "checked"; @endphp>
                                     <span class="lever switch-col-indigo"></span>
                                 </label>
                             </div>
@@ -274,43 +280,108 @@
                         <div class="col-lg-9 col-xl-4">
                             <div class="switch">
                                 <label>
-                                    <input type="checkbox" name="show_search_teacher" @php if( $data->show_search_teacher == '1') echo "checked"; @endphp>
+                                    <input type="checkbox"
+                                           name="show_search_teacher" @php if( $data->show_search_teacher == '1') echo "checked"; @endphp>
                                     <span class="lever switch-col-indigo"></span>
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.free_far_learn')}} </label>
+                        <label
+                            class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.free_far_learn')}} </label>
                         <div class="col-lg-9 col-xl-4">
                             <div class="switch">
                                 <label>
-                                    <input type="checkbox" name="show_free_subject" @php if( $data->show_free_subject == '1') echo "checked"; @endphp>
+                                    <input type="checkbox"
+                                           name="show_free_subject" @php if( $data->show_free_subject == '1') echo "checked"; @endphp>
                                     <span class="lever switch-col-indigo"></span>
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.fixed_far_learn')}} </label>
+                        <label
+                            class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.fixed_far_learn')}} </label>
                         <div class="col-lg-9 col-xl-4">
                             <div class="switch">
                                 <label>
-                                    <input type="checkbox" name="show_fixed_subject" @php if( $data->show_fixed_subject == '1') echo "checked"; @endphp>
+                                    <input type="checkbox"
+                                           name="show_fixed_subject" @php if( $data->show_fixed_subject == '1') echo "checked"; @endphp>
                                     <span class="lever switch-col-indigo"></span>
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.tracher_rating')}} </label>
+                        <label
+                            class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.tracher_rating')}} </label>
                         <div class="col-lg-9 col-xl-4">
                             <div class="switch">
                                 <label>
-                                    <input type="checkbox" name="rating" @php if( $data->rating == '1') echo "checked"; @endphp>
+                                    <input type="checkbox"
+                                           name="rating" @php if( $data->rating == '1') echo "checked"; @endphp>
                                     <span class="lever switch-col-indigo"></span>
                                 </label>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="kt_app_color">
+                    <div class="form-group row">
+                        <label
+                            class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.app_main_color')}} </label>
+                        <div class="col-lg-9 col-xl-4">
+                            <input class="form-control" type="color" name="app_main_color"
+                                   value="{{$data->app_main_color}}" id="example-color-input"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label
+                            class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.app_second_color')}} </label>
+                        <div class="col-lg-9 col-xl-4">
+                            <input class="form-control" type="color" name="app_second_color"
+                                   value="{{$data->app_second_color}}" id="example-color-input"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label
+                            class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.app_background_color')}} </label>
+                        <div class="col-lg-9 col-xl-4">
+                            <input class="form-control" type="color" name="app_background_color"
+                                   value="{{$data->app_background_color}}" id="example-color-input"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label
+                            class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.app_button_color')}} </label>
+                        <div class="col-lg-9 col-xl-4">
+                            <input class="form-control" type="color" name="app_button_color"
+                                   value="{{$data->app_button_color}}" id="example-color-input"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label
+                            class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.app_font_light_color')}} </label>
+                        <div class="col-lg-9 col-xl-4">
+                            <input class="form-control" type="color" name="app_font_light_color"
+                                   value="{{$data->app_font_light_color}}" id="example-color-input"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label
+                            class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.app_font_dark_color')}} </label>
+                        <div class="col-lg-9 col-xl-4">
+                            <input class="form-control" type="color" name="app_font_dark_color"
+                                   value="{{$data->app_font_dark_color}}" id="example-color-input"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label
+                            class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.app_icon_color')}} </label>
+                        <div class="col-lg-9 col-xl-4">
+                            <input class="form-control" type="color" name="app_icon_color"
+                                   value="{{$data->app_icon_color}}" id="example-color-input"/>
                         </div>
                     </div>
                 </div>
@@ -325,13 +396,13 @@
                 </div>
             </div>
         </div>
-    {{ Form::close() }}
+        {{ Form::close() }}
     </div>
 @endsection
 @section('scripts')
 
-<script>
-    var avatar1 = new KTImageInput('kt_user_edit_avatar');
-    var avatar2 = new KTImageInput('kt_user_edit_avatar_en');
-</script>
+    <script>
+        var avatar1 = new KTImageInput('kt_user_edit_avatar');
+        var avatar2 = new KTImageInput('kt_user_edit_avatar_en');
+    </script>
 @endsection

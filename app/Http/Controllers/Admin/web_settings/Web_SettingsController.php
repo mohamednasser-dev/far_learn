@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Admin\web_settings;
+
 use App\Models\Episode_rate_question;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -10,38 +12,48 @@ use Illuminate\Http\Request;
 use App\Models\Web_setting;
 use App\Models\Slider;
 
-class Web_SettingsController extends Controller{
+class Web_SettingsController extends Controller
+{
 
-    public function index(){
+    public function index()
+    {
         $data = Web_setting::findOrFail(1);
-        return view('admin.web_settings.index' ,compact('data'));
-	}
-	public function teacher_settings(){
-        $data = Teacher::orderBy('status','desc')->get();
-        return view('admin.web_settings.teachers_settings' ,compact('data'));
-	}
-	public function student_settings(){
-        $data = Student::orderBy('status','desc')->get();
-        return view('admin.web_settings.students_settings' ,compact('data'));
-	}
-	public function join_orders_rejected(){
+        return view('admin.web_settings.index', compact('data'));
+    }
+
+    public function teacher_settings()
+    {
+        $data = Teacher::orderBy('status', 'desc')->get();
+        return view('admin.web_settings.teachers_settings', compact('data'));
+    }
+
+    public function student_settings()
+    {
+        $data = Student::orderBy('status', 'desc')->get();
+        return view('admin.web_settings.students_settings', compact('data'));
+    }
+
+    public function join_orders_rejected()
+    {
         $user = \auth()->user();
-        if($user->role_id == 6){
-            $teacher_data = Teacher::where('epo_type','mogmaa')->where('is_new','rejected')->orderBy('id','desc')->paginate(15);
-            $student_data = Student::where('epo_type','mogmaa')->where('is_new','rejected')->orderBy('id','desc')->paginate(15);
-        }elseif($user->role_id == 7){
-            $teacher_data = Teacher::where('epo_type','dorr')->where('is_new','rejected')->orderBy('id','desc')->paginate(15);
-            $student_data = Student::where('epo_type','dorr')->where('is_new','rejected')->orderBy('id','desc')->paginate(15);
-        }elseif($user->role_id == 8){
-            $teacher_data = Teacher::where('epo_type','far_learn')->where('gender',$user->gender)->where('is_new','rejected')->orderBy('id','desc')->paginate(15);
-            $student_data = Student::where('epo_type','far_learn')->where('gender',$user->gender)->where('is_new','rejected')->orderBy('id','desc')->paginate(15);
-        }else{
-            $teacher_data = Teacher::where('is_new','rejected')->orderBy('id','desc')->paginate(15);
-            $student_data = Student::where('is_new','rejected')->orderBy('id','desc')->paginate(15);
+        if ($user->role_id == 6) {
+            $teacher_data = Teacher::where('epo_type', 'mogmaa')->where('is_new', 'rejected')->orderBy('id', 'desc')->paginate(15);
+            $student_data = Student::where('epo_type', 'mogmaa')->where('is_new', 'rejected')->orderBy('id', 'desc')->paginate(15);
+        } elseif ($user->role_id == 7) {
+            $teacher_data = Teacher::where('epo_type', 'dorr')->where('is_new', 'rejected')->orderBy('id', 'desc')->paginate(15);
+            $student_data = Student::where('epo_type', 'dorr')->where('is_new', 'rejected')->orderBy('id', 'desc')->paginate(15);
+        } elseif ($user->role_id == 8) {
+            $teacher_data = Teacher::where('epo_type', 'far_learn')->where('gender', $user->gender)->where('is_new', 'rejected')->orderBy('id', 'desc')->paginate(15);
+            $student_data = Student::where('epo_type', 'far_learn')->where('gender', $user->gender)->where('is_new', 'rejected')->orderBy('id', 'desc')->paginate(15);
+        } else {
+            $teacher_data = Teacher::where('is_new', 'rejected')->orderBy('id', 'desc')->paginate(15);
+            $student_data = Student::where('is_new', 'rejected')->orderBy('id', 'desc')->paginate(15);
         }
-        return view('admin.web_settings.reject_join_orders' ,compact('teacher_data','student_data'));
-	}
-	public function update(Request $request , $id){
+        return view('admin.web_settings.reject_join_orders', compact('teacher_data', 'student_data'));
+    }
+
+    public function update(Request $request, $id)
+    {
 
         $data = $this->validate(\request(),
             [
@@ -59,8 +71,15 @@ class Web_SettingsController extends Controller{
                 'insta' => 'nullable',
                 'linked_in' => 'nullable',
                 'color' => 'required',
+                'app_main_color' => 'required',
+                'app_second_color' => 'required',
+                'app_background_color' => 'required',
+                'app_button_color' => 'required',
+                'app_font_light_color' => 'required',
+                'app_font_dark_color' => 'required',
+                'app_icon_color' => 'required',
             ]);
-        if($request->logo_ar != null){
+        if ($request->logo_ar != null) {
             $file = $request->file('logo_ar');
             $name = $file->getClientOriginalName();
             $ext = $file->getClientOriginalExtension();
@@ -69,7 +88,7 @@ class Web_SettingsController extends Controller{
             $file->move(public_path('uploads/logo'), $fileNewName);
             $data['logo_ar'] = $fileNewName;
         }
-        if($request->logo_en != null){
+        if ($request->logo_en != null) {
             $file = $request->file('logo_en');
             $name = $file->getClientOriginalName();
             $ext = $file->getClientOriginalExtension();
@@ -78,7 +97,7 @@ class Web_SettingsController extends Controller{
             $file->move(public_path('uploads/logo'), $fileNewName);
             $data['logo_en'] = $fileNewName;
         }
-        if($request->admin_logo_ar != null){
+        if ($request->admin_logo_ar != null) {
             $file = $request->file('admin_logo_ar');
             $name = $file->getClientOriginalName();
             $ext = $file->getClientOriginalExtension();
@@ -87,7 +106,7 @@ class Web_SettingsController extends Controller{
             $file->move(public_path('uploads/logo'), $fileNewName);
             $data['admin_logo_ar'] = $fileNewName;
         }
-        if($request->admin_logo_en != null){
+        if ($request->admin_logo_en != null) {
             $file = $request->file('admin_logo_en');
             $name = $file->getClientOriginalName();
             $ext = $file->getClientOriginalExtension();
@@ -96,29 +115,29 @@ class Web_SettingsController extends Controller{
             $file->move(public_path('uploads/logo'), $fileNewName);
             $data['admin_logo_en'] = $fileNewName;
         }
-        if($request->show_mogmaa_dorr == 'on'){
+        if ($request->show_mogmaa_dorr == 'on') {
             $data['show_mogmaa_dorr'] = '1';
-        }else{
+        } else {
             $data['show_mogmaa_dorr'] = '0';
         }
-        if($request->show_search_teacher == 'on'){
+        if ($request->show_search_teacher == 'on') {
             $data['show_search_teacher'] = '1';
-        }else{
+        } else {
             $data['show_search_teacher'] = '0';
         }
-        if($request->show_free_subject == 'on'){
+        if ($request->show_free_subject == 'on') {
             $data['show_free_subject'] = '1';
-        }else{
+        } else {
             $data['show_free_subject'] = '0';
         }
-        if($request->show_fixed_subject == 'on'){
+        if ($request->show_fixed_subject == 'on') {
             $data['show_fixed_subject'] = '1';
-        }else{
+        } else {
             $data['show_fixed_subject'] = '0';
         }
-        if($request->rating == 'on'){
+        if ($request->rating == 'on') {
             $data['rating'] = '1';
-        }else{
+        } else {
             $data['rating'] = '0';
         }
         Web_setting::findOrFail($id)->update($data);
