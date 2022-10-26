@@ -10,7 +10,7 @@ return [
     'app_font_light_color' => 'لون الخط الفاتح',
     'app_font_dark_color' => 'لون الخط الغامق',
     'app_icon_color' => 'لون الايقونات',
-    'app_color' => 'الوان التطبيق',
+    'app_color' => 'ألوان التطبيق',
     'color_changed_s' => 'تم تغيير الالوان بنجاح',
     'button_color' => 'لون الأزرار',
     'colors' => 'الألوان',
