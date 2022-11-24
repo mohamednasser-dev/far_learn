@@ -591,7 +591,25 @@ class EpisodeController extends Controller
                 $data['teacher_view'] = 0;
             }
         }
-        $episode = Episode::where('id', $request->id)->update($data);
+        Episode::where('id', $request->id)->update($data);
+        //Begin update episode course days ...
+        $time_from =  date("H:i:s", strtotime($request->time_from));
+        if ($time_from != $epo->time_from) {
+            foreach ($epo->Dates as $row) {
+                //to generate starting date ...
+                $course_data = Episode_course_days::find($row->id);
+                $s_Time = $epo->time_from;
+                $start = $course_data->date . ' ' . $s_Time;
+                $final_Start = date("Y-m-d H:i", strtotime($start));
+                $final_Start_carbon = Carbon::createFromFormat('Y-m-d H:i', $final_Start);
+                $course_data->started_at = $final_Start;
+                //add 10 minutes to start date to notify students
+                $notify_at = $final_Start_carbon->subMinute(10);
+                $course_data->notify_at = $notify_at;
+                $course_data->save();
+            }
+        }
+        //End update Course Days
         Episode_day::where('episode_id', $request->id)->delete();
         if ($request->days != null) {
             foreach ($request->days as $day) {
