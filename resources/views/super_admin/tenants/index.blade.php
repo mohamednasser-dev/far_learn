@@ -51,12 +51,12 @@
                         <td>{{$row->expire_date}}</td>
                         <td>{{$row->created_at->format('Y-m-d')}}</td>
                         <td class="text-center">
-                            {{--                            <a class="btn btn-icon btn-primary btn-circle btn-sm mr-2"--}}
-                            {{--                               data-editid="{{$row->id}}" data-name_ar="{{$row->name_ar}}"--}}
-                            {{--                               data-name_en="{{$row->name_en}}" data-type="{{$row->type}}" id="edit"--}}
-                            {{--                               alt="default" data-toggle="modal" data-target="#edit_model">--}}
-                            {{--                                <i class="icon-nm fas fa-pencil-alt" aria-hidden='true'></i>--}}
-                            {{--                            </a>--}}
+                                    <a class="btn btn-icon btn-primary btn-circle btn-sm mr-2"
+                                       data-editid="{{$row->id}}" data-name_ar="{{$row->name}}" data-database="{{$row->database}}"
+                                       data-expire_date="{{$row->expire_date}}" data-domain="{{$row->domain}}" id="edit"
+                                       alt="default" data-toggle="modal" data-target="#edit_model">
+                                        <i class="icon-nm fas fa-pencil-alt" aria-hidden='true'></i>
+                                    </a>
 
                             <a onclick="return confirm('{{trans('s_admin.are_y_sure_delete')}}')"
                                href="{{url('tenants/'.$row->id.'/delete')}}"
@@ -71,7 +71,7 @@
         </div>
     </div>
     <!--end::Card-->-
-    <!-- Modal-->
+    <!-- Store Modal-->
     <div class="modal fade" id="exampleModalLong" data-backdrop="static" tabindex="-1" role="dialog"
          aria-labelledby="staticBackdrop" aria-hidden="t*ue">
         <div class="modal-dialog" role="document">
@@ -128,7 +128,7 @@
             </div>
         </div>
     </div>
-    {{--    edit model--}}
+    {{-- Edit model--}}
     <div class="modal fade" id="edit_model" data-backdrop="static" tabindex="-1" role="dialog"
          aria-labelledby="staticBackdrop" aria-hidden="t*ue">
         <div class="modal-dialog" role="document">
@@ -140,33 +140,23 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open( ['route' =>'levels.update_new','method'=>'post', 'files'=>'true'] ) }}
-                    {{ csrf_field() }}
+                    {{ Form::open( ['route' =>'tenants.update','method'=>'post'] ) }}
                     <input type="hidden" required class="form-control" id="txt_id" name="id">
                     <div class="card-body">
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.name_ar')}}</label>
+                            <label class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.name')}}</label>
                             <div class="col-lg-8">
-                                <input type="text" required class="form-control" id="txt_name_ar" name="name_ar">
+                                <input type="text" required class="form-control" id="txt_name" name="name">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.name_en')}}</label>
+                            <label
+                                class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.expire_date')}}</label>
                             <div class="col-lg-8">
-                                <input type="text" required class="form-control" id="txt_name_en" name="name_en">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.related_to')}}</label>
-                            <div class="col-lg-8">
-                                <select required name="type" id="select_type" class="form-control form-control-lg">
-                                    <option value="far_learn">{{trans('s_admin.far_learn')}}</option>
-                                    <option value="mogmaa_dorr">{{trans('s_admin.mogmaa_dorr')}}</option>
-                                </select>
+                                <input type="date" required class="form-control" id="txt_expire_date" name="expire_date">
                             </div>
                         </div>
                     </div>
-
                     <div class="modal-footer">
                         <button type="submit"
                                 class="btn btn-primary font-weight-bold">{{trans('s_admin.edit')}}</button>
@@ -183,13 +173,15 @@
         var id;
         $(document).on('click', '#edit', function () {
             id = $(this).data('editid');
-            name_ar = $(this).data('name_ar');
-            name_en = $(this).data('name_en');
-            type = $(this).data('type');
+            name = $(this).data('name');
+            domain = $(this).data('domain');
+            database = $(this).data('database');
+            expire_date = $(this).data('expire_date');
             $('#txt_id').val(id);
-            $('#txt_name_ar').val(name_ar);
-            $('#txt_name_en').val(name_en);
-            $('#select_type').val(type);
+            $('#txt_name').val(name);
+            $('#txt_domain').val(domain);
+            $('#txt_database').val(database);
+            $('#txt_expire_date').val(expire_date);
         });
     </script>
 

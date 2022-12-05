@@ -36,7 +36,7 @@
                                     <li><a href="{{$settings_share->youtube}}"><i class="ti-youtube"></i></a></li>
                                 @endif
                                 @if($settings_share->linked_in  != null)
-                                    <li><a href="{{$settings_share->linked_in}}"><i class="ti-linkedin-in"></i></a></li>
+                                    <li><a href="{{$settings_share->linked_in}}"><i class="ti-linkedin"></i></a></li>
                                 @endif
                                 @if($settings_share->insta  != null)
                                     <li><a href="{{$settings_share->insta}}"><i class="ti-instagram"></i></a></li>

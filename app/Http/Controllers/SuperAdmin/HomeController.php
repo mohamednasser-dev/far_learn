@@ -4,7 +4,6 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Database;
-use App\Models\Level;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -56,8 +55,8 @@ class HomeController extends Controller
     {
         $data = Tenant::get();
         $used_databases = Tenant::get()->pluck('database')->toArray();
-        $databases = Database::whereNotIn('name',$used_databases)->get();
-        return view('super_admin.tenants.index', compact('data','databases'));
+        $databases = Database::whereNotIn('name', $used_databases)->get();
+        return view('super_admin.tenants.index', compact('data', 'databases'));
     }
 
     public function store(Request $request)
@@ -66,6 +65,19 @@ class HomeController extends Controller
         Tenant::create($data);
         Artisan::call('tenants:migrate --seed');
         Alert::success(trans('admin.add'), trans('admin.addedsuccess'));
+        return back();
+    }
+
+    public function update(Request $request)
+    {
+        $data = $this->validate(\request(),
+            [
+                'id' => 'required|exists:tenants,id',
+                'name' => 'required',
+                'expire_date' => 'required',
+            ]);
+        Tenant::where('id', $request->id)->update($data);
+        Alert::success(trans('admin.ok'), trans('s_admin.updated_s'));
         return back();
     }
 
@@ -89,21 +101,6 @@ class HomeController extends Controller
     public function edit($id)
     {
         //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
-    {
-        $data = $request->all();
-        Tenant::where('id', $request->id)->update($data);
-        Alert::success(trans('s_admin.update'), trans('s_admin.updted_s'));
-        return back();
     }
 
     /**

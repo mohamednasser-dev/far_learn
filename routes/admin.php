@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/change_colors', 'Admin\HomeController@change_colors')->name('admin.change_colors');
     Route::get('/tenants', 'SuperAdmin\HomeController@tenants')->name('tenants');
     Route::post('/tenants/store/new', 'SuperAdmin\HomeController@store')->name('tenants.store');
+    Route::post('/tenants/update', 'SuperAdmin\HomeController@update')->name('tenants.update');
     Route::get('/tenants/{id}/delete', 'SuperAdmin\HomeController@delete')->name('tenants.delete');
     Route::get('/notifications', 'Admin\HomeController@notifications')->name('notifications');
     Route::get('/notifications/change_readed/{id}', 'Admin\HomeController@notification_change_readed')->name('notification.change_readed');
