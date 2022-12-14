@@ -160,28 +160,27 @@
                 <div class="col-md-4"></div>
             </div>
             <div class="modal-body">
-                <div class="row">
+                <div class="row text-center">
                     <div class="col-md-6">
                         @if($settings_share->show_fixed_subject == '0')
-                            <a href="{{route('sign_up',['type'=> 'far_learn'])}}" class="thm-btn thm-bg"
+                            <a href="{{route('sign_up',['type'=> 'far_learn'])}}" class="theme-btn"
                                style="background-color: yellowgreen; width: 100%;">
-                                {{trans('admin.far_learn')}}
-                                <span></span><span></span><span></span><span></span> </a>
+                                {{trans('admin.far_learn')}}</a>
                         @else
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#far_learn_model"
-                               data-dismiss="modal" class="thm-btn thm-bg"
+                               data-dismiss="modal" class="theme-btn"
                                style="background-color: yellowgreen; width: 100%;">
                                 {{trans('admin.far_learn')}}
-                                <span></span><span></span><span></span><span></span> </a>
+                                 </a>
                         @endif
                     </div>
                     <div class="vertical" style="height: 50px;"></div>
                     @if($settings_share->show_mogmaa_dorr == '1')
                         <div class="col-md-6">
-                            <a href="{{route('sign_up',['type'=> 'mogmaa_dorr'])}}" class="thm-btn thm-bg"
+                            <a href="{{route('sign_up',['type'=> 'mogmaa_dorr'])}}" class="theme-btn"
                                style="background-color: blueviolet; width: 100%;" href="" title="">
                                 {{trans('s_admin.mogmaa_dorr')}}
-                                <span></span><span></span><span></span><span></span></a>
+                                </a>
                         </div>
                     @endif
                 </div>
@@ -205,19 +204,19 @@
                 <div class="row">
                     @if($settings_share->show_free_subject == '1')
                         <div class="col-md-6">
-                            <a href="{{route('sign_up',['type'=> 'far_learn'])}}" class="thm-btn thm-bg"
+                            <a href="{{route('sign_up',['type'=> 'far_learn'])}}" class="theme-btn"
                                style="background-color: yellowgreen; width: 100%;">
                                 {{trans('s_admin.free_far_learn')}}
-                                <span></span><span></span><span></span><span></span> </a>
+                                 </a>
                         </div>
                         <div class="vertical" style="height: 50px;"></div>
                     @endif
                     @if($settings_share->show_fixed_subject == '1')
                         <div class="col-md-6">
-                            <a href="javascript:void(0);" class="thm-btn thm-bg"
+                            <a href="javascript:void(0);" class="theme-btn"
                                style="background-color: blueviolet; width: 100%; font-size: 13px;" href="" title="">
                                 {{trans('s_admin.fixed_far_learn')}}
-                                <span></span><span></span><span></span><span></span></a>
+                                </a>
                         </div>
                     @endif
                 </div>
@@ -237,19 +236,19 @@
                 <div class="col-md-4"></div>
             </div>
             <div class="modal-body">
-                <div class="row">
+                <div class="row text-center">
                     <div class="col-md-6">
-                        <a href="{{route('sign_up',['type'=> 'teacher_far_learn'])}}" class="thm-btn thm-bg"
+                        <a href="{{route('sign_up',['type'=> 'teacher_far_learn'])}}" class="theme-btn"
                            style="background-color: yellowgreen; width: 100%;">
                             {{trans('admin.far_learn')}}
-                            <span></span><span></span><span></span><span></span> </a>
+                             </a>
                     </div>
                     @if($settings_share->show_mogmaa_dorr == '1')
                         <div class="col-md-6">
-                            <a href="{{route('sign_up',['type'=> 'teacher_mogmaa_dorr'])}}" class="thm-btn thm-bg"
+                            <a href="{{route('sign_up',['type'=> 'teacher_mogmaa_dorr'])}}" class="theme-btn"
                                style="background-color: blueviolet; width: 100%;" href="" title="">
                                 {{trans('s_admin.mogmaa_dorr')}}
-                                <span></span><span></span><span></span><span></span></a>
+                                </a>
                         </div>
                     @endif
                 </div>
