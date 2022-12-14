@@ -261,7 +261,7 @@ class EpisodeController extends Controller
         $data['type'] = $type;
         $final_from = date("H:i", strtotime($request->time_from));
         $final_to = date("H:i", strtotime($request->time_to));
-        if($final_from > $final_to){
+        if ($final_from > $final_to) {
             Alert::success('تحذير', 'يجب اختيار وقت الحلقة الى اكبر من وقت الحلقة من');
             return back();
         }
@@ -273,26 +273,28 @@ class EpisodeController extends Controller
             $data['cost'] = $request->money;
         }
         //Begin create zoom link ....
-        $path = 'users/me/meetings';
-        $response = $this->zoomPost($path, [
-            'topic' => $request->name_ar,
-            'type' => self::MEETING_TYPE_SCHEDULE,
-            'start_time' => $this->toZoomTimeFormat(Carbon::now()),
-            'duration' => 30,
-            'agenda' => $final_from,
-            'settings' => [
-                'host_video' => false,
-                'participant_video' => false,
-                'waiting_room' => true,
-            ]
-        ]);
-        $data['meeting_id'] = $response['id'];
-        $data['passcode'] = $response['password'];
-        $data['join_url'] = $response['join_url'];
+        if (env('APP_ENV') == 'production') {
+            $path = 'users/me/meetings';
+            $response = $this->zoomPost($path, [
+                'topic' => $request->name_ar,
+                'type' => self::MEETING_TYPE_SCHEDULE,
+                'start_time' => $this->toZoomTimeFormat(Carbon::now()),
+                'duration' => 30,
+                'agenda' => $final_from,
+                'settings' => [
+                    'host_video' => false,
+                    'participant_video' => false,
+                    'waiting_room' => true,
+                ]
+            ]);
+            $data['meeting_id'] = $response['id'];
+            $data['passcode'] = $response['password'];
+            $data['join_url'] = $response['join_url'];
+            $data['teacher_link'] = $response['join_url'];
+        }
         $data['topic'] = $request->name_ar;
         $data['start_time'] = Carbon::now();
         $data['agenda'] = $final_from;
-        $data['teacher_link'] = $response['join_url'];
         //End create zoom link ....
         $episode = Episode::create($data);
         $days = [];
@@ -416,8 +418,8 @@ class EpisodeController extends Controller
 
     public function join_request()
     {
-        $data = Episode_request::where('status', 'new')->orderBy('created_at','desc')->get();
-        $reject_data = Episode_request::where('status', 'rejected')->orderBy('created_at','desc')->get();
+        $data = Episode_request::where('status', 'new')->orderBy('created_at', 'desc')->get();
+        $reject_data = Episode_request::where('status', 'rejected')->orderBy('created_at', 'desc')->get();
         return view('admin.episodes.far_learn.join_request', compact('data', 'reject_data'));
     }
 
@@ -523,7 +525,7 @@ class EpisodeController extends Controller
             $input_student['title_ar'] = 'طلب اعادة تشغيل الحلقة';
             $input_student['title_en'] = 'Request to replay the class';
             $input_student['message_ar'] = 'تم قبول طلبك في الحلقة - ' . $episode_restart_request->Section->Episode->name_ar;
-            $input_student['message_en'] = 'Your request was accepted in the class - ' . $episode_restart_request->Section->Episode->name_en ;
+            $input_student['message_en'] = 'Your request was accepted in the class - ' . $episode_restart_request->Section->Episode->name_en;
             Notification::create($input_student);
             Alert::success(trans('s_admin.nav_restart_epo'), trans('s_admin.accepted_ss'));
             return back();
@@ -534,7 +536,7 @@ class EpisodeController extends Controller
             $input_student['title_ar'] = 'طلب اعادة تشغيل الحلقة';
             $input_student['title_en'] = 'Request to replay the class';
             $input_student['message_ar'] = 'لم يتم قبول طلبك في الحلقة - ' . $episode_restart_request->Section->Episode->name_ar;
-            $input_student['message_en'] = 'Your request was not accepted in the class - ' . $episode_restart_request->Section->Episode->name_en ;
+            $input_student['message_en'] = 'Your request was not accepted in the class - ' . $episode_restart_request->Section->Episode->name_en;
             Notification::create($input_student);
             Alert::success(trans('s_admin.nav_restart_epo'), trans('s_admin.rejected_ss'));
             return back();
@@ -575,7 +577,7 @@ class EpisodeController extends Controller
         $final_from = date("H:i", strtotime($request->time_from));
         $final_to = date("H:i", strtotime($request->time_to));
 
-        if($final_from > $final_to){
+        if ($final_from > $final_to) {
             Alert::success('تحذير', 'يجب اختيار وقت الحلقة الى اكبر من وقت الحلقة من');
             return back();
         }
@@ -593,7 +595,7 @@ class EpisodeController extends Controller
         }
         Episode::where('id', $request->id)->update($data);
         //Begin update episode course days ...
-        $time_from =  date("H:i:s", strtotime($request->time_from));
+        $time_from = date("H:i:s", strtotime($request->time_from));
         if ($time_from != $epo->time_from) {
             foreach ($epo->Dates as $row) {
                 //to generate starting date ...

@@ -324,11 +324,13 @@ class StudentSettingsController extends Controller
                 $real_message = 'You have been rejected by the administration - Site  ' . $title . '  Website link here :  ' . env('APP_URL');
             }
             //send mail message
-            Mail::raw($real_message, function ($message) use ($email, $title) {
-                $message->subject($title);
-                $message->from(env('MAIL_USERNAME'), 'online learning');
-                $message->to($email);
-            });
+            if (env('APP_ENV') == 'production') {
+                Mail::raw($real_message, function ($message) use ($email, $title) {
+                    $message->subject($title);
+                    $message->from(env('MAIL_USERNAME'), 'online learning');
+                    $message->to($email);
+                });
+            }
             //send sms message
             $this->SendSMS($phone, $real_message);
             Alert::success(trans('s_admin.join_orders'), trans('s_admin.rejected_s'));
@@ -354,11 +356,13 @@ class StudentSettingsController extends Controller
                     $real_message = 'You have been accepted into the site  ' . $title . '  Website link here :  ' . env('APP_URL');
                 }
                 //send mail message
-                Mail::raw($real_message, function ($message) use ($email, $title) {
-                    $message->subject($title);
-                    $message->from(env('MAIL_USERNAME'), 'online learning');
-                    $message->to($email);
-                });
+                if (env('APP_ENV') == 'production') {
+                    Mail::raw($real_message, function ($message) use ($email, $title) {
+                        $message->subject($title);
+                        $message->from(env('MAIL_USERNAME'), 'online learning');
+                        $message->to($email);
+                    });
+                }
                 //send sms message
                 $this->SendSMS($phone, $real_message);
                 Alert::success(trans('s_admin.join_orders'), trans('s_admin.accepted_s'));

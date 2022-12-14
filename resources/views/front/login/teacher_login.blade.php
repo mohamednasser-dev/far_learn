@@ -128,17 +128,17 @@
                                     <label>{{trans('admin.full_name')}}</label>
                                 </div>
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
-                                        <input type="text" class="form-control" name="first_name_ar" id="fname" required
+                                        <input type="text" class="form-control" name="first_name_ar" id="txt_f_name" required
                                                value="{{old('first_name_ar')}}"
                                                placeholder="{{trans('admin.first_name')}}">
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
-                                        <input type="text" class="form-control" name="mid_name_ar" id="fname" required
+                                        <input type="text" class="form-control" name="mid_name_ar" id="txt_m_name" required
                                                value="{{old('mid_name_ar')}}"
                                                placeholder="{{trans('admin.mid_name')}}">
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
-                                        <input type="email" class="form-control" name="last_name_ar" id="email" required
+                                        <input type="text" class="form-control" name="last_name_ar" id="txt_l_name" required
                                                value="{{old('last_name_ar')}}"
                                                placeholder="{{trans('admin.last_name')}}">
                                     </div>
@@ -1119,6 +1119,7 @@
                 }
             });
             allNextBtn.click(function () {
+                console.log('i click next button');
                 if ($(this).closest(".setup-content").attr("id") == 'step-1') {
                     var pw1 = $('#txt_pass').val();
                     var pw2 = $('#txt_con_pass').val();
@@ -1126,16 +1127,15 @@
                     var pc = $('#txt_p_c').val();
                     var pac = $('#txt_pa_c').val();
                     var parent_phone = $('#phone').val();
-                    if (ec != 'true') {
-                        alert("يجب التحقق من البريد الإلكتروني اولا !");
-                    } else if (pc != 'true') {
-                        alert("يجب التحقق من رقم الجوال أولا !");
-                    } else if (pac != 'true') {
-                        alert("يجب التحقق من رقم جوال ولي الامر أولا !");
-
-                    } else if (pw1 != pw2) {
-                        alert("كلمات المرور غير متطابقة");
-                    } else {
+                    // if (ec != 'true') {
+                    //     alert("يجب التحقق من البريد الإلكتروني اولا !");
+                    // } else if (pc != 'true') {
+                    //     alert("يجب التحقق من رقم الجوال أولا !");
+                    // } else if (pac != 'true') {
+                    //     alert("يجب التحقق من رقم جوال ولي الامر أولا !");
+                    // } else if (pw1 != pw2) {
+                    //     alert("كلمات المرور غير متطابقة");
+                    // } else {
                         var curStep = $(this).closest(".setup-content"),
                             curStepBtn = curStep.attr("id"),
                             nextStepWizard = $('div.setup-panel div a[secc="#' + curStepBtn + '"]').parent().next().children("a"),
@@ -1147,25 +1147,22 @@
                             if (!curInputs[i].validity.valid) {
                                 isValid = false;
                                 $(curInputs[i]).closest(".form-group").addClass("has-error");
+                                console.log(curInputs[i].id);
                                 if (curInputs[i].id == 'txt_f_name') {
                                     // alert('  تحقق من ادخال الاسم الاول');
                                     alert('{{trans('s_admin.first_name_req')}}');
                                 } else if (curInputs[i].id == 'txt_m_name') {
                                     // alert('تحقق من ادخال الاسم الاوسط');
                                     alert('{{trans('s_admin.mide_name_req')}}');
-
                                 } else if (curInputs[i].id == 'txt_l_name') {
                                     // alert('تحقق من ادخال الاسم الاخير');
                                     alert('{{trans('s_admin.last_name_req')}}');
-
                                 } else if (curInputs[i].id == 'txt_unique_name') {
                                     // alert('تحقق من ادخال اسم المستخدم ');
                                     alert('{{trans('s_admin.user_name_req')}}');
-
                                 } else if (curInputs[i].id == 'txt_email') {
                                     // alert('تحقق من ادخال البريد الالكتروني بطريقة صحيحة ');
                                     alert('{{trans('s_admin.email_req')}}');
-
                                 } else if (curInputs[i].id == 'txt_pass') {
                                     // alert('تحقق من ادخال كلمة المرور على الاقل 8 حروف   ');
                                     alert('{{trans('s_admin.eight_pass_req')}}');
@@ -1177,33 +1174,28 @@
                                 } else if (curInputs[i].id == 'txt_date') {
                                     // alert('تحقق من ادخال تاريخ الميلاد');
                                     alert('{{trans('s_admin.d_o_b_req')}}');
-
                                 } else if (curInputs[i].id == 'txt_ident_num') {
                                     // alert('تحقق من ادخال رقم الهوية    ');
                                     alert('{{trans('s_admin.ident_req')}}');
-
                                 } else if (curInputs[i].id == 'user_name') {
                                     // alert('تحقق من ادخال الاسم بالكامل    ');
                                     alert('{{trans('s_admin.full_name_req')}}');
-
                                 } else if (curInputs[i].id == 'phone') {
                                     // alert('تحقق من ادخال رقم الجوال    ');
                                     alert('{{trans('s_admin.phone2_req')}}');
-
-                                } else if (curInputs[i].id == 'home_phone') {
+                                }
+                                else if (curInputs[i].id == 'home_phone') {
                                     // alert('تحقق من ادخال جوال المنزل    ');
                                     alert('{{trans('s_admin.house_phone_req')}}');
-
                                 } else if (curInputs[i].id == 'address') {
                                     // alert('تحقق من ادخال العنوان    ');
                                     alert('{{trans('s_admin.address_req')}}');
                                 }
-
                                 break;
                             }
                         }
                         if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
-                    }
+                    // }
                 } else {
                     var curStep = $(this).closest(".setup-content"),
                         curStepBtn = curStep.attr("id"),

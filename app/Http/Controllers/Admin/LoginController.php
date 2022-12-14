@@ -309,7 +309,11 @@ class   LoginController extends Controller
             $data['mid_name_en'] = $request->mid_name_ar;
             $data['last_name_en'] = $request->last_name_ar;
             $data['user_name'] = $request->first_name_ar . " " . $request->mid_name_ar . " " . $request->last_name_ar;
-            $code = rand(1000, 9999);
+            if (env('APP_ENV') == 'production') {
+                $code = random_int(1000, 9999);
+            }else{
+                $code = 1234;
+            }
             if ($type == 'teacher_far_learn' || $type == 'teacher_mogmaa_dorr') {
                 //check if employee or teacher ...
                 if($request->job_name == 7){
@@ -421,7 +425,7 @@ class   LoginController extends Controller
                 $student = Student::create($data);
                 if ($student->save()) {
                     // save student history
-                    if ($request->level_id != null) {
+                    if ($request->level_id != null && $request->subject_id != null&& $request->subject_level_id != null ) {
                         $history_data['student_id'] = $student->id;
                         $history_data['level_id'] = $request->level_id;
                         $history_data['subject_id'] = $request->subject_id;
@@ -494,7 +498,7 @@ class   LoginController extends Controller
                 $student = Student::create($data);
                 $student->code = $code;
                 if ($student->save()) {
-                    if ($request->level_id != null) {
+                    if ($request->level_id != null && $request->subject_id != null && $request->subject_level_id != null ) {
                         $history_data['student_id'] = $student->id;
                         $history_data['level_id'] = $request->level_id;
                         $history_data['subject_id'] = $request->subject_id;
@@ -578,7 +582,11 @@ class   LoginController extends Controller
         $parent = Student_parent::create($data);
         $parent->save();
         if ($parent->save()) {
-            $code = rand(1000, 9999);
+            if (env('APP_ENV') == 'production') {
+                $code = random_int(1000, 9999);
+            }else{
+                $code = 1234;
+            }
             $student_data['code'] = $code;
             $student_data['parent_data'] = 'complete';
             Student::where('id', $request->student_id)->update($student_data);
@@ -681,7 +689,11 @@ class   LoginController extends Controller
         }
         if ($user != null) {
             if ($user->is_verified == '0') {
-                $code = rand(1000, 9999);
+                if (env('APP_ENV') == 'production') {
+                    $code = random_int(1000, 9999);
+                }else{
+                    $code = 1234;
+                }
                 $user->code = $code;
                 if ($user->save()) {
 //                    mail_here
@@ -741,9 +753,14 @@ class   LoginController extends Controller
         if ($user_phone) {
             $exists_phone = Phone_check::where('phone', $user_phone)->where('checked', 0)->first();
             if (!$exists_phone) {
+                if (env('APP_ENV') == 'production') {
+                    $code = rand('1000', '9999');
+                }else{
+                    $code = '1234';
+                }
                 //create new row
                 $data['phone'] = $user_phone;
-                $data['code'] = rand('1000', '9999');
+                $data['code'] = $code;
                 $phone_check = Phone_check::create($data);
                 if (app()->getLocale() == 'ar') {
                     $message = 'مقرأة عنيزة الإلكترونية , كود التحقق من الجوال هو : ' . $phone_check->code;
@@ -763,8 +780,12 @@ class   LoginController extends Controller
         $user_phone = $request->country_code . $request->phone;
         if ($user_phone) {
             $exists_phone = Phone_check::where('phone', $user_phone)->where('checked', 0)->first();
-            if ($exists_phone) {
+            if (env('APP_ENV') == 'production') {
                 $code = rand('1000', '9999');
+            }else{
+                $code = '1234';
+            }
+            if ($exists_phone) {
                 $exists_phone->code = $code;
                 $exists_phone->save();
                 //phone is resended before ...
@@ -778,7 +799,7 @@ class   LoginController extends Controller
             } else {
                 //create new row
                 $data['phone'] = $user_phone;
-                $data['code'] = rand('1000', '9999');
+                $data['code'] = $code;
                 $phone_check = Phone_check::create($data);
                 if (app()->getLocale() == 'ar') {
                     $message = 'مقرأة عنيزة الإلكترونية , كود التحقق من الجوال هو : ' . $phone_check->code;
@@ -816,9 +837,14 @@ class   LoginController extends Controller
         if ($user_phone) {
             $exists_phone = Phone_check::where('phone', $user_phone)->where('checked', 0)->first();
             if (!$exists_phone) {
+                if (env('APP_ENV') == 'production') {
+                    $code = rand('1000', '9999');
+                }else{
+                    $code = '1234';
+                }
                 //create new row
                 $data['phone'] = $user_phone;
-                $data['code'] = rand('1000', '9999');
+                $data['code'] = $code;
                 $phone_check = Phone_check::create($data);
                 if (app()->getLocale() == 'ar') {
                     $message = 'مقرأة عنيزة الإلكترونية , كود التحقق من الجوال هو : ' . $phone_check->code;
@@ -850,7 +876,11 @@ class   LoginController extends Controller
             $exists_email = Phone_check::where('phone', $email)->where('checked', 0)->first();
             if (!$exists_email) {
                 //create new row
-                $code = rand('1000', '9999');
+                if (env('APP_ENV') == 'production') {
+                    $code = rand('1000', '9999');
+                }else{
+                    $code = '1234';
+                }
                 $lang = app()->getLocale();
 
                 $data['phone'] = $email;
@@ -890,7 +920,11 @@ class   LoginController extends Controller
         if ($email) {
             $exists_email = Phone_check::where('phone', $email)->where('checked', 0)->first();
             if ($exists_email) {
-                $code = rand('1000', '9999');
+                if (env('APP_ENV') == 'production') {
+                    $code = rand('1000', '9999');
+                }else{
+                    $code = '1234';
+                }
                 $exists_email->code = $code;
                 $exists_email->save();
                 //email is resended before ...
@@ -915,9 +949,14 @@ class   LoginController extends Controller
 
                 return response(['status' => true]);
             } else {
+                if (env('APP_ENV') == 'production') {
+                    $code = rand('1000', '9999');
+                }else{
+                    $code = '1234';
+                }
                 //create new row
                 $data['phone'] = $email;
-                $data['code'] = rand('1000', '9999');
+                $data['code'] = $code;
                 $phone_check = Phone_check::create($data);
 
 //                $data_verify['code'] = $phone_check->code;

@@ -16,6 +16,7 @@ class RolesSeeder extends Seeder
     {
         $data = [
             [
+                'id' => 2,
                 'name' => 'مدير النظام',
                 'guard_name' => 'web',
             ]
