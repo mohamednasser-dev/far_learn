@@ -16,6 +16,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::get('/home', 'Admin\HomeController@index')->name('home');
     Route::post('/change_colors', 'Admin\HomeController@change_colors')->name('admin.change_colors');
+    Route::get('/change_colors/reset', 'Admin\HomeController@change_colors_reset')->name('admin.change_colors.reset');
     Route::get('/tenants', 'SuperAdmin\HomeController@tenants')->name('tenants');
     Route::post('/tenants/store/new', 'SuperAdmin\HomeController@store')->name('tenants.store');
     Route::post('/tenants/update', 'SuperAdmin\HomeController@update')->name('tenants.update');

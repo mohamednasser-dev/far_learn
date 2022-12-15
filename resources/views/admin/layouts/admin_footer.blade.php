@@ -133,7 +133,7 @@
 <div id="kt_demo_panel" class="offcanvas offcanvas-right p-10">
     <!--begin::Header-->
     <div class="offcanvas-header d-flex align-items-center justify-content-between pb-7">
-        <h4 class="font-weight-bold m-0">اختر من الالوان</h4>
+        <h4 class="font-weight-bold m-0">{{trans('s_admin.choose_from_colors')}}</h4>
         <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_demo_panel_close">
             <i class="ki ki-close icon-xs text-muted"></i>
         </a>
@@ -198,9 +198,9 @@
                             <label class="radio  radio-danger">
                                 <input type="radio" name="icon_color" value="svg-icon-danger"
                                        @if(auth()->user()->icon_color == 'svg-icon-danger' ) checked="checked"
-                                       @endif >
+                                    @endif >
                                 <span></span>{{trans('s_admin.danger_color')}}</label>
-                            <label class="radio radio-success" >
+                            <label class="radio radio-success">
                                 <input type="radio" name="icon_color" value="svg-icon-success"
                                        @if(auth()->user()->icon_color == 'svg-icon-success' ) checked="checked" @endif>
                                 <span></span>{{trans('s_admin.success_color')}}</label>
@@ -219,11 +219,16 @@
             </div>
             <!--end::Wrapper-->
             <!--begin::Purchase-->
-            <div class="offcanvas-footer">
-                <button type="submit"
-                        class="btn btn-block {{auth()->user()->button_color}} btn-shadow font-weight-bolder text-uppercase">{{trans('s_admin.save')}}</button>
+            <div class="offcanvas-footer row">
+                <div class="col-md-9">
+                    <button type="submit"
+                            class="btn btn-block {{auth()->user()->button_color}} btn-shadow font-weight-bolder text-uppercase">{{trans('s_admin.save')}}</button>
+                </div>
+                <div class="col-md-3">
+                    <a class="btn btn-secondary center"
+                       href="{{route('admin.change_colors.reset')}}">{{trans('s_admin.reset')}}</a>
+                </div>
             </div>
-
         </form>
         <!--end::Purchase-->
     </div>

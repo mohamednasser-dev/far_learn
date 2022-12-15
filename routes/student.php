@@ -7,6 +7,8 @@ Route::get('/student/logout', 'Student\HomeController@logout')->name('student_lo
 Route::group(['middleware' => ['student'], 'prefix' => "student", 'namespace' => "Student"], function () {
     Route::get('home', 'HomeController@index')->name('student_home');
     Route::post('/change_colors', 'HomeController@change_colors')->name('student.change_colors');
+    Route::get('/change_colors/reset', 'HomeController@change_colors_reset')->name('student.change_colors.reset');
+
     Route::resource('search', 'SearchController');
     Route::get('/search/episodes/search_epo', 'SearchController@store')->name('search.episodes');
     Route::get('/search/episode/join/{episode_id}', 'SearchController@join')->name('episode.join');

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Teacher;
+
 use App\Models\Plan_section_degree;
 use App\Models\Student;
 use Carbon\Carbon;
@@ -23,9 +24,9 @@ class HomeController extends Controller
         }
         session()->put('lang', $lang);
         \App::setLocale($lang);
-        $degree_count = Plan_section_degree::whereDate('created_at', Carbon::now())->where('teacher_id',auth::guard('teacher')->user()->id)->where('type','!=','absence')->get()->count();
+        $degree_count = Plan_section_degree::whereDate('created_at', Carbon::now())->where('teacher_id', auth::guard('teacher')->user()->id)->where('type', '!=', 'absence')->get()->count();
 
-        return view('teacher.home',compact('degree_count'));
+        return view('teacher.home', compact('degree_count'));
     }
 
     public function change_colors(Request $request)
@@ -42,40 +43,53 @@ class HomeController extends Controller
         return back();
     }
 
+    public function change_colors_reset()
+    {
+        $data['main_color'] = null;
+        $data['second_color'] = null;
+        $data['button_color'] = 'btn-success';
+        $data['icon_color'] = 'svg-icon-success';
+        Teacher::where('id', auth('teacher')->user()->id)->update($data);
+        Alert::success(trans('s_admin.colors'), trans('s_admin.color_changed_s'));
+        return back();
+    }
 
     public function profile()
     {
 
-        $data = Teacher::where('id',auth::guard('teacher')->user()->id)->first();
-        return view('teacher.profile.index',compact('data'));
-    }
-    public function change_pass()
-    {
-        $data = Teacher::where('id',auth::guard('teacher')->user()->id)->first();
-        return view('teacher.profile.index',compact('data'));
+        $data = Teacher::where('id', auth::guard('teacher')->user()->id)->first();
+        return view('teacher.profile.index', compact('data'));
     }
 
-    public function ChangePasswordTeacher(Request $request){
+    public function change_pass()
+    {
+        $data = Teacher::where('id', auth::guard('teacher')->user()->id)->first();
+        return view('teacher.profile.index', compact('data'));
+    }
+
+    public function ChangePasswordTeacher(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'password' => 'required|confirmed|min:8',
-            'curr_pass' => 'required' ,
+            'curr_pass' => 'required',
         ]);
 
         $pass = Teacher::find(Auth::guard('teacher')->id())->password;
-        if(\Hash::check($request->curr_pass, $pass) ){
-            $data =   Teacher::find(Auth::guard('teacher')->id());
+        if (\Hash::check($request->curr_pass, $pass)) {
+            $data = Teacher::find(Auth::guard('teacher')->id());
             $data->password = \Hash::make($request->password);
             $data->save();
             Alert::success(trans('s_admin.success'), "تم تغيير كلمة المرور بنجاح ");
 
-            return back()->with('message',trans('s_admin.pass_changed'));
+            return back()->with('message', trans('s_admin.pass_changed'));
 
-        }else{
-            Alert::error(trans('s_admin.error'),  "كلمة المرور الحالية غير صحيحة ");
+        } else {
+            Alert::error(trans('s_admin.error'), "كلمة المرور الحالية غير صحيحة ");
 
-            return back()->with('message','كلمة المرور الحالية غير صحيحة   ');
+            return back()->with('message', 'كلمة المرور الحالية غير صحيحة   ');
         }
     }
+
     public function update_profile(Request $request)
     {
         $input = $this->validate(\request(),
@@ -100,9 +114,9 @@ class HomeController extends Controller
         $input['first_name_en'] = $request->first_name_ar;
         $input['mid_name_en'] = $request->mid_name_ar;
         $input['last_name_en'] = $request->last_name_ar;
-        $data['user_name'] = $request->first_name_ar ." ".$request->mid_name_ar." ".$request->last_name_ar;
+        $data['user_name'] = $request->first_name_ar . " " . $request->mid_name_ar . " " . $request->last_name_ar;
 
-        $selected_date = $request->date_of_birth ;
+        $selected_date = $request->date_of_birth;
 
         if (session()->has('lang')) {
             session()->forget('lang');
@@ -121,7 +135,7 @@ class HomeController extends Controller
             $to_date = \Carbon\Carbon::parse($selected_date)->format('Y-m-d');
             $input['date_of_birth'] = $to_date;
         }
-        if($request->image != null){
+        if ($request->image != null) {
             $file = $request->file('image');
             $name = $file->getClientOriginalName();
             $ext = $file->getClientOriginalExtension();
@@ -130,7 +144,7 @@ class HomeController extends Controller
             $file->move(public_path('uploads/teachers'), $fileNewName);
             $input['image'] = $fileNewName;
         }
-        Teacher::where('id',auth::guard('teacher')->user()->id)->update($input);
+        Teacher::where('id', auth::guard('teacher')->user()->id)->update($input);
         Alert::success(trans('s_admin.personal_info'), trans('s_admin.proileupdated_s'));
         return back();
     }
@@ -138,7 +152,7 @@ class HomeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -149,7 +163,7 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -160,7 +174,7 @@ class HomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -171,8 +185,8 @@ class HomeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -183,7 +197,7 @@ class HomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -191,7 +205,8 @@ class HomeController extends Controller
         //
     }
 
-    public function logout(){
+    public function logout()
+    {
         $user = Auth::guard('teacher')->user();
         Auth::guard('teacher')->logout();
         return redirect('/');

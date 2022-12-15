@@ -3,6 +3,7 @@ return [
     //new
 
 
+    'choose_from_colors' => 'اختر من الالوان',
     'app_main_color' => 'اللون الاساسي',
     'app_second_color' => 'اللون الثانوي',
     'app_background_color' => 'لون الخلفية',
@@ -806,7 +807,7 @@ return [
     'day' => 'اليوم',
     'surah' => 'السورة',
     'aya_number' => 'رقم الاية',
-    'reset' => 'أعادة',
+    'reset' => 'إعادة',
     'the_new' => 'الجديد',
     'revision' => 'المراجعة',
     'save_quran_num' => 'عدد الأجزاء المحفوظة',

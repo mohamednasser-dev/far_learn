@@ -405,6 +405,17 @@ class HomeController extends Controller
         return back();
     }
 
+    public function change_colors_reset()
+    {
+        $data['main_color'] = null;
+        $data['second_color'] = null;
+        $data['button_color'] = 'btn-success';
+        $data['icon_color'] = 'svg-icon-success';
+        User::where('id', auth()->user()->id)->update($data);
+        Alert::success(trans('s_admin.colors'), trans('s_admin.color_changed_s'));
+        return back();
+    }
+
     public function update_pass(Request $request)
     {
         $validator = Validator::make($request->all(), [

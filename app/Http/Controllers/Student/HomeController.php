@@ -51,6 +51,17 @@ class HomeController extends Controller
         return back();
     }
 
+    public function change_colors_reset()
+    {
+        $data['main_color'] = null;
+        $data['second_color'] = null;
+        $data['button_color'] = 'btn-success';
+        $data['icon_color'] = 'svg-icon-success';
+        Student::where('id', auth('student')->user()->id)->update($data);
+        Alert::success(trans('s_admin.colors'), trans('s_admin.color_changed_s'));
+        return back();
+    }
+
     public function index()
     {
         $lang = auth::guard('student')->user()->main_lang;

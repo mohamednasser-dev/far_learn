@@ -10,6 +10,7 @@ Route::post('/teacher/episode/create/meetings/{id}', 'Zoom\MeetingController@tea
 Route::group(['middleware' => ['teacher'], 'prefix' => "teacher", 'namespace' => "Teacher"], function () {
     Route::get('home', 'HomeController@index')->name('teacher.home');
     Route::post('/change_colors', 'HomeController@change_colors')->name('teacher.change_colors');
+    Route::get('/change_colors/reset', 'HomeController@change_colors_reset')->name('teacher.change_colors.reset');
 
     // profile
     Route::get('profile', 'HomeController@profile')->name('teacher.profile');
