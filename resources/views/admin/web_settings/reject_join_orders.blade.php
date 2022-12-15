@@ -52,7 +52,7 @@
                             <span style="width: 250px;">
                                 <div class="d-flex align-items-center">
                                     <div class="symbol symbol-40 symbol-sm flex-shrink-0">
-                                        <img class="" src="{{$row->image}}" alt="photo">
+                                        <img class="" src="{{$row->image}}" alt="photo33">
                                     </div>
                                 </div>
                             </span>
@@ -157,7 +157,7 @@
                             <span style="width: 250px;">
                                 <div class="d-flex align-items-center">
                                     <div class="symbol symbol-40 symbol-sm flex-shrink-0">
-                                        <img class="" src="{{url('/')}}/uploads/students/{{$row->image}}" alt="photo">
+                                        <img class="" src="{{$row->image}}" alt="photo">
                                     </div>
                                 </div>
                             </span>
