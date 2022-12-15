@@ -66,7 +66,7 @@ public function cache()
             $type = 'users';
         } else if ($user = Student::where('email', '=', $request->email)->first()) {
             $type = 'students';
-        } else if ($user = Teacher::where('email', '=', email)->first()) {
+        } else if ($user = Teacher::where('email', '=', $request->email)->first()) {
             $type = 'teachers';
         } else {
             Alert::error(trans('s_admin.not_here'), trans('s_admin.no_user_here'));
