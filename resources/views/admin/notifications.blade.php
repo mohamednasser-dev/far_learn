@@ -29,29 +29,31 @@
                             </td>
                             <td>
                                 @if(app()->getLocale() == 'ar')
-                                    {{$row->title_ar}}
+                                    {!! $row->title_ar !!}
                                 @else
-                                    {{$row->title_en}}
+                                    {!! $row->title_en !!}
                                 @endif
                             </td>
                             <td>
                                 @if(app()->getLocale() == 'ar')
-                                    {{$row->message_ar}}
+                                    {!! $row->message_ar  !!}
                                 @else
-                                    {{$row->message_en}}
+                                    {!! $row->message_en !!}
                                 @endif
                             </td>
                             <td>
                                 @if($row->readed == '1')
-                                    <a href="{{route('notification.change_readed',$row->id)}}" data-toggle="tooltip" data-theme="dark"  title="{{trans('s_admin.readed')}}"
+                                    <a href="{{route('notification.change_readed',$row->id)}}" data-toggle="tooltip"
+                                       data-theme="dark" title="{{trans('s_admin.readed')}}"
                                        class="btn btn-icon btn-secondary btn-circle btn-sm mr-2">
                                         <i class="flaticon2-bell-4 text-success" aria-hidden='true'></i>
                                     </a>
                                 @else
-                                <a href="{{route('notification.change_readed',$row->id)}}" data-toggle="tooltip" data-theme="dark" title="{{trans('s_admin.un_readed')}}"
-                                   class="btn btn-icon btn-secondary btn-circle btn-sm mr-2">
-                                    <i class="flaticon2-bell-4 text-danger" aria-hidden='true'></i>
-                                </a>
+                                    <a href="{{route('notification.change_readed',$row->id)}}" data-toggle="tooltip"
+                                       data-theme="dark" title="{{trans('s_admin.un_readed')}}"
+                                       class="btn btn-icon btn-secondary btn-circle btn-sm mr-2">
+                                        <i class="flaticon2-bell-4 text-danger" aria-hidden='true'></i>
+                                    </a>
                                 @endif
 
                             </td>
