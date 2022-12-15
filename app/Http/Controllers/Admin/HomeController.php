@@ -151,19 +151,19 @@ class HomeController extends Controller
                 ->where('complete_data', '1')->whereYear('created_at', $year)
                 ->get();
 
-                $students_by_month = Student::where('is_new', 'accepted')->where('interview', 'y')->where('is_verified', '1')
-                    ->where('complete_data', '1')->whereYear('created_at', $year)
-                    ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
-                    ->groupby('year', 'month')
-                    ->get();
+            $students_by_month = Student::where('is_new', 'accepted')->where('interview', 'y')->where('is_verified', '1')
+                ->where('complete_data', '1')->whereYear('created_at', $year)
+                ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
+                ->groupby('year', 'month')
+                ->get();
 
             $exists_teachers = Teacher::where('is_new', 'accepted')->where('is_verified', '1')->whereYear('created_at', $year)
                 ->get();
 
-                $teachers_by_month = Teacher::where('is_new', 'accepted')->where('is_verified', '1')->whereYear('created_at', $year)
-                    ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
-                    ->groupby('year', 'month')
-                    ->get();
+            $teachers_by_month = Teacher::where('is_new', 'accepted')->where('is_verified', '1')->whereYear('created_at', $year)
+                ->select(DB::raw('count(id) as `data`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
+                ->groupby('year', 'month')
+                ->get();
 
         }
 
@@ -418,11 +418,11 @@ class HomeController extends Controller
 
     public function update_pass(Request $request)
     {
-
-        $validator = Validator::make($request->all(), [
-            'password' => 'required|string|min:6|confirmed',
-            'curr_pass' => 'required|string|min:6',
-        ]);
+        $data = $this->validate(\request(),
+            [
+                'password' => 'required|string|min:6|confirmed',
+                'curr_pass' => 'required|string|min:6',
+            ]);
         $pass = User::find(auth()->user()->id)->password;
         if (\Hash::check($request->curr_pass, $pass)) {
             $data = User::find(auth()->user()->id);
