@@ -15,7 +15,7 @@ class CreateStudentParentsTable extends Migration
     {
         Schema::create('student_parents', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
+            $table->string('user_name');
             $table->string('relation');
             $table->string('phone');
             $table->string('home_phone');
