@@ -418,9 +418,10 @@ class HomeController extends Controller
 
     public function update_pass(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
-            'password' => 'required|confirmed|min:8',
-            'curr_pass' => 'required',
+            'password' => 'required|string|min:6|confirmed',
+            'curr_pass' => 'required|string|min:6',
         ]);
         $pass = User::find(auth()->user()->id)->password;
         if (\Hash::check($request->curr_pass, $pass)) {

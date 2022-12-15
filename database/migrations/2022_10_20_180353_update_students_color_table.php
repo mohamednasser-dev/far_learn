@@ -14,8 +14,8 @@ class UpdateStudentsColorTable extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->string('main_color')->default('#1e1e2d');
-            $table->string('second_color')->default('#ffffff');
+            $table->string('main_color')->nullable();
+            $table->string('second_color')->nullable();
             $table->string('button_color')->default('btn-success');
             $table->string('icon_color')->default('svg-icon-success');
         });

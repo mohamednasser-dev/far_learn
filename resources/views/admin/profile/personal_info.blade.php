@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-toolbar">
                     <button type="submit" class="btn btn-success mr-2">{{trans('s_admin.save_changes')}}</button>
-                    <button type="reset" class="btn btn-secondary">{{trans('s_admin.cancel')}}</button>
+{{--                    <button type="reset" class="btn btn-secondary">{{trans('s_admin.cancel')}}</button>--}}
                 </div>
             </div>
             <div class="card-body">

@@ -482,7 +482,7 @@ return [
     'basic_with_dorr' => 'حسب الدور',
     'basic_with_epo' => 'حسب الحلقة',
     'choose_district' => 'اختر منطقة',
-    'sign_up_reports' => 'أحصائيات التسجيل في المقرأة',
+    'sign_up_reports' => 'إحصائيات التسجيل في المقرأة',
     'not_rated' => 'لم يتم التقييم',
     'should_select_Star' => 'يجب اختيار التقييم اولا',
     'rate_s' => 'تم التقييم بنجاح',
