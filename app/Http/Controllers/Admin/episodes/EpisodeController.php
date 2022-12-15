@@ -349,13 +349,13 @@ class EpisodeController extends Controller
 
     public function get_subjects(Request $request, $id)
     {
-        $data = Subject::where('level_id', $id)->get();
+        $data = Subject::where('level_id', $id)->where('deleted','0')->get();
         return view('admin.episodes.parts.subjectOptions', compact('data'));
     }
 
     public function get_subject_levels(Request $request, $id)
     {
-        $data = Subject_level::where('subject_id', $id)->get();
+        $data = Subject_level::where('subject_id', $id)->where('deleted','0')->get();
         return view('admin.episodes.parts.subject_levelsOptions', compact('data'));
     }
 

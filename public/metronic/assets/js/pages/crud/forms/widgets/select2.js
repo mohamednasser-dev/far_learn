@@ -44,6 +44,14 @@ var KTSelect2 = function() {
             placeholder: "",
 
         });
+        $('#kt_select2_7').select2({
+            placeholder: "",
+
+        });
+        $('#kt_select2_8').select2({
+            placeholder: "",
+
+        });
         $('#kt_select2_66').select2({
             placeholder: "",
 
@@ -118,12 +126,12 @@ var KTSelect2 = function() {
 
         // disabled mode
         $('#kt_select2_7').select2({
-            placeholder: "Select an option"
+
         });
 
         // disabled results
         $('#kt_select2_8').select2({
-            placeholder: "Select an option"
+
         });
 
         // limiting the number of selections

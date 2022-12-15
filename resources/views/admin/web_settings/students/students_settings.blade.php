@@ -299,9 +299,9 @@
                                         class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.country_now')}}</label>
                                     <div class="col-lg-8">
                                         @php $countries_now = App\Models\Country::where('deleted','0')->get(); @endphp
-                                        <select required name="country" id="cmb_country"
-                                                class="form-control form-control-lg">
-                                            <option value="" selected>{{trans('s_admin.choose_country_now')}}</option>
+                                        <select required name="country" id="kt_select2_1" style="width: 100%"
+                                                class="form-control form-control-lg select2">
+                                            <option disabled selected>{{trans('s_admin.choose_country_now')}}</option>
                                             @foreach($countries_now as $row)
                                                 <option value="{{$row->id}}" @if(old('country') == $row->id) selected @endif>{{$row->name}}</option>
                                             @endforeach
@@ -314,8 +314,8 @@
                                             class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.zones')}}</label>
                                         <div class="col-lg-8">
                                             @php $zones = App\Models\Zone::where('deleted','0')->get(); @endphp
-                                            <select required name="zone_id" id="cmb_zones"
-                                                    class="form-control form-control-lg">
+                                            <select required name="zone_id" id="kt_select2_5" style="width: 100%"
+                                                    class="form-control form-control-lg select2">
                                                 <option value="">{{trans('s_admin.choose_zone')}}</option>
                                                 @foreach($zones as $row)
                                                     <option value="{{$row->id}}" @if(old('zone_id') == $row->id) selected @endif>{{$row->name}}</option>
@@ -328,8 +328,8 @@
                                             class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.city')}}</label>
                                         <div class="col-lg-8">
                                             @php $cities = App\Models\City::where('deleted','0')->get(); @endphp
-                                            <select required name="city_id" id="cmb_cities"
-                                                    class="form-control form-control-lg">
+                                            <select required name="city_id" id="kt_select2_7" style="width: 100%"
+                                                    class="form-control form-control-lg select2">
                                                 <option value="">{{trans('s_admin.choose_city')}}</option>
                                                 @foreach($cities as $row)
                                                     <option value="{{$row->id}}" @if(old('city_id') == $row->id) selected @endif>{{$row->name}}</option>
@@ -342,8 +342,8 @@
                                             class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.district_S')}}</label>
                                         <div class="col-lg-8">
                                             @php $district = App\Models\District::where('deleted','0')->get(); @endphp
-                                            <select required name="district_id" id="cmb_districts"
-                                                    class="form-control form-control-lg">
+                                            <select required name="district_id" id="kt_select2_8" style="width: 100%"
+                                                    class="form-control form-control-lg select2">
                                                 <option value="" >{{trans('s_admin.choose_district')}}</option>
                                                 @foreach($district as $row)
                                                     <option value="{{$row->id}}" @if(old('district_id') == $row->id) selected @endif>{{$row->name}}</option>
@@ -414,8 +414,8 @@
                                         class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.qualification')}}</label>
                                     <div class="col-lg-8">
                                         @php $qualifications = \App\Models\Qualification::where('deleted','0')->get(); @endphp
-                                        <select id="txt_qualification" name="qualification" required
-                                                class="form-control custom-select">
+                                        <select id="kt_select2_2" style="width: 100%" name="qualification" required
+                                                class="form-control custom-select select2">
                                             @foreach($qualifications as $row)
                                                 <option value="{{$row->id}}" @if(old('qualification') == $row->id) selected @endif>
                                                     @if(app()->getLocale() == 'ar')
@@ -433,7 +433,7 @@
                                         class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.nationality')}}</label>
                                     <div class="col-lg-8">
                                         @php $nationalities = \App\Models\Nationality::where('deleted','0')->get(); @endphp
-                                        <select id="txt_nationality" name="nationality" required
+                                        <select id="kt_select2_3" style="width: 100%" name="nationality" required
                                                 class="form-control custom-select">
                                             @foreach($nationalities as $row)
                                                 <option value="{{$row->id}}" @if(old('nationality') == $row->id) selected @endif>
@@ -564,7 +564,7 @@
 @endsection
 @section('scripts')
     <script>
-        $('#cmb_country').change(function () {
+        $('#kt_select2_1').change(function () {
             var level = $(this).val();
             $.ajax({
                 url: "/get_zones/" + level,
@@ -573,13 +573,13 @@
                 success: function (data) {
                     $('#zones_cont').show();
                     $('#lbl_zones_cont').show();
-                    $('#cmb_zones').html(data);
+                    $('#kt_select2_5').html(data);
                 }
             });
         });
 
 
-        $('#cmb_zones').change(function () {
+        $('#kt_select2_5').change(function () {
             var subject = $(this).val();
             $.ajax({
                 url: "/get_cities/" + subject,
@@ -587,12 +587,12 @@
                 type: 'get',
                 success: function (data) {
                     $('#city_cont').show(data);
-                    $('#cmb_cities').html(data);
+                    $('#kt_select2_7').html(data);
                 }
             });
         });
 
-        $('#cmb_cities').change(function () {
+        $('#kt_select2_7').change(function () {
             var level = $(this).val();
             $.ajax({
                 url: "/get_districts/" + level,
@@ -600,7 +600,7 @@
                 type: 'get',
                 success: function (data) {
                     $('#districts_cont').show();
-                    $('#cmb_districts').html(data);
+                    $('#kt_select2_8').html(data);
                 }
             });
         });

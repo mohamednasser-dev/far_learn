@@ -1,12 +1,12 @@
 @if(app()->getLocale() =='ar')
-    <option>اختر الطالب</option>
+    <option  disabled selected >اختر الطالب</option>
     @forelse($data as $row)
         <option value="{{$row->id}}">{{$row->user_name}}</option>
     @empty
         <option disabled selected=""> لا يوجد طلاب بالحلقة المختاره</option>
     @endforelse
 @else
-    <option>choose student</option>
+    <option  disabled selected >choose student</option>
     @forelse($data as $row)
         <option value="{{$row->id}}">{{$row->user_name}}</option>
     @empty

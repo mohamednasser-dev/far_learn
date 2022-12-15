@@ -3,6 +3,7 @@ return [
     //new
 
 
+    'edit_what_his_limit_save' => 'تعديل القدرة على الحفظ',
     'choose_from_colors' => 'اختر من الالوان',
     'app_main_color' => 'اللون الاساسي',
     'app_second_color' => 'اللون الثانوي',
@@ -255,7 +256,7 @@ return [
     'episode_teachers' => 'معلمين الحلقة',
     'study_year' => 'السنه الدراسية',
     'country_now' => 'الدولة',
-    'choose_country_now' => 'اختر دولة',
+    'choose_country_now' => 'اختر الدولة',
     'current_requests' => 'الطلبات الحالية',
     'episode_exists_to_student' => 'تم التسكين في الحلقة',
     'rejected_requests' => 'الطلبات المرفوضة',

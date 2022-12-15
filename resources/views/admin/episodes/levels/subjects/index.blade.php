@@ -129,7 +129,7 @@
                         <div class="form-group row">
                             <label class="col-lg-5 col-form-label text-lg-right">{{trans('s_admin.surah')}}</label>
                             <div class="col-lg-7">
-                                <select name="from_surah_id" required class="form-control select2" id="kt_select2_4">
+                                <select name="from_surah_id" required class="form-control select2" style="width: 100%" id="kt_select2_4">
                                     <option selected>{{trans('s_admin.choose_surah')}}</option>
                                     @foreach($surah as $row)
                                         <option value="{{$row->id}}">
@@ -155,7 +155,7 @@
                         <div class="form-group row">
                             <label class="col-lg-5 col-form-label text-lg-right">{{trans('s_admin.surah')}}</label>
                             <div class="col-lg-7">
-                                <select name="to_surah_id" required class="form-control select2" id="kt_select2_5">
+                                <select name="to_surah_id" required class="form-control select2" style="width: 100%" id="kt_select2_5">
                                     <option selected>{{trans('s_admin.choose_surah')}}</option>
                                     @foreach($surah as $row)
                                         <option value="{{$row->id}}">
@@ -238,7 +238,7 @@
                         <div class="form-group row">
                             <label class="col-lg-5 col-form-label text-lg-right">{{trans('s_admin.surah')}}</label>
                             <div class="col-lg-7">
-                                <select name="from_surah_id" required class="form-control select2" id="kt_select2_2">
+                                <select name="from_surah_id" required class="form-control select2" style="width: 100%" id="kt_select2_2">
                                     <option selected>{{trans('s_admin.choose_surah')}}</option>
                                     @foreach($surah as $row)
                                         <option value="{{$row->id}}">
@@ -264,8 +264,8 @@
                         <div class="form-group row">
                             <label class="col-lg-5 col-form-label text-lg-right">{{trans('s_admin.surah')}}</label>
                             <div class="col-lg-7">
-                                <select name="to_surah_id" id="kt_select2_1" va required
-                                        class="form-control form-control-lg">
+                                <select name="to_surah_id" id="kt_select2_1"  style="width: 100%" required
+                                        class="form-control form-control-lg select2">
                                     <option selected>{{trans('s_admin.choose_surah')}}</option>
                                     @foreach($surah as $row)
                                         <option value="{{$row->id}}">

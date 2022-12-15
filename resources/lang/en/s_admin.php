@@ -1,5 +1,15 @@
-<?php
+ <?php
 return [
+
+    'edit_what_his_limit_save' => 'edit ability to save',
+    'choose_from_colors' => 'choose from colours',
+    'app_main_color' => 'main color',
+    'app_second_color' => 'Secondary colour',
+    'app_background_color' => 'Background color',
+    'app_button_color' => 'Button color',
+    'app_font_light_color' => 'Light font colour',
+    'app_font_dark_color' => 'dark font colour',
+    'app_icon_color' => 'icon color',
     'app_color' => 'application_color',
     'color_changed_s' => 'Colors changed successfully',
     'button_color' => 'buttons color',

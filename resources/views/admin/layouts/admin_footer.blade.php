@@ -362,6 +362,8 @@
     $('#kt_select2_4').select2({});
     $('#kt_select2_5').select2({});
     $('#kt_select2_6').select2({});
+    $('#kt_select2_7').select2({});
+    $('#kt_select2_8').select2({});
     $('#kt_select2_66').select2({});
 </script>
 <script src="{{ asset('metronic/assets/js/pages/crud/forms/widgets/select2.js')}}"></script>
