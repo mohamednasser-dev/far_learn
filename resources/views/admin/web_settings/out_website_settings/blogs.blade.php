@@ -66,7 +66,7 @@
                         <td>{{$blog->title_ar}}</td>
                         <td>{{$blog->title_en}}</td>
                         <td>{{$blog->created_at->format('Y-m-d')}}</td>
-                        <td class="text-right">
+                        <td class="text-center">
                             <a class="btn btn-icon btn-primary btn-circle btn-sm mr-2"
                                data-editid="{{$blog->id}}" data-desc_ar="{{$blog->desc_ar}}" data-image="{{$blog->image}}"
                                data-desc_en="{{$blog->desc_en}}" data-name_ar="{{$blog->title_ar}}" data-name_en="{{$blog->title_en}}" id="edit"
@@ -115,35 +115,43 @@
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.title_ar')}}</label>
                                 <div class="col-lg-8">
-                                    <input type="text" required class="form-control" placeholder="Enter full name" name="title_ar">
+                                    <input type="text" required class="form-control"  name="title_ar">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.title_en')}}</label>
                                 <div class="col-lg-8">
-                                    <input type="text" required class="form-control" placeholder="Enter full name" name="title_en">
+                                    <input type="text" required class="form-control"  name="title_en">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.desc_ar')}}</label>
                                 <div class="col-lg-8">
-                                    <textarea name="desc_ar" required class="form-control" id="exampleTextarea" rows="3" placeholder="Please enter your message"></textarea>
+                                    <textarea name="desc_ar" required class="form-control" id="exampleTextarea" rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.desc_ar')}}</label>
                                 <div class="col-lg-8">
-                                    <textarea name="desc_en" required class="form-control" id="exampleTextarea" rows="3" placeholder="Please enter your message"></textarea>
+                                    <textarea name="desc_en" required class="form-control" id="exampleTextarea" rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.image')}}</label>
                                 <div class="col-lg-8">
                                     <div class="uppy" id="kt_uppy_5">
-                                        <div class="uppy-wrapper"><div class="uppy-Root uppy-FileInput-container"><input class="uppy-FileInput-input uppy-input-control" style="" type="file" name="image" multiple="" id="kt_uppy_5_input_control"><label class="uppy-input-label btn btn-light-primary btn-sm btn-bold" for="kt_uppy_5_input_control">{{trans('s_admin.choose_file')}}</label></div></div>
+                                        <div class="uppy-wrapper">
+                                            <div class="uppy-Root uppy-FileInput-container">
+                                                <input required class="uppy-FileInput-input uppy-input-control" style="" type="file" name="image" multiple="" id="kt_uppy_5_input_control">
+                                                <label class="uppy-input-label btn btn-light-primary btn-sm btn-bold" for="kt_uppy_5_input_control">
+                                                    {{trans('s_admin.choose_file')}}</label>
+                                            </div>
+                                        </div>
                                         <div class="uppy-list"></div>
-                                        <div class="uppy-status"><div class="uppy-Root uppy-StatusBar is-waiting" aria-hidden="true"><div class="uppy-StatusBar-progress
-                           " style="width: 0%;" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div><div class="uppy-StatusBar-actions"></div></div></div>
+                                        <div class="uppy-status"><div class="uppy-Root uppy-StatusBar is-waiting" aria-hidden="true">
+                                                <div class="uppy-StatusBar-progress
+                           " style="width: 0%;" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+                                                <div class="uppy-StatusBar-actions"></div></div></div>
                                         <div class="uppy-informer uppy-informer-min"><div class="uppy uppy-Informer" aria-hidden="true"><p role="alert"> </p></div></div>
                                     </div>
                                 </div>

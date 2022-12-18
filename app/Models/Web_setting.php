@@ -27,7 +27,7 @@ class Web_setting extends Model
 
     public function getAddressAttribute()
     {
-        if ($locale = \app()->getLocale() == "ar") {
+        if (\app()->getLocale() == "ar") {
             return $this->address_ar;
         } else {
             return $this->address_en;
@@ -35,7 +35,7 @@ class Web_setting extends Model
     }
     public function getLogoAttribute()
     {
-        if ($locale = \app()->getLocale() == "ar") {
+        if (\app()->getLocale() == "ar") {
             return $this->logo_ar;
         } else {
             return $this->logo_en;
@@ -43,7 +43,7 @@ class Web_setting extends Model
     }
     public function getTermsAttribute()
     {
-        if ($locale = \app()->getLocale() == "ar") {
+        if (\app()->getLocale() == "ar") {
             return $this->terms_ar;
         } else {
             return $this->terms_en;

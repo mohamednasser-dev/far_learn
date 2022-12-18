@@ -22,7 +22,7 @@ class Slider extends Model
 
     public function getTitleAttribute()
     {
-        if ($locale = \app()->getLocale() == "ar") {
+        if (\app()->getLocale() == "ar") {
             return $this->title_ar;
         } else {
             return $this->title_en;
@@ -30,7 +30,7 @@ class Slider extends Model
     }
     public function getDescriptionAttribute()
     {
-        if ($locale = \app()->getLocale() == "ar") {
+        if (\app()->getLocale() == "ar") {
             return $this->desc_ar;
         } else {
             return $this->desc_en;

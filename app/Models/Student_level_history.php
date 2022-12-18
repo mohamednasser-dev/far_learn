@@ -13,7 +13,7 @@ class Student_level_history extends Model
     protected $appends = ['notes'];
     public function getNotesAttribute()
     {
-        if ($locale = \app()->getLocale() == "ar") {
+        if (\app()->getLocale() == "ar") {
             return $this->notes_ar ;
         } else {
             return $this->notes_en;

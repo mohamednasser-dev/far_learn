@@ -27,7 +27,7 @@ class Admin_notification extends Model
     protected $appends = ['title','message'];
     public function getTitleAttribute()
     {
-        if ($locale = \app()->getLocale() == "ar") {
+        if (\app()->getLocale() == "ar") {
             return $this->title_ar ;
         } else {
             return $this->title_en;
@@ -35,7 +35,7 @@ class Admin_notification extends Model
     }
     public function getMessageAttribute()
     {
-        if ($locale = \app()->getLocale() == "ar") {
+        if (\app()->getLocale() == "ar") {
             return $this->message_ar ;
         } else {
             return $this->message_en;

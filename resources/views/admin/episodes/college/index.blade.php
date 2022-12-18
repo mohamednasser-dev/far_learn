@@ -140,7 +140,7 @@
                                 @endif
                             </label>
                             <div class="col-lg-8">
-                                <select name="teacher_id" class="form-control select2" id="kt_select2_4">
+                                <select name="teacher_id" class="form-control select2" style="width: 100%" id="kt_select2_4">
                                     @foreach($teachers as $row)
                                         @if(app()->getLocale() == 'ar')
                                             <option value="{{$row->id}}">{{$row->first_name_ar}}
@@ -156,7 +156,7 @@
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.time')}}</label>
                             <div class="col-lg-8">
-                                <select class="form-control select2" id="kt_select2_10" name="mogmaa_time"  data-select2-id="kt_select2_10" tabindex="-1" aria-hidden="true">
+                                <select class="form-control select2" id="kt_select2_10" style="width: 100%" name="mogmaa_time"  data-select2-id="kt_select2_10" tabindex="-1" aria-hidden="true">
                                     <option value="fajr" selected >{{trans('s_admin.fajr')}}</option>
                                     <option value="morning">{{trans('s_admin.morning')}}</option>
                                     <option value="dhuhr">{{trans('s_admin.dhuhr')}}</option>
@@ -171,7 +171,7 @@
                                 class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.type')}}</label>
                             <div class="col-lg-8">
                                 <div class="col-9 col-form-label">
-                                    <div class="radio-list">
+                                    <div class="radio-list" style="width: 244px;">
                                         @foreach($levels as $row)
                                                 <label class="radio">
                                                     <input type="radio" value="{{$row->id}}" name="mogmaa_type">

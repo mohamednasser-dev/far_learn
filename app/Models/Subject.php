@@ -26,4 +26,14 @@ class Subject extends Model
     {
         return $this->belongsTo(Plan_surah::class, 'to_surah_id');
     }
+
+    protected $appends = ['name'];
+    public function getNameAttribute()
+    {
+        if (\app()->getLocale() == "ar") {
+            return $this->name_ar ;
+        } else {
+            return $this->name_en;
+        }
+    }
 }

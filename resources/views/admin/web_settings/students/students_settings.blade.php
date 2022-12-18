@@ -33,7 +33,8 @@
 
                 @if( request()->segment(2) != 'new_join' && Route::current()->getName() != 'students.new')
                     <a data-toggle="modal" data-target="#add_new_student"
-                       class="btn {{auth()->user()->button_color}} px-6 font-weight-bold">{{trans('s_admin.add_new_student')}}</a>
+                       class="btn {{auth()->user()->button_color}} px-6 font-weight-bold">
+                        <i class="flaticon2-plus"></i>{{trans('s_admin.add_new_student')}}</a>
                 @endif
                 {{--                    @endcan--}}
             </div>

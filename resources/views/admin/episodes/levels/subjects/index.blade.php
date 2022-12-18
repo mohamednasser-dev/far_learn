@@ -96,7 +96,6 @@
                 </div>
                 <div class="modal-body">
                     {{ Form::open( ['route' =>'subjects.store','method'=>'post', 'files'=>'true'] ) }}
-                    {{ csrf_field() }}
                     <input type="hidden" required class="form-control" name="level_id" value="{{$id}}">
                     <div class="card-body">
                         <div class="form-group row">
@@ -203,7 +202,6 @@
                 </div>
                 <div class="modal-body">
                     {{ Form::open( ['route' =>'subjects.update_new','method'=>'post', 'files'=>'true'] ) }}
-                    {{ csrf_field() }}
                     <input type="hidden" required class="form-control" id="txt_id" name="id">
                     <div class="card-body">
                         <div class="form-group row">

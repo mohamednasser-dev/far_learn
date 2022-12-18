@@ -19,7 +19,7 @@ class BlogsController extends Controller
     {
         $data = $this->validate(\request(),
             [
-                'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,bmp',
+                'image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp',
                 'title_ar' => 'required',
                 'title_en' => 'required',
                 'desc_ar' => 'required',

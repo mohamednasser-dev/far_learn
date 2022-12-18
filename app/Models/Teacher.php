@@ -90,7 +90,7 @@ class Teacher extends Authenticatable
 
     public function getNameAttribute()
     {
-        if ($locale = \app()->getLocale() == "ar") {
+        if (\app()->getLocale() == "ar") {
             return $this->first_name_ar . " " . $this->mid_name_ar . " " . $this->last_name_ar;
         } else {
             return $this->first_name_en . " " . $this->mid_name_en . " " . $this->last_name_en;

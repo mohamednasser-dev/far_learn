@@ -33,11 +33,9 @@
         .table thead td, .table thead th {
             font-weight: bold;
         }
-
     </style>
-    {{--    <link rel="stylesheet" href="{{url('/')}}/build/css/intlTelInput.css">--}}
-    {{--    <link rel="stylesheet" href="{{url('/')}}/build/css/demo.css">--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.8/css/intlTelInput.css"/>
+    <link href="{{url('/')}}/hijri/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
 @endsection
 @section('content')
     <!--begin::Card-->
@@ -284,10 +282,19 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label
+                                class="col-lg-4 col-form-label text-lg-right">{{trans('admin.date_of_birth')}}</label>
+                            <div class="col-lg-8">
+                                <input id="txt_date" value="{{old('date_of_birth')}}" type="text" required
+                                       name="date_of_birth"
+                                       class="form-control hijri-date-input">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-lg-4 col-form-label text-lg-right">{{trans('admin.main_lang')}}</label>
                             <div class="col-lg-8">
                                 <select id="txt_lang" class="form-control custom-select" required name="main_lang">
-                                    <option>{{trans('s_admin.choose_language')}}</option>
+                                    <option disabled selected >{{trans('s_admin.choose_language')}}</option>
                                     <option value="en" @if(old('main_lang') == 'en') selected @endif >English</option>
                                     <option value="ar" @if(old('main_lang') == 'ar') selected @endif >العربية</option>
                                 </select>
@@ -302,6 +309,53 @@
                                     <option value="female"
                                             @if(request()->segment(2) == 'dorr'  || old('main_lang') == 'female') selected
                                             @elseif(request()->segment(2) == 'mogmaa') disabled @endif >{{trans('admin.female')}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label text-right col-lg-4 col-sm-12">{{trans('admin.country')}}</label>
+                            <div class="col-lg-8">
+                                <select id="kt_select2_1" name="country" required class="form-control custom-select" style="width: 100%" >
+                                    <option>{{trans('s_admin.choose_country')}}</option>
+                                    @foreach(App\Models\Country::where('deleted','0')->get() as $row)
+                                            <option value="{{$row->id}}">{{$row->name}}</option>
+
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label text-right col-lg-4 col-sm-12">{{trans('s_admin.nationality')}}</label>
+                            <div class="col-lg-8">
+                                <select id="kt_select2_3" name="nationality" required class="form-control custom-select" style="width: 100%" >
+                                    <option disabled selected >{{trans('s_admin.choose_nationality')}}</option>
+                                    @foreach(App\Models\Nationality::where('deleted','0')->get() as $row)
+                                        <option value="{{$row->id}}">{{$row->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label
+                                class="col-form-label text-right col-lg-4 col-sm-12">{{trans('s_admin.qualification')}}</label>
+                            <div class="col-lg-8">
+                                <select id="kt_select2_2" name="qualification" required class="form-control custom-select" style="width: 100%" >
+                                    <option disabled selected >{{trans('s_admin.choose_qualification')}}</option>
+                                    @foreach(App\Models\Qualification::where('deleted','0')->get() as $row)
+                                            <option value="{{$row->id}}">{{$row->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label text-right col-lg-4 col-sm-12">{{trans('admin.job_name')}}</label>
+                            <div class="col-lg-8">
+                                <select id="kt_select2_4" name="job_name" required class="form-control custom-select seelect2" style="width: 100%" >
+                                <option disabled selected > {{ trans('s_admin.choose_Job_name')}} </option>
+                                @foreach(\App\Models\Job_name::where('deleted','0')->get() as $row)
+                                            <option value="{{$row->id}}">{{$row->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -342,6 +396,51 @@
     </div>
 @endsection
 @section('scripts')
+    {{--    for date of birth--}}
+    <script src="{{url('/')}}/hijri/js/bootstrap.js"></script>
+    <script src="{{url('/')}}/hijri/js/momentjs.js"></script>
+    <script src="{{url('/')}}/hijri/js/moment-with-locales.js"></script>
+    <script src="{{url('/')}}/hijri/js/moment-hijri.js"></script>
+    <script src="{{url('/')}}/hijri/js/bootstrap-hijri-datetimepicker.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            initHijrDatePicker();
+            $('.disable-date').hijriDatePicker({
+
+                minDate: "2020-01-01",
+                maxDate: "2021-01-01",
+                viewMode: "years",
+                hijri: true,
+                debug: true
+            });
+        });
+
+        function initHijrDatePicker() {
+            $(".hijri-date-input").hijriDatePicker({
+                locale: "ar-sa",
+                format: "DD-MM-YYYY",
+                hijriFormat: "iYYYY-iMM-iDD",
+                dayViewHeaderFormat: "MMMM YYYY",
+                hijriDayViewHeaderFormat: "iMMMM iYYYY",
+                showSwitcher: true,
+                allowInputToggle: true,
+                showTodayButton: false,
+                useCurrent: true,
+                isRTL: false,
+                viewMode: 'months',
+                keepOpen: false,
+                hijri: false,
+                debug: true,
+                showClear: true,
+                showTodayButton: true,
+                showClose: true
+            });
+        }
+
+        function initHijrDatePickerDefault() {
+            $(".hijri-date-input").hijriDatePicker();
+        }
+    </script>
     <script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
     <!--begin::Global Config(global config for global JS scripts)-->
     <script>var KTAppSettings = {

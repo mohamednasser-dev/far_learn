@@ -77,7 +77,10 @@ class SubjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Subject::findOrFail($id);
+        $data = Subject::findOrFail($id);
+        return view('admin.episodes.levels.subjects.edit' ,compact('data','id','level') );
+
     }
 
     /**

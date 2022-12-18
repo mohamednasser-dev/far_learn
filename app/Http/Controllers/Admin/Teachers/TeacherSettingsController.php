@@ -111,10 +111,10 @@ class TeacherSettingsController extends Controller
             $settings = Web_setting::where('id', 1)->first();
             if ($teacher->main_lang == 'ar') {
                 $title = $settings->title_ar;
-                $real_message = 'تم رفضك من قبل الادارة - بموقع  ' . $title . '  رابط الموقع هنا :  ' . env('APP_URL') ;
+                $real_message = 'تم رفضك من قبل الادارة - بموقع  ' . $title . '  رابط الموقع هنا :  ' . env('APP_URL');
             } else {
                 $title = $settings->title_en;
-                $real_message = 'You have been rejected by the administration - Site  ' . $title . '  Website link here :  ' . env('APP_URL') ;
+                $real_message = 'You have been rejected by the administration - Site  ' . $title . '  Website link here :  ' . env('APP_URL');
             }
             //send mail message
             Mail::raw($real_message, function ($message) use ($email, $title) {
@@ -140,10 +140,10 @@ class TeacherSettingsController extends Controller
             $phone = $teacher->country_code . $teacher->phone;
             if ($teacher->main_lang == 'ar') {
                 $title = $settings->title_ar;
-                $real_message = 'تم قبولك بموقع  ' . $title . '  رابط الموقع هنا :  ' . env('APP_URL') ;
+                $real_message = 'تم قبولك بموقع  ' . $title . '  رابط الموقع هنا :  ' . env('APP_URL');
             } else {
                 $title = $settings->title_en;
-                $real_message ='You have been accepted into the site  ' . $title . '  Website link here :  ' . env('APP_URL') ;
+                $real_message = 'You have been accepted into the site  ' . $title . '  Website link here :  ' . env('APP_URL');
             }
             //send mail message
             Mail::raw($real_message, function ($message) use ($email, $title) {
@@ -175,6 +175,11 @@ class TeacherSettingsController extends Controller
                 'ident_num' => 'required',
                 'country_code' => 'required',
                 'cv' => '',
+                'qualification' => 'required',
+                'nationality' => 'required',
+                'job_name' => 'required',
+                'country' => 'required',
+                'date_of_birth' => 'required',
             ]);
         $data['unique_name'] = time() . '_' . rand(1000, 9999);
         $data['user_phone'] = $request->country_code . $request->phone;
@@ -204,6 +209,19 @@ class TeacherSettingsController extends Controller
                 $fileNewName = 'cv_' . time() . '.' . $ext;
                 $file->move(public_path('uploads/teachers/cvs'), $fileNewName);
                 $data['cv'] = $fileNewName;
+            }
+            //generate date of birh
+            $selected_date = $request->date_of_birth;
+            $year = \Carbon\Carbon::parse($selected_date)->format('Y');
+            if ($year < 1900) {
+                $year = \Carbon\Carbon::parse($selected_date)->format('Y');
+                $month = \Carbon\Carbon::parse($selected_date)->format('m');
+                $day = \Carbon\Carbon::parse($selected_date)->format('d');
+                $date = Hijri::DateToGregorianFromDMY($day, $month, $year);
+                $data['date_of_birth'] = $date;
+            } else {
+                $to_date = \Carbon\Carbon::parse($selected_date)->format('Y-m-d');
+                $data['date_of_birth'] = $to_date;
             }
             Teacher::create($data);
             Alert::success(trans('admin.add'), trans('s_admin.added_s'));

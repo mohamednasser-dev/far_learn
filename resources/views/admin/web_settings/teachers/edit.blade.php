@@ -115,21 +115,20 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-form-label text-right col-lg-3 col-sm-12">{{trans('admin.lang')}}</label>
-                    <div class="col-lg-4 col-md-9 col-sm-12">
-                        <select name="main_lang" class="form-control form-control-lg" value="{{$data->main_lang}}">
-                            <option>{{trans('s_admin.choose_language')}}</option>
-                            <option value="en" @if($data->main_lang == 'en') selected @endif >English</option>
-                            <option value="ar" @if($data->main_lang == 'ar') selected @endif >العربية</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
                     <label class="col-form-label text-right col-lg-3 col-sm-12">{{trans('admin.date_of_birth')}}</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
                         <input id="txt_date" type="date" required
                                value="{{Carbon\Carbon::parse($data->date_of_birth)->format('Y-m-d')}}"
                                name="date_of_birth" class="form-control hijri-date-input">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label text-right col-lg-3 col-sm-12">{{trans('admin.lang')}}</label>
+                    <div class="col-lg-4 col-md-9 col-sm-12">
+                        <select name="main_lang" class="form-control form-control-lg" value="{{$data->main_lang}}">
+                            <option value="en" @if($data->main_lang == 'en') selected @endif >English</option>
+                            <option value="ar" @if($data->main_lang == 'ar') selected @endif >العربية</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -165,10 +164,24 @@
                     <label class="col-form-label text-right col-lg-3 col-sm-12">{{trans('admin.country')}}</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
                         @php $country = App\Models\Country::where('deleted','0')->get(); @endphp
-                        <select id="country" name="country" required class="form-control custom-select">
-                            <option>{{trans('s_admin.choose_country')}}</option>
+                        <select id="kt_select2_1" name="country" required class="form-control custom-select select2 "  style="width: 100%" >
                             @foreach($country as $row)
                                 @if($data->country == $row->id)
+                                    <option value="{{$row->id}}" selected>{{$row->name}}</option>
+                                @else
+                                    <option value="{{$row->id}}">{{$row->name}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label text-right col-lg-3 col-sm-12">{{trans('s_admin.nationality')}}</label>
+                    <div class="col-lg-4 col-md-9 col-sm-12">
+                        @php $nationality = App\Models\Nationality::where('deleted','0')->get(); @endphp
+                        <select id="kt_select2_2" name="nationality" required class="form-control custom-select select2 " style="width: 100%" >
+                            @foreach($nationality as $row)
+                                @if($data->nationality == $row->id)
                                     <option value="{{$row->id}}" selected>{{$row->name}}</option>
                                 @else
                                     <option value="{{$row->id}}">{{$row->name}}</option>
@@ -182,8 +195,7 @@
                         class="col-form-label text-right col-lg-3 col-sm-12">{{trans('s_admin.qualification')}}</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
                         @php $qualification = App\Models\Qualification::where('deleted','0')->get(); @endphp
-                        <select id="qualification" name="qualification" required class="form-control custom-select">
-                            <option>{{trans('s_admin.choose_qualification')}}</option>
+                        <select id="kt_select2_3" name="qualification" required class="form-control custom-select select2 " style="width: 100%" >
                             @foreach($qualification as $row)
                                 @if($data->qualification == $row->id)
                                     <option value="{{$row->id}}" selected>{{$row->name}}</option>
@@ -194,27 +206,12 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-form-label text-right col-lg-3 col-sm-12">{{trans('s_admin.nationality')}}</label>
-                    <div class="col-lg-4 col-md-9 col-sm-12">
-                        @php $nationality = App\Models\Nationality::where('deleted','0')->get(); @endphp
-                        <select id="nationality" name="nationality" required class="form-control custom-select">
-                            <option>{{trans('s_admin.choose_nationality')}}</option>
-                            @foreach($nationality as $row)
-                                @if($data->nationality == $row->id)
-                                    <option value="{{$row->id}}" selected>{{$row->name}}</option>
-                                @else
-                                    <option value="{{$row->id}}">{{$row->name}}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+
                 <div class="form-group row">
                     <label class="col-form-label text-right col-lg-3 col-sm-12">{{trans('admin.job_name')}}</label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
                         @php $job_names = \App\Models\Job_name::where('deleted','0')->get(); @endphp
-                        <select id="job_name" name="job_name" required class="form-control custom-select">
+                        <select id="kt_select2_4" name="job_name" required class="form-control custom-select select2 "  style="width: 100%" >
                             {{--                            <option >{{trans('s_admin.choose_Job_name')}}</option>--}}
                             @foreach($job_names as $row)
                                 @if($data->job_name == $row->id)
