@@ -62,18 +62,20 @@ class StudentSettingsController extends Controller
         Episode_student::create($data);
         $student = Student::findOrFail($student_id);
         $email = $student->email;
-        if ($student->main_lang == 'ar') {
-            Mail::raw('تم أضافتك لحلقة جديدة ....... تستطيع تسجيل الدخول للوحة التحكم الان .... ' . '  رابط الموقع هنا :  ' . env('APP_URL') . 'student/home', function ($message) use ($email) {
-                $message->subject(trans('s_admin.title'));
-                $message->from(env('MAIL_USERNAME'), 'online learning');
-                $message->to($email);
-            });
-        } else {
-            Mail::raw('You have been added to a new episode.... You can log in to the control panel now....' . '  Website link here:  ' . env('APP_URL') . 'student/home', function ($message) use ($email) {
-                $message->subject(trans('s_admin.title'));
-                $message->from(env('MAIL_USERNAME'), 'online learning');
-                $message->to($email);
-            });
+        if (env('APP_ENV') == 'production') {
+            if ($student->main_lang == 'ar') {
+                Mail::raw('تم أضافتك لحلقة جديدة ....... تستطيع تسجيل الدخول للوحة التحكم الان .... ' . '  رابط الموقع هنا :  ' . env('APP_URL') . 'student/home', function ($message) use ($email) {
+                    $message->subject(trans('s_admin.title'));
+                    $message->from(env('MAIL_USERNAME'), 'online learning');
+                    $message->to($email);
+                });
+            } else {
+                Mail::raw('You have been added to a new episode.... You can log in to the control panel now....' . '  Website link here:  ' . env('APP_URL') . 'student/home', function ($message) use ($email) {
+                    $message->subject(trans('s_admin.title'));
+                    $message->from(env('MAIL_USERNAME'), 'online learning');
+                    $message->to($email);
+                });
+            }
         }
 
         Alert::success(trans('s_admin.episode'), trans('s_admin.episode_placed'));
@@ -343,6 +345,7 @@ class StudentSettingsController extends Controller
         $student = Student::find($id);
         if ($student->is_verified == 1) {
             $student->is_new = 'accepted';
+            $student->interview = 'y';
             $student->created_at = Carbon::now();
             if ($student->save()) {
                 $email = $student->email;
