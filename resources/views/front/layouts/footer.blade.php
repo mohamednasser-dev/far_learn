@@ -86,8 +86,8 @@
                         <h5 class="modal-title" id="exampleModalLongTitle">{{ trans('admin.make_new_account') }}</h5>
                     </div>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
+                <div class="modal-body w-100">
+                    <div class="row d-flex">
                         <div class="col-md-6">
                             {{--                            href="{{route('sign_up',['type'=> 'teacher'])}}" --}}
                             @if ($settings_share->show_mogmaa_dorr == '1')
@@ -113,7 +113,6 @@
                                 </a>
                             @endif
                         </div>
-                        <div class="vertical d-none d-sm-block d-md-block"></div>
                         <div class="col-md-6">
                             <div class="row>">
                                 <div class="col-md-12">
@@ -273,7 +272,7 @@
                     <div class="row">
                         <div class="col-lg-12" style="padding-top: 15px">
                             <div class="row">
-                                <div class="col-lg-9">
+                                <div class="col-sm-9">
                                     <div class="form-group" style="padding-bottom: 5px">
                                         <input type="number" onkeyup="this.value=login_phone(this.value);" required
                                             name="phone" value="{{ old('phone') }}"
@@ -281,7 +280,7 @@
                                             id="recipient-name1">
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <input id="txt_main_login_countrycode_code" style="max-width: 30px;"
                                             @if (old('country_code')) value="{{ old('country_code') }}"

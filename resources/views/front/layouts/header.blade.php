@@ -43,9 +43,9 @@
                                 @endif
                                 <li>
                                     @if(app()->getLocale() == 'en')
-                                        <a title="{{trans('admin.change_lang')}}" class="theme-btn-s2" href="{{url('lang/ar')}}"> العربية </a>
+                                        <a title="{{trans('admin.change_lang')}}" class="theme-btn-s2 lang-btn" href="{{url('lang/ar')}}"> العربية </a>
                                     @else
-                                        <a title="{{trans('admin.change_lang')}}" class="theme-btn-s2" href="{{url('lang/en')}}"> الانجليزية </a>
+                                        <a title="{{trans('admin.change_lang')}}" class="theme-btn-s2 lang-btn" href="{{url('lang/en')}}"> الانجليزية </a>
                                     @endif
                                 </li>
                             </ul>
@@ -56,23 +56,39 @@
         </div> <!-- end topbar -->
         <div class="site-header header-style-1">
             <nav class="navigation navbar navbar-default original">
-                <div class="container d-flex justify-cnetent-between align-items-center">
+                <div class="container">
+                    <div class="cart-search-contact-new">
+                        @if( auth()->guard('web')->check())
+                        <a href="{{route('home')}}" class="theme-btn">{{trans('s_admin.control_panel')}}</a>
+                        <a href="{{ route('admin.logout') }}" id="login_btn" class="theme-btn"><i class="fi flaticon2-user"></i> {{trans('admin.logout')}}</a>
+                        @elseif( auth()->guard('teacher')->check() )
+                            <a href="{{route('teacher.home')}}" class="theme-btn">{{trans('s_admin.control_panel')}}</a>
+                            <a href="{{ route('teacher_logout') }}" id="login_btn" class="theme-btn"><i class="fi flaticon2-user"></i> {{trans('admin.logout')}}</a>
+                        @elseif( auth()->guard('student')->check() )
+                            <a href="{{route('student_home')}}" class="theme-btn">{{trans('s_admin.control_panel')}}</a>
+                            <a href="{{ route('student_logout') }}" id="login_btn" class="theme-btn"><i class="fi flaticon2-user"></i> {{trans('admin.logout')}}</a>
+                        @else
+                        <a data-dismiss="modal" data-toggle="modal" id="sign_up_btn"
+                        data-target="#sign-modal" href="" title="" class="theme-btn">{{trans('admin.sign_up')}}</a>
+                        <a href="javascript:void($this);" data-toggle="modal" data-dismiss="modal" data-target="#login-modal" id="login_btn" class="theme-btn"><i class="fi flaticon2-user"></i> {{trans('admin.login')}}</a>
+                        @endif
+                    </div>
                     <div class="navbar-header">
-                        <button type="button" class="open-btn" style="display: none">
+                        {{-- <button type="button" class="open-btn" style="display: none">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="{{route('main_page')}}"><img style="width: 86px;" src="{{$settings_share->logo}}" alt=""></a>
+                        </button> --}}
+                        <a class="navbar-brand" href="{{route('main_page')}}"><img src="{{$settings_share->logo}}" alt=""></a>
                     </div>
-                    <div id="navbar" class="navbar-collapse collapse navigation-holder">
+                    {{-- <div id="navbar" class="navbar-collapse collapse navigation-holder">
                         <button class="close-navbar"><i class="ti-close"></i></button>
                         <ul class="nav navbar-nav">
                         </ul>
-                    </div>
+                    </div> --}}
                     <!-- end of nav-collapse -->
-                    <div class="cart-search-contact">
+                    {{-- <div class="cart-search-contact cart-search-contact-new">
                         @if( auth()->guard('web')->check())
                             <div class="header-search-form-wrapper">
                                 <div class="btns">
@@ -119,8 +135,10 @@
                                 </div>
                             </div>
                         @endif
-                    </div>
-                </div><!-- end of container -->
+                    </div> --}}
+
+                </div>
+                <!-- end of container -->
             </nav>
         </div>
     </header>
