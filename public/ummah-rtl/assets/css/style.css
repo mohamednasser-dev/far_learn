@@ -33,7 +33,7 @@ URL:            http://themeforest.net/user/wpoceans
 --------------------------------------------------------------
   #4.0 Home-style-4
 --------------------------------------------------------------
-  
+
   #4.1 courses-area
 
   #4.2 service-section
@@ -41,12 +41,12 @@ URL:            http://themeforest.net/user/wpoceans
 --------------------------------------------------------------
   #5.0 About-page
 --------------------------------------------------------------
-  
+
 
 --------------------------------------------------------------
   #6.0 service-single-page
 --------------------------------------------------------------
-  
+
 
 
 --------------------------------------------------------------
@@ -159,6 +159,7 @@ h4,
 h5,
 h6 {
     font-family: 'Now';
+
 }
 
 ul {
@@ -2131,7 +2132,7 @@ img {
     position: absolute;
     z-index: 120;
     width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.07); */
 }
 
 .header-style-1 .cart-search-contact button {
@@ -3347,7 +3348,7 @@ img {
     padding-top: 10px;
 }
 
-.wpo-site-footer .about-widget ul li, 
+.wpo-site-footer .about-widget ul li,
 .wpo-site-footer-2 .about-widget ul li {
     font-size: 22px;
     float: right;
@@ -3755,7 +3756,7 @@ img {
 ======================================================*/
 
 
-.wpo-about-text .wpo-section-title, 
+.wpo-about-text .wpo-section-title,
 .wpo-about-text-2 .wpo-section-title {
     text-align: right;
     margin: unset;
@@ -5115,6 +5116,7 @@ payment-section
     margin-bottom: 10px;
     background: -webkit-linear-gradient(left, #00b3d6, #00ded8);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -5133,16 +5135,55 @@ payment-section
     width: 100%;
     padding-right: 20px;
     height: 55px;
-    background: #fff;
-    border-radius: 2px;
+    background: #f8f8f8;
+    border-radius: 10px;
     border: none;
+    outline: none;
+    overflow: hidden;
 }
+
+.payment-section .form-group .iti .iti__flag-container {
+    right: 0;
+    overflow: hidden;
+    border-radius: 10px;
+
+}
+
+.payment-section .form-group .iti .iti__flag-container .iti__selected-flag {
+    padding: 0 15px;
+    width: 65px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
 
 .payment-section .form-group button {
     width: 100%;
     border-radius: 0;
     box-shadow: none;
-    padding: 18px 22px;
+    padding: 10px 22px;
+    border: none;
+    outline: none;
+    background-color: #00a7d5;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.payment-section .form-group button:focus{
+    background-color: #00a7d5 !important;
+    outline: 5px auto #09c;
+}
+
+.btn-success:active:focus, .btn-success:active:hover{
+    background-color: #00a7d5 !important;
+    outline: none;
+}
+
+.btn-success:active:hover{
+    background-color: #00a7d5 !important;
+    border: none !important;
+    outline: none;
 }
 
 .payment-section .form-group button:after {
@@ -6271,7 +6312,7 @@ breadcumb-style
 }
 
 /*============================================
-#9.0 wpo-blog-pg-section 
+#9.0 wpo-blog-pg-section
 =============================================*/
 
 /******************************

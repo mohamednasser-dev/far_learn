@@ -56,9 +56,9 @@
         </div> <!-- end topbar -->
         <div class="site-header header-style-1">
             <nav class="navigation navbar navbar-default original">
-                <div class="container">
+                <div class="container d-flex justify-cnetent-between align-items-center">
                     <div class="navbar-header">
-                        <button type="button" class="open-btn">
+                        <button type="button" class="open-btn" style="display: none">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -69,11 +69,9 @@
                     <div id="navbar" class="navbar-collapse collapse navigation-holder">
                         <button class="close-navbar"><i class="ti-close"></i></button>
                         <ul class="nav navbar-nav">
-{{--                            <li class="menu-item">--}}
-{{--                                <a href="{{route('main_page')}}"><i class="fa fa-home"></i></a>--}}
-{{--                            </li>--}}
                         </ul>
-                    </div><!-- end of nav-collapse -->
+                    </div>
+                    <!-- end of nav-collapse -->
                     <div class="cart-search-contact">
                         @if( auth()->guard('web')->check())
                             <div class="header-search-form-wrapper">
