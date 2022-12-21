@@ -26,6 +26,9 @@
         <link href="{{url('/')}}/ummah-rtl/assets/css/odometer-theme-default.css" rel="stylesheet">
         <link href="{{url('/')}}/ummah-rtl/assets/css/nice-select.css" rel="stylesheet">
         <link href="{{url('/')}}/ummah-rtl/assets/css/style.css" rel="stylesheet">
+
+        {{-- <link href="{{url('/')}}/ummah-rtl/assets/css/new_styles.css" rel="stylesheet"> --}}
+
     @else
         <title>{{$settings_share->title_en}}</title>
         <link href="{{url('/')}}/ummah_ltr/assets/css/themify-icons.css" rel="stylesheet">
@@ -43,7 +46,13 @@
         <link href="{{url('/')}}/ummah_ltr/assets/css/odometer-theme-default.css" rel="stylesheet">
         <link href="{{url('/')}}/ummah_ltr/assets/css/nice-select.css" rel="stylesheet">
         <link href="{{url('/')}}/ummah_ltr/assets/css/style.css" rel="stylesheet">
+
+        {{-- <link href="{{url('/')}}/ummah-rtl/assets/css/new_styles.css" rel="stylesheet"> --}}
+
+
     @endif
+    
+        <link href="{{url('/')}}/ummah-rtl/assets/css/new_styles.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -69,5 +78,7 @@
         input[id=txt_main_login_countrycode_code] {
             z-index: -1;
         }
+
     </style>
+
 </head>

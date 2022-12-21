@@ -33,7 +33,7 @@ URL:            http://themeforest.net/user/wpoceans
 --------------------------------------------------------------
   #4.0 Home-style-4
 --------------------------------------------------------------
-  
+
   #4.1 courses-area
 
   #4.2 service-section
@@ -41,12 +41,12 @@ URL:            http://themeforest.net/user/wpoceans
 --------------------------------------------------------------
   #5.0 About-page
 --------------------------------------------------------------
-  
+
 
 --------------------------------------------------------------
   #6.0 service-single-page
 --------------------------------------------------------------
-  
+
 
 
 --------------------------------------------------------------
@@ -151,12 +151,13 @@ h1,
 h2 {
     font-family: 'Conv_Now-Bold';
     color: #242f6c;
+
 }
 h3,
 h4,
 h5,
 h6{
-   font-family: 'Now'; 
+   font-family: 'Now';
 }
 
 ul {
@@ -1321,6 +1322,7 @@ img {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     z-index: 10;
+
 }
 
 @media (max-width: 991px) {
@@ -2057,7 +2059,7 @@ img {
     }
 
     .wpo-header-style-2 #navbar {
-        margin-right: 120px;
+        /* margin-right: 120px; */
     }
 
     .wpo-header-style-2 .navbar-nav {
@@ -2129,7 +2131,7 @@ img {
     position: absolute;
     z-index: 120;
     width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.07); */
 }
 
 .header-style-1 .cart-search-contact button {
@@ -2604,9 +2606,9 @@ img {
 
 @media (max-width: 1200px) {
 
-    .hero-style-1 .slide-caption h2, 
-    .hero-style-2 .slide-caption h2, 
-    .hero-style-3 .slide-caption h2, 
+    .hero-style-1 .slide-caption h2,
+    .hero-style-2 .slide-caption h2,
+    .hero-style-3 .slide-caption h2,
     .hero-style-4 .slide-caption h2 {
         font-size: 38px;
         line-height: 58px;
@@ -2635,9 +2637,9 @@ img {
 }
 @media (max-width: 450px) {
 
-  .hero-style-1 .slide-caption h2, 
-  .hero-style-2 .slide-caption h2, 
-  .hero-style-3 .slide-caption h2, 
+  .hero-style-1 .slide-caption h2,
+  .hero-style-2 .slide-caption h2,
+  .hero-style-3 .slide-caption h2,
   .hero-style-4 .slide-caption h2 {
     font-size: 19px;
     line-height: 34px;
@@ -6262,7 +6264,7 @@ breadcumb-style
 }
 
 /*============================================
-#9.0 wpo-blog-pg-section 
+#9.0 wpo-blog-pg-section
 =============================================*/
 
 /******************************
@@ -7609,7 +7611,7 @@ wpo-blog sidebar
 
 @media(max-width: 1200px) {
     .profile-img h2 {
-        font-size: 20px;  
+        font-size: 20px;
     }
 
 }

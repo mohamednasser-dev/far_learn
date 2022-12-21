@@ -1,0 +1,266 @@
+/*** begin:: header buttons style ***/
+.wpo-site-header .cart-search-contact>div {
+    float: none;
+}
+
+.wpo-site-header .cart-search-contact>div+div {
+    margin-left: 0;
+}
+
+.cart-search-contact-new {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-search-contact-new a{
+    background: linear-gradient(linear, left top, right top, from(#00a7d5), to(#00ded8));
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 0px;
+    border: 0;
+    border-radius: 55px;
+    text-transform: capitalize;
+    -webkit-box-shadow: 0 0 0 3px #c8eaf5;
+    box-shadow: 0 0 0 4px #c8eaf5;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    line-height: 19px;
+    margin: 10px;
+    width: 150px;
+    text-align: center;
+}
+
+.site-header .navigation .container {
+    display: flex ;
+    justify-content: space-between ;
+    align-items: center ;
+}
+
+.site-header .navigation:before,.site-header .navigation .container::before,.site-header .navigation .container .navbar-header::before,.site-header .navigation .container::after,.site-header .navigation::after {
+    display: none !important;
+}
+
+.site-header .navigation .container .navbar-header .navbar-brand img{
+    width: 76px;
+}
+/*** end:: header buttons style ***/
+
+/*** begin:: sign-in modal style ***/
+.payment-section #sign-modal .modal-dialog{
+
+
+}
+/*** end:: sign-in modal style ***/
+
+/*** begin:: login modal style ***/
+
+.payment-section .form-group input {
+    width: 100%;
+    padding-right: 20px;
+    height: 55px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    overflow: hidden;
+}
+
+.payment-section .form-group .iti .iti__flag-container {
+    right: 0;
+    overflow: hidden;
+    border-radius: 10px;
+
+}
+
+.payment-section .form-group .iti .iti__flag-container .iti__selected-flag {
+    padding: 0 15px;
+    width: 65px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.payment-section .form-group input {
+    width: 100%;
+    padding-right: 20px;
+    height: 55px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    overflow: hidden;
+}
+
+.payment-section .form-group button {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 10px 22px;
+    border: none;
+    outline: none;
+    background-color: #00a7d5;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 20px;
+}
+/*** end:: login modal style ***/
+
+/*** begin:: language btn style on mobile ***/
+.topbar {
+    padding:  0;
+}
+
+.hero .slick-dots{
+    display: none !important;
+}
+/*** end:: language btn style on mobile ***/
+
+
+
+
+/* start media queries  */
+
+/* start small screen */
+@media screen and (max-width:576px) {
+    /*** begin:: header buttons style on mobile ***/
+    .cart-search-contact-new {
+        flex-direction: column;
+    }
+
+    .cart-search-contact-new a{
+        font-weight: 500;
+        -webkit-box-shadow: 0 0 0 2px #c8eaf5;
+        box-shadow: 0 0 0 2px #c8eaf5;
+        line-height: 16px;
+        margin: 5px;
+        width: 120px;
+    }
+
+    .site-header .navigation .container .navbar-header .navbar-brand img{
+        width: 66px;
+    }
+    /*** end:: header buttons style on mobile ***/
+
+    /*** begin:: sign-in modal style on mobile ***/
+    .payment-section #sign-modal {
+        padding: 10px;
+    }
+
+    .payment-section #sign-modal .modal-dialog{
+        width: 250px;
+        margin: auto;
+    }
+
+    .payment-section #sign-modal .modal-dialog .modal-body img{
+        width: 100px;
+    }
+    /*** begin:: sign-in modal style on mobile ***/
+
+    /*** begin:: language btn style on mobile ***/
+    .topbar {
+        padding:  5px 0;
+    }
+    #header .topbar .row .contact-info ul li .lang-btn {
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin: 0 5px;
+    }
+    /*** end:: language btn style on mobile ***/
+
+    /*** begin:: login modal style on mobile ***/
+    #login-modal .modal-content .modal-body .form-group {
+        text-align: start;
+    }
+    /*** end:: login modal style on mobile ***/
+}
+/* end small screen */
+/* start medium screen */
+@media screen and (min-width:577px) and (max-width:768px) {
+    /*** begin:: header buttons style on mobile ***/
+    .cart-search-contact-new {
+        flex-direction: column;
+    }
+
+    .cart-search-contact-new a{
+        font-weight: 500;
+        -webkit-box-shadow: 0 0 0 2px #c8eaf5;
+        box-shadow: 0 0 0 2px #c8eaf5;
+        line-height: 16px;
+        margin: 5px;
+        width: 120px;
+    }
+    /*** end:: header buttons style on mobile ***/
+
+    /*** begin:: sign-in modal style on mobile ***/
+    .payment-section #sign-modal {
+        padding: 10px;
+    }
+
+    .payment-section #sign-modal .modal-dialog{
+        width: 450px;
+        margin: auto;
+    }
+
+    .payment-section #sign-modal .modal-dialog .modal-body img{
+        width: 100px;
+    }
+    /*** begin:: sign-in modal style on mobile ***/
+
+    /*** begin:: language btn style on mobile ***/
+    .topbar {
+        padding:  5px 0;
+    }
+    #header .topbar .row .contact-info ul li .lang-btn {
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin: 0 5px;
+    }
+    /*** end:: language btn style on mobile ***/
+}
+/* end medium screen */
+/* start large screen */
+@media screen and (min-width:769px) and (max-width:992px) {
+    /*** begin:: header buttons style on mobile ***/
+    .cart-search-contact-new a{
+        font-weight: 500;
+        -webkit-box-shadow: 0 0 0 2px #c8eaf5;
+        box-shadow: 0 0 0 2px #c8eaf5;
+        line-height: 16px;
+        margin: 5px;
+        width: 120px;
+    }
+
+    .site-header .navigation .container .navbar-header .navbar-brand img{
+        width: 76px;
+    }
+    /*** end:: header buttons style on mobile ***/
+
+    /*** begin:: sign-in modal style on mobile ***/
+    .payment-section #sign-modal {
+        padding: 10px;
+    }
+
+    .payment-section #sign-modal .modal-dialog{
+        width: 450px;
+        margin: auto;
+    }
+
+    .payment-section #sign-modal .modal-dialog .modal-body img{
+        width: 100px;
+    }
+    /*** begin:: sign-in modal style on mobile ***/
+}
+/* end large screen */
+/* start extra large screen */
+@media screen and (min-width:993px) and (max-width:1200px) {
+
+}
+/* end extra large screen */
+/* start extra extra large screen */
+@media screen and (min-width:1201px) and (max-width:1400px) {
+
+}
+/* end extra extra large screen */
+
+/* end media queries*/
