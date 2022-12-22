@@ -116,9 +116,32 @@
 }
 /*** end:: language btn style on mobile ***/
 
+/* begin:: teacher login form styles */
+.page-wrapper .wpo-breadcumb-area {
+    min-height: 300px;
+    padding-top: 100px;
+}
+.page-wrapper .payment-section{
+    padding: 100px 10px;
+}
+.payment-section .wpo-donations-form .row .panel .panel-body .row .col-4 {
+    padding: 10px;
+}
+
+.payment-section .wpo-donations-form .row .panel .panel-body .row .col-4 input{
+    width: 100%;
+    padding: 0px 20px;
+    height: 55px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    overflow: hidden;
+}
+/* end:: teacher login form styles */
 
 
-
+/**********************************************************/
 /* start media queries  */
 
 /* start small screen */
@@ -173,6 +196,21 @@
         text-align: start;
     }
     /*** end:: login modal style on mobile ***/
+
+    /* begin:: teacher login form styles on mobile*/
+    .page-wrapper .wpo-breadcumb-area {
+        min-height: 320px;
+        padding-top: 200px;
+    }
+    .payment-section .wpo-donations-form .row .panel .panel-body .row .col-4 {
+        padding: 8px;
+    }
+
+    .payment-section .wpo-donations-form .row .panel .panel-body .row .col-4 input{
+        height: 45px;
+        padding: 0px 5px;
+    }
+    /* end:: teacher login form styles on mobile*/
 }
 /* end small screen */
 /* start medium screen */

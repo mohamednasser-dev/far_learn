@@ -150,7 +150,7 @@
                     @endforeach
                 </div>
                 <div class="col col-md-4">
-                    <div class="service-sidebar">
+                    <div class="service-sidebar" style="padding-right:0; border-radius:15px;overflow:hidden">
                         {{ Form::open( ['route'  => ['times.search.episodes',['type'=>$type]],'method' =>'get','class' => 'checkout-form w-100 new_style' ] ) }}
 
                         <div class="widget service-list-widget">

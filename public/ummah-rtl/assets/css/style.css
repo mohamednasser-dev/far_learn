@@ -5370,9 +5370,9 @@ breadcumb-style
 }
 
 @media screen and (min-width: 1200px) {
-    .service-sidebar {
+    /* .service-sidebar {
         padding-right: 30px;
-    }
+    } */
 }
 
 .service-sidebar>.widget+.widget {

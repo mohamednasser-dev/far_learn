@@ -271,16 +271,8 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12" style="padding-top: 15px">
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <div class="form-group" style="padding-bottom: 5px">
-                                        <input type="number" onkeyup="this.value=login_phone(this.value);" required
-                                            name="phone" value="{{ old('phone') }}"
-                                            placeholder="{{ trans('s_admin.phone') }}" class="form-control "
-                                            id="recipient-name1">
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
+                            <div class="row" style="width: 100%; display: flex; padding: 0; margin: 0;">
+                                <div class="col-3">
                                     <div class="form-group">
                                         <input id="txt_main_login_countrycode_code" style="max-width: 30px;"
                                             @if (old('country_code')) value="{{ old('country_code') }}"
@@ -290,6 +282,15 @@
                                             class="form-control form-control-danger">
                                     </div>
                                 </div>
+                                <div class="col-9" style="flex-grow: 1">
+                                    <div class="form-group" style="padding-bottom: 5px">
+                                        <input type="number" onkeyup="this.value=login_phone(this.value);" required
+                                            name="phone" value="{{ old('phone') }}"
+                                            placeholder="{{ trans('s_admin.phone') }}" class="form-control "
+                                            id="recipient-name1">
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="form-group ">
                                 <input type="password" required name="password"

@@ -99,7 +99,7 @@
                 <div class="col-md-6">
                     <div class="wpo-donations-form">
                         <div class="row">
-                            <div class="stepwizard">
+                            {{-- <div class="stepwizard">
                                 <div class="stepwizard-row setup-panel">
                                     <div class="stepwizard-step col-xs-6">
                                         <a href="javascript:;" secc="#step-1" type="button"
@@ -114,6 +114,26 @@
                                             2</a>
                                     </div>
                                 </div>
+                            </div> --}}
+                            <div class="stepwizard">
+                                <div class="row stepwizard-row setup-panel" style="width: 100%;display: flex;justify-content: center;padding: 0;margin:0">
+                                    <div class="col-6 stepwizard-step " style="padding: 10px;display:flex;justify-content:center;align-items:center;width:100%">
+                                        <div class="text-align: center">
+                                            <a href="javascript:;" secc="#step-1" type="button"
+                                           class="btn btn-default btn-success btn-bg btn-circle "
+                                           style="pointer-events: none;cursor: default">
+                                            1</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 stepwizard-step" style="padding: 10px;display:flex;justify-content:center;align-items:center;width:100%">
+                                        <div class="text-align: center">
+                                            <a href="javascript:;" secc="#step-2" type="button"
+                                           class="btn btn-default btn-circle "
+                                           disabled="disabled" style="pointer-events: none;cursor: default;">
+                                            2</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <input type="hidden" required name="type" id="txt_type" value="{{$types}}">
                             <input type="hidden" required name="_token" id="csrf"
@@ -123,222 +143,234 @@
                             <input type="hidden" name="e_c" id="txt_e_c" value="false">
                             <input type="hidden" name="p_c" id="txt_p_c" value="false">
                             <input type="hidden" name="pa_c" id="txt_pa_c" value="true">
-                            <div class="panel panel-primary setup-content" id="step-1">
+                            <div class="panel panel-primary setup-content" id="step-1" style="border: none; border-radius:15px">
                                 <div class="panel-body">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-                                    <label>{{trans('admin.full_name')}}</label>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
-                                    <input type="text" class="form-control" name="first_name_ar" id="txt_f_name"
-                                           required
-                                           value="{{old('first_name_ar')}}"
-                                           placeholder="{{trans('admin.first_name')}}">
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
-                                    <input type="text" class="form-control" name="mid_name_ar" id="txt_m_name" required
-                                           value="{{old('mid_name_ar')}}"
-                                           placeholder="{{trans('admin.mid_name')}}">
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
-                                    <input type="text" class="form-control" name="last_name_ar" id="txt_l_name" required
-                                           value="{{old('last_name_ar')}}"
-                                           placeholder="{{trans('admin.last_name')}}">
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-                                    <label>{{trans('admin.gender')}} <span style="color: red;">*</span> </label>
-                                    @if($types == 'teacher_far_learn' || $types == 'teacher_mogmaa_dorr')
-                                        <select id="txt_gender" name="gender" required
-                                                class="form-control">
-                                            <option value="male"
-                                                    @if(old('gender') == 'male') selected @endif >{{trans('admin.male')}}</option>
-                                            <option value="female"
-                                                    @if(old('gender') == 'female' ) selected @endif >{{trans('admin.female')}}</option>
-                                        </select>
-                                    @else
-                                        <input type="hidden" name="gender" value="{{$episode->gender}}">
-                                        <select id="txt_gender" disabled name="gender" required
-                                                class="form-control custom-select">
-                                            <option value="male"
-                                                    @if(old('gender') == 'male' || $episode->gender == 'male' || $episode->gender == 'children') selected @endif >{{trans('admin.male')}}</option>
-                                            <option value="female"
-                                                    @if(old('gender') == 'female' || $episode->gender == 'female' ) selected @endif >{{trans('admin.female')}}</option>
-                                        </select>
-                                    @endif
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-                                    <label class="control-label">{{trans('admin.main_lang')}} <span style="color: red;">*</span>
-                                    </label>
-
-                                    <select id="txt_lang" class="form-control custom-select" required
-                                            name="main_lang">
-                                        <option value="ar" @if(old('main_lang') == 'ar' ) selected @endif >
-                                            العربية
-                                        </option>
-                                        <option value="en" @if(old('main_lang') == 'en' ) selected @endif >
-                                            English
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-sm-9 col-9 form-group">
-                                    <label class="control-label">{{trans('admin.email')}} <span
-                                            style="color: red;">*</span> </label>
-                                    <input id="txt_email" type="email" name="email"
-                                           value="{{old('email')}}" class="form-control"
-                                           placeholder="{{trans('admin.email')}}">
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-3 form-group">
-                                    <label class="control-label"> </label>
-                                    <br>
-                                    <br>
-                                    <a href="javascript:void(this);" id="btn_send_email_code_check"
-
-                                       class="btn btn-info">{{trans('s_admin.check')}}</a>
-                                    <a href="javascript:void(this);" style="display: none;"
-                                       id="checked_email_label_s"
-                                       class="btn btn-secondary">{{trans('s_admin.check')}}
-                                        <i class="fa fa-check"></i>
-                                    </a>
-                                </div>
-
-                                <div class="col-lg-7 col-md-7 col-sm-7 col-7 form-group">
-                                    <label class="control-label">{{trans('admin.phone')}} <span
-                                            style="color: red;">*</span> </label>
-                                    <input id="txt_phone" type="number" required
-                                           onkeyup="this.value=phonelimit_txt_phone(this.value);"
-                                           name="phone" value="{{old('phone')}}"
-                                           class="form-control form-control-danger">
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-sm-2 col-2 form-group">
-                                    <label class="control-label">{{trans('admin.country_code')}} <span
-                                            style="color: red;">*</span> </label>
-                                    <input id="txt_country_code" style="max-width: 30px;"
-                                           @if(old('country_code'))
-                                           value="{{old('country_code')}}"
-                                           @else
-                                           value="+966"
-                                           @endif
-                                           type="text"
-                                           required name="country_code"
-                                           class="form-control form-control-danger">
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-3 form-group">
-                                    <label class="control-label"> </label>
-                                    <br>
-                                    <br>
-                                    <a href="javascript:void(this);" id="btn_send_code_check"
-                                       class="btn btn-info">{{trans('s_admin.check')}}</a>
-                                    <a href="javascript:void(this);" style="display: none;"
-                                       id="checked_label_s"
-                                       class="btn btn-secondary">{{trans('s_admin.check')}}
-                                        <i class="fa fa-check"></i>
-                                    </a>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-                                    <label class="control-label">{{trans('admin.password')}} <span
-                                            style="color: red;">*</span> </label>
-                                    <input id="txt_pass" type="password" required minlength="8"
-                                           name="password"
-                                           class="form-control" placeholder="">
-                                    <span style="color: red; font-size: 10px;">{{trans('admin.password_limit')}}</span>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-                                    <label class="control-label">{{trans('admin.password_confirmation')}} <span
-                                            style="color: red;">*</span> </label>
-                                    <input id="txt_con_pass" type="password" required minlength="8"
-                                           name="password_confirmation"
-                                           class="form-control form-control-danger"
-                                           placeholder="">
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-                                    <label class="control-label">{{trans('admin.date_of_birth')}} <span
-                                            style="color: red;">*</span> </label>
-                                    <input id="txt_date" type="text" required name="date_of_birth"
-                                           value="{{old('date_of_birth')}}"
-                                           class="form-control hijri-date-input">
-                                </div>
-                                @if($types != 'teacher_far_learn' )
-                                    @if($types != 'teacher_mogmaa_dorr')
-                                        <div id="parent_access"
-                                             @if(!old('parent_user_name')) style="display: none; @endif ">
-                                            <p>{{trans('s_admin.parent_data')}}:</p>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-                                                <label
-                                                    class="control-label">{{trans('admin.full_name')}}</label><span
-                                                    style="color: red;">*</span>
-                                                <input type="text" id="user_name" name="parent_user_name"
-                                                       class="form-control form-control-danger"
-                                                       value="{{old('parent_user_name')}}">
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <label
-                                                            class="control-label">{{trans('admin.phone')}}</label><span
-                                                            style="color: red;">*</span>
-                                                        <input id="phone" type="number"
-                                                               onkeyup="this.value=phonelimit_phone(this.value);"
-                                                               name="parent_phone"
-                                                               value="{{old('parent_phone')}}"
-                                                               class="form-control form-control-danger">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2">
-                                                    <div class="form-group">
-                                                        <label
-                                                            class="control-label">{{trans('admin.country_code')}}</label><br>
-                                                        <input id="txt_parent_country_code"
-                                                               style="max-width: 30px;"
-                                                               @if(old('parent_country_code'))
-                                                               value="{{old('parent_country_code')}}"
-                                                               @else
-                                                               value="+966"
-                                                               @endif
-                                                               type="text"
-                                                               name="parent_country_code"
-                                                               class="form-control form-control-danger">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2">
-                                                    <label
-                                                        class="control-label"></label>
-                                                    <br>
-                                                    <a href="javascript:void(this);"
-                                                       id="btn_send_parent_code_check"
-                                                       class="btn btn-info">{{trans('s_admin.check')}}</a>
-                                                    <a href="javascript:void(this);" style="display: none;"
-                                                       id="checked_parent_label_s"
-                                                       class="btn btn-secondary">{{trans('s_admin.check')}}
-                                                        <i class="fa fa-check"></i>
-                                                    </a>
-
-                                                </div>
-                                            </div>
-                                            <div class="form-group has-danger">
-                                                <label class="control-label">{{trans('admin.relation')}}</label><span
-                                                    style="color: red;">*</span>
-                                                <select name="relation" class="form-control custom-select">
-                                                    @php $relations = \App\Models\Relation::where('deleted','0')->get(); @endphp
-                                                    @foreach($relations as $row)
-                                                        <option
-                                                            value="{{ $row->id }}"
-                                                            @if(old('relation') == $row->id ) selected @endif > {{ $row->name }} </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group has-danger">
-                                                <label
-                                                    class="control-label">{{trans('admin.address')}}</label><span
-                                                    style="color: red;">*</span>
-                                                <input type="text" id="address" name="address"
-                                                       class="form-control form-control-danger"
-                                                       value="{{old('address')}}">
-                                            </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+                                        <label>{{trans('admin.full_name')}}</label>
+                                    </div>
+                                    {{-- <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
+                                        <input type="text" class="form-control"  name="first_name_ar" id="txt_f_name"
+                                            required
+                                            value="{{old('first_name_ar')}}"
+                                            placeholder="{{trans('admin.first_name')}}">
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
+                                        <input type="text" class="form-control" name="mid_name_ar" id="txt_m_name" required
+                                        value="{{old('mid_name_ar')}}"
+                                        placeholder="{{trans('admin.mid_name')}}">
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 form-group">
+                                        <input type="text" class="form-control" name="last_name_ar" id="txt_l_name" required
+                                            value="{{old('last_name_ar')}}"
+                                            placeholder="{{trans('admin.last_name')}}">
+                                    </div> --}}
+                                    <div class="row" style="width: 100%;margin: 0;padding: 10px;display: flex;justify-content: space-between;align-items: center">
+                                        <div class="col-4">
+                                            <input type="text" class="form-control" placeholder="{{trans('admin.first_name')}}" autofocus="on" required value="{{old('first_name_ar')}}" id="txt_f_name">
                                         </div>
+                                        <div class="col-4">
+                                            <input type="text" class="form-control" placeholder="{{trans('admin.mid_name')}}" required value="{{old('mid_name_ar')}}" id="txt_mid_name">
+                                        </div>
+                                        <div class="col-4">
+                                            <input type="text" class="form-control" placeholder="{{trans('admin.last_name')}}" required value="{{old('last_name_ar')}}" id="txt_l_name">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+                                        <label>{{trans('admin.gender')}} <span style="color: red;">*</span> </label>
+                                        @if($types == 'teacher_far_learn' || $types == 'teacher_mogmaa_dorr')
+                                            <select id="txt_gender" name="gender" required
+                                                    class="form-control">
+                                                <option value="male"
+                                                        @if(old('gender') == 'male') selected @endif >{{trans('admin.male')}}</option>
+                                                <option value="female"
+                                                        @if(old('gender') == 'female' ) selected @endif >{{trans('admin.female')}}</option>
+                                            </select>
+                                        @else
+                                            <input type="hidden" name="gender" value="{{$episode->gender}}">
+                                            <select id="txt_gender" disabled name="gender" required
+                                                    class="form-control custom-select">
+                                                <option value="male"
+                                                        @if(old('gender') == 'male' || $episode->gender == 'male' || $episode->gender == 'children') selected @endif >{{trans('admin.male')}}</option>
+                                                <option value="female"
+                                                        @if(old('gender') == 'female' || $episode->gender == 'female' ) selected @endif >{{trans('admin.female')}}</option>
+                                            </select>
+                                        @endif
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+                                        <label class="control-label">{{trans('admin.main_lang')}} <span style="color: red;">*</span>
+                                        </label>
+
+                                        <select id="txt_lang" class="form-control custom-select" required
+                                                name="main_lang">
+                                            <option value="ar" @if(old('main_lang') == 'ar' ) selected @endif >
+                                                العربية
+                                            </option>
+                                            <option value="en" @if(old('main_lang') == 'en' ) selected @endif >
+                                                English
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-9 form-group">
+                                        <label class="control-label">{{trans('admin.email')}} <span
+                                                style="color: red;">*</span> </label>
+                                        <input id="txt_email" type="email" name="email"
+                                            value="{{old('email')}}" class="form-control"
+                                            placeholder="{{trans('admin.email')}}">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-3 form-group">
+                                        <label class="control-label"> </label>
+                                        <br>
+                                        <br>
+                                        <a href="javascript:void(this);" id="btn_send_email_code_check"
+
+                                        class="btn btn-info">{{trans('s_admin.check')}}</a>
+                                        <a href="javascript:void(this);" style="display: none;"
+                                        id="checked_email_label_s"
+                                        class="btn btn-secondary">{{trans('s_admin.check')}}
+                                            <i class="fa fa-check"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-lg-7 col-md-7 col-sm-7 col-7 form-group">
+                                        <label class="control-label">{{trans('admin.phone')}} <span
+                                                style="color: red;">*</span> </label>
+                                        <input id="txt_phone" type="number" required
+                                            onkeyup="this.value=phonelimit_txt_phone(this.value);"
+                                            name="phone" value="{{old('phone')}}"
+                                            class="form-control form-control-danger">
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-2 form-group">
+                                        <label class="control-label">{{trans('admin.country_code')}} <span
+                                                style="color: red;">*</span> </label>
+                                        <input id="txt_country_code" style="max-width: 30px;"
+                                            @if(old('country_code'))
+                                            value="{{old('country_code')}}"
+                                            @else
+                                            value="+966"
+                                            @endif
+                                            type="text"
+                                            required name="country_code"
+                                            class="form-control form-control-danger">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-3 form-group">
+                                        <label class="control-label"> </label>
+                                        <br>
+                                        <br>
+                                        <a href="javascript:void(this);" id="btn_send_code_check"
+                                        class="btn btn-info">{{trans('s_admin.check')}}</a>
+                                        <a href="javascript:void(this);" style="display: none;"
+                                        id="checked_label_s"
+                                        class="btn btn-secondary">{{trans('s_admin.check')}}
+                                            <i class="fa fa-check"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+                                        <label class="control-label">{{trans('admin.password')}} <span
+                                                style="color: red;">*</span> </label>
+                                        <input id="txt_pass" type="password" required minlength="8"
+                                            name="password"
+                                            class="form-control" placeholder="">
+                                        <span style="color: red; font-size: 10px;">{{trans('admin.password_limit')}}</span>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+                                        <label class="control-label">{{trans('admin.password_confirmation')}} <span
+                                                style="color: red;">*</span> </label>
+                                        <input id="txt_con_pass" type="password" required minlength="8"
+                                            name="password_confirmation"
+                                            class="form-control form-control-danger"
+                                            placeholder="">
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+                                        <label class="control-label">{{trans('admin.date_of_birth')}} <span
+                                                style="color: red;">*</span> </label>
+                                        <input id="txt_date" type="text" required name="date_of_birth"
+                                            value="{{old('date_of_birth')}}"
+                                            class="form-control hijri-date-input">
+                                    </div>
+                                    @if($types != 'teacher_far_learn' )
+                                        @if($types != 'teacher_mogmaa_dorr')
+                                            <div id="parent_access"
+                                                @if(!old('parent_user_name')) style="display: none; @endif ">
+                                                <p>{{trans('s_admin.parent_data')}}:</p>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+                                                    <label
+                                                        class="control-label">{{trans('admin.full_name')}}</label><span
+                                                        style="color: red;">*</span>
+                                                    <input type="text" id="user_name" name="parent_user_name"
+                                                        class="form-control form-control-danger"
+                                                        value="{{old('parent_user_name')}}">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label
+                                                                class="control-label">{{trans('admin.phone')}}</label><span
+                                                                style="color: red;">*</span>
+                                                            <input id="phone" type="number"
+                                                                onkeyup="this.value=phonelimit_phone(this.value);"
+                                                                name="parent_phone"
+                                                                value="{{old('parent_phone')}}"
+                                                                class="form-control form-control-danger">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="form-group">
+                                                            <label
+                                                                class="control-label">{{trans('admin.country_code')}}</label><br>
+                                                            <input id="txt_parent_country_code"
+                                                                style="max-width: 30px;"
+                                                                @if(old('parent_country_code'))
+                                                                value="{{old('parent_country_code')}}"
+                                                                @else
+                                                                value="+966"
+                                                                @endif
+                                                                type="text"
+                                                                name="parent_country_code"
+                                                                class="form-control form-control-danger">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <label
+                                                            class="control-label"></label>
+                                                        <br>
+                                                        <a href="javascript:void(this);"
+                                                        id="btn_send_parent_code_check"
+                                                        class="btn btn-info">{{trans('s_admin.check')}}</a>
+                                                        <a href="javascript:void(this);" style="display: none;"
+                                                        id="checked_parent_label_s"
+                                                        class="btn btn-secondary">{{trans('s_admin.check')}}
+                                                            <i class="fa fa-check"></i>
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group has-danger">
+                                                    <label class="control-label">{{trans('admin.relation')}}</label><span
+                                                        style="color: red;">*</span>
+                                                    <select name="relation" class="form-control custom-select">
+                                                        @php $relations = \App\Models\Relation::where('deleted','0')->get(); @endphp
+                                                        @foreach($relations as $row)
+                                                            <option
+                                                                value="{{ $row->id }}"
+                                                                @if(old('relation') == $row->id ) selected @endif > {{ $row->name }} </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group has-danger">
+                                                    <label
+                                                        class="control-label">{{trans('admin.address')}}</label><span
+                                                        style="color: red;">*</span>
+                                                    <input type="text" id="address" name="address"
+                                                        class="form-control form-control-danger"
+                                                        value="{{old('address')}}">
+                                                </div>
+                                            </div>
+                                        @endif
                                     @endif
-                                @endif
                                 </div>
-                                <div class="col-lg-6 col-6 form-group">
+
+                                <div class="col-lg-6 col-6 form-group m-auto">
                                     <button class="btn btn-primary nextBtn pull-left"
                                             type="button">{{trans('admin.next')}}</button>
                                 </div>
@@ -533,8 +565,8 @@
                                             class="control-label">{{trans('s_admin.ident_num')}}</label><span
                                             style="color: red;">*</span>
                                         <input id="txt_ident_num" type="number" required
-                                               name="ident_num" value="{{old('ident_num')}}"
-                                               class="form-control form-control-danger">
+                                            name="ident_num" value="{{old('ident_num')}}"
+                                            class="form-control form-control-danger">
                                     </div>
                                     @if($types == 'teacher_far_learn' || $types == 'teacher_mogmaa_dorr')
                                         <div class="form-group">
@@ -560,7 +592,7 @@
                                             <label class="control-label">{{trans('s_admin.cv')}}</label>
                                             <span style="color: red;">({{trans('s_admin.pdf_only')}})</span>
                                             <input type="file" accept=".pdf" name="cv"
-                                                   class="form-control form-control-danger">
+                                                class="form-control form-control-danger">
                                         </div>
                                     @else
                                         <div class="form-group">
@@ -568,9 +600,9 @@
                                                 class="control-label">{{trans('s_admin.save_quran_num')}}</label><span
                                                 style="color: red;">*</span>
                                             <input id="txt_save_quran_num" type="number" step="any" required min="0"
-                                                   max="30"
-                                                   name="save_quran_num" value="{{old('save_quran_num')}}"
-                                                   class="form-control form-control-danger">
+                                                max="30"
+                                                name="save_quran_num" value="{{old('save_quran_num')}}"
+                                                class="form-control form-control-danger">
                                         </div>
                                         <div class="form-group">
                                             <label
@@ -1125,7 +1157,7 @@
                 }
             });
             allNextBtn.click(function () {
-                console.log('i click next button');
+                // console.log('i click next button');
                 if ($(this).closest(".setup-content").attr("id") == 'step-1') {
                     var pw1 = $('#txt_pass').val();
                     var pw2 = $('#txt_con_pass').val();
@@ -1141,7 +1173,7 @@
                     //     alert("يجب التحقق من رقم جوال ولي الامر أولا !");
                     // } else if (pw1 != pw2) {
                     //     alert("كلمات المرور غير متطابقة");
-                    // } else {
+                    // } else {}
                     var curStep = $(this).closest(".setup-content"),
                         curStepBtn = curStep.attr("id"),
                         nextStepWizard = $('div.setup-panel div a[secc="#' + curStepBtn + '"]').parent().next().children("a"),
