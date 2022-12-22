@@ -293,7 +293,7 @@ class EpisodeController extends Controller
             $data['teacher_link'] = $response['join_url'];
         }else{
             $data['meeting_id'] = '123456';
-            $data['passcode'] = '123456'
+            $data['passcode'] = '123456';
             $data['join_url'] = 'http://tahfeeztest2.kenzivenum.com/episode/details/11';
             $data['teacher_link'] = 'http://tahfeeztest2.kenzivenum.com/episode/details/11';
         }
