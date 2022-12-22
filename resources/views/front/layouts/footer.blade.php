@@ -4,10 +4,10 @@
     @yield('footer_follow')
     <!-- end wpo-news-letter-section -->
     <!-- start wpo-site-footer -->
-    <footer class="wpo-site-footer">
+    <footer class="wpo-site-footer ">
         <div class="wpo-upper-footer">
-            <div class="container">
-                <div class="row">
+            <div class="container" >
+                {{-- <div class="row">
                     <div class="col col-lg-3 col-md-3 col-sm-6">
                         <div class="widget about-widget">
                             <div class="logo widget-title">
@@ -60,8 +60,62 @@
                             </div>
                         </div>
                     </div>
+                </div> --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="widget about-widget">
+                            <div class="logo widget-title">
+                                <img src="{{ $settings_share->logo }}" alt="blog">
+                            </div>
+                            <ul>
+                                @if ($settings_share->twiter != null)
+                                    <li><a href="{{ $settings_share->twiter }}"><i class="ti-twitter-alt"></i></a></li>
+                                @endif
+                                @if ($settings_share->facebook != null)
+                                    <li><a href="{{ $settings_share->facebook }}"><i class="ti-facebook"></i></a></li>
+                                @endif
+                                @if ($settings_share->youtube != null)
+                                    <li><a href="{{ $settings_share->youtube }}"><i class="ti-youtube"></i></a></li>
+                                @endif
+                                @if ($settings_share->linked_in != null)
+                                    <li><a href="{{ $settings_share->linked_in }}"><i class="ti-linkedin-in"></i></a>
+                                    </li>
+                                @endif
+                                @if ($settings_share->insta != null)
+                                    <li><a href="{{ $settings_share->insta }}"><i class="ti-instagram"></i></a></li>
+                                @endif
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="widget link-widget">
+                            <div class="widget-title">
+                                <h3>{{ trans('admin.useful_links') }}</h3>
+                            </div>
+                            <ul>
+                                <li><a href="{{ route('terms') }}">{{ trans('admin.terms') }}</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="widget market-widget wpo-service-link-widget">
+                            <div class="widget-title">
+                                <h3>{{ trans('admin.web_data') }} </h3>
+                            </div>
+                            <p></p>
+                            <div class="contact-ft">
+                                <ul>
+                                    <li><i class="fi ti-location-pin"></i>{{ $settings_share->address }}</li>
+                                    <li>{{ $settings_share->phone }}<i class="fi flaticon-call"></i></li>
+                                    <li>{{ $settings_share->email }}<i class="fi flaticon-envelope"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div> <!-- end container -->
+            </div>
+             <!-- end container -->
         </div>
         <div class="wpo-lower-footer">
             <div class="container">
@@ -76,7 +130,7 @@
     <!-- end wpo-site-footer -->
 </div>
 </div>
-<div class="payment-section">
+<div class="payment-section" style="padding: 0">
     <div id="sign-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true" >
         <div class="modal-dialog modal-dialog-centered" >

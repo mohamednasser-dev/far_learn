@@ -85,16 +85,16 @@
     <!-- payment-section start-->
     <div class="payment-section">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="payment-text">
+            <div class="row" style="margin-bottom: 100px;text-align:center">
+                <div class="col-md-6 p-2">
+                    <div class="payment-text" style="border-radius: 10px;overflow:hidden">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14333.438226553168!2d43.99006703588188!3d26.087179119728543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1581ec231eaa6f91%3A0x70ed2cd8e83d1c2!2z2LnZhtmK2LLYqSDYp9mE2LPYudmI2K_Zitip!5e0!3m2!1sar!2seg!4v1611331221543!5m2!1sar!2seg"
                             width="100%" height="560" frameborder="0" style="border:0;"
                             allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 p-2">
                     <div class="wpo-donations-form">
                         <h2>{{trans('admin.contact_us')}}</h2>
                         <div class="row">
@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                 <textarea placeholder="{{trans('admin.message')}}" class="form-control" name="message"
-                                          required></textarea>
+                                          required style="background-color: #f8f8f8; border:none;outline: none"></textarea>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                     {!! NoCaptcha::renderJs(app()->getLocale(), false, 'recaptchaCallback') !!}
