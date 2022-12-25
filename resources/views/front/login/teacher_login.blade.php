@@ -99,7 +99,7 @@
                 <div class="col-md-6">
                     <div class="wpo-donations-form">
                         <div class="row">
-                            {{-- <div class="stepwizard">
+                             <div class="stepwizard">
                                 <div class="stepwizard-row setup-panel">
                                     <div class="stepwizard-step col-xs-6">
                                         <a href="javascript:;" secc="#step-1" type="button"
@@ -114,27 +114,27 @@
                                             2</a>
                                     </div>
                                 </div>
-                            </div> --}}
-                            <div class="stepwizard">
-                                <div class="row stepwizard-row setup-panel" style="width: 100%;display: flex;justify-content: center;padding: 0;margin:0">
-                                    <div class="col-6 stepwizard-step " style="padding: 10px;display:flex;justify-content:center;align-items:center;width:100%">
-                                        <div class="text-align: center">
-                                            <a href="javascript:;" secc="#step-1" type="button"
-                                           class="btn btn-default btn-success btn-bg btn-circle "
-                                           style="pointer-events: none;cursor: default">
-                                            1</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 stepwizard-step" style="padding: 10px;display:flex;justify-content:center;align-items:center;width:100%">
-                                        <div class="text-align: center">
-                                            <a href="javascript:;" secc="#step-2" type="button"
-                                           class="btn btn-default btn-circle "
-                                           disabled="disabled" style="pointer-events: none;cursor: default;">
-                                            2</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
+{{--                            <div class="stepwizard">--}}
+{{--                                <div class="row stepwizard-row setup-panel" style="width: 100%;display: flex;justify-content: center;padding: 0;margin:0">--}}
+{{--                                    <div class="col-6 stepwizard-step " style="padding: 10px;display:flex;justify-content:center;align-items:center;width:100%">--}}
+{{--                                        <div class="text-align: center">--}}
+{{--                                            <a href="javascript:;" secc="#step-1" type="button"--}}
+{{--                                           class="btn btn-default btn-success btn-bg btn-circle "--}}
+{{--                                           style="pointer-events: none;cursor: default">--}}
+{{--                                            1</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-6 stepwizard-step" style="padding: 10px;display:flex;justify-content:center;align-items:center;width:100%">--}}
+{{--                                        <div class="text-align: center">--}}
+{{--                                            <a href="javascript:;" secc="#step-2" type="button"--}}
+{{--                                           class="btn btn-default btn-circle "--}}
+{{--                                           disabled="disabled" style="pointer-events: none;cursor: default;">--}}
+{{--                                            2</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <input type="hidden" required name="type" id="txt_type" value="{{$types}}">
                             <input type="hidden" required name="_token" id="csrf"
                                    value="{{Session::token()}}">
@@ -1037,19 +1037,6 @@
         }
     </script>
     <script>
-        $(document).on('click', '#btn_delete', function () {
-            $("#txt_unique_name").val('');
-            $("#txt_name").val('');
-            $("#txt_pass").val('');
-            $("#txt_con_pass").val('');
-            $("#txt_f_name").val('');
-            $("#txt_m_name").val('');
-            $("#txt_l_name").val('');
-            $("#txt_date").val('');
-            $("#txt_email").val('');
-            $("#txt_phone").val('');
-        });
-        {{--if({{$types}} != 'teacher_far_learn' || {{$types}} != 'teacher_mogmaa_dorr'){--}}
         $('#txt_date').on('blur', function () {
             if ($("#txt_date").val().split("-").reverse().join("-").substring(0, 4).indexOf('-') == -1) {
                 var hi = $("#txt_date").val().split("-").reverse().join("-");
@@ -1062,7 +1049,7 @@
             var pastYear = past.getFullYear();
             var age = nowYear - pastYear;
             if (age <= 10) {
-                console.log('age <= 10');
+                // console.log('age <= 10');
                 document.getElementById('parent_access').style.display = 'block';
                 $('#user_name').attr('required', 'required');
                 $('#phone').attr('required', 'required');
@@ -1074,7 +1061,7 @@
                 document.getElementById('phone').removeAttribute('readonly');
                 document.getElementById('txt_parent_country_code').removeAttribute('readonly');
             } else {
-                console.log('age > 10');
+                // console.log('age > 10');
                 document.getElementById('parent_access').style.display = 'none';
                 $('#user_name').removeAttr('required');
                 $('#phone').removeAttr('required');
@@ -1165,21 +1152,21 @@
                     var pc = $('#txt_p_c').val();
                     var pac = $('#txt_pa_c').val();
                     var parent_phone = $('#phone').val();
-                    // if (ec != 'true') {
-                    //     alert("يجب التحقق من البريد الإلكتروني اولا !");
-                    // } else if (pc != 'true') {
-                    //     alert("يجب التحقق من رقم الجوال أولا !");
-                    // } else if (pac != 'true') {
-                    //     alert("يجب التحقق من رقم جوال ولي الامر أولا !");
-                    // } else if (pw1 != pw2) {
-                    //     alert("كلمات المرور غير متطابقة");
-                    // } else {}
+                    if (ec != 'true') {
+                        alert("يجب التحقق من البريد الإلكتروني اولا !");
+                    } else if (pc != 'true') {
+                        alert("يجب التحقق من رقم الجوال أولا !");
+                    } else if (pac != 'true') {
+                        alert("يجب التحقق من رقم جوال ولي الامر أولا !");
+                    } else if (pw1 != pw2) {
+                        alert("كلمات المرور غير متطابقة");
+                    } else {}
                     var curStep = $(this).closest(".setup-content"),
                         curStepBtn = curStep.attr("id"),
                         nextStepWizard = $('div.setup-panel div a[secc="#' + curStepBtn + '"]').parent().next().children("a"),
                         curInputs = curStep.find("input[type='text'],input[type='email'],input[type='password'],input[type='url'],input[type='number'],select"),
                         isValid = true;
-
+                    // console.log(curInputs.length);
                     $(".form-group").removeClass("has-error");
                     for (var i = 0; i < curInputs.length; i++) {
                         if (!curInputs[i].validity.valid) {
@@ -1204,11 +1191,9 @@
                             } else if (curInputs[i].id == 'txt_pass') {
                                 // alert('تحقق من ادخال كلمة المرور على الاقل 8 حروف   ');
                                 alert('{{trans('s_admin.eight_pass_req')}}');
-
                             } else if (curInputs[i].id == 'txt_phone') {
                                 // alert('تحقق من ادخال رقم الجوال    ');
                                 alert('{{trans('s_admin.phone_req')}}');
-
                             } else if (curInputs[i].id == 'txt_date') {
                                 // alert('تحقق من ادخال تاريخ الميلاد');
                                 alert('{{trans('s_admin.d_o_b_req')}}');
@@ -1246,13 +1231,12 @@
                             $(curInputs[i]).closest(".form-group").addClass("has-error");
                             if (curInputs[i].id == 'txt_f_name') {
                                 alert('{{trans('s_admin.first_name_req')}}');
-
                             } else if (curInputs[i].id == 'txt_m_name') {
                                 alert('{{trans('s_admin.mide_name_req')}}');
                             } else if (curInputs[i].id == 'txt_l_name') {
                                 alert('{{trans('s_admin.last_name_req')}}');
-                            } else if (curInputs[i].id == 'txt_unique_name') {
-                                alert('{{trans('s_admin.user_name_req')}}');
+                            {{--} else if (curInputs[i].id == 'txt_unique_name') {--}}
+                            {{--    alert('{{trans('s_admin.user_name_req')}}');--}}
                             } else if (curInputs[i].id == 'txt_email') {
                                 alert('{{trans('s_admin.email_req')}}');
                             } else if (curInputs[i].id == 'txt_pass') {
