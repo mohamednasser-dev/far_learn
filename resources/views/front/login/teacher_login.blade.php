@@ -169,7 +169,7 @@
                                             <input type="text" class="form-control" placeholder="{{trans('admin.first_name')}}" autofocus="on" required value="{{old('first_name_ar')}}" id="txt_f_name">
                                         </div>
                                         <div class="col-4">
-                                            <input type="text" class="form-control" placeholder="{{trans('admin.mid_name')}}" required value="{{old('mid_name_ar')}}" id="txt_mid_name">
+                                            <input type="text" class="form-control" placeholder="{{trans('admin.mid_name')}}" required value="{{old('mid_name_ar')}}" id="txt_m_name">
                                         </div>
                                         <div class="col-4">
                                             <input type="text" class="form-control" placeholder="{{trans('admin.last_name')}}" required value="{{old('last_name_ar')}}" id="txt_l_name">
