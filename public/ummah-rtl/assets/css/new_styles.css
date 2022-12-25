@@ -1,3 +1,22 @@
+/* begin:: global styles */
+body{
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100%;
+}
+
+.modal-backdrop {
+    background-color: rgb(0, 0, 0, 0.6);
+ }
+
+ .service-single-section .service-sidebar li {
+    padding-top: 10px;
+}
+/* end global styles */
+
 /*** begin:: header buttons style ***/
 .wpo-site-header .cart-search-contact>div {
     float: none;
@@ -146,6 +165,7 @@
 }
 /* end:: wpo-site-footer */
 
+
 /**********************************************************/
 /* start media queries  */
 
@@ -272,6 +292,12 @@
         order: 1 !important;
     }
     /* end:: wpo-site-footer on mobile */
+
+    /* begin:: teacher , student modal padding between buttons on mobile */
+    .payment-section #stud_model .modal-dialog .modal-content .modal-body .col-sm-6:first-of-type, .payment-section #teacher_model .modal-dialog .modal-content .modal-body .col-sm-6:first-of-type {
+        padding-bottom: 20px;
+    }
+    /* begin:: teacher , student modal padding between buttons on mobile */
 }
 /* end small screen */
 /* start medium screen */
@@ -371,6 +397,11 @@
         order: 1 !important;
     }
     /* end:: wpo-site-footer on mobile */
+    /* begin:: teacher , student modal padding between buttons on mobile */
+    .payment-section #stud_model .modal-dialog .modal-content .modal-body .col-sm-6:first-of-type, .payment-section #teacher_model .modal-dialog .modal-content .modal-body .col-sm-6:first-of-type {
+        padding-bottom: 20px;
+    }
+    /* begin:: teacher , student modal padding between buttons on mobile */
 }
 /* end medium screen */
 /* start large screen */

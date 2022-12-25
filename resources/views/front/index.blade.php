@@ -102,25 +102,25 @@
                                 {{ Form::open( ['route' => ['contact_us.store_new'],'method'=>'post'] ) }}
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                     <input type="text" name="name" required class="form-control"
-                                           placeholder="{{trans('admin.name')}}">
+                                           placeholder="{{trans('admin.name')}}" style="background-color: #fff">
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                     <input type="email" name="email" required class="form-control"
-                                           placeholder="{{trans('admin.email')}}">
+                                           placeholder="{{trans('admin.email')}}" style="background-color: #fff">
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                     <input type="tel" name="phone" required class="form-control"
-                                           placeholder="{{trans('admin.phone')}}">
+                                           placeholder="{{trans('admin.phone')}}" style="background-color: #fff">
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                 <textarea placeholder="{{trans('admin.message')}}" class="form-control" name="message"
-                                          required style="background-color: #f8f8f8; border:none;outline: none"></textarea>
+                                          required style="background-color: #fff; border:none;outline: none; resize: none; border-radius:10px" ></textarea>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                     {!! NoCaptcha::renderJs(app()->getLocale(), false, 'recaptchaCallback') !!}
                                     {!! NoCaptcha::display() !!}
                                     <div class="col-lg-12 col-12 form-group" type="submit">
-                                        <button class="theme-btn" type="submit">{{trans('admin.send')}}</button>
+                                        <button class="theme-btn" type="submit" style="overflow: hidden">{{trans('admin.send')}}</button>
                                     </div>
                                     {{ Form::close() }}
                                 </div>

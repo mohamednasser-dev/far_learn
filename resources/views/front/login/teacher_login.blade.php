@@ -640,13 +640,13 @@
     <!-- payment-section end-->
 
 @section('modals')
-    <div class="payment-section">
+    <div class="payment-section" style="padding: 0">
         <div id="check_model" class="modal model_style fade-in" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel"
              aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content" style="border-radius: 5%!important;">
-                    <div class="modal-header" style="align-self: center;">
+                <div class="modal-content" style="border-radius: 15px !important; overflow:hidden">
+                    <div class="modal-header" style="text-align: center;">
                         <h5 class="modal-title" id="exampleModalLongTitle">{{trans('s_admin.check_phone')}}</h5>
                     </div>
                     <div class="modal-body">
@@ -677,7 +677,7 @@
              aria-labelledby="myModalLabel"
              aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content" style="border-radius: 5%!important;">
+                <div class="modal-content" style="border-radius: 15px !important; overflow: hidden">
                     <div class="modal-header" style="align-self: center;">
                         <h5 class="modal-title" id="exampleModalLongTitle">{{trans('s_admin.check_phone')}}</h5>
                     </div>
@@ -709,7 +709,7 @@
              aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content"
-                     style="border-radius: 5%!important; width: 100%;text-align: center;">
+                     style="border-radius: 15px!important; width: 100%;text-align: center;">
                     <div class="modal-header">
                         <div class="col-md-12">
                             <h3 class="modal-title" id="exampleModalLongTitle">{{trans('admin.login')}}</h3>
@@ -769,10 +769,10 @@
         </div>
         <div id="check_email_model" class="modal model_style fade-in" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel"
-             aria-hidden="true">
+             aria-hidden="true" >
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content" style="border-radius: 5%!important;">
-                    <div class="modal-header" style="align-self: center;">
+                <div class="modal-content" style="border-radius: 15px !important; overflow: hidden">
+                    <div class="modal-header" style="text-align: center">
                         <h5 class="modal-title" id="exampleModalLongTitle">{{trans('s_admin.check_email')}}</h5>
                     </div>
                     <div class="modal-body">
@@ -804,7 +804,7 @@
              aria-labelledby="myModalLabel"
              aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content" style="border-radius: 5%!important;">
+                <div class="modal-content" style="border-radius: 15px !important; overflow: hidden">
                     <div style="text-align: center;">
                         <a><i style="font-size:48px; color: green;"
                               class="fa fa-check"></i></a>
@@ -823,7 +823,7 @@
              aria-labelledby="myModalLabel"
              aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content" style="border-radius: 5%!important;">
+                <div class="modal-content" style="border-radius: 15px !important; overflow: hidden">
                     <div style="text-align: center;">
                         <a><i style="font-size:48px; color: green;"
                               class="fa fa-check"></i></a>
@@ -843,7 +843,7 @@
              aria-labelledby="myModalLabel"
              aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content" style="border-radius: 5%!important;">
+                <div class="modal-content" style="border-radius: 15px !important; overflow: hidden">
                     <div class="modal-body" style="align-self: center;">
                         <div style="text-align: center;">
                             <a><i style="font-size:48px; color: red;"
@@ -864,7 +864,7 @@
              aria-labelledby="myModalLabel"
              aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content" style="border-radius: 5%!important;">
+                <div class="modal-content" style="border-radius: 15px !important; overflow: hidden">
                     <div class="modal-body" style="align-self: center;">
                         <div style="text-align: center;">
                             <a><i style="font-size:48px; color: red;"

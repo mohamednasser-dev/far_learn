@@ -204,17 +204,15 @@
     <div id="stud_model" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="border-radius: 5%!important;">
+            <div class="modal-content" style="border-radius: 15px !important;">
                 <div class="modal-header">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <h5 class="modal-title" id="exampleModalLongTitle">{{ trans('admin.choose_type_epo') }}</h5>
+                    <div class="text-center">
+                        <h5 class="modal-title" id="exampleModalLongTitle" style="font-size:20px; font-weight: bold">{{ trans('admin.choose_type_epo') }}</h5>
                     </div>
-                    <div class="col-md-4"></div>
                 </div>
                 <div class="modal-body">
                     <div class="row text-center">
-                        <div class="col-md-6">
+                        <div class="col-sm-6">
                             @if ($settings_share->show_fixed_subject == '0')
                                 <a href="{{ route('sign_up', ['type' => 'far_learn']) }}" class="theme-btn"
                                     style="background-color: yellowgreen; width: 100%;">
@@ -227,9 +225,9 @@
                                 </a>
                             @endif
                         </div>
-                        <div class="vertical" style="height: 50px;"></div>
+
                         @if ($settings_share->show_mogmaa_dorr == '1')
-                            <div class="col-md-6">
+                            <div class="col-sm-6">
                                 <a href="{{ route('sign_up', ['type' => 'mogmaa_dorr']) }}" class="theme-btn"
                                     style="background-color: blueviolet; width: 100%;" href="" title="">
                                     {{ trans('s_admin.mogmaa_dorr') }}
@@ -281,24 +279,24 @@
     <div id="teacher_model" class="modal model_style fade" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="border-radius: 5%!important;">
+            <div class="modal-content" style="border-radius: 15px !important;">
                 <div class="modal-header">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <h5 class="modal-title" id="exampleModalLongTitle">{{ trans('admin.choose_type_epo') }}</h5>
+
+                    <div class="text-center">
+                        <h5 class="modal-title" id="exampleModalLongTitle" style="font-size:20px; font-weight: bold">{{ trans('admin.choose_type_epo') }}</h5>
                     </div>
-                    <div class="col-md-4"></div>
+
                 </div>
                 <div class="modal-body">
                     <div class="row text-center">
-                        <div class="col-md-6">
+                        <div class="col-sm-6">
                             <a href="{{ route('sign_up', ['type' => 'teacher_far_learn']) }}" class="theme-btn"
                                 style="background-color: yellowgreen; width: 100%;">
                                 {{ trans('admin.far_learn') }}
                             </a>
                         </div>
                         @if ($settings_share->show_mogmaa_dorr == '1')
-                            <div class="col-md-6">
+                            <div class="col-sm-6">
                                 <a href="{{ route('sign_up', ['type' => 'teacher_mogmaa_dorr']) }}" class="theme-btn"
                                     style="background-color: blueviolet; width: 100%;" href="" title="">
                                     {{ trans('s_admin.mogmaa_dorr') }}

@@ -20,14 +20,14 @@
     <!-- .wpo-breadcumb-area end -->
     <!-- start service-single-section -->
     <section class="service-single-section section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col col-md-8">
+        <div class="container" >
+            <div class="row" style="padding: 0 30px">
+                <div class="col-md-8" >
                     @foreach($data as $row)
-                        <div class="wpo-event-item row">
-                            <div class="wpo-event-img">
+                        <div class="wpo-event-item row" style="box-shadow: 1px 1px 10px rgb(0,0,0, 0.1);border-radius: 10px;overflow: hidden; padding: 30px">
+                            <div class="wpo-event-img col-md-4" style="text-align: center">
                                 @if($row->Teacher)
-                                    <img style="width: 232px;"
+                                    <img style="border-radius: 10px; max-width: 180px"
                                          src="{{url($row->Teacher->image)}}"
                                          alt="Author Image">
                                     <a href="{{route('front.teacher_details',$row->teacher_id)}}">
@@ -63,7 +63,7 @@
                                 {{--                                    <span>نوفمبر</span>--}}
                                 {{--                                </div>--}}
                             </div>
-                            <div class="wpo-event-text">
+                            <div class="wpo-event-text col-md-8" style="box-shadow: none">
                                 <h2>{{$row->name}}</h2>
 
                                 <ul>
@@ -149,16 +149,16 @@
                         <br>
                     @endforeach
                 </div>
-                <div class="col col-md-4">
+                <div class="col-md-4">
                     <div class="service-sidebar" style="padding-right:0; border-radius:15px;overflow:hidden">
                         {{ Form::open( ['route'  => ['times.search.episodes',['type'=>$type]],'method' =>'get','class' => 'checkout-form w-100 new_style' ] ) }}
 
                         <div class="widget service-list-widget">
                             <h3>{{trans('s_admin.search_methods')}}</h3>
-                            <div style="text-align: center;">
+                            {{-- <div style="text-align: center;">
                                 <button type="submit" class="theme-btn"
                                         tabindex="0">{{trans('s_admin.search')}}</button>
-                            </div>
+                            </div> --}}
                             <br>
                             <br>
                             <input type="text" name="teacher_name" class="form-control"
@@ -296,16 +296,19 @@
                                            id="radio14"> <label
                                         for="radio14">{{trans('s_admin.all')}}</label></li>
                             </ul>
-                            <div style="text-align: center;">
+                            <div style="text-align: center; margin-top: 20px; ">
                                 <button type="submit" class="theme-btn"
-                                        tabindex="0">{{trans('s_admin.search')}}</button>
+                                        tabindex="0" style="padding: 10px 40px">{{trans('s_admin.search')}}</button>
                             </div>
                         </div>
                         {{ Form::close() }}
                     </div>
                 </div>
-            </div> <!-- end row -->
+            </div>
+            <!-- end row -->
         </div> <!-- end container -->
     </section>
+    {{-- <hr> --}}
+    <div style="width: 100%; height: 2px;box-shadow: 1px 1px 10px rgb(0,0,0, 0.4)"></div>
     <!-- end service-single-section -->
 @endsection
