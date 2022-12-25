@@ -31,16 +31,16 @@
                     <div class="form-group row">
                         <label class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.msg')}}</label>
                         <div class="col-lg-9 col-xl-9">
-                            <div class="input-group input-group-solid">
+                            <div class="input-group">
 {{--                                <input type="text" required name="message" class="form-control form-control-solid">--}}
-                                <textarea type="text" minlength="1"  maxlength="70" required rows="5" name="message" class="form-control form-control-solid"></textarea>
+                                <textarea type="text" minlength="1"  maxlength="70" required rows="5" name="message" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.receiver')}}</label>
                         <div class="col-lg-9 col-xl-9">
-                            <div class="input-group input-group-solid">
+                            <div class="input-group ">
                                 <select required name="type" id="cmb_type" class="form-control form-control-lg">
                                     <option disabled selected>{{trans('s_admin.choose_receiver')}}</option>
                                     <option value="student">{{trans('s_admin.student')}}</option>
@@ -52,7 +52,7 @@
                     <div class="form-group row" id="student_cont" style="display: none;">
                         <label class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.student')}}</label>
                         <div class="col-lg-9 col-xl-9">
-                            <div class="input-group input-group-solid">
+                            <div class="input-group">
                                 <select required name="student_receiver_id"class="form-control select2" style="width: 100%;"
                                         id="kt_select2_1">
                                     <option disabled >{{trans('s_admin.choose_student')}}</option>
@@ -67,9 +67,9 @@
                     <div class="form-group row" id="teacher_cont" style="display: none;">
                         <label class="col-lg-3 col-form-label text-lg-right">{{trans('s_admin.teacher_2')}}</label>
                         <div class="col-lg-9 col-xl-9">
-                            <div class="input-group input-group-solid">
-                                <select required name="teacher_receiver_id" id="cmb_teachers" class="form-control form-control-lg">
-                                    <option disabled >{{trans('s_admin.choose_student')}}</option>
+                            <div class="input-group">
+                                <select required name="teacher_receiver_id" id="kt_select2_2" class="form-control form-control-lg select2"  style="width: 100%;">
+                                    <option disabled >{{trans('s_admin.choose_teacher')}}</option>
                                     @foreach($teachers as $row)
                                         <option value="{{$row->id}}">{{$row->user_name}} &nbsp; &nbsp; &nbsp; &nbsp; {{$row->country_code}}{{$row->phone}}</option>
                                     @endforeach

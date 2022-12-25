@@ -10,21 +10,24 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class Academic_semestersController extends Controller
 {
-     /**
- * Display a listing of the resource.
- *
- * @return \Illuminate\Http\Response
- */
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index($id)
     {
         $year_id = $id;
-        $data = Academic_semester::where('academic_year_id',$id)->orderBy('id','desc')->with('Year')->get();
-        return view('admin.settings.episodes.Academic_year.Academic_semester.index' ,compact('data','year_id') );
+        $data = Academic_semester::where('academic_year_id', $id)->orderBy('id', 'desc')->with('Year')->get();
+        return view('admin.settings.episodes.Academic_year.Academic_semester.index', compact('data', 'year_id'));
     }
-    public function get_Academic_semesters($id){
-        $data = Academic_semester::where('academic_year_id',$id)->orderBy('id','desc')->get();
-        return view('admin.settings.episodes.Academic_year.Academic_semester.select' ,compact('data') );
+
+    public function get_Academic_semesters($id)
+    {
+        $data = Academic_semester::where('academic_year_id', $id)->orderBy('id', 'desc')->get();
+        return view('admin.settings.episodes.Academic_year.Academic_semester.select', compact('data'));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -38,7 +41,7 @@ class Academic_semestersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -46,8 +49,8 @@ class Academic_semestersController extends Controller
         $data = $this->validate(\request(),
             [
                 'name' => 'required',
-                'from' => 'required',
-                'to' => 'required',
+                'from' => 'required|date',
+                'to' => 'required|date|after_or_equal:' . $request->from,
                 'academic_year_id' => 'required',
             ]);
         Academic_semester::create($data);
@@ -58,7 +61,7 @@ class Academic_semestersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -69,7 +72,7 @@ class Academic_semestersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -80,8 +83,8 @@ class Academic_semestersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -89,7 +92,7 @@ class Academic_semestersController extends Controller
         $input['from'] = $request->from;
         $input['to'] = $request->to;
         $input['name'] = $request->name;
-        Academic_semester::where('id',$request->id)->update($input);
+        Academic_semester::where('id', $request->id)->update($input);
         Alert::success(trans('s_admin.update'), trans('s_admin.updted_s'));
         return back();
     }
@@ -97,7 +100,7 @@ class Academic_semestersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

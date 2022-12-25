@@ -1022,7 +1022,7 @@
                             <label> @if($data->gender == 'female') {{trans('s_admin.teacher_name_her')}} @else {{trans('s_admin.teacher_name')}} @endif </label>
                             @php $teachers = App\Models\Teacher::where('epo_type',$data->type)->where('gender',$data->gender)
                                             ->where('status','active')->where('is_new','accepted')->where('is_verified','1')->get(); @endphp
-                            <select required name="teacher_id" class="form-control select2" id="kt_select2_4">
+                            <select required name="teacher_id" class="form-control select2" id="kt_select2_4" style="width: 100%;">
                                 @foreach($teachers as $row)
                                     @if($data->teacher_id == $row->id)
                                         @if(app()->getLocale() == 'ar')

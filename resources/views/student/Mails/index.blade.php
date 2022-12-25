@@ -142,7 +142,7 @@
                                 {{--                                <input type="text" class="form-control border-0" name="compose_to"/>--}}
                                 <select class="form-control" id="kt_select2_1"
                                         name="receiver_id"
-                                        required style="width: max-content">
+                                        required style="width: 100%;" >
 
 
                                     <optgroup label="{{trans('s_admin.admins')}}">

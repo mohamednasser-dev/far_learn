@@ -93,6 +93,8 @@
                                     @php $college_data = \App\Models\College::where('deleted','0')->where('type','college')->get(); @endphp
                                   @elseif($user_data->role_id == 5 ||  $user_data->role_id == 12 ||  $user_data->role_id == 13 ||  $user_data->role_id == 14)
                                       @php $college_data = \App\Models\College::where('deleted','0')->where('type','dorr')->get(); @endphp
+                                  @else
+                                      @php $college_data = \App\Models\College::where('deleted','0')->get(); @endphp
                                   @endif
                                   @foreach($college_data as $row)
                                       @if($row->id == $user_data->college_id)

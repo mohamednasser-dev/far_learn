@@ -207,12 +207,9 @@
                 <div class="input-group date mb-2 row" >
                     <div class="col-md-12">
                         <label>{{trans('s_admin.academic_year')}}</label>
-                        <select required  id="Academic_year" name="" class="form-control">
-                            <option selected >{{trans('s_admin.choose_academy_year')}}</option>
-                            @foreach($Academic_year->all() as $data)
-                                <option value="{{$data->id}}">{{$data->date}}</option>
-                            @endforeach
-                        </select>
+                        {{ Form::select('academic_year_id',App\Models\Academic_year::all()->pluck('date','id'),null
+                           ,["class"=>"form-control form-control-lg","placeholder"=>trans('s_admin.choose_academy_year'), "required" ,"id"=>"Academic_year" ]) }}
+
                     </div>
                 </div>
                 <div class="input-group date mb-2 row" style="display: none;" id="academy_semester">

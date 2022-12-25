@@ -23,19 +23,19 @@
             <table class="table table-bordered table-hover table-checkable" id="kt_datatable">
                 <thead>
                 <tr>
-                    <th title="Field #1">#</th>
-                    <th title="Field #1">{{trans('s_admin.year')}}</th>
-                    <th title="Field #1">{{trans('s_admin.Academic_semester')}}</th>
-                    <th title="Field #7">{{trans('s_admin.chooses')}}</th>
+                    <th  class="text-center" title="Field #1">#</th>
+                    <th  class="text-center" title="Field #1">{{trans('s_admin.year')}}</th>
+                    <th  class="text-center" title="Field #1">{{trans('s_admin.Academic_semester')}}</th>
+                    <th  class="text-center" title="Field #7">{{trans('s_admin.chooses')}}</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($data as $key => $row)
                     <tr>
-                        <td>{{$key + 1}}</td>
-                        <td>{{$row->date}}</td>
-                        <td> <a class="btn btn-info" href="/Academic_semester/{{$row->id}}"> الترم الدراسي</a> </td>
-                        <td>
+                        <td class="text-center" >{{$key + 1}}</td>
+                        <td class="text-center" >{{$row->date}}</td>
+                        <td class="text-center" > <a class="btn btn-info" href="/Academic_semester/{{$row->id}}"> الترم الدراسي</a> </td>
+                        <td class="text-center" >
                             <a class="btn btn-icon btn-primary btn-circle btn-sm mr-2"
                                data-editid="{{$row->id}}" data-name_ar="{{$row->date}}" id="edit"
                                alt="default" data-toggle="modal" data-target="#edit_model">

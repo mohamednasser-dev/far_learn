@@ -565,7 +565,8 @@ class EpisodeController extends Controller
                 'listen_type' => 'required',
                 'active' => 'required',
                 'time_from' => 'required',
-                'time_to' => 'required'
+                'time_to' => 'required',
+                'academic_semesters_id' => 'required'
             ]);
         $epo = Episode::find($request->id);
 
@@ -640,7 +641,12 @@ class EpisodeController extends Controller
             }
         }
         Alert::success(trans('s_admin.edit'), trans('s_admin.updated_s'));
-        return back();
+
+        if ($epo->type == 'mqraa') {
+            return redirect()->route('episode.show.type','mqraa');
+        }else{
+            return redirect()->route('colleges.index');
+        }
     }
 
     public function place_teacher(Request $request)

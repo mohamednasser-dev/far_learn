@@ -25,34 +25,34 @@
             <table class="table table-bordered table-hover table-checkable" id="kt_datatable">
                 <thead>
                 <tr>
-                    <th title="Field #1">#</th>
-                    <th title="Field #1">{{trans('s_admin.name_ar')}}</th>
-                    <th title="Field #2">{{trans('s_admin.name_en')}}</th>
-                    <th title="Field #2">{{trans('s_admin.type')}}</th>
-                    <th title="Field #2">{{trans('s_admin.creation_date')}}</th>
-                    <th title="Field #3">{{trans('s_admin.nav_subjects')}}</th>
-                    <th title="Field #7">{{trans('s_admin.chooses')}}</th>
+                    <th class="text-center"  title="Field #1">#</th>
+                    <th class="text-center"  title="Field #1">{{trans('s_admin.name_ar')}}</th>
+                    <th class="text-center"  title="Field #2">{{trans('s_admin.name_en')}}</th>
+                    <th class="text-center"  title="Field #2">{{trans('s_admin.type')}}</th>
+                    <th class="text-center"  title="Field #2">{{trans('s_admin.creation_date')}}</th>
+                    <th class="text-center"  title="Field #3">{{trans('s_admin.nav_subjects')}}</th>
+                    <th class="text-center"  title="Field #7">{{trans('s_admin.chooses')}}</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($data as $key => $row)
                     <tr>
-                        <td>{{$key + 1}}</td>
-                        <td>{{$row->name_ar}}</td>
-                        <td>{{$row->name_en}}</td>
-                        <td>
+                        <td class="text-center" >{{$key + 1}}</td>
+                        <td class="text-center" >{{$row->name_ar}}</td>
+                        <td class="text-center" >{{$row->name_en}}</td>
+                        <td class="text-center" >
                             @if($row->type == 'far_learn')
                                 {{trans('s_admin.far_learn')}}
                             @else
                                 {{trans('s_admin.mogmaa_dorr')}}
                             @endif
                         </td>
-                        <td>{{$row->created_at->format('Y-m-d')}}</td>
-                        <td>
+                        <td class="text-center" >{{$row->created_at->format('Y-m-d')}}</td>
+                        <td class="text-center" >
                             <a href="{{route('subjects.show',$row->id)}}"
                                class="btn btn-dark mr-2">{{trans('s_admin.nav_subjects')}}</a>
                         </td>
-                        <td class="text-right">
+                        <td  class="text-center" >
                             <a class="btn btn-icon btn-primary btn-circle btn-sm mr-2"
                                data-editid="{{$row->id}}" data-name_ar="{{$row->name_ar}}"
                                data-name_en="{{$row->name_en}}" data-type="{{$row->type}}" id="edit"

@@ -211,6 +211,21 @@
                         </div>
                     </div>
                 </div>
+                <div class="input-group date mb-2 row" >
+                    <div class="col-md-12">
+                        <label>{{trans('s_admin.academic_year')}}</label>
+                        {{ Form::select('academic_year_id',App\Models\Academic_year::all()->pluck('date','id'),$data->Term->academic_year_id
+                           ,["class"=>"form-control form-control-lg","placeholder"=>trans('s_admin.choose_academy_year'), "required" ,"id"=>"Academic_year" ]) }}
+
+                    </div>
+                </div>
+                <div class="input-group date mb-2 row" id="academy_semester">
+                    <div class="col-md-12">
+                        <label>{{trans('s_admin.Academic_semester')}}</label>
+                        {{ Form::select('academic_semesters_id',App\Models\Academic_semester::where('academic_year_id',$data->Term->academic_year_id)->get()->pluck('name','id'),$data->academic_semesters_id
+                        ,["class"=>"form-control form-control-lg", "required" ,"id"=>"Academic_semester" ]) }}
+                    </div>
+                </div>
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-info mr-2">{{trans('s_admin.edit')}}</button>

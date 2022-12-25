@@ -28,22 +28,22 @@
             <table class="table table-bordered table-hover table-checkable" id="kt_datatable">
                 <thead>
                 <tr>
-                    <th title="Field #1">#</th>
-                    <th title="Field #1">{{trans('s_admin.name')}}</th>
-                    <th title="Field #1">{{trans('s_admin.from')}}</th>
-                    <th title="Field #1">{{trans('s_admin.to')}}</th>
-                    <th title="Field #7">{{trans('s_admin.chooses')}}</th>
+                    <th class="text-center" title="Field #1">#</th>
+                    <th class="text-center"  title="Field #1">{{trans('s_admin.name')}}</th>
+                    <th class="text-center"  title="Field #1">{{trans('s_admin.from')}}</th>
+                    <th class="text-center"  title="Field #1">{{trans('s_admin.to')}}</th>
+                    <th class="text-center"  title="Field #7">{{trans('s_admin.chooses')}}</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($data as $key => $row)
                     <tr>
-                        <td>{{$key + 1}}</td>
-                        <td>{{$row->name}}</td>
-                        <td>{{$row->from}}</td>
-                        <td>{{$row->to}}</td>
+                        <td class="text-center" >{{$key + 1}}</td>
+                        <td class="text-center" >{{$row->name}}</td>
+                        <td class="text-center" >{{$row->from}}</td>
+                        <td class="text-center" >{{$row->to}}</td>
 
-                        <td class="text-right">
+                        <td class="text-center" >
                             <a class="btn btn-icon btn-primary btn-circle btn-sm mr-2"
                                data-editid="{{$row->id}}" data-name="{{$row->name}}"  data-from="{{$row->from}}" data-to="{{$row->to}}"id="edit"
                                alt="default" data-toggle="modal" data-target="#edit_model">

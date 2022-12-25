@@ -233,8 +233,9 @@ qualification
     }
     public function zones_delete(Request $request,$id)
     {
+
         $input['deleted'] = '1';
-        District::where('id',$id)->update($input);
+        Zone::where('id',$id)->update($input);
         Alert::success(trans('s_admin.delete'), trans('s_admin.deleted_s'));
         return back();
     }

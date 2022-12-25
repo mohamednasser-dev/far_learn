@@ -136,7 +136,7 @@ class   LoginController extends Controller
             }
             if (auth()->guard('web')->user()->status != 'active') {
                 Auth::logout();
-                Alert::error(trans('admin.login'), trans('s_admin.pass_email_wrong_title'));
+                Alert::error(trans('admin.login'), trans('s_admin.you_not_active'));
                 return back();
             } else {
                 Alert::success(trans('admin.login_done'), trans('admin.hello'));

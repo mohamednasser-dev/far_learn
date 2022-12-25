@@ -157,7 +157,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::get('cities/{id}/{country_id}', 'SignUpController@cities_index')->name('cities.show');
         Route::post('cities', 'SignUpController@cities_store')->name('cities.store');
         Route::post('cities/update', 'SignUpController@cities_update')->name('cities.update');
-        Route::get('cities/delete/{id}', 'SignUpController@cities_delete')->name('cities.delete');
+        Route::get('cities/delete/new/{id}', 'SignUpController@cities_delete')->name('cities.delete');
         //zones
         Route::get('zones/{id}', 'SignUpController@zones_index')->name('zones.show');
         Route::post('zones', 'SignUpController@zones_store')->name('zones.store');
@@ -205,7 +205,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::resource('subjects', 'Admin\episodes\SubjectController');
     Route::post('subjects/update_new', 'Admin\episodes\SubjectController@update')->name('subjects.update_new');
-    Route::get('subjectss/{id}/delete', 'Admin\episodes\SubjectController@destroy')->name('subjectss.delete');
+    Route::get('subjects/{id}/new_delete', 'Admin\episodes\SubjectController@destroy')->name('subjects.new_delete');
 
     Route::resource('subject_levels', 'Admin\episodes\SubjectLevelsController');
     Route::post('subject_levels/update_new', 'Admin\episodes\SubjectLevelsController@update')->name('subject_levels.update_new');

@@ -151,7 +151,7 @@
                             <div class="d-flex align-items-center flex-grow-1 w-75px">
 
                                 <select class="form-control" id="kt_select2_1" name="receiver_id"
-                                        required style="width: max-content">
+                                        required style="width: 100%;">
                                     <option value="all_teacher"> <span style="color: green">ارسال لكل المعلمين</span>
                                     </option>
                                     <option value="all_student"> <span style="color: green">ارسال لكل الطلاب</span>

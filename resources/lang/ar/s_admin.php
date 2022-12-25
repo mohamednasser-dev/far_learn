@@ -3,6 +3,7 @@ return [
     //new
 
 
+    'add_new_question' => 'إضافة سؤال جديد',
     'edit_what_his_limit_save' => 'تعديل القدرة على الحفظ',
     'choose_from_colors' => 'اختر من الالوان',
     'app_main_color' => 'اللون الاساسي',

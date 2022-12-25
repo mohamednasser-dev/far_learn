@@ -45,27 +45,27 @@
                     <table class="table table-bordered table-hover table-checkable" id="kt_datatable">
                         <thead>
                         <tr>
-                            <th title="Field #1">#</th>
-                            <th title="Field #1">{{trans('s_admin.week')}}</th>
-                            <th title="Field #2">{{trans('s_admin.day')}}</th>
-                            <th title="Field #4">{{trans('s_admin.surah')}}</th>
-                            <th title="Field #5">{{trans('s_admin.from')}}</th>
-                            <th title="Field #6">{{trans('s_admin.surah')}}</th>
-                            <th title="Field #7">{{trans('s_admin.to')}}</th>
-                            <th title="Field #7">{{trans('s_admin.chooses')}}</th>
+                            <th class="text-center"  title="Field #1">#</th>
+                            <th class="text-center"  title="Field #1">{{trans('s_admin.week')}}</th>
+                            <th class="text-center"  title="Field #2">{{trans('s_admin.day')}}</th>
+                            <th class="text-center"  title="Field #4">{{trans('s_admin.surah')}}</th>
+                            <th class="text-center"  title="Field #5">{{trans('s_admin.from')}}</th>
+                            <th class="text-center"  title="Field #6">{{trans('s_admin.surah')}}</th>
+                            <th class="text-center"  title="Field #7">{{trans('s_admin.to')}}</th>
+                            <th class="text-center"  title="Field #7">{{trans('s_admin.chooses')}}</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($new as $key => $row)
                             <tr>
-                                <td>{{$key + 1}}</td>
-                                <td>{{$row->Week->name_ar}}</td>
-                                <td>{{$row->Day->name_ar}}</td>
-                                <td>{{$row->From_Surah->name_ar}}</td>
-                                <td>{{trans('s_admin.aya_num')}}{{$row->from_num}}</td>
-                                <td>{{$row->To_Surah->name_ar}}</td>
-                                <td>{{trans('s_admin.aya_num')}}{{$row->to_num}}</td>
-                                <td>
+                                <td class="text-center" >{{$key + 1}}</td>
+                                <td class="text-center" >{{$row->Week->name_ar}}</td>
+                                <td class="text-center" >{{$row->Day->name_ar}}</td>
+                                <td class="text-center" >{{$row->From_Surah->name_ar}}</td>
+                                <td class="text-center" >{{trans('s_admin.aya_num')}}{{$row->from_num}}</td>
+                                <td class="text-center" >{{$row->To_Surah->name_ar}}</td>
+                                <td class="text-center" >{{trans('s_admin.aya_num')}}{{$row->to_num}}</td>
+                                <td class="text-center" >
                                     <a href="{{route('plan.edit',['id'=>$row->id,'type'=>'new'])}}"
                                        class="btn btn-icon btn-primary btn-circle btn-sm mr-2">
                                         <i class="icon-nm fas fa-pencil-alt" aria-hidden='true'></i>
