@@ -67,7 +67,7 @@
                             <div class="logo widget-title">
                                 <img src="{{ $settings_share->logo }}" alt="blog">
                             </div>
-                            <ul>
+                            <ul style="display: flex">
                                 @if ($settings_share->twiter != null)
                                     <li><a href="{{ $settings_share->twiter }}"><i class="ti-twitter-alt"></i></a></li>
                                 @endif
@@ -78,7 +78,7 @@
                                     <li><a href="{{ $settings_share->youtube }}"><i class="ti-youtube"></i></a></li>
                                 @endif
                                 @if ($settings_share->linked_in != null)
-                                    <li><a href="{{ $settings_share->linked_in }}"><i class="ti-linkedin-in"></i></a>
+                                    <li><a href="{{ $settings_share->linked_in }}"><i class="ti-linkedin"></i></a>
                                     </li>
                                 @endif
                                 @if ($settings_share->insta != null)

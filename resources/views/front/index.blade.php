@@ -10,12 +10,12 @@
                         <img src="{{$slider->image}}" alt class="slider-bg">
                         <div class="row">
                             <div class="col col-md-8 col-md-offset-2 slide-caption">
-                                <div class="slide-top">
+                                {{-- <div class="slide-top">
                                     <span> @if(session('lang')=='ar') {{$slider->title_ar}} @else {{$slider->title_en}} @endif </span>
-                                </div>
-                                <div class="slide-title">
+                                </div> --}}
+                                {{-- <div class="slide-title">
                                     <h2> @if(session('lang')=='ar') {{$slider->desc_ar}} @else {{$slider->desc_en}} @endif </h2>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

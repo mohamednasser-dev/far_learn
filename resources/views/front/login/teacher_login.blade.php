@@ -94,7 +94,7 @@
     <!-- payment-section start-->
     <div class="payment-section section-padding">
         <div class="container">
-            <div class="row" style="text-align-last: center;">
+            <div class="row" style="text-align-last: center; padding-bottom: 30px">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="wpo-donations-form">

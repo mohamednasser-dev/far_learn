@@ -15,6 +15,28 @@ body{
  .service-single-section .service-sidebar li {
     padding-top: 10px;
 }
+
+.hero-style-1 .slide:before {
+    /* background-color: rgba(40, 58, 94, 0.4); */
+    background-color: transparent;
+}
+
+.hero-style-1 .slide-caption>div.slide-top span {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.wpo-site-footer .about-widget ul{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    text-align: center;
+}
+
+.wpo-site-footer .about-widget ul li {
+    float: none;
+    margin: 0 !important;
+    padding: 5px 10px !important;
+}
 /* end global styles */
 
 /*** begin:: header buttons style ***/
@@ -141,7 +163,7 @@ body{
     padding-top: 100px;
 }
 .page-wrapper .payment-section{
-    padding: 100px 10px 50px 10px;
+    padding: 100px 10px 0px 10px;
 }
 .payment-section .wpo-donations-form .row .panel .panel-body .row .col-4 {
     padding: 10px;
