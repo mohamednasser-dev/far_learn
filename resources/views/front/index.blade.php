@@ -113,8 +113,9 @@
                                            placeholder="{{trans('admin.phone')}}" style="background-color: #fff">
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-                                <textarea placeholder="{{trans('admin.message')}}" class="form-control" name="message"
-                                          required ></textarea>
+                                <textarea required placeholder="{{trans('admin.message')}}" class="form-control" name="message"
+                                          style="background-color: #fff; border:none;outline: none; resize: none; border-radius:10px"
+                                           ></textarea>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                     {!! NoCaptcha::renderJs(app()->getLocale(), false, 'recaptchaCallback') !!}
