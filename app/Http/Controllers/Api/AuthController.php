@@ -428,7 +428,11 @@ class AuthController extends Controller
                 $data['last_name_en'] = $request->last_name_ar;
 
                 $data['user_name'] = $request->first_name_ar . " " . $request->mid_name_ar . " " . $request->last_name_ar;
-                $code = rand(1000, 9999);
+                if (env('APP_ENV') == 'production') {
+                    $code = random_int(1000, 9999);
+                }else{
+                    $code = 1234;
+                }
                 if ($type == 'teacher_far_learn' || $type == 'teacher_mogmaa_dorr') {
                     if ($type == 'teacher_far_learn') {
                         $data['epo_type'] = 'far_learn';
@@ -648,7 +652,11 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json(msg($request, failed(), $validator->messages()->first()));
         } else {
-            $code = rand(1000, 9999);
+            if (env('APP_ENV') == 'production') {
+                $code = random_int(1000, 9999);
+            }else{
+                $code = 1234;
+            }
             //check exists account ...
             $student = Student::where('user_phone', $phone)->first();
             if ($student) {
@@ -851,7 +859,11 @@ class AuthController extends Controller
             }
             if ($user != null) {
                 if ($user->is_verified == '0') {
-                    $code = rand(1000, 9999);
+                    if (env('APP_ENV') == 'production') {
+                        $code = random_int(1000, 9999);
+                    }else{
+                        $code = 1234;
+                    }
                     $user->code = $code;
                     if ($user->save()) {
 //                    mail_here
@@ -928,7 +940,12 @@ class AuthController extends Controller
             $exists_phone = Phone_check::where('phone', $phone)->where('checked', 0)->first();
             if ($exists_phone) {
                 if ($request->resend == 1) {
-                    $code = (string)rand('1000', '9999');
+                    if (env('APP_ENV') == 'production') {
+                        $code = random_int(1000, 9999);
+                    }else{
+                        $code = 1234;
+                    }
+//                    $code = (string)rand('1000', '9999');
                     $exists_phone->code = $code;
                     $exists_phone->save();
                     if ($lang == 'ar') {
@@ -942,9 +959,14 @@ class AuthController extends Controller
                     return response()->json(msgdata($request, success(), trans('s_admin.phone_checked_created'), $exists_phone));
                 }
             } else {
+                if (env('APP_ENV') == 'production') {
+                    $code = random_int(1000, 9999);
+                }else{
+                    $code = 1234;
+                }
                 $data['checked'] = 0;
                 $data['phone'] = $phone;
-                $data['code'] = (string)rand('1000', '9999');
+                $data['code'] = $code;
                 $phone_check = Phone_check::create($data);
                 if ($lang == 'ar') {
                     $message = 'مقرأة عنيزة الإلكترونية , كود التحقق من الجوال هو : ' . $phone_check->code;
@@ -993,7 +1015,12 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json(msg($request, failed(), $validator->messages()->first()));
         } else {
-            $code = (string)rand('1000', '9999');
+//            $code = (string)rand('1000', '9999');
+            if (env('APP_ENV') == 'production') {
+                $code = random_int(1000, 9999);
+            }else{
+                $code = 1234;
+            }
             $email = $request->email;
             $exists_email = Phone_check::where('phone', $email)->where('checked', 0)->first();
             if (!$exists_email) {
@@ -1022,7 +1049,12 @@ class AuthController extends Controller
                 return response()->json(msgdata($request, success(), trans('s_admin.email_checked_created'), $phone_check));
             } else {
                 if ($request->resend == 1) {
-                    $code = (string)rand('1000', '9999');
+//                    $code = (string)rand('1000', '9999');
+                    if (env('APP_ENV') == 'production') {
+                        $code = random_int(1000, 9999);
+                    }else{
+                        $code = 1234;
+                    }
                     $exists_email->code = $code;
                     $exists_email->save();
                     if ($lang == 'ar') {
