@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                 <textarea placeholder="{{trans('admin.message')}}" class="form-control" name="message"
-                                          required style="background-color: #f8f8f8; border:none;outline: none" ></textarea>
+                                          required ></textarea>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
                                     {!! NoCaptcha::renderJs(app()->getLocale(), false, 'recaptchaCallback') !!}
