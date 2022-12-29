@@ -59,7 +59,7 @@
                                                          style="background-image:url('/uploads/teachers/default_avatar.jpg')"></div>
                                                 @else
                                                     <div class="symbol-label"
-                                                         style="background-image:url('/uploads/teachers/{{$data->Teacher->image}}')"></div>
+                                                         style="background-image:url({{$data->Teacher->image}})"></div>
                                                 @endif
                                             @endif
                                             <i class="symbol-badge symbol-badge-bottom bg-success"></i>

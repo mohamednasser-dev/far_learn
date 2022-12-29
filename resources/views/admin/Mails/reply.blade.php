@@ -203,7 +203,7 @@
                                placeholder="{{trans('admin.subject')}}" value="{{$data->subject}}" readonly/>
 
                         <label>{{__('admin.message')}} </label>
-                        <textarea name="message" id="kt-ckeditor-1">
+                        <textarea name="message" id="kt-ckeditor-1" required >
                         </textarea>
 
 

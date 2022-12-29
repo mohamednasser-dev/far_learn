@@ -204,10 +204,10 @@
                     @csrf
                     <div class="form-group">
                         <label>{{__('admin.subject')}} </label>
-                        <input class="form-control border-0 px-8 min-h-45px" name="subject"
+                        <input class="form-control border-0 px-8 min-h-45px" name="subject" value="{{$data->subject}}" readonly
                                placeholder="{{trans('admin.subject')}}" required/>
                         <label>{{__('admin.message')}} </label>
-                        <textarea name="message" id="kt-ckeditor-1">
+                        <textarea name="message" id="kt-ckeditor-1" required>
                         </textarea>
 
 

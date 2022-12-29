@@ -39,6 +39,6 @@ class User extends Authenticatable
         if ($img)
             return asset('/uploads/users_images') . '/' . $img;
         else
-            return "";
+            return asset('uploads/users_images/blank.png') ;
     }
 }

@@ -42,17 +42,14 @@ class MailsController extends Controller
 
     public function MailReply($id)
     {
-        $data = Inbox::whereId($id)->with(['childreninboxes' => function ($q) {
-            $q->where('type', 'all_teachers')->orWhere(function ($query) {
-                $query->where('sender_id', Auth::guard('teacher')->user()->id)->where('sender_type', 'teacher');
-            });
-        }])->firstOrFail();
+//        ->with(['childreninboxes' => function ($q) {
+//        $q->where('type', 'all_teachers')->orWhere(function ($query) {
+//            $query->where('sender_id', Auth::guard('teacher')->user()->id)->where('sender_type', 'teacher');
+//        });
+//    }])
+        $data = Inbox::whereId($id)->with('childreninboxes')->firstOrFail();
         if ($data->inbox_id != null) {
-            $data = Inbox::whereId($data->inbox_id)->with(['childreninboxes' => function ($q) {
-                $q->where('type', 'all_teachers')->orWhere(function ($query) {
-                    $query->where('sender_id', Auth::guard('teacher')->user()->id)->where('sender_type', 'teacher');
-                });
-            }])->firstOrFail();
+            $data = Inbox::whereId($data->inbox_id)->with('childreninboxes')->firstOrFail();
         }
 
         Notification::where('inbox_id', $id)->update([

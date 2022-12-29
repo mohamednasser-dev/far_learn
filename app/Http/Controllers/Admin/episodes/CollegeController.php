@@ -21,10 +21,10 @@ class CollegeController extends Controller
     public function index()
     {
         $user = \auth()->user();
-        if($user->role_id == 3 || $user->role_id == 5||$user->role_id == 9 || $user->role_id == 10||$user->role_id == 11 ||
-        $user->role_id == 12||$user->role_id == 13 || $user->role_id == 14){
-            $data = College::where('id',$user->college_id)->where('deleted', '0')->get();
-        }else{
+        if ($user->role_id == 3 || $user->role_id == 5 || $user->role_id == 9 || $user->role_id == 10 || $user->role_id == 11 ||
+            $user->role_id == 12 || $user->role_id == 13 || $user->role_id == 14) {
+            $data = College::where('id', $user->college_id)->where('deleted', '0')->get();
+        } else {
             $data = College::where('type', 'college')->where('deleted', '0')->get();
         }
         return view('admin.episodes.college.index', compact('data'));
@@ -136,10 +136,14 @@ class CollegeController extends Controller
         $data['study_period'] = json_encode($data['study_period']);
 
 
-         College::where('id', $request->id)->update($data);
+        College::where('id', $request->id)->update($data);
 
         Alert::success(trans('s_admin.update'), trans('s_admin.updted_s'));
-        return back();
+        if ($request->type == 'dorr') {
+            return redirect()->route('dorr.index');
+        } else {
+            return redirect()->route('colleges.index');
+        }
     }
 
     /**

@@ -40,10 +40,10 @@ class Contact_usController extends Controller
     {
         $data = $this->validate(\request(),
             [
-                'name' => 'required',
-                'email' => 'required',
-                'phone' => 'required',
-                'message' => 'required',
+                'name' => 'required|max:191',
+                'email' => 'required|email|max:191',
+                'phone' => 'required|max:191',
+                'message' => 'required|max:900',
 //                'g-recaptcha-response' => 'required|captcha'
             ]);
         //check if you blocked

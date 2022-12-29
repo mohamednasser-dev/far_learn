@@ -185,6 +185,7 @@ return [
         'first_name_ar' => 'الاسم الاول',
         'mid_name_ar' => 'الاسم الاوسط',
         'last_name_ar' => 'الاسم الاخير',
+        'message' => 'الرسالة',
 
 
 
