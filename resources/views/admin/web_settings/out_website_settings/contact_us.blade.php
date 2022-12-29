@@ -11,7 +11,7 @@
         <div class="card-body">
             <!--begin: Datatable-->
             <div class="table-responsive">
-            <table class="table table-bordered table-hover table-checkable" id="kt_datatable">
+            <table class="table table-bordered table-hover table-checkable" id="kt_datatable_button2">
                 <thead>
                 <tr>
                     <th class="text-center"  title="Field #1">{{trans('admin.name')}}</th>
