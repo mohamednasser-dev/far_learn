@@ -171,8 +171,8 @@ class TeacherSettingsController extends Controller
                 'gender' => 'required',
                 'main_lang' => 'required',
                 'email' => 'required|unique:teachers,email',
-                'phone' => 'required|unique:teachers,phone',
-                'ident_num' => 'required',
+                'phone' => 'required|unique:teachers,phone|numeric|digits_between:9,10',
+                'ident_num' => 'required|digits:10',
                 'country_code' => 'required',
                 'cv' => '',
                 'qualification' => 'required',
@@ -244,8 +244,8 @@ class TeacherSettingsController extends Controller
                 'last_name_ar' => 'required',
                 'mid_name_ar' => 'required',
                 'nationality' => 'required',
-                'ident_num' => 'required',
-                'phone' => 'required|unique:teachers,phone,' . $id,
+                'ident_num' => 'required|digits:10',
+                'phone' => 'required|numeric|digits_between:9,10|unique:teachers,phone,' . $id,
                 'email' => 'required|unique:teachers,email,' . $id,
                 'country_code' => 'required',
                 'main_lang' => 'required',
@@ -351,7 +351,6 @@ class TeacherSettingsController extends Controller
                 return view('admin.web_settings.teachers.absence.episode_teachers', compact('basic_teacher', 'additional_teachers', 'type', 'employees'));
             }
         }
-        return view('admin.web_settings.teachers.absence.episodes', compact('data', 'type'));
     }
 
     public function absence_episode_college($type, $college_id)
@@ -482,7 +481,6 @@ class TeacherSettingsController extends Controller
 
             return view('admin.web_settings.teachers.absence.episode_teachers', compact('basic_teacher', 'additional_teachers', 'type', 'employees'));
         }
-        return view('admin.web_settings.teachers.absence.exists_dorr', compact('data', 'type'));
     }
 
 

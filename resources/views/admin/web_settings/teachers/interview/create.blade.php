@@ -134,15 +134,6 @@
                             <tr>
                                 <td class="pl-0 py-4">
                                     <span
-                                        class="text-dark-75 font-weight-bolder d-block font-size-lg">{{trans('s_admin.phone')}}</span>
-                                </td>
-                                <td class="pl-0">
-                                    <a class="text-primary font-weight-bolder text-hover-primary mb-1 font-size-lg">{{$data->phone}}</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="pl-0 py-4">
-                                    <span
                                         class="text-dark-75 font-weight-bolder d-block font-size-lg">{{trans('s_admin.email')}}</span>
                                 </td>
                                 <td class="pl-0">
@@ -154,9 +145,9 @@
                                     <span
                                         class="text-dark-75 font-weight-bolder d-block font-size-lg">{{trans('s_admin.phone')}}</span>
                                 </td>
-                                <td class="pl-0">
-                                    <a class="text-primary font-weight-bolder text-hover-primary mb-1 font-size-lg"> {{$data->phone}}
-                                        ({{$data->country_code}})</a>
+                                <td class="pl-0" style="direction: ltr;">
+                                    <a class="text-primary font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                        ({{$data->country_code}}) {{$data->phone}}</a>
                                 </td>
                             </tr>
                             <tr>

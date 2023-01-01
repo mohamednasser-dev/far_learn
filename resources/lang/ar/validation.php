@@ -186,6 +186,7 @@ return [
         'mid_name_ar' => 'الاسم الاوسط',
         'last_name_ar' => 'الاسم الاخير',
         'message' => 'الرسالة',
+        'ident_num' => 'رقم الهوية',
 
 
 

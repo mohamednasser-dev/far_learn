@@ -121,7 +121,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col col-xs-12">
-                        <p class="copyright">&copy; URAM. {{ trans('admin.all_reserve') }}</p>
+                        <p class="copyright">&copy; <a style="color: blue;" href="https://exas2030.com/">Exas</a>. {{ trans('admin.all_reserve') }}</p>
                     </div>
                 </div>
             </div>

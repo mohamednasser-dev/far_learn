@@ -223,7 +223,7 @@
                                 <input type="number" onkeyup="this.value=phonelimit(this.value);" required value="{{$data->phone}}" class="form-control" name="phone">
                             </div>
                             <div class="col-lg-2">
-                                <input id="txt_country_code" value="{{$data->country_code}}"
+                                <input id="txt_country_code" style="width: 60px;" value="{{$data->country_code}}"
                                        class="form-control" required
                                        type="text" name="country_code"/>
                             </div>

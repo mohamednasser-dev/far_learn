@@ -795,7 +795,7 @@ return [
     'revision' => 'revision',
     'save_quran_num' => 'The number of saved quran parts',
     'what_limit_save' => 'What is your ability to memorize?',
-    'ident_num' => 'Identification Number',
+    'ident_num' => 'identity Number',
     'should_complete_data' => 'Fourth step .... Complete the personal file',
     'nationality' => 'nationality',
     'qualification' => 'qualification',

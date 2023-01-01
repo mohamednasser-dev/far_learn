@@ -67,8 +67,8 @@
                     <div class="col-lg-3 col-md-2 col-sm-2">
                         <input type="number" onkeyup="this.value=phonelimit(this.value);" required value="{{$data->phone}}" class="form-control" name="phone">
                     </div>
-                    <div class="col-lg-1 col-md-1 col-sm-1">
-                        <input id="txt_country_code" value="{{$data->country_code}}"
+                    <div class="col-lg-1 col-md-1 col-sm-1" >
+                        <input id="txt_country_code" style="width: 60px;" value="{{$data->country_code}}"
                                class="form-control" required
                                type="text" name="country_code"/>
                     </div>

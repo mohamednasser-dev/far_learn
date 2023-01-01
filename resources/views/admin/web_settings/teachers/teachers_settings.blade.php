@@ -102,7 +102,7 @@
                                 {{$row->first_name_en}} {{$row->mid_name_en}}
                             @endif
                         </td>
-                        <td class="text-center">
+                        <td class="text-center" style="direction: ltr;">
                             {{$row->user_phone}}
                         </td>
                         <td class="text-center" style="width: 10%">
@@ -294,7 +294,6 @@
                             <label class="col-lg-4 col-form-label text-lg-right">{{trans('admin.main_lang')}}</label>
                             <div class="col-lg-8">
                                 <select id="txt_lang" class="form-control custom-select" required name="main_lang">
-                                    <option disabled selected >{{trans('s_admin.choose_language')}}</option>
                                     <option value="en" @if(old('main_lang') == 'en') selected @endif >English</option>
                                     <option value="ar" @if(old('main_lang') == 'ar') selected @endif >العربية</option>
                                 </select>
@@ -318,7 +317,7 @@
                                 <select id="kt_select2_1" name="country" required class="form-control custom-select" style="width: 100%" >
                                     <option>{{trans('s_admin.choose_country')}}</option>
                                     @foreach(App\Models\Country::where('deleted','0')->get() as $row)
-                                            <option value="{{$row->id}}">{{$row->name}}</option>
+                                            <option value="{{$row->id}}" @if(old('country') == $row->id) selected @endif >{{$row->name}}</option>
 
                                     @endforeach
                                 </select>
@@ -330,7 +329,7 @@
                                 <select id="kt_select2_3" name="nationality" required class="form-control custom-select" style="width: 100%" >
                                     <option disabled selected >{{trans('s_admin.choose_nationality')}}</option>
                                     @foreach(App\Models\Nationality::where('deleted','0')->get() as $row)
-                                        <option value="{{$row->id}}">{{$row->name}}</option>
+                                        <option value="{{$row->id}}" @if(old('nationality') == $row->id) selected @endif >{{$row->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -342,7 +341,7 @@
                                 <select id="kt_select2_2" name="qualification" required class="form-control custom-select" style="width: 100%" >
                                     <option disabled selected >{{trans('s_admin.choose_qualification')}}</option>
                                     @foreach(App\Models\Qualification::where('deleted','0')->get() as $row)
-                                            <option value="{{$row->id}}">{{$row->name}}</option>
+                                            <option value="{{$row->id}}" @if(old('qualification') == $row->id) selected @endif >{{$row->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -95,7 +95,7 @@
                                 {{$row->first_name_en}} {{$row->mid_name_en}}
                             @endif
                         </td>
-                        <td class="text-center" style="width: 10%">{{$row->user_phone}}</td>
+                        <td class="text-center" style="direction: ltr;width: 10%;" >{{$row->user_phone}}</td>
                         <td class="text-center" style="width: 10%">
                             @if($row->epo_type == 'far_learn')
                                 {{trans('s_admin.far_learn_student')}}
@@ -379,9 +379,9 @@
                                 </div>
                                 <div class="form-group row">
                                     <label
-                                        class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.ident_num')}}</label>
+                                                          class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.ident_num')}}</label>
                                     <div class="col-lg-8">
-                                        <input type="number" value="{{old('ident_num')}}" required class="form-control" name="ident_num">
+                                        <input type="number" maxlength="11" minlength="11" value="{{old('ident_num')}}" required class="form-control" name="ident_num">
                                     </div>
                                 </div>
                                 <div class="form-group row">
