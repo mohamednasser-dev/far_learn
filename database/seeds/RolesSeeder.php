@@ -14,18 +14,18 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        $data = [
-            [
-                'id' => 2,
-                'name' => 'مدير النظام',
-                'guard_name' => 'web',
-            ]
-        ];
-
-        foreach ($data as $get)
-        {
-            Role::updateOrCreate($get);
-        }
+//        $data = [
+//            [
+//                'id' => 2,
+//                'name' => 'مدير النظام',
+//                'guard_name' => 'web',
+//            ]
+//        ];
+//
+//        foreach ($data as $get)
+//        {
+//            Role::updateOrCreate($get);
+//        }
 
         $role = Role::first();
         // Assign Role To Admins
@@ -45,16 +45,16 @@ class RolesSeeder extends Seeder
 
         // Assign Role to Permissions
 
-        if($role) {
-            $permissions = Permission::get(['id']);
-            foreach ($permissions as $get) {
-                $item = [
-                    'permission_id' => $get->id,
-                    'role_id' => $role->id
-                ];
-                DB::table('role_has_permissions')->updateOrInsert($item);
-            }
-        }
+//        if($role) {
+//            $permissions = Permission::get(['id']);
+//            foreach ($permissions as $get) {
+//                $item = [
+//                    'permission_id' => $get->id,
+//                    'role_id' => $role->id
+//                ];
+//                DB::table('role_has_permissions')->updateOrInsert($item);
+//            }
+//        }
 
     }
 
