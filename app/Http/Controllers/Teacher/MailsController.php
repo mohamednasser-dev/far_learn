@@ -104,13 +104,17 @@ class MailsController extends Controller
         $notification['message_type'] = "inbox";
         $notification['type'] = "teacher";
         $notification['inbox_id'] = $data->id;
+        Admin_notification::create($notification);
+
         if ($data->receiver_type == "admin") {
-            Admin_notification::create($notification);
+
         } elseif ($data->receiver_type == "teacher") {
+            $notification['readed'] = "1";
             $notification['type'] = "teacher";
             $notification['teacher_id'] = $data->receiver_id;
             Notification::create($notification);
         } else {
+            $notification['readed'] = "1";
             $notification['type'] = "student";
             $notification['student_id'] = $data->receiver_id;
             Notification::create($notification);

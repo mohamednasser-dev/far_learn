@@ -126,14 +126,7 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{ asset('metronic/assets/js/pages/widgets.js') }}"></script>
     <script src="{{ asset('metronic/assets/js/pages/custom/profile/profile.js') }}"></script>
-    <script src="{{url('/')}}/hijri/js/jquery-3.3.1.js"></script>
-    <script src="{{url('/')}}/hijri/js/bootstrap.js"></script>
-    <script src="{{url('/')}}/hijri/js/momentjs.js"></script>
-    <script src="{{url('/')}}/hijri/js/moment-with-locales.js"></script>
-    <script src="{{url('/')}}/hijri/js/moment-hijri.js"></script>
-    <script src="{{url('/')}}/hijri/js/bootstrap-hijri-datetimepicker.js"></script>
     <script type="text/javascript">
         $(function () {
             initHijrDatePicker();
@@ -172,7 +165,6 @@
         }
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.8/js/intlTelInput-jquery.min.js"></script>
-
     <script type="text/javascript">
         $(function() {
             var code = "{{$data->country_code}}"; // Assigning value from model.

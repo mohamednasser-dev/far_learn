@@ -166,13 +166,13 @@
                                     </div> --}}
                                     <div class="row" style="width: 100%;margin: 0;padding: 10px;display: flex;justify-content: space-between;align-items: center">
                                         <div class="col-4">
-                                            <input type="text" class="form-control" placeholder="{{trans('admin.first_name')}}" autofocus="on" required value="{{old('first_name_ar')}}" id="txt_f_name">
+                                            <input type="text" class="form-control" placeholder="{{trans('admin.first_name')}}" name="first_name_ar" autofocus="on" required value="{{old('first_name_ar')}}" id="txt_f_name">
                                         </div>
                                         <div class="col-4">
-                                            <input type="text" class="form-control" placeholder="{{trans('admin.mid_name')}}" required value="{{old('mid_name_ar')}}" id="txt_m_name">
+                                            <input type="text" class="form-control" placeholder="{{trans('admin.mid_name')}}" name="mid_name_ar" required value="{{old('mid_name_ar')}}" id="txt_m_name">
                                         </div>
                                         <div class="col-4">
-                                            <input type="text" class="form-control" placeholder="{{trans('admin.last_name')}}" required value="{{old('last_name_ar')}}" id="txt_l_name">
+                                            <input type="text" class="form-control" placeholder="{{trans('admin.last_name')}}" name="last_name_ar" required value="{{old('last_name_ar')}}" id="txt_l_name">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">

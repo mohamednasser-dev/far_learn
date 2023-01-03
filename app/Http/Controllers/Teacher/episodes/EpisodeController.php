@@ -49,7 +49,7 @@ class EpisodeController extends Controller
     {
         $teacher_id = auth::guard('teacher')->user()->id;
         $update_data['readed'] = '1';
-        Notification::where('teacher_id', $teacher_id)->whereIn('message_type', ['notify_start_epo', 'restart_episode'])->where('readed', '0')->update($update_data);
+        Notification::where('teacher_id', $teacher_id)->whereIn('message_type', ['notify_start_epo', 'restart_episode','long_episode'])->where('readed', '0')->update($update_data);
 
         $data = Episode::where('teacher_id', $teacher_id)->where('active', 'y')->where('deleted', '0')->get();
         $additional_episodes = Episode_teacher::has('Episode', '>', 0)->where('teacher_id', $teacher_id)->get();

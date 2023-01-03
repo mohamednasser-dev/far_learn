@@ -57,19 +57,25 @@ class usersController extends Controller
                 $real_message = 'تم قبولك بموقع  ' . $title . '  رابط الموقع هنا :  ' . env('APP_URL');
             } else {
                 $title = Settings()->title_en;
-                $real_message = 'You have been accepted into the site  ' . $title . '  Website link here :  ' . env('APP_URL') ;
+                $real_message = 'You have been accepted into the site  ' . $title . '  Website link here :  ' . env('APP_URL');
 
             }
-            Mail::raw($real_message, function ($message) use ($email, $title) {
-                $message->subject($title);
-                $message->from(env('MAIL_USERNAME'), 'online learning');
-                $message->to($email);
-            });
-            $this->SendSMS($phone, $real_message);
+            try {
+                Mail::raw($real_message, function ($message) use ($email, $title) {
+                    $message->subject($title);
+                    $message->from(env('MAIL_USERNAME'), 'online learning');
+                    $message->to($email);
+                });
+                $this->SendSMS($phone, $real_message);
+            } catch (Exception $ex) {
+                Alert::error(trans('s_admin.error'), trans('s_admin.mail_not_sent'));
+                return redirect()->back();
+            }
             Alert::success(trans('s_admin.join_orders'), trans('s_admin.accepted_s'));
             return redirect()->back();
         }
     }
+
     public function reject($id)
     {
         $user = User::find($id);
@@ -77,20 +83,25 @@ class usersController extends Controller
         if ($user->save()) {
             $email = $user->email;
             $phone = $user->country_code . $user->phone;
-            if($user->main_lang == 'ar'){
+            if ($user->main_lang == 'ar') {
                 $title = Settings()->title_ar;
-                $real_message = 'تم رفضك من قبل الادارة - بموقع  ' . $title . '  رابط الموقع هنا :  ' . env('APP_URL') ;
-            }else{
+                $real_message = 'تم رفضك من قبل الادارة - بموقع  ' . $title . '  رابط الموقع هنا :  ' . env('APP_URL');
+            } else {
                 $title = Settings()->title_en;
-                $real_message = 'You have been rejected by the administration - Site  ' . $title . '  Website link here :  ' . env('APP_URL') ;
+                $real_message = 'You have been rejected by the administration - Site  ' . $title . '  Website link here :  ' . env('APP_URL');
 
             }
-            Mail::raw($real_message, function ($message) use ($email, $title) {
-                $message->subject($title);
-                $message->from(env('MAIL_USERNAME'), 'online learning');
-                $message->to($email);
-            });
-            $this->SendSMS($phone, $real_message);
+            try {
+                Mail::raw($real_message, function ($message) use ($email, $title) {
+                    $message->subject($title);
+                    $message->from(env('MAIL_USERNAME'), 'online learning');
+                    $message->to($email);
+                });
+                $this->SendSMS($phone, $real_message);
+            } catch (Exception $ex) {
+                Alert::error(trans('s_admin.error'), trans('s_admin.mail_not_sent'));
+                return redirect()->back();
+            }
             Alert::success(trans('s_admin.join_orders'), trans('s_admin.rejected_s'));
             return redirect()->back();
         }
