@@ -2,6 +2,7 @@
 return [
 
     //new
+    'code' => 'code',
     'home'=>'home',
     'terms'=>'terms and conditions',
     'email_sent'=>'Successfully completed successfully',

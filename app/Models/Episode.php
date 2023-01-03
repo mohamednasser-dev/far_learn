@@ -57,6 +57,11 @@ class Episode extends Model
         return $this->belongsToMany(Student::class, 'episode_students', 'episode_id', 'student_id')
             ->orderBy('order_num', 'asc')->where('deleted', '0');
     }
+    public function Students_not_rejected()
+    {
+        return $this->belongsToMany(Student::class, 'episode_students', 'episode_id', 'student_id')
+            ->orderBy('order_num', 'asc')->where('deleted', '0')->where('is_new','!=','rejected');
+    }
 
     public function Teaachers()
     {

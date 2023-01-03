@@ -4,7 +4,7 @@
     @yield('footer_follow')
     <!-- end wpo-news-letter-section -->
     <!-- start wpo-site-footer -->
-    <footer class="wpo-site-footer ">
+    <footer class="wpo-site-footer wpo-breadcumb-area">
         <div class="wpo-upper-footer">
             <div class="container" >
                 {{-- <div class="row">

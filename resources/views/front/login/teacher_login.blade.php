@@ -316,7 +316,7 @@
                                                     <div class="col-lg-2">
                                                         <div class="form-group">
                                                             <label
-                                                                class="control-label">{{trans('admin.country_code')}}</label><br>
+                                                                class="control-label">{{trans('admin.code')}}</label><br>
                                                             <input id="txt_parent_country_code"
                                                                 style="max-width: 30px;"
                                                                 @if(old('parent_country_code'))
@@ -330,8 +330,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-2">
-                                                        <label
-                                                            class="control-label"></label>
+                                                        <label class="control-label"> </label>
+                                                        <br>
                                                         <br>
                                                         <a href="javascript:void(this);"
                                                         id="btn_send_parent_code_check"

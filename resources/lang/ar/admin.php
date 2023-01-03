@@ -2,6 +2,7 @@
 return [
 
     //new
+    'code' => 'الرمز',
     'page_forgot_Pass' => 'إعادة كلمة المرور',
 
     'useful_links'=>'صفحات مهمة',

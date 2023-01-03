@@ -132,7 +132,7 @@
                                         {{trans('s_admin.you_student_mogmaa')}}
                                     @endif
                                 @else
-                                    @if(count($row->Students) >= $row->student_number)
+                                    @if(count($row->Students_not_rejected) >= $row->student_number)
                                         <a class=" btn btn-dark"
                                            href="javascript:void(0);"
                                            title="">{{trans('s_admin.episode_complete')}}
@@ -227,8 +227,6 @@
                                         for="radio5">{{trans('s_admin.all')}}</label></li>
                             </ul>
                             <hr>
-
-
                             <h4 class="mb-0">{{trans('s_admin.gender')}}</h4>
                             <ul class="method-list mb-0 list-unstyled w-100">
                                 <li>
@@ -255,8 +253,6 @@
                                     <label for="radio9">{{trans('s_admin.all')}}</label></li>
                             </ul>
                             <hr>
-
-
                             <h4 class="mb-0">{{trans('s_admin.teacher_talk')}}</h4>
                             <ul class="method-list mb-0 list-unstyled w-100">
                                 <li>
@@ -272,8 +268,6 @@
                                     <label for="radio16">{{trans('s_admin.english')}}</label></li>
                             </ul>
                             <hr>
-
-
                             <h4 class="mb-0">{{trans('s_admin.study_cost')}}</h4>
                             <ul class="method-list mb-0 list-unstyled w-100">
                                 <li>

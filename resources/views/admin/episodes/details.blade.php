@@ -790,7 +790,7 @@
                                                                 class="text-muted font-weight-bold d-block">{{trans('s_admin.student_number')}}</span>
                                                             <a href="javascript:void(0);"
                                                                class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">
-                                                                {{count($data->Students)}}
+                                                                {{count($data->Students_not_rejected)}}
                                                             </a>
                                                         </td>
                                                         <td class="pl-0 py-5">
@@ -955,7 +955,7 @@
                                                 data-add-all="&lt;i class='flaticon2-fast-back'&gt;&lt;/i&gt;"
                                                 data-remove-all="&lt;i class='flaticon2-fast-next'&gt;&lt;/i&gt;">
                                             {{--where('epo_type',$data->type)->--}}
-                                            @php $students = \App\Models\Student::where('gender',$data->gender)->where('status','active')->where('is_new','accepted')->where('is_verified','1')->where('interview','y')->where('complete_data','1')->get(); @endphp
+                                            @php $students = \App\Models\Student::where('gender',$data->gender)->where('status','active')->where('is_new','!=','rejected')->where('is_verified','1')->where('interview','y')->where('complete_data','1')->get(); @endphp
 
                                             @foreach($students as $row)
                                                 @php $exists_stud = \App\Models\Episode_student::where('deleted','0')->where('student_id',$row->id)->where('episode_id',$data->id)->first(); @endphp
