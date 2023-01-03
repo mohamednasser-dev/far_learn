@@ -49,8 +49,7 @@ class EpisodesController extends Controller
     public function search(Request $request, $type)
     {
 
-        $page_type = $request->page_type;
-        $type = $request->type;
+        $page_type = $request->type;
         $result = Episode::query();
         $result = $result->where('active', 'y')->whereHas('Teacher')->where('deleted', '0');
 
