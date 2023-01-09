@@ -54,7 +54,7 @@
                 <input required type="text" name="degree_en" value="{{$degree->name_en}}" style="text-align: left;position: absolute;top: 311px;left: 115px;border: none;width: 120px;">
                 <input required type="text" name="from_sur_en" @if($first_surah_en) value="{{$first_surah_en}}" @endif style="text-align: left;position: absolute;top: 275px;left: 115px;border: none;width: 115px;">
                 <input required type="text" name="to_sur_en" @if($last_surah_en) value="{{$last_surah_en}}" @endif style="text-align: left;position: absolute;top: 275px;left: 310px;border: none;width: 115px;height: 15px;">
-                <input required type="submit"  value="{{trans('s_admin.save')}}" class="btn btn-primary"
+                <input  type="submit"  value="{{trans('s_admin.save')}}" class="btn btn-primary"
                        style=" position: absolute; top: 500px; left: -70px; border: none; ">
                 <input required type="text" name="to_y_en" value="{{$to_date_string}}" style="text-align: left;position: absolute;top: 297px;left: 265px;border: none;width: 75px;height: 15px;">
                 <input required type="text" name="from_y_en" value="{{$from_date_string}}" style="text-align: left;position: absolute;top: 297px;left: 175px;border: none;width: 75px;height: 15px;">

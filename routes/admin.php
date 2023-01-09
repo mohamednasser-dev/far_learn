@@ -286,6 +286,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::resource('contact_us', 'Admin\web_settings\Contact_usController');
     Route::get('contact_us/{id}/delete', 'Admin\web_settings\Contact_usController@destroy')->name('delete.contact_us');
     Route::get('contact_us/{id}/block', 'Admin\web_settings\Contact_usController@block')->name('block.contact_us');
+    Route::get('contact_us/{id}/un_block', 'Admin\web_settings\Contact_usController@un_block')->name('un_block.contact_us');
 
     //users  routes
     Route::resource('users', 'Admin\UsersController');

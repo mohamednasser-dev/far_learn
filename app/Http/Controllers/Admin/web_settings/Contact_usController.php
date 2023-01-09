@@ -12,7 +12,7 @@ class Contact_usController extends Controller
 {
     //Slider Actions
     public function index(){
-        $contacts = Contact::orderBy('created_at','desc')->get();
+        $contacts = Contact::orderBy('created_at','desc')->paginate(10);
         Contact::where('readed','0')->update(['readed'=>'1']);
         return view('admin.web_settings.out_website_settings.contact_us' ,compact('contacts') );
     }
@@ -27,6 +27,13 @@ class Contact_usController extends Controller
         $data['client_ip'] = $contact->client_ip ;
         BlockList::create($data);
         Alert::success(trans('s_admin.block_user'), trans('s_admin.blocked_Success'));
+        return redirect()->back();
+    }
+    public function un_block($id)
+    {
+        $contact = Contact::findOrFail($id);
+        BlockList::where('client_ip',$contact->client_ip )->delete();
+        Alert::success(trans('s_admin.block_user'), trans('s_admin.unblocked_Success'));
         return redirect()->back();
     }
 

@@ -277,7 +277,7 @@
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label text-lg-right">{{trans('s_admin.ident_num')}}</label>
                             <div class="col-lg-8">
-                                <input type="number" required value="{{old('ident_num')}}" class="form-control"
+                                <input type="number" min="10" max="10" required value="{{old('ident_num')}}" class="form-control"
                                        name="ident_num">
                             </div>
                         </div>
@@ -315,7 +315,7 @@
                             <label class="col-form-label text-right col-lg-4 col-sm-12">{{trans('admin.country')}}</label>
                             <div class="col-lg-8">
                                 <select id="kt_select2_1" name="country" required class="form-control custom-select" style="width: 100%" >
-                                    <option>{{trans('s_admin.choose_country')}}</option>
+{{--                                    <option>{{trans('s_admin.choose_country')}}</option>--}}
                                     @foreach(App\Models\Country::where('deleted','0')->get() as $row)
                                             <option value="{{$row->id}}" @if(old('country') == $row->id) selected @endif >{{$row->name}}</option>
 
@@ -327,7 +327,7 @@
                             <label class="col-form-label text-right col-lg-4 col-sm-12">{{trans('s_admin.nationality')}}</label>
                             <div class="col-lg-8">
                                 <select id="kt_select2_3" name="nationality" required class="form-control custom-select" style="width: 100%" >
-                                    <option disabled selected >{{trans('s_admin.choose_nationality')}}</option>
+{{--                                    <option disabled selected >{{trans('s_admin.choose_nationality')}}</option>--}}
                                     @foreach(App\Models\Nationality::where('deleted','0')->get() as $row)
                                         <option value="{{$row->id}}" @if(old('nationality') == $row->id) selected @endif >{{$row->name}}</option>
                                     @endforeach
@@ -339,7 +339,7 @@
                                 class="col-form-label text-right col-lg-4 col-sm-12">{{trans('s_admin.qualification')}}</label>
                             <div class="col-lg-8">
                                 <select id="kt_select2_2" name="qualification" required class="form-control custom-select" style="width: 100%" >
-                                    <option disabled selected >{{trans('s_admin.choose_qualification')}}</option>
+{{--                                    <option disabled selected >{{trans('s_admin.choose_qualification')}}</option>--}}
                                     @foreach(App\Models\Qualification::where('deleted','0')->get() as $row)
                                             <option value="{{$row->id}}" @if(old('qualification') == $row->id) selected @endif >{{$row->name}}</option>
                                     @endforeach
@@ -351,9 +351,9 @@
                             <label class="col-form-label text-right col-lg-4 col-sm-12">{{trans('admin.job_name')}}</label>
                             <div class="col-lg-8">
                                 <select id="kt_select2_4" name="job_name" required class="form-control custom-select seelect2" style="width: 100%" >
-                                <option disabled selected > {{ trans('s_admin.choose_Job_name')}} </option>
+{{--                                <option disabled selected > {{ trans('s_admin.choose_Job_name')}} </option>--}}
                                 @foreach(\App\Models\Job_name::where('deleted','0')->get() as $row)
-                                            <option value="{{$row->id}}">{{$row->name}}</option>
+                                            <option value="{{$row->id}}" @if(old('job_name') == $row->id) selected @endif >{{$row->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

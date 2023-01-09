@@ -3,6 +3,9 @@ return [
     //new
 
 
+    'blocked' => 'محظور',
+    'unblocked' => ' فك الحظر',
+    'unblocked_Success' => 'تم فك الحظر بنجاح',
     'mail_not_sent' => 'البريد لم يرسل',
     'add_new_question' => 'إضافة سؤال جديد',
     'edit_what_his_limit_save' => 'تعديل القدرة على الحفظ',
