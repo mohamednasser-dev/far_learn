@@ -312,17 +312,17 @@ class   LoginController extends Controller
             $data['user_name'] = $request->first_name_ar . " " . $request->mid_name_ar . " " . $request->last_name_ar;
             if (env('APP_ENV') == 'production') {
                 $code = random_int(1000, 9999);
-            }else{
+            } else {
                 $code = 1234;
             }
             if ($type == 'teacher_far_learn' || $type == 'teacher_mogmaa_dorr') {
                 //check if employee or teacher ...
-                if($request->job_name == 7){
-                    $emp_data['name'] = $data['user_name'] ;
+                if ($request->job_name == 7) {
+                    $emp_data['name'] = $data['user_name'];
                     $emp_data['unique_name'] = $data['unique_name'];
                     $emp_data['phone'] = $request->phone;
                     $emp_data['email'] = $request->email;
-                    $emp_data['password'] = $data['password'] ;
+                    $emp_data['password'] = $data['password'];
                     $emp_data['role_id'] = 8;
                     $emp_data['type'] = 'user';
                     $emp_data['main_lang'] = $request->main_lang;
@@ -337,7 +337,7 @@ class   LoginController extends Controller
                         $user->save();
 
                         //send notification to admin panel
-                        $data_notify['user_id'] = $user->id ;
+                        $data_notify['user_id'] = $user->id;
                         $data_notify['type'] = 'admin';
                         $data_notify['message_type'] = 'new_user';
                         $data_notify['title_ar'] = 'موظف جديد منضم';
@@ -346,7 +346,7 @@ class   LoginController extends Controller
                         $data_notify['message_en'] = 'A new employee has been added to the system.' . $user->user_name;
                         Admin_notification::create($data_notify);
                     }
-                }else{
+                } else {
                     if ($type == 'teacher_far_learn') {
                         $data['epo_type'] = 'far_learn';
                     } else if ($type == 'teacher_mogmaa_dorr') {
@@ -426,7 +426,7 @@ class   LoginController extends Controller
                 $student = Student::create($data);
                 if ($student->save()) {
                     // save student history
-                    if ($request->level_id != null && $request->subject_id != null&& $request->subject_level_id != null ) {
+                    if ($request->level_id != null && $request->subject_id != null && $request->subject_level_id != null) {
                         $history_data['student_id'] = $student->id;
                         $history_data['level_id'] = $request->level_id;
                         $history_data['subject_id'] = $request->subject_id;
@@ -499,7 +499,7 @@ class   LoginController extends Controller
                 $student = Student::create($data);
                 $student->code = $code;
                 if ($student->save()) {
-                    if ($request->level_id != null && $request->subject_id != null && $request->subject_level_id != null ) {
+                    if ($request->level_id != null && $request->subject_id != null && $request->subject_level_id != null) {
                         $history_data['student_id'] = $student->id;
                         $history_data['level_id'] = $request->level_id;
                         $history_data['subject_id'] = $request->subject_id;
@@ -585,7 +585,7 @@ class   LoginController extends Controller
         if ($parent->save()) {
             if (env('APP_ENV') == 'production') {
                 $code = random_int(1000, 9999);
-            }else{
+            } else {
                 $code = 1234;
             }
             $student_data['code'] = $code;
@@ -692,7 +692,7 @@ class   LoginController extends Controller
             if ($user->is_verified == '0') {
                 if (env('APP_ENV') == 'production') {
                     $code = random_int(1000, 9999);
-                }else{
+                } else {
                     $code = 1234;
                 }
                 $user->code = $code;
@@ -743,12 +743,12 @@ class   LoginController extends Controller
 
         $type = $request->type;
         if ($type == 'far_learn' || $type == 'mogmaa_dorr') {
-            $exists_student = Student::where('user_phone',$user_phone)->first();
-        }else{
-            $exists_student = Teacher::where('user_phone',$user_phone)->first();
+            $exists_student = Student::where('user_phone', $user_phone)->first();
+        } else {
+            $exists_student = Teacher::where('user_phone', $user_phone)->first();
         }
-        if($exists_student){
-            return response(['status' => false,'type'=>'exists']);
+        if ($exists_student) {
+            return response(['status' => false, 'type' => 'exists']);
         }
 
         if ($user_phone) {
@@ -756,7 +756,7 @@ class   LoginController extends Controller
             if (!$exists_phone) {
                 if (env('APP_ENV') == 'production') {
                     $code = rand('1000', '9999');
-                }else{
+                } else {
                     $code = '1234';
                 }
                 //create new row
@@ -783,7 +783,7 @@ class   LoginController extends Controller
             $exists_phone = Phone_check::where('phone', $user_phone)->where('checked', 0)->first();
             if (env('APP_ENV') == 'production') {
                 $code = rand('1000', '9999');
-            }else{
+            } else {
                 $code = '1234';
             }
             if ($exists_phone) {
@@ -825,12 +825,13 @@ class   LoginController extends Controller
                 $exists_phone->save();
                 return response(['status' => true]);
             } else {
-                return response(['status' => false,'type'=>'wrong_code']);
+                return response(['status' => false, 'type' => 'wrong_code']);
             }
         } else {
             return response(['status' => false]);
         }
     }
+
     //parent phone check
     public function send_check_parent_phone(Request $request)
     {
@@ -840,7 +841,7 @@ class   LoginController extends Controller
             if (!$exists_phone) {
                 if (env('APP_ENV') == 'production') {
                     $code = rand('1000', '9999');
-                }else{
+                } else {
                     $code = '1234';
                 }
                 //create new row
@@ -866,12 +867,12 @@ class   LoginController extends Controller
         $email = $request->email;
         $type = $request->type;
         if ($type == 'far_learn' || $type == 'mogmaa_dorr') {
-            $exists_student = Student::where('email',$email)->first();
-        }else{
-            $exists_student = Teacher::where('email',$email)->first();
+            $exists_student = Student::where('email', $email)->first();
+        } else {
+            $exists_student = Teacher::where('email', $email)->first();
         }
-        if($exists_student){
-            return response(['status' => false,'type'=>'exists']);
+        if ($exists_student) {
+            return response(['status' => false, 'type' => 'exists']);
         }
         if ($email) {
             $exists_email = Phone_check::where('phone', $email)->where('checked', 0)->first();
@@ -879,7 +880,7 @@ class   LoginController extends Controller
                 //create new row
                 if (env('APP_ENV') == 'production') {
                     $code = rand('1000', '9999');
-                }else{
+                } else {
                     $code = '1234';
                 }
                 $lang = app()->getLocale();
@@ -910,7 +911,7 @@ class   LoginController extends Controller
             }
             return response(['status' => true]);
         } else {
-            return response(['status' => false,'type'=>'email_required']);
+            return response(['status' => false, 'type' => 'email_required']);
         }
     }
 
@@ -923,7 +924,7 @@ class   LoginController extends Controller
             if ($exists_email) {
                 if (env('APP_ENV') == 'production') {
                     $code = rand('1000', '9999');
-                }else{
+                } else {
                     $code = '1234';
                 }
                 $exists_email->code = $code;
@@ -934,25 +935,26 @@ class   LoginController extends Controller
 //                $data_verify['email'] = $email;
 //                $data_verify['lang'] = $lang;
 //                $exists_email->notify(new VerfiyRegister($data_verify));
-                if ($lang == 'ar') {
-                    Mail::raw('مقرأة عنيزة الإلكترونية , كود التحقق من الجوال هو : ' . $code, function ($message) use ($email) {
-                        $message->subject(trans('s_admin.title'));
-                        $message->from(env('MAIL_USERNAME'), 'online learning');
-                        $message->to($email);
-                    });
-                } else {
-                    Mail::raw('miqra\'a Unaizah electronic , OTP code for verify phone number is : '. $code, function ($message) use ($email) {
-                        $message->subject(trans('s_admin.title'));
-                        $message->from(env('MAIL_USERNAME'), 'online learning');
-                        $message->to($email);
-                    });
+                if (env('APP_ENV') == 'production') {
+                    if ($lang == 'ar') {
+                        Mail::raw('مقرأة عنيزة الإلكترونية , كود التحقق من الجوال هو : ' . $code, function ($message) use ($email) {
+                            $message->subject(trans('s_admin.title'));
+                            $message->from(env('MAIL_USERNAME'), 'online learning');
+                            $message->to($email);
+                        });
+                    } else {
+                        Mail::raw('miqra\'a Unaizah electronic , OTP code for verify phone number is : ' . $code, function ($message) use ($email) {
+                            $message->subject(trans('s_admin.title'));
+                            $message->from(env('MAIL_USERNAME'), 'online learning');
+                            $message->to($email);
+                        });
+                    }
                 }
-
                 return response(['status' => true]);
             } else {
                 if (env('APP_ENV') == 'production') {
                     $code = rand('1000', '9999');
-                }else{
+                } else {
                     $code = '1234';
                 }
                 //create new row
@@ -965,18 +967,20 @@ class   LoginController extends Controller
 //                $data_verify['email'] = $email;
 //                $data_verify['lang'] = $lang;
 //                $phone_check->notify(new VerfiyRegister($data_verify));
-                if ($lang == 'ar') {
-                    Mail::raw('مقرأة عنيزة الإلكترونية , كود التحقق من الجوال هو : ' . $phone_check->code, function ($message) use ($email) {
-                        $message->subject(trans('s_admin.title'));
-                        $message->from(env('MAIL_USERNAME'), 'online learning');
-                        $message->to($email);
-                    });
-                } else {
-                    Mail::raw('miqra\'a Unaizah electronic , OTP code for verify phone number is : '. $phone_check->code, function ($message) use ($email) {
-                        $message->subject(trans('s_admin.title'));
-                        $message->from(env('MAIL_USERNAME'), 'online learning');
-                        $message->to($email);
-                    });
+                if (env('APP_ENV') == 'production') {
+                    if ($lang == 'ar') {
+                        Mail::raw('مقرأة عنيزة الإلكترونية , كود التحقق من الجوال هو : ' . $phone_check->code, function ($message) use ($email) {
+                            $message->subject(trans('s_admin.title'));
+                            $message->from(env('MAIL_USERNAME'), 'online learning');
+                            $message->to($email);
+                        });
+                    } else {
+                        Mail::raw('miqra\'a Unaizah electronic , OTP code for verify phone number is : ' . $phone_check->code, function ($message) use ($email) {
+                            $message->subject(trans('s_admin.title'));
+                            $message->from(env('MAIL_USERNAME'), 'online learning');
+                            $message->to($email);
+                        });
+                    }
                 }
                 return response(['status' => true]);
             }
@@ -996,7 +1000,7 @@ class   LoginController extends Controller
                 $exists_phone->save();
                 return response(['status' => true]);
             } else {
-                return response(['status' => false,'type'=>'wrong_code']);
+                return response(['status' => false, 'type' => 'wrong_code']);
             }
         } else {
             return response(['status' => false]);
