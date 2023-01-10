@@ -76,6 +76,7 @@
                                maxLength="100" class="form-control" required>
                     </div>
                     <div class="form-group">
+                        <input type="hidden" name="website_url" id="website_url" value="{{env('APP_URL')}}" required>
                         <input type="hidden" name="meeting_number" id="meeting_number" value="{{$data->meeting_id}}" maxLength="200"
                                style="width:150px" placeholder="Meeting Number" class="form-control" required>
                     </div>

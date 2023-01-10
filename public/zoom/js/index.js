@@ -46,6 +46,7 @@ function websdkready() {
     document.getElementById("meeting_lang").value = testTool.getCookie(
       "meeting_lang"
     );
+    var website_url =  document.getElementById("website_url").value
 
   document
     .getElementById("meeting_lang")
@@ -102,7 +103,7 @@ function websdkready() {
           console.log(res.result);
           meetingConfig.signature = res.result;
           meetingConfig.apiKey = API_KEY;
-          var joinUrl = "https://mqraa.kenzivenum.com/teacher/t_episodes/zoom/meeting/?" + testTool.serialize(meetingConfig);
+          var joinUrl = website_url+"teacher/t_episodes/zoom/meeting/?" + testTool.serialize(meetingConfig);
           // var joinUrl = "https://maqrah.info/teacher/t_episodes/zoom/meeting/?" + testTool.serialize(meetingConfig);
             // document.getElementById('zoom_iframe').src = joinUrl;
           // console.log(joinUrl);

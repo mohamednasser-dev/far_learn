@@ -2,6 +2,7 @@ window.addEventListener('DOMContentLoaded', function(event) {
   console.log('DOM fully loaded and parsed');
   websdkready();
 });
+var website_url =  document.getElementById("website_url").value
 
 function websdkready() {
   var testTool = window.testTool;
@@ -29,7 +30,7 @@ function websdkready() {
     })(),
     passWord: tmpArgs.pwd,
     // leaveUrl: "https://maqrah.info/teacher/t_episodes/page/blank",
-    leaveUrl: "https://mqraa.kenzivenum.com/teacher/t_episodes/page/blank",
+    leaveUrl: website_url+"teacher/t_episodes/page/blank",
     role: parseInt(tmpArgs.role, 10),
     userEmail: (function () {
       try {
