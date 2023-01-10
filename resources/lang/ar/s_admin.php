@@ -3,6 +3,11 @@ return [
     //new
 
 
+    'password_not_confirmed' => 'كلمات المرور غير متطابقة',
+    'check_parent_phone_first' => 'يجب التحقق من رقم جوال ولي الامر أولا !',
+    'check_email_first' => 'يجب التحقق من البريد الإلكتروني اولا !',
+    'check_phone_first' => 'يجب التحقق من رقم الجوال أولا !',
+    'should_enter_valid_date' => 'يجب اختيار تاريخ ميلاد صحيح',
     'blocked' => 'محظور',
     'unblocked' => ' فك الحظر',
     'unblocked_Success' => 'تم فك الحظر بنجاح',

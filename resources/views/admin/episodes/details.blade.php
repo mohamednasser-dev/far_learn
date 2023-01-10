@@ -64,7 +64,7 @@
                                             @endif
                                             <i class="symbol-badge symbol-badge-bottom bg-success"></i>
                                         </div>
-                                        <a href="javascript:void(0);"
+                                        <a href="{{route('teacher.show.interviews',$data->teacher_id)}}" target="_blank"
                                            class="card-title font-weight-bolder text-dark-75 text-hover-primary font-size-h4 m-0 pt-7 pb-1">
                                             @if($data->Teacher != null)
                                                 @if( app()->getLocale() == 'ar' )

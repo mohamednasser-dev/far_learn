@@ -142,6 +142,7 @@
                             <input type="hidden" name="episode_id" value="{{$episode_id}}">
                             <input type="hidden" name="e_c" id="txt_e_c" value="false">
                             <input type="hidden" name="p_c" id="txt_p_c" value="false">
+                            <input type="hidden" name="date_checked" id="txt_date_checked" value="false">
                             <input type="hidden" name="pa_c" id="txt_pa_c" value="true">
                             <div class="panel panel-primary setup-content" id="step-1" style="border: none; border-radius:15px">
                                 <div class="panel-body">
@@ -1048,6 +1049,12 @@
             var nowYear = now.getFullYear();
             var pastYear = past.getFullYear();
             var age = nowYear - pastYear;
+            if (age <= 0) {
+                alert('{{trans('s_admin.should_enter_valid_date')}}');
+                $('#txt_date_checked').val("false");
+            }else{
+                $('#txt_date_checked').val("true");
+            }
             if (age <= 10) {
                 // console.log('age <= 10');
                 document.getElementById('parent_access').style.display = 'block';
@@ -1149,18 +1156,21 @@
                     var pw1 = $('#txt_pass').val();
                     var pw2 = $('#txt_con_pass').val();
                     var ec = $('#txt_e_c').val();
+                    var date_checked = $('#txt_date_checked').val();
                     var pc = $('#txt_p_c').val();
                     var pac = $('#txt_pa_c').val();
                     var parent_phone = $('#phone').val();
                     if (ec != 'true') {
-                        alert("يجب التحقق من البريد الإلكتروني اولا !");
+                        alert('{{trans('s_admin.check_email_first')}}' );
                     } else if (pc != 'true') {
-                        alert("يجب التحقق من رقم الجوال أولا !");
+                        alert('{{trans('s_admin.check_phone_first')}}');
                     } else if (pac != 'true') {
-                        alert("يجب التحقق من رقم جوال ولي الامر أولا !");
+                        alert('{{trans('s_admin.check_parent_phone_first')}}');
                     } else if (pw1 != pw2) {
-                        alert("كلمات المرور غير متطابقة");
-                    } else {}
+                        alert( '{{trans('s_admin.password_not_confirmed')}}');
+                    } else if (date_checked != 'true') {
+                        alert('{{trans('s_admin.should_enter_valid_date')}}');
+                    }else{
                     var curStep = $(this).closest(".setup-content"),
                         curStepBtn = curStep.attr("id"),
                         nextStepWizard = $('div.setup-panel div a[secc="#' + curStepBtn + '"]').parent().next().children("a"),
@@ -1217,7 +1227,7 @@
                         }
                     }
                     if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
-                    // }
+                    }
                 } else {
                     var curStep = $(this).closest(".setup-content"),
                         curStepBtn = curStep.attr("id"),

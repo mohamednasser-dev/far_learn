@@ -189,6 +189,7 @@ class   LoginController extends Controller
         unset($data['p_c']);
         unset($data['e_c']);
         unset($data['pa_c']);
+        unset($data['date_checked']);
         if ($request->country_code == 'Egypt') {
             $data['country_code'] = '+966';
         }

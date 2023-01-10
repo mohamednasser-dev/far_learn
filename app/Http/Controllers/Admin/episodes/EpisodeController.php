@@ -252,7 +252,7 @@ class EpisodeController extends Controller
         $start_date = date("Y-m-d", $startTime);
 
         $data['start_date'] = $start_date;
-//        $data['active'] = 'n';
+        $data['active'] = 'y';
         if ($type == 'dorr') {
             $data['college_id'] = $request->college_id;
         } else {

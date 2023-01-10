@@ -1,6 +1,16 @@
  <?php
 return [
 
+    'password_not_confirmed' => 'Passwords not confirmed',
+     'check_parent_phone_first' => 'You must check parent phone number first!',
+     'check_email_first' => 'You must check your email first!',
+     'check_phone_first' => 'The mobile number must be verified first!',
+    'should_enter_valid_date' => 'You must choose a valid date of birth',
+    'blocked' => 'blocked',
+    'unblocked' => 'remove the block',
+    'unblocked_Success' => 'The ban has been successfully unlocked',
+    'mail_not_sent' => 'mail not sent',
+    'add_new_question' => 'add new question',
     'edit_what_his_limit_save' => 'edit ability to save',
     'choose_from_colors' => 'choose from colours',
     'app_main_color' => 'main color',
